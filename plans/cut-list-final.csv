@@ -13,7 +13,7 @@ CM-01,center_module,plywood,0.75,2,31.5,42.5,31,42,cut_now,Center module sides
 CM-02,center_module,plywood,0.75,2,29.5,4.5,29,4,cut_now,Center module top front and rear stretchers
 CM-03,center_module,plywood,0.75,2,29.5,6.5,29,6,cut_now,Center module lower front and rear stretchers
 CM-04,center_module,2x4 lumber,1.5,2,29.5,3.5,29,3.5,cut_now,Saw-mount ledgers
-CM-05,center_module,2x4 lumber,1.5,2,25,3.5,24,3.5,after_survey,Cradle crossrails remain rough-only until the stripped-saw survey and first fit
+CM-05,center_module,plywood,0.75,1,28,23,27.5,22.5,after_survey,Oversized cradle deck to be transfer-drilled from the actual saw after flush tuning and first fit
 RM-01,right_module,plywood,0.75,2,31.5,42.5,31,42,cut_now,Right module sides
 RM-02,right_module,plywood,0.75,1,31.5,42.5,31,42,after_service_layout,Transfer the real rail-lane notches and service layout before final cutting
 RM-03,right_module,plywood,0.75,1,21,41,20.5,40.5,cut_now,Dust-bay floor

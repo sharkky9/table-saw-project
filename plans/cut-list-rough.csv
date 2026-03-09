@@ -13,7 +13,7 @@ CM-01,center_module,plywood,0.75,2,31.5,42.5,yes,Center module sides
 CM-02,center_module,plywood,0.75,2,29.5,4.5,yes,Center module top front and rear stretchers
 CM-03,center_module,plywood,0.75,2,29.5,6.5,yes,Center module lower front and rear stretchers
 CM-04,center_module,2x4 lumber,1.5,2,29.5,3.5,yes,Saw-mount ledgers
-CM-05,center_module,2x4 lumber,1.5,2,25,3.5,yes,Cradle crossrails stay rough until the stripped-saw survey is complete
+CM-05,center_module,plywood,0.75,1,28,23,yes,Oversized cradle-deck blank before transfer drilling and relief trimming
 RM-01,right_module,plywood,0.75,2,31.5,42.5,yes,Right module sides
 RM-02,right_module,plywood,0.75,1,31.5,42.5,yes,Right module partition blank before notch layout is cut
 RM-03,right_module,plywood,0.75,1,21,41,yes,Dust-bay floor

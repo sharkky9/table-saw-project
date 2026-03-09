@@ -21,9 +21,9 @@
 ## Saw Cradle
 
 - ledgers screwed and glued to carcass sides
-- slotted crossrails bolted
-- jack screws provide fine adjustment
-- saw-mount bolts drilled only after the survey and fit-up
+- oversized cradle deck sits on the ledgers and gets trimmed or relieved only after first fit
+- jack screws provide fine adjustment under the deck
+- saw-mount holes are transfer-drilled from the real saw only after flush tuning
 
 ## Sliding Carriage
 

@@ -37,7 +37,7 @@ Read these first:
 ## 1. Stripped-Saw Survey
 
 - Print [stripped-saw-survey.md](/Users/christopherhandel/Documents/GitHub/Table Saw-sliding-carriage/plans/stripped-saw-survey.md).
-- Record every required measurement in [data/measurements.csv](/Users/christopherhandel/Documents/GitHub/Table Saw-sliding-carriage/data/measurements.csv).
+- Record every top-machining gate measurement and any mount or dust reference measurements in [data/measurements.csv](/Users/christopherhandel/Documents/GitHub/Table Saw-sliding-carriage/data/measurements.csv).
 - Do not continue to top machining until the precision-gate commands pass.
 
 Hold point:
@@ -94,7 +94,7 @@ Steps:
 
 1. Build the open frame from `CM-01`, `CM-02`, and `CM-03`.
 2. Install `CM-04` ledgers at the nominal mount-plane height.
-3. Leave `CM-05` rough until the stripped-saw survey is complete.
+3. Leave `CM-05` oversized and undrilled until the stripped-saw survey and first saw fit are complete.
 4. Build the cradle per [saw-cradle.md](/Users/christopherhandel/Documents/GitHub/Table Saw-sliding-carriage/plans/saw-cradle.md).
 
 Hold point:
@@ -161,11 +161,13 @@ Hold point:
 1. Set the saw on the cradle.
 2. Tune the cradle until the cast top is flush or slightly low.
 3. Reconcile the real saw geometry with the modeled opening and carriage park gap.
+4. Transfer-mark the mount pattern from the real saw only after the flush setting is proven.
 
 Hold point:
 
 - [ ] saw top never proud
 - [ ] real opening marked from the actual saw
+- [ ] cradle deck still undrilled until the real mount pattern is marked
 
 ## 9. Left Support Table And Support Drawer
 
@@ -188,6 +190,7 @@ Hold point:
 - [ ] saw opening cut from real fit
 - [ ] router recess flush
 - [ ] carriage guide-strip zones machined only after support-table proof
+- [ ] dust-branch holes still wait for final hose markout
 
 ## 11. Sliding Carriage
 

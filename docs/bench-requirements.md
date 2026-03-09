@@ -59,7 +59,7 @@ This draft variant keeps the existing front-to-back feed direction on purpose. R
 
 ### Rail-Clearance Strategy
 
-The Skilsaw rack-and-pinion rails must be allowed to extend to full width. The bench therefore keeps a pair of underside keep-clear lanes in the right-side support field instead of treating the whole right side as ordinary cabinet construction. The top surface remains continuous, but blocking, dividers, and hardware under those lanes must stay out of the rail-travel path.
+The Skilsaw rack-and-pinion rails must be allowed to extend to full width. User measurements now put the minimum-rip condition about `7 in` left of the cast top, the maximum-rip condition about `18-5/8 in` right of the cast top, with about `2-1/2 in` front overhang and about `1-5/8 in` rear overhang. The bench therefore keeps dedicated underside keep-clear lanes and avoids treating the whole right side as ordinary cabinet construction. The top surface remains continuous, but blocking, dividers, and hardware under those lanes must stay out of the rail-travel path.
 
 ### Dog Holes
 
@@ -74,7 +74,8 @@ Day one does **not** drill the permanent top into an MFT-style surface or route 
 - Saw body is removed from the rolling stand.
 - Finished bench top must end flush to the saw tabletop, never above it.
 - Final saw mounting plane is `22.625 in` from the floor, based on the user's measured `13.375 in` saw-body height and a `36 in` finished working height.
-- The saw opening and mount must be field-fit from the real saw body before the final top is machined.
+- The saw opening must be field-fit from the real saw body before the final top is machined.
+- The saw mount uses an oversized cradle deck that is transfer-drilled from the actual saw after flush tuning; exact foot-center mapping is not a design prerequisite.
 
 ## Crosscut Support
 
@@ -176,9 +177,15 @@ The correct approach in this variant is restraint. The carriage consumes the lef
 These measurements are still mandatory before cutting the final precision top:
 
 - actual stripped-saw blade front-to-back datum
-- actual saw mounting points, foot spacing, and underside protrusions
-- exact front and rear rail underside sweep at minimum, mid, and maximum rip
-- exact dust-elbow hose envelope at blade-height and bevel extremes
+- accepted miter-slot working size, currently standard `3/4 x 3/8 in` unless field-fit disproves it
+- actual rail envelope, including left minimum projection, right maximum projection, and front/rear overhang
+- actual support-table and support-drawer fit-up proof
+
+These measurements or fit checks are still mandatory before final saw-mount or dust-branch drilling:
+
+- lowest underside protrusions and wrench-access conflicts below the mount plane
+- enough mount-hole information to transfer-drill the cradle deck honestly
+- rough dust-port location and dust-elbow hose envelope at blade-height and bevel extremes
 - final Hercules support-deck thickness or UHMW skid behavior plus hose-cuff envelope
 - final Low-Pro bucket and latch clearance with the chosen 5 gallon bucket
 - final carriage guide-strip hardware, park-stop geometry, and left support-table stop geometry

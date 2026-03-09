@@ -5,7 +5,7 @@ FAST-03,module_joining,1-1/4 in washer-head screws,60,ea,Join modules to one ano
 FAST-04,left_support_table,No. 8 x 3/4 pan-head screws,36,ea,Hinge and stop-block installation
 FAST-05,support_drawer,No. 6 x 1/2 slide screws,24,ea,Support-drawer slide installation
 FAST-06,router_module,Flat-head machine screws,8,ea,Match JessEm lift plate pattern
-FAST-07,saw_mount,Hex bolts washers and lock nuts,1,set,Field-fit only after the stripped-saw mount pattern is surveyed
+FAST-07,saw_mount,Hex bolts washers and lock nuts,1,set,Field-fit only after the cradle deck is tuned and the mount pattern is transfer-marked from the real saw
 FAST-08,overlay_anchors,1/4-20 threaded inserts,4,ea,Install only where the backing pads land under the fixed top
 FAST-09,overlay_anchors,1/4-20 star knobs,4,ea,Future assembly overlay hold-downs
 FAST-10,power_service,Cable clamps and strain reliefs,8,ea,Manage cords and hose drops
@@ -16,7 +16,7 @@ FAST-14,right_service,RM-08 deck or skid retainers,12,ea,Fasten the fixed extrac
 FAST-15,right_service,Hatch latches or magnets,2,ea,For the router access hatch and removable service faces
 FAST-16,sliding_carriage,Stop pins or knob bolts,4,ea,Positive park and travel limit hardware
 FAST-17,saw_cradle,3/8-16 jack screws with jam nuts,4,ea,Fine cradle flush-tuning hardware
-FAST-18,saw_cradle,Threaded inserts or tee nuts for jack screws,4,ea,Install in cradle crossrails before first fit
+FAST-18,saw_cradle,Threaded inserts or tee nuts for jack screws,4,ea,Install in cradle jack pads or underside blocking before first fit
 FAST-19,right_service,No. 8 x 3/4 pan-head screws,12,ea,Mount the RM-10 control subpanel to its cleats
 FAST-20,right_service,Service-harness connector hardware,1,set,Plug connector and strain relief hardware for the RM-10 harness
 FAST-21,right_service,Hose union clamps or quick-release hardware,1,set,Release the short hose or flex-hose dock without trapping RM-06

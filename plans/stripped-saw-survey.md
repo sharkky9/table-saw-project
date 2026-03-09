@@ -1,19 +1,19 @@
 # Stripped-Saw Survey
 
-Use this sheet after removing the `SKIL SPT99-11` from its rolling stand and before machining the final top opening, slot extensions, carriage guide-strip zones, or saw cradle.
+Use this sheet after removing the `SKIL SPT99-11` from its rolling stand and before machining the final top opening, slot extensions, or carriage guide-strip zones.
 
 ## Purpose
 
-This survey closes the precision-cut gate. Until it is done, the build package is only concept-accurate in the saw's front-to-back direction.
+This survey closes the top-machining gate. Until it is done, the build package is only concept-accurate in the saw's front-to-back direction.
 
 This survey directly unlocks:
 
 - final saw opening size and location
 - final fixed front and rear slot-extension geometry
 - final carriage park clearance at the left side of the saw
-- final saw cradle drilling
-- final miter-track procurement
-- final saw dust-branch routing
+- final miter-track procurement assumption
+- the reference geometry for later saw-cradle transfer drilling
+- the reference geometry for later saw dust-branch routing
 
 ## Tools
 
@@ -40,7 +40,7 @@ Definitions:
 
 - `front` means the operator side of the saw
 - `left` and `right` are from the operator position
-- `mount plane` means the plane that touches the bottoms of the four saw support feet / pads
+- `mount plane` means the plane that touches the bottoms of the saw support pads
 
 Mark the front and left cast-top edges with painter's tape before you start measuring.
 
@@ -52,7 +52,7 @@ Use this for:
 
 - blade center `y`
 - miter-slot width and depth
-- rail sweep at min / mid / max rip
+- rail travel and overhang envelope
 - dust hose sweep at `0 deg` and `45 deg`
 
 Support the stripped saw upright on a stable temporary platform so the cast top is level and the underside is still reachable enough to observe moving parts.
@@ -61,8 +61,8 @@ Support the stripped saw upright on a stable temporary platform so the cast top 
 
 Use this for:
 
-- foot-center locations
-- foot-pad size
+- support-pad size
+- one mount-hole reference if it helps you orient the deck later
 - mount-hole diameter
 - lowest underside protrusion
 - dust-port center location
@@ -108,73 +108,73 @@ Method:
 
 If left and right slots differ, stop and record both in notes before buying track.
 
-### 3. Measure foot centers and foot-pad size
+### 3. Measure support-pad size and optional mount reference
 
 Use `Setup B`.
 
 Required ids:
 
-- `front_left_foot_center_x`
-- `front_left_foot_center_y`
-- `front_right_foot_center_x`
-- `front_right_foot_center_y`
-- `rear_left_foot_center_x`
-- `rear_left_foot_center_y`
-- `rear_right_foot_center_x`
-- `rear_right_foot_center_y`
 - `foot_pad_width_x`
 - `foot_pad_depth_y`
-- `mount_hole_diameter`
+- optional reference: `front_left_mount_hole_x`
 
 Method:
 
-1. Label the four feet `front-left`, `front-right`, `rear-left`, `rear-right`.
-2. For each foot, measure to the **center of the mounting hole or mounting pad center** from the left and front cast-top edges.
-3. Measure the actual support pad footprint, not just the hole center.
-4. Measure the hole diameter with calipers.
+1. Measure the actual support-pad footprint, not just the mounting hole.
+2. If one obvious mounting hole gives a useful orientation reference, record its `x` location from the left cast-top edge.
+3. Do **not** burn time mapping all four support-pad centers at this stage. The real saw will be used as the drilling template on the cradle deck.
 
-Take one photo per foot with a ruler visible.
+Take one photo of a support pad and one photo of the reference hole area if you record it.
 
-### 4. Measure `lowest_underside_protrusion_below_mount_plane`
+### 4. Measure `mount_hole_diameter` and `lowest_underside_protrusion_below_mount_plane`
 
 Use `Setup B`.
 
 Method:
 
-1. Bridge a straightedge across two foot pads that define the mount plane.
-2. Measure from that plane down to the lowest non-foot feature.
-3. Include anything that could hit a stretcher, block wrench access, or foul the dust well.
+1. Measure the actual mounting-hole diameter with calipers if you already know which bolt family you want to use.
+2. Bridge a straightedge across two support pads that define the mount plane.
+3. Measure from that plane down to the lowest non-pad feature.
+4. Include anything that could hit a stretcher, block wrench access, or foul the dust well.
 
-### 5. Measure rail sweep at min / mid / max rip
+If you plan to transfer-punch the deck directly from the saw and size the holes afterward, you can leave `mount_hole_diameter` blank until procurement time.
+
+### 5. Measure rail travel and overhang envelope
 
 Use `Setup A`.
 
 Required ids:
 
+- `rail_left_projection_min`
 - `rail_front_projection_min`
-- `rail_front_projection_mid`
 - `rail_front_projection_max`
 - `rail_rear_projection_min`
-- `rail_rear_projection_mid`
 - `rail_rear_projection_max`
+- `rail_front_overhang_y`
+- `rail_rear_overhang_y`
+- `rail_clear_span_y`
 
 Definition:
 
-For these values, `projection` means:
+For these values:
 
-- how far the moving rail / carriage hardware extends **to the right of the cast-top right edge**
-- measured under the top, not including the removable fence face
+- `rail_left_projection_min` means how far the rail system projects **left of the cast-top left edge** at minimum rip
+- `rail_front_projection_*` and `rail_rear_projection_*` mean how far the rail system projects **to the right of the cast-top right edge**
+- `rail_front_overhang_y` and `rail_rear_overhang_y` mean how far the rail bodies sit beyond the front and rear cast-top edges
+- all measurements are taken on the actual rail hardware and do not include the removable fence face
 
 Method:
 
 1. Set the rip system to minimum width.
-2. At the front rail, find the furthest-right hard point under the top and measure from the cast-top right edge.
-3. Repeat at the rear rail.
-4. Repeat for a `mid` setting.
-   Suggested rule: set the carriage halfway between minimum and maximum right-rip position.
-5. Repeat for maximum right-rip position.
+2. Record `rail_left_projection_min` from the cast-top left edge.
+3. At the front and rear rails, confirm the minimum-rip right-side projection.
+4. Set the rip system to maximum width and measure the front and rear right-side projections.
+5. Measure the front and rear rail overhang relative to the cast-top front and rear edges.
+6. Measure the clear support span between the rail bodies if you need a reminder for underside support-strip layout.
 
-Take photos of min, mid, and max.
+The midpoint projection can be derived later if you want a reference number. It is not a hard survey gate.
+
+Take photos of minimum and maximum settings.
 
 ### 6. Measure dust-port center
 
@@ -204,12 +204,12 @@ Definition:
 
 For these values, `sweep depth` means:
 
-- the maximum distance any attached elbow / hose loop projects **behind the rear cast-top edge**
+- the maximum distance any attached elbow or hose loop projects **behind the rear cast-top edge**
 - while cycling the saw through the full intended motion
 
 Method:
 
-1. Attach the actual hose / elbow you intend to use, or the closest realistic stand-in.
+1. Attach the actual hose or elbow you intend to use, or the closest realistic stand-in.
 2. Set blade to `0 deg`.
 3. Run the blade through the full height range and watch the hose path.
 4. Measure the maximum rearward projection behind the rear cast-top edge.
@@ -226,24 +226,19 @@ Write the measured values here first, then transfer them into [data/measurements
 | `stripped_blade_center_y` | ______ | in | average of front and rear tooth readings |
 | `miter_slot_width` | ______ | in | verify both slots match |
 | `miter_slot_depth` | ______ | in | verify both slots match |
-| `front_left_foot_center_x` | ______ | in |  |
-| `front_left_foot_center_y` | ______ | in |  |
-| `front_right_foot_center_x` | ______ | in |  |
-| `front_right_foot_center_y` | ______ | in |  |
-| `rear_left_foot_center_x` | ______ | in |  |
-| `rear_left_foot_center_y` | ______ | in |  |
-| `rear_right_foot_center_x` | ______ | in |  |
-| `rear_right_foot_center_y` | ______ | in |  |
 | `foot_pad_width_x` | ______ | in | actual support footprint |
 | `foot_pad_depth_y` | ______ | in | actual support footprint |
-| `mount_hole_diameter` | ______ | in |  |
+| `front_left_mount_hole_x` | ______ | in | optional orientation reference only |
+| `mount_hole_diameter` | ______ | in | optional until final bolt procurement |
 | `lowest_underside_protrusion_below_mount_plane` | ______ | in | include wrench-access conflicts |
+| `rail_left_projection_min` | ______ | in | measured from cast-top left edge |
 | `rail_front_projection_min` | ______ | in | measured from cast-top right edge |
-| `rail_front_projection_mid` | ______ | in | measured from cast-top right edge |
 | `rail_front_projection_max` | ______ | in | measured from cast-top right edge |
 | `rail_rear_projection_min` | ______ | in | measured from cast-top right edge |
-| `rail_rear_projection_mid` | ______ | in | measured from cast-top right edge |
 | `rail_rear_projection_max` | ______ | in | measured from cast-top right edge |
+| `rail_front_overhang_y` | ______ | in | measured ahead of the cast-top front edge |
+| `rail_rear_overhang_y` | ______ | in | measured behind the cast-top rear edge |
+| `rail_clear_span_y` | ______ | in | support-strip reminder only |
 | `dust_port_center_x` | ______ | in | port center from left cast-top edge |
 | `dust_port_center_y` | ______ | in | port center from front cast-top edge |
 | `dust_hose_sweep_depth_0deg` | ______ | in | max projection behind rear edge |
@@ -255,4 +250,6 @@ Write the measured values here first, then transfer them into [data/measurements
 - [ ] Survey photos saved somewhere you can reference later
 - [ ] `python3 tools/validate_measurements.py --require-precision-ready data/measurements.csv` passes
 - [ ] `python3 tools/validate_layout.py --require-precision-ready data/layout.json data/measurements.csv` passes
-- [ ] Only after that: machine the top opening, miter-slot extensions, carriage guide-strip zones, and saw cradle
+- [ ] Only after that: machine the top opening, miter-slot extensions, and carriage guide-strip zones
+- [ ] Transfer-drill the saw cradle deck only after the saw is sitting flush on the tuned deck
+- [ ] Drill final dust-branch holes only after the real hose path is marked from the fitted saw

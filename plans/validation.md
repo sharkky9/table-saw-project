@@ -25,9 +25,9 @@ Passing concept validation means the package is internally coherent. It does **n
 
 ## Saw Cradle Checks
 
-- Cradle must include fixed ledgers, slotted crossrails, and four jack screws.
+- Cradle must include fixed ledgers, an oversized transfer-drilled deck, and four jack screws.
 - Saw top flushness must land in the same `0.000 to -0.005 in` window.
-- Final mount drilling is blocked until the stripped-saw survey is complete.
+- Final mount drilling is blocked until the flush-tuned deck is marked from the real saw.
 
 ## Router Checks
 
@@ -66,23 +66,41 @@ Passing concept validation means the package is internally coherent. It does **n
 - Finish buildup must not bind the router plate, miter tracks, carriage runners, or saw fit.
 - Sample-board schedule must be approved before finishing the bench.
 
-## No-Top-Machining Gate
+## Top-Machining Gate
 
-Do not cut the final top opening, slot-extension recesses, carriage guide-strip zones, or saw cradle holes until all of the following are true:
+Do not cut the final top opening, slot-extension recesses, or carriage guide-strip zones until all of the following are true:
 
 - `stripped_blade_center_y` is measured on the bare saw
-- all four saw foot centers are measured
-- foot-pad size and mount-hole diameter are measured
-- lowest underside protrusion below the mount plane is measured
-- front and rear rail projection are measured at minimum, mid, and maximum rip
-- dust-port center is measured
-- dust hose sweep is measured at height and bevel extremes
-- actual saw miter-slot width and depth are verified
+- the left-side rail projection at minimum rip is measured
+- front and rear right-side rail projection are measured at minimum and maximum rip
+- front and rear rail overhang relative to the cast top are measured
+- the working miter-slot assumption is accepted for this branch, currently standard `3/4 x 3/8 in`
 - the support table and support drawer have passed their fit-up proof
 
 Passing concept validation does not override this gate.
 
 Use [stripped-saw-survey.md](/Users/christopherhandel/Documents/GitHub/Table Saw-sliding-carriage/plans/stripped-saw-survey.md) to collect the required measurements before rerunning the precision validators.
+
+## Saw-Mount Transfer-Drilling Gate
+
+Do not drill the final saw-mount holes in `CM-05` until all of the following are true:
+
+- the saw is sitting on the tuned cradle deck
+- cast-top flushness is already proven
+- underside protrusions and wrench access have been checked against the deck and lower well
+- either the mount-hole diameter is known or you have committed to transfer-punch and size the holes afterward
+
+Exact foot-center mapping is not a prerequisite for this gate.
+
+## Saw Dust-Branch Gate
+
+Do not drill final dust-branch routing holes until all of the following are true:
+
+- rough dust-port center is recorded
+- rough hose sweep at `0 deg` and `45 deg` is recorded
+- the actual hose, cuffs, and branch path are mocked up on the fitted saw
+
+The current measurements are enough to reserve space and keep the rear well honest. They are not a substitute for the final branch markout.
 
 ## Right-Bay Mockup Gate
 
@@ -103,10 +121,11 @@ Minimum mockup outcomes:
 
 ### Must resolve before buying hardware
 
-- exact miter-slot width and depth before buying extension track
+- standard `3/4 x 3/8 in` miter track remains the working assumption unless field-fit disproves it
 - exact carriage guide hardware and wear-pad strategy before machining the guide-strip zones
 - exact support-drawer slide geometry before cutting the left-module internals
 - exact support-table hinge, stop, and leg hardware before drilling that assembly
+- mount-hole diameter before buying final saw-mount bolts if transfer punches are not being used
 - actual right-bay mockup before claiming the Hercules package is proven
 
 ### Probably okay to defer

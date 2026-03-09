@@ -65,6 +65,9 @@ REQUIRED_IDS = {
     "left_support_table_depth",
     "left_carriage_clear_gap_to_saw",
     "side_support_drawer_extension",
+    "rail_left_projection_min",
+    "rail_front_overhang_y",
+    "rail_rear_overhang_y",
     "internal_extractor_width",
     "internal_extractor_depth",
     "internal_extractor_body_height",
@@ -79,30 +82,20 @@ REQUIRED_IDS = {
 
 PRECISION_GATED_IDS = {
     "stripped_blade_center_y",
-    "front_left_foot_center_x",
-    "front_left_foot_center_y",
-    "front_right_foot_center_x",
-    "front_right_foot_center_y",
-    "rear_left_foot_center_x",
-    "rear_left_foot_center_y",
-    "rear_right_foot_center_x",
-    "rear_right_foot_center_y",
-    "foot_pad_width_x",
-    "foot_pad_depth_y",
-    "mount_hole_diameter",
-    "lowest_underside_protrusion_below_mount_plane",
+    "rail_left_projection_min",
     "rail_front_projection_min",
-    "rail_front_projection_mid",
     "rail_front_projection_max",
     "rail_rear_projection_min",
-    "rail_rear_projection_mid",
     "rail_rear_projection_max",
-    "dust_port_center_x",
-    "dust_port_center_y",
-    "dust_hose_sweep_depth_0deg",
-    "dust_hose_sweep_depth_45deg",
+    "rail_front_overhang_y",
+    "rail_rear_overhang_y",
     "miter_slot_width",
     "miter_slot_depth",
+}
+
+ALLOWED_ZERO_IDS = {
+    "rail_front_projection_min",
+    "rail_rear_projection_min",
 }
 
 
@@ -111,7 +104,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--require-precision-ready",
         action="store_true",
-        help="Fail if any stripped-saw survey or provisional procurement gate remains unresolved.",
+        help="Fail if any top-machining gate measurement remains unresolved.",
     )
     parser.add_argument("measurements")
     return parser.parse_args()
@@ -194,11 +187,14 @@ def main() -> int:
 
         if numeric_value is None:
             if status in {"required_before_precision_cut", "verify_before_procurement"} and source == "provisional_field_fit":
-                notes.append(f"{row_id} is still blank pending stripped-saw survey")
+                notes.append(f"{row_id} is still blank pending later field fit or procurement")
                 continue
             errors.append(f"{row_id} is not numeric: {row['value']}")
             continue
-        if numeric_value <= 0:
+        if row_id in ALLOWED_ZERO_IDS:
+            if numeric_value < 0:
+                errors.append(f"{row_id} must be non-negative, got {numeric_value}")
+        elif numeric_value <= 0:
             errors.append(f"{row_id} must be positive, got {numeric_value}")
         if display_fractional == "":
             errors.append(f"{row_id} is missing display_fractional")
@@ -228,6 +224,11 @@ def main() -> int:
             notes.append(
                 "assumed_blade_center_y is still provisional; front and rear slot-extension geometry remain concept-only"
             )
+
+        slot_width = get_float(rows, "miter_slot_width")
+        slot_depth = get_float(rows, "miter_slot_depth")
+        if not math.isclose(slot_width, 0.75, abs_tol=0.01) or not math.isclose(slot_depth, 0.375, abs_tol=0.01):
+            notes.append("miter-slot assumption differs from standard 3/4 x 3/8; verify before buying track")
 
         unresolved = unresolved_precision_ids(rows)
         if args.require_precision_ready and unresolved:

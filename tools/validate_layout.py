@@ -167,6 +167,12 @@ def main() -> int:
         errors.append("cast-top width does not match measurements.csv")
     if not math.isclose(cast_top["depth"], m["saw_table_depth"], abs_tol=0.05):
         errors.append("cast-top depth does not match measurements.csv")
+    if "stripped_blade_center_y" in m:
+        if not math.isclose(saw["blade_center"]["y"], cast_top["y"] + m["stripped_blade_center_y"], abs_tol=0.05):
+            errors.append("blade centerline y coordinate does not match measured stripped_blade_center_y plus cast-top placement")
+    if "assumed_blade_center_y" in m:
+        if not math.isclose(saw["blade_center"]["y"], m["assumed_blade_center_y"], abs_tol=0.05):
+            errors.append("blade centerline y coordinate does not match measurements.csv")
 
     opening = saw["opening"]
     target_gap = opening["target_gap_general"]
@@ -189,6 +195,19 @@ def main() -> int:
         errors.append("saw opening average gap drifts too far from the target general gap")
 
     rail = saw["rail_envelope"]
+    expected_rail_x = cast_top["x"] - m["rail_left_projection_min"]
+    expected_rail_y = cast_top["y"] - m["rail_front_overhang_y"]
+    expected_right_projection = max(m["rail_front_projection_max"], m["rail_rear_projection_max"])
+    expected_rail_length = m["rail_left_projection_min"] + cast_top["length"] + expected_right_projection
+    expected_rail_depth = cast_top["depth"] + m["rail_front_overhang_y"] + m["rail_rear_overhang_y"]
+    if not math.isclose(rail["x"], expected_rail_x, abs_tol=0.05):
+        errors.append("rail envelope x origin does not match the measured left-side rail projection")
+    if not math.isclose(rail["y"], expected_rail_y, abs_tol=0.05):
+        errors.append("rail envelope y origin does not match the measured front rail overhang")
+    if not math.isclose(rail["length"], expected_rail_length, abs_tol=0.05):
+        errors.append("rail envelope width does not match the measured left/right rail travel envelope")
+    if not math.isclose(rail["depth"], expected_rail_depth, abs_tol=0.05):
+        errors.append("rail envelope depth does not match the measured front/rear rail overhangs")
     if rail["x"] + rail["length"] > overall["length"] + 0.01:
         errors.append("rail envelope runs beyond the bench length")
 
@@ -197,6 +216,9 @@ def main() -> int:
         errors.append("left miter-slot centerline is inconsistent")
     if not math.isclose(slot_centers["right_slot"], blade_x + m["blade_to_right_miter_center"], abs_tol=0.05):
         errors.append("right miter-slot centerline is inconsistent")
+    for slot in saw["miter_slots"]:
+        if not math.isclose(slot["slot_width"], m["miter_slot_width"], abs_tol=0.05):
+            errors.append(f"{slot['name']} slot width does not match measurements.csv")
 
     left_field = region_map.get("left_carriage_field")
     carriage = layout["left_sliding_carriage"]

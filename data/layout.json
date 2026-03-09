@@ -135,12 +135,12 @@
   },
   "saw": {
     "model": "SKIL SPT99-11",
-    "geometry_status": "Concept geometry only in Y until stripped-saw survey is complete.",
+    "geometry_status": "Blade Y datum, rail envelope, and baseline dust-reference measurements have been updated from stripped-saw measurements; mount-hole transfer drilling and final dust-branch hole placement still remain field-fit work.",
     "blade_center": {
       "x": 36.0,
-      "y": 27.3125,
-      "source": "provisional_field_fit",
-      "precision_cut_gate": "closed until stripped_blade_center_y is measured on the bare saw"
+      "y": 28.9375,
+      "source": "derived from measured stripped blade y plus the current cast-top placement",
+      "precision_cut_gate": "top-machining gate uses the measured blade y datum; mount-hole drilling and dust-branch routing remain separate field-fit steps"
     },
     "cast_top": {
       "x": 23.0,
@@ -149,11 +149,11 @@
       "depth": 22.125
     },
     "rail_envelope": {
-      "x": 21.75,
-      "y": 15.0,
-      "length": 47.0,
-      "depth": 24.625,
-      "notes": "Bounding box only. Real moving hardware must be surveyed at minimum, mid, and maximum rip before top machining."
+      "x": 16.0,
+      "y": 13.75,
+      "length": 53.1875,
+      "depth": 26.25,
+      "notes": "Measured planning envelope uses about 7 in left projection at minimum rip, about 18-5/8 in right projection at maximum rip, about 2-1/2 in front overhang, and about 1-5/8 in rear overhang."
     },
     "mount_plane_height": 22.625,
     "opening": {
@@ -163,49 +163,54 @@
       "depth": 22.1875,
       "target_gap_general": 0.03125,
       "max_local_relief_gap": 0.0625,
-      "notes": "Final opening is field-fit only after stripped-saw survey confirms foot pattern, blade y datum, and underside protrusions. Support quality matters more than a generous clearance moat."
+      "notes": "Final opening is field-fit only after the blade y datum and rail envelope are confirmed on the real saw. The cradle deck can be transfer-drilled from the saw after flush tuning, so exact foot-center mapping is no longer treated as a top-machining prerequisite."
     },
     "stripped_saw_survey_required": [
       "stripped_blade_center_y",
-      "front_left_foot_center_x",
-      "front_left_foot_center_y",
-      "front_right_foot_center_x",
-      "front_right_foot_center_y",
-      "rear_left_foot_center_x",
-      "rear_left_foot_center_y",
-      "rear_right_foot_center_x",
-      "rear_right_foot_center_y",
-      "foot_pad_width_x",
-      "foot_pad_depth_y",
-      "mount_hole_diameter",
-      "lowest_underside_protrusion_below_mount_plane",
+      "rail_left_projection_min",
       "rail_front_projection_min",
-      "rail_front_projection_mid",
       "rail_front_projection_max",
       "rail_rear_projection_min",
-      "rail_rear_projection_mid",
       "rail_rear_projection_max",
-      "dust_port_center_x",
-      "dust_port_center_y",
-      "dust_hose_sweep_depth_0deg",
-      "dust_hose_sweep_depth_45deg"
+      "rail_front_overhang_y",
+      "rail_rear_overhang_y",
+      "miter_slot_width",
+      "miter_slot_depth"
     ],
     "under_top_keep_clear": [
       {
+        "name": "front_left_rail_lane",
+        "x": 16.0,
+        "y": 13.25,
+        "length": 7.0,
+        "depth": 6.75,
+        "min_clearance_below": 2.25,
+        "notes": "Keep shallow storage, drawer framing, and guide hardware out of the front left rail pocket."
+      },
+      {
         "name": "front_right_rail_lane",
-        "x": 50.75,
-        "y": 12.5,
-        "length": 18.0,
-        "depth": 6.5,
+        "x": 50.5625,
+        "y": 13.25,
+        "length": 18.625,
+        "depth": 6.75,
         "min_clearance_below": 2.25,
         "notes": "No divider, wiring chase, or hose bracket may intrude into this lane above the plinth."
       },
       {
+        "name": "rear_left_rail_lane",
+        "x": 16.0,
+        "y": 33.75,
+        "length": 7.0,
+        "depth": 6.75,
+        "min_clearance_below": 2.25,
+        "notes": "Keep shallow storage, drawer framing, and guide hardware out of the rear left rail pocket."
+      },
+      {
         "name": "rear_right_rail_lane",
-        "x": 50.75,
-        "y": 34.0,
-        "length": 18.0,
-        "depth": 7.0,
+        "x": 50.5625,
+        "y": 33.75,
+        "length": 18.625,
+        "depth": 6.75,
         "min_clearance_below": 2.25,
         "notes": "No divider, wiring chase, or hose bracket may intrude into this lane above the plinth."
       }
@@ -317,9 +322,9 @@
   },
   "router_module": {
     "zone": {
-      "x": 70.0,
+      "x": 70.25,
       "y": 8.0,
-      "length": 18.5,
+      "length": 18.25,
       "depth": 32.0,
       "min_clearance_from_rail_envelope": 1.25
     },
@@ -333,9 +338,9 @@
       "router_motor": "Bosch 1617EVS"
     },
     "fence_mount_zone": {
-      "x": 70.5,
+      "x": 70.75,
       "y": 9.0,
-      "length": 17.0,
+      "length": 16.75,
       "depth": 5.0,
       "notes": "Reserved for removable fence hardware and dust pickup"
     },
@@ -409,7 +414,7 @@
     },
     "saw_branch": {
       "service_zone": "open well below saw",
-      "hatch_dependency": "Requires stripped-saw dust-port and hose-sweep survey before final routing holes are drilled."
+      "hatch_dependency": "Rough dust-port center and hose-sweep measurements are now captured, but final routing holes still wait until the actual hose stack and cradle fit are marked in place."
     },
     "router_branch": {
       "split_strategy": "local Y-split inside router cavity for fence pickup plus cabinet pickup"

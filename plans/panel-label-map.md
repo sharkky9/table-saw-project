@@ -18,7 +18,7 @@ Label every part immediately after cutting with its `part_id` and reference edge
 | `CM-02` | center top stretcher | front long edge | `assembly.md` |
 | `CM-03` | center lower stretcher | front long edge | `assembly.md` |
 | `CM-04` | saw ledger | front long edge | `saw-cradle.md` |
-| `CM-05` | cradle crossrail | front long edge | `saw-cradle.md` |
+| `CM-05` | cradle deck | front edge | `saw-cradle.md` |
 | `RM-01` | right module side | front edge | `assembly.md` |
 | `RM-02` | right module partition | front edge | `assembly.md` |
 | `RM-03` | dust-bay floor | front edge | `right-bay-mockup.md` |

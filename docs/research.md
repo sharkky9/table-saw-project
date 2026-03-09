@@ -27,9 +27,14 @@ These notes support a concept-valid package, not a shop-ready release. The strip
 - Official left rip capacity: `16-1/2 in`
 - Official tool weight: `52.9 lb`
 - User-supplied geometry is more useful than the marketing page for table integration, so the structured layout uses the user's measurements as the primary geometry source
-- The manual and product materials are still not enough to freeze the stripped-saw mount or the true front-to-back blade datum, so the package now treats those as hard survey gates instead of pretending they are settled
+- Current stripped-saw measurements now place the blade center about `12-11/16 in` behind the front cast-top edge, which drives the front-to-back opening and slot-extension contract in this branch
+- Current rail measurements now place the minimum-rip rail position about `7 in` left of the cast top and the maximum-rip rail position about `18-5/8 in` right of the cast top, with about `2-1/2 in` front overhang and about `1-5/8 in` rear overhang
+- The measured clear span between the front and rear rail bodies is about `22-11/16 in`, which matters for underside top support and relief planning
+- The odd slot reading is treated as measurement noise for now; this branch intentionally assumes standard `3/4 x 3/8 in` miter-track compatibility unless field-fit disproves it
+- The manual and product materials are still not enough to freeze the final saw-mount holes or dust-branch drill locations, so those remain field-fit operations instead of pretend-precise design contracts
 - Nothing in the saw geometry forces a `90 deg` rotation for a left-side carriage. The existing front-to-back feed direction can still support a carriage if the left module is repurposed around it.
 - A tighter opening target around the cast top is preferable to the earlier broad-gap assumption because support quality matters more once the carriage package is introduced.
+- Exact foot-center mapping is deliberately not part of the contract anymore. The cradle strategy now depends on an oversized deck, jack-screw tuning, and transfer drilling from the real saw.
 
 ### Paoson-Inspired Crosscut Package
 
@@ -102,7 +107,7 @@ The package is now explicit about which values are concept geometry and which ar
 - `official`: manufacturer-published facts, useful for envelopes and electrical planning
 - `user_measured`: user-supplied geometry that can drive the concept layout
 - `derived`: dimensions created from the accepted bench concept
-- `provisional_field_fit`: values that must not green-light top machining or saw-cradle drilling until the stripped-saw survey is complete
+- `provisional_field_fit`: values that must not green-light transfer drilling, final routing holes, or procurement-sensitive choices until the relevant field fit is complete
 
 ## Dust-System Decision
 
@@ -113,3 +118,9 @@ The current package now intentionally commits to:
 - `Rockler Dust Right 2-1/2 in` manifold on the front-right service face
 
 That combination is more credible than the earlier “generic compact extractor class” because the Hercules front vacuum port and the Low-Pro separator both fit the current bay logic without pretending there is a large rear service void. It is still mockup-gated because the real service path, hose cuffs, and disconnect order matter more than concept rectangles alone.
+
+## Additional User Measurements Captured
+
+- Dust-port center is roughly flush with the rear cast-top edge and about `13 in` from the left cast-top edge at `0 deg` bevel
+- At `45 deg` bevel the dust-port center shifts to roughly `6-1/2 in` from the right cast-top edge
+- The current hose sweep is about `8-1/2 in` behind the saw, so the branch keeps a modest planning allowance above that rather than pretending the current hose is the permanent final state

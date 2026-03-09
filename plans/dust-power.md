@@ -86,7 +86,7 @@ That keeps the shortest hoses in the highest-suction part of the system and lets
 - Use a dedicated short hose from the manifold to the saw port.
 - Do not trap the hose against fixed stretchers.
 - Verify full blade-height travel and full bevel travel with the hose installed.
-- Do not drill final saw-branch holes until the real dust-port center and hose sweep are measured.
+- Rough dust-port center and hose-sweep measurements can reserve space, but do not drill final saw-branch holes until the actual hose path is marked on the fitted saw.
 
 ## Router Dust Path
 
