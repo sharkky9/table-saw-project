@@ -56,6 +56,6 @@ These gates still remain in force:
 
 Current owner-approved assumptions that stay in force unless changed later:
 
-- no redesign of the MDF-over-plywood top just to appease generalized garage-humidity concerns
+- no redesign of the two-layer fixed top just to appease generalized garage-humidity concerns
 - sequential bucket-first, extractor-second dust-bay service is acceptable if the path is honest and affordable
 - the sliding-carriage and precision-wing lineage is abandoned in favor of the fixed-top plus miter-station direction

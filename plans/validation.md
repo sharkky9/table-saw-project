@@ -76,7 +76,7 @@ Real miter-station tray fit remains a separate manual gate after that.
 ## Assembly-Mode Checks
 
 - The permanent top must remain free of fixed stage-1 T-track.
-- Future overlay anchors must land in structure and not just MDF skin.
+- Future overlay anchors must land in structure and not just the replaceable wear skin.
 - Future overlay must stay outside the saw opening, rail keep-clear lanes, and miter-station operating envelope.
 - The future overlay needs an underside stiffener where it spans unsupported openings.
 - The future overlay must not rely on the saw or miter-station mechanism as the primary support for clamp loads.

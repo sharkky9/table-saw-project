@@ -49,7 +49,7 @@ The bench is explicitly no longer trying to earn sheet support through fold-out 
 ### Permanent Top
 
 - One fixed `90 x 48 in` work surface
-- `3/4 in` plywood substrate plus `3/4 in` MDF precision skin in the main precision fields
+- `3/4 in` plywood substrate plus `3/4 in` prefinished plywood wear skin in the main working fields
 - Blade lowered below the surface when the bench is used for assembly or track-saw support
 - Router lift plate flush with the surrounding top
 - Miter station has a stowed position that returns the front side to a flush work surface
@@ -164,14 +164,14 @@ The correct approach remains overlay-first, not "cover the whole bench in slots.
 
 - add a removable overlay after the core bench proves itself
 - overlay must stay out of the saw opening, rail keep-clear lanes, and miter-station operating envelope
-- overlay anchor geometry must land in structure, not only MDF skin
+- overlay anchor geometry must land in structure, not only the wear skin
 
 ## Finish Expectations
 
 - All hand-contact edges eased
 - No splinters, fuzz, or sharp plywood edges in user-touch zones
-- Main top sealed with a durable satin waterborne finish
-- MDF fully sealed before topcoat
+- Main top uses a prefinished plywood wear skin by default so the large top fields do not need a separate laminate or full topcoat schedule
+- Raw top edges and any non-prefinished exposed working faces still get a simple durable seal coat
 - Hidden structural areas cleaned up enough to avoid snagging, but not over-finished
 
 ## Explicit Owner-Accepted Assumptions

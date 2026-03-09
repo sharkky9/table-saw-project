@@ -78,7 +78,7 @@ The sliding-carriage and precision-wing lineage is therefore kept only as histor
 
 ### Use Better Materials Where Flatness Matters
 
-- main top: better plywood plus MDF, not construction sheathing
+- main top: better plywood plus a prefinished plywood wear skin, not construction sheathing
 - router module: flat cabinet plywood or birch
 - drawer-slide faces and precision partitions: cabinet plywood
 - flip-top and miter-station support surfaces: durable plywood-based construction with replaceable sacrificial faces where appropriate
@@ -90,6 +90,7 @@ The sliding-carriage and precision-wing lineage is therefore kept only as histor
 
 ### Use Prefinished Material Where It Saves Time
 
+- main top wear skin if a good prefinished panel is locally available
 - drawer interiors
 - utility compartments
 - light-duty internal storage zones

@@ -55,7 +55,7 @@ garage,bench_depth_target,Planned bench depth,48,in,0,derived,confirmed,none,48,
 garage,bench_height_target,Planned finished top height,36,in,0.125,derived,confirmed,none,36,Bench set to saw instead of generic workbench height
 bench,blade_center_from_left_bench_edge,Blade center from left finished edge,36,in,0.0625,derived,confirmed,none,36,Primary x-axis layout coordinate
 bench,assumed_blade_center_y,Bench blade center y from front bench edge,28.9375,in,0.03125,derived,confirmed,none,28 15/16,Computed from the fixed-top front edge to the cast-top front edge plus the stripped blade y datum
-bench,top_thickness,Finished top thickness,1.5,in,0.03125,derived,confirmed,none,1 1/2,3/4 ply plus 3/4 MDF on the fixed top
+bench,top_thickness,Finished top thickness,1.5,in,0.03125,derived,confirmed,none,1 1/2,3/4 ply plus 3/4 prefinished wear skin on the fixed top
 bench,saw_mount_plane_height,Floor to saw mount plane,22.625,in,0.0625,derived,confirmed,none,22 5/8,36 minus 13.375 saw body height
 bench,saw_opening_target_gap_general,General target gap around saw opening,0.03125,in,0.015625,derived,confirmed,none,1/32,Tight support gap target around the cast top
 bench,saw_opening_max_local_relief_gap,Maximum local relief gap around saw opening,0.0625,in,0.015625,derived,confirmed,none,1/16,Only where real interference forces local relief outside stock-support edges
