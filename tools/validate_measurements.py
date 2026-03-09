@@ -56,7 +56,6 @@ REQUIRED_IDS = {
     "blade_center_from_left_bench_edge",
     "top_thickness",
     "saw_mount_plane_height",
-    "right_front_infill_width",
     "internal_extractor_width",
     "internal_extractor_depth",
     "internal_extractor_body_height",
@@ -65,6 +64,19 @@ REQUIRED_IDS = {
     "compact_cyclone_hose_clearance",
     "lift_plate_width",
     "lift_plate_length",
+    "miter_saw_model",
+    "miter_saw_mount_width",
+    "miter_saw_mount_depth",
+    "miter_saw_stowed_width",
+    "miter_saw_stowed_depth",
+    "miter_saw_stowed_height",
+    "miter_saw_required_rear_slide_clearance",
+    "miter_saw_table_height",
+    "miter_saw_fence_height",
+    "miter_saw_dust_port_center_x",
+    "miter_saw_dust_port_center_y",
+    "miter_saw_dust_port_od",
+    "miter_saw_weight",
 }
 
 RETIRED_IDS = {
@@ -78,6 +90,9 @@ RETIRED_IDS = {
     "rear_right_foot_center_y",
     "rail_front_projection_mid",
     "rail_rear_projection_mid",
+    "front_wing_depth",
+    "rear_support_depth",
+    "right_front_infill_width",
 }
 
 PRECISION_GATED_IDS = {
@@ -92,6 +107,18 @@ PRECISION_GATED_IDS = {
     "dust_hose_sweep_depth_45deg",
     "miter_slot_width",
     "miter_slot_depth",
+    "miter_saw_mount_width",
+    "miter_saw_mount_depth",
+    "miter_saw_stowed_width",
+    "miter_saw_stowed_depth",
+    "miter_saw_stowed_height",
+    "miter_saw_required_rear_slide_clearance",
+    "miter_saw_table_height",
+    "miter_saw_fence_height",
+    "miter_saw_dust_port_center_x",
+    "miter_saw_dust_port_center_y",
+    "miter_saw_dust_port_od",
+    "miter_saw_weight",
 }
 
 ZERO_ALLOWED_IDS = {
@@ -105,7 +132,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--require-precision-ready",
         action="store_true",
-        help="Fail if any stripped-saw survey or provisional procurement gate remains unresolved.",
+        help="Fail if any stripped-saw or miter-saw survey gate remains unresolved.",
     )
     parser.add_argument("measurements")
     return parser.parse_args()
@@ -127,6 +154,12 @@ def maybe_float(value: str) -> Optional[float]:
         return None
 
 
+def row_has_value(row: dict[str, str]) -> bool:
+    if row["units"] in {"text", "n/a"}:
+        return row["value"] != ""
+    return maybe_float(row["value"]) is not None
+
+
 def get_float(rows: dict[str, dict[str, str]], key: str) -> float:
     value = maybe_float(rows[key]["value"])
     if value is None:
@@ -144,7 +177,7 @@ def unresolved_precision_ids(rows: dict[str, dict[str, str]]) -> list[str]:
         if row["source"] == "provisional_field_fit":
             unresolved.append(row_id)
             continue
-        if maybe_float(row["value"]) is None:
+        if not row_has_value(row):
             unresolved.append(row_id)
     return unresolved
 
@@ -198,7 +231,7 @@ def main() -> int:
                 if status in {"reference_only", "concept_only"}:
                     notes.append(f"{row_id} is intentionally blank reference geometry")
                 else:
-                    notes.append(f"{row_id} is still blank pending stripped-saw survey")
+                    notes.append(f"{row_id} is still blank pending field survey")
                 continue
             errors.append(f"{row_id} is not numeric: {row['value']}")
             continue

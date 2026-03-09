@@ -36,17 +36,27 @@ saw,dust_port_center_x_45deg,Dust-port center x from left cast-top edge at 45 de
 saw,dust_hose_sweep_depth_0deg,Rear hose sweep behind saw at 0 degree bevel,8.5,in,0.25,user_measured,approx,none,8 1/2,Measured with the current hose attached; allow extra design margin if fittings change
 saw,dust_hose_sweep_depth_45deg,Rear hose sweep behind saw at 45 degree bevel,8.5,in,0.25,user_measured,approx,none,8 1/2,Measured with the current hose attached; rearward sweep does not materially change at 45 degrees
 saw,dust_hose_sweep_design_allowance,Preferred rear hose design allowance,10,in,0.25,derived,confirmed,none,10,Use this larger planning allowance even though the current hose measures about 8.5 in
+miter_saw,miter_saw_model,Selected miter saw,DeWalt 60V 12 in cordless sliding miter saw,text,n/a,user_measured,confirmed,none,DeWalt 60V 12 in cordless sliding miter saw,Exact product code still needs to be captured during the miter-saw survey
+miter_saw,miter_saw_mount_width,Miter-saw mount footprint width,,in,0.125,provisional_field_fit,required_before_precision_cut,final miter-station opening only,,Measure the actual mounting footprint or base width that drives the flip-top tray
+miter_saw,miter_saw_mount_depth,Miter-saw mount footprint depth,,in,0.125,provisional_field_fit,required_before_precision_cut,final miter-station opening only,,Measure the actual mounting footprint or base depth that drives the flip-top tray
+miter_saw,miter_saw_stowed_width,Overall stowed width,,in,0.125,provisional_field_fit,required_before_precision_cut,final miter-station opening only,,Capture the widest stowed envelope including knobs handles and fence projections
+miter_saw,miter_saw_stowed_depth,Overall stowed depth,,in,0.125,provisional_field_fit,required_before_precision_cut,final miter-station opening only,,Capture the deepest stowed envelope from the operator edge toward the rear
+miter_saw,miter_saw_stowed_height,Overall stowed height,,in,0.125,provisional_field_fit,required_before_precision_cut,final miter-station opening only,,Capture the tallest point in the stowed envelope below the cover
+miter_saw,miter_saw_required_rear_slide_clearance,Rear slide clearance required for full saw travel,,in,0.125,provisional_field_fit,required_before_precision_cut,final miter-station opening only,,Measure the furthest rearward travel required by the sliding rails or motor carriage
+miter_saw,miter_saw_table_height,Miter-saw table height above its base or mount plane,,in,0.0625,provisional_field_fit,required_before_precision_cut,final miter-station support only,,Needed to set the deployed support surfaces and stop fence height
+miter_saw,miter_saw_fence_height,Miter-saw fence height above its table,,in,0.0625,provisional_field_fit,required_before_precision_cut,final miter-station support only,,Needed to set the support fences and stop system
+miter_saw,miter_saw_dust_port_center_x,Miter-saw dust-port center x from the left support datum,,in,0.25,provisional_field_fit,required_before_precision_cut,final miter-station dust path only,,Use a repeatable datum from the deployed saw base or support surface
+miter_saw,miter_saw_dust_port_center_y,Miter-saw dust-port center y from the front support datum,,in,0.25,provisional_field_fit,required_before_precision_cut,final miter-station dust path only,,Use a repeatable datum from the deployed saw base or support surface
+miter_saw,miter_saw_dust_port_od,Miter-saw dust-port outside diameter,,in,0.0625,provisional_field_fit,required_before_precision_cut,final miter-station dust path only,,Needed for cuffs or a flex-hose adapter strategy
+miter_saw,miter_saw_weight,Miter-saw tool weight,,lb,0.5,provisional_field_fit,required_before_precision_cut,final miter-station structure only,,Needed to size the flip-top hardware and support structure honestly
 garage,wall_length,Usable wall length for parked mode,90,in,1,user_measured,approx,none,90,Approximate wall envelope from user
 garage,parked_bench_length_target,Planned parked bench length,90,in,0,derived,confirmed,none,90,Uses the wall nearly full length
 garage,bench_depth_target,Planned bench depth,48,in,0,derived,confirmed,none,48,Core depth target
 garage,bench_height_target,Planned finished top height,36,in,0.125,derived,confirmed,none,36,Bench set to saw instead of generic workbench height
 bench,blade_center_from_left_bench_edge,Blade center from left finished edge,36,in,0.0625,derived,confirmed,none,36,Primary x-axis layout coordinate
-bench,assumed_blade_center_y,Bench blade center y from front bench edge (legacy id),28.9375,in,0.03125,derived,confirmed,none,28 15/16,Legacy id retained for compatibility; computed as front_wing_depth plus stripped_blade_center_y
-bench,top_thickness,Finished top thickness,1.5,in,0.03125,derived,confirmed,none,1 1/2,3/4 ply plus 3/4 MDF on fixed regions
+bench,assumed_blade_center_y,Bench blade center y from front bench edge,28.9375,in,0.03125,derived,confirmed,none,28 15/16,Computed from the fixed-top front edge to the cast-top front edge plus the stripped blade y datum
+bench,top_thickness,Finished top thickness,1.5,in,0.03125,derived,confirmed,none,1 1/2,3/4 ply plus 3/4 MDF on the fixed top
 bench,saw_mount_plane_height,Floor to saw mount plane,22.625,in,0.0625,derived,confirmed,none,22 5/8,36 minus 13.375 saw body height
-bench,front_wing_depth,Fold-down infeed wing depth,16.25,in,0.0625,derived,confirmed,none,16 1/4,Intentional design depth; no longer blocked by stripped blade y once the bench layout is locked
-bench,rear_support_depth,Fixed rear support depth,9.625,in,0.125,derived,confirmed,none,9 5/8,Derived from 48 in bench depth minus front wing depth minus cast-top depth
-bench,right_front_infill_width,Fixed right-front top infill width,30.25,in,0.0625,derived,confirmed,none,30 1/4,Supports the router zone and closes the front-right corner
 bench,saw_opening_target_gap_general,General target gap around saw opening,0.03125,in,0.015625,derived,confirmed,none,1/32,Tight support gap target around the cast top
 bench,saw_opening_max_local_relief_gap,Maximum local relief gap around saw opening,0.0625,in,0.015625,derived,confirmed,none,1/16,Only where real interference forces local relief outside stock-support edges
 dust,selected_internal_extractor_model,Selected internal extractor,Hercules HE028,text,n/a,official,confirmed,none,Hercules HE028,Chosen internal extractor for the stage-1 package
@@ -73,4 +83,4 @@ router,selected_lift_model,Selected router lift,JessEm Rout-R-Lift II 02310,text
 router,selected_router_motor,Selected router motor,Bosch 1617EVS,text,n/a,official,confirmed,none,Bosch 1617EVS,Stage-1 router install stack is locked to a specific motor
 router,motor_body_diameter,Router motor body diameter,3.5,in,0.03125,official,confirmed,none,3 1/2,Bosch 1617 class motor body used by the selected JessEm lift model
 assembly,overlay_length,Future assembly overlay length,60,in,0.125,derived,confirmed,none,60,Stored separately and used when needed
-assembly,overlay_depth,Future assembly overlay depth,31.5,in,0.125,derived,confirmed,none,31 1/2,Registered to the rear main panel only and never crosses the wing zone
+assembly,overlay_depth,Future assembly overlay depth,36,in,0.125,derived,confirmed,none,36,Registered to the rear half of the fixed top and kept clear of the miter-station operating envelope
