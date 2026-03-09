@@ -9,6 +9,7 @@ Read these first:
 - [tool-list.md](./tool-list.md)
 - [joint-strategy.md](./joint-strategy.md)
 - [panel-label-map.md](./panel-label-map.md)
+- [shop-cut-sequence.md](./shop-cut-sequence.md)
 - [top-build.md](./top-build.md)
 - [top-machining-sequence.md](./top-machining-sequence.md)
 - [miter-station.md](./miter-station.md)

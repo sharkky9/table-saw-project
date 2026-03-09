@@ -149,11 +149,12 @@ The package assumes the RF remote path.
 - RF remote receiver: in the right service bay but not buried behind the extractor
 - `RM-10` control subpanel:
   - size `12 x 18 in`
-  - these coordinates remain provisional until the physical mockup proves the disconnect path and flex-hose dock behavior
-  - mounted with its lower-left corner `7 in` from the left edge and `6 in` from the bottom of `RM-06`
-  - manifold center at `4.5 in` from the left and `14 in` from the bottom of `RM-10`
-  - aux switch center at `10 in` from the left and `14 in` from the bottom of `RM-10`
-  - flex-hose exit center at `10 in` from the left and `4 in` from the bottom of `RM-10`
+  - treat the following coordinates as a starter layout on a blank panel only, not as final cut-now geometry
+  - mounted with its lower-left corner about `7 in` from the left edge and `6 in` from the bottom of `RM-06`
+  - manifold center starts around `4.5 in` from the left and `14 in` from the bottom of `RM-10`
+  - aux switch center starts around `10 in` from the left and `14 in` from the bottom of `RM-10`
+  - flex-hose exit center starts around `10 in` from the left and `4 in` from the bottom of `RM-10`
+  - transfer final holes and dock placement from the physical mockup template before drilling the panel
 
 ## Weight And Mobility
 

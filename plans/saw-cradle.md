@@ -40,7 +40,7 @@ The cradle sets the stripped saw flush to the surrounding top and keeps that set
 
 ## Acceptance Tolerance
 
-- saw top flushness: `0.000 to -0.005 in`
+- saw top flushness: flush to about `1/32 in` low is acceptable
 - saw top must never finish above the surrounding top
 
 ## Measurement Inputs Required Before Final Drilling

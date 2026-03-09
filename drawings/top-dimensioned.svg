@@ -14,15 +14,16 @@
   <rect x="297.5" y="247.5" width="531.875" height="262.5" fill="none" stroke="#ff8800" stroke-width="2" stroke-dasharray="10 8"/>
   <rect x="816.25" y="303.75" width="117.5" height="92.5" fill="#d4dcff" stroke="#3047aa" stroke-width="2" fill-opacity="0.75"/>
   <rect x="140" y="230" width="600" height="360" fill="none" stroke="#2a6f97" stroke-width="2" stroke-dasharray="5 5"/>
+  <rect x="680" y="110" width="280" height="88" fill="#fff4cc" stroke="#aa5500" stroke-width="2"/>
 
   <text x="115" y="188" font-family="Helvetica, Arial, sans-serif" font-size="18">TOP-01B / TOP-02B front-left panel</text>
   <text x="712" y="188" font-family="Helvetica, Arial, sans-serif" font-size="18">TOP-01C / TOP-02C front-right panel</text>
   <text x="120" y="455" font-family="Helvetica, Arial, sans-serif" font-size="18">TOP-01A / TOP-02A rear panel</text>
   <text x="446" y="176" font-family="Helvetica, Arial, sans-serif" font-size="18">Miter-station opening</text>
   <text x="470" y="198" font-family="Helvetica, Arial, sans-serif" font-size="16">22 x 12 centered at x=45</text>
-  <text x="600" y="268" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#b00020">Saw opening 27.625 x 22.1875</text>
-  <text x="600" y="286" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#b00020">Origin x=22.96875 y=16.21875</text>
-  <text x="600" y="304" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#7e6f5b">Opening front shoulder now sits 1.21875 in behind the seam</text>
+  <text x="694" y="142" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#7a4d00">Saw opening shown for contract context only.</text>
+  <text x="694" y="164" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#7a4d00">Lay out and trim that opening from the real saw fit, not from this drawing.</text>
+  <text x="600" y="286" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#7e6f5b">Opening front shoulder stays behind the seam in the rear panel</text>
   <text x="620" y="240" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#ff8800">Rail envelope x=16.0 to 69.1875</text>
   <text x="620" y="258" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#ff8800">Keep underside structure out of this lane</text>
   <text x="826" y="355" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#3047aa">Router plate</text>

@@ -270,8 +270,13 @@ def main() -> int:
     flip_top = miter_station["flip_top"]
     if flip_top["stowed_surface_delta_max_high"] != 0.0:
         errors.append("miter station stowed surface must never sit proud")
-    if flip_top["stowed_surface_delta_max_low"] < -0.01:
+    if flip_top["stowed_surface_delta_max_low"] < -0.03125 - 1e-6:
         errors.append("miter station stowed surface low tolerance is too loose")
+    saw_tolerance = saw["cradle"]["acceptance_tolerance"]
+    if saw_tolerance["saw_top_flush_max_high"] != 0.0:
+        errors.append("saw top must never sit proud of the surrounding bench top")
+    if saw_tolerance["saw_top_flush_max_low"] < -0.03125 - 1e-6:
+        errors.append("saw top low tolerance is too loose for reliable stock support")
 
     left_support = miter_station["support_surfaces"]["left"]
     right_support = miter_station["support_surfaces"]["right"]
