@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 
 import csv
+import json
 import sys
 from collections import Counter
 from pathlib import Path
+from typing import Optional
 
 
 REQUIRED_COLUMNS = {
@@ -57,13 +59,25 @@ def load_bom_sheet_counts(path: Path) -> dict[str, float]:
     return counts
 
 
+def load_layout(path: Optional[Path]) -> Optional[dict]:
+    if path is None or not path.exists():
+        return None
+    return json.loads(path.read_text())
+
+
+def default_layout_path(cutlist_path: Path) -> Path:
+    return cutlist_path.resolve().parents[1] / "data" / "layout.json"
+
+
 def main() -> int:
-    if len(sys.argv) not in {2, 3}:
-        print("usage: validate_cutlist.py <cut-list.csv> [bom.csv]", file=sys.stderr)
+    if len(sys.argv) not in {2, 3, 4}:
+        print("usage: validate_cutlist.py <cut-list.csv> [bom.csv] [layout.json]", file=sys.stderr)
         return 2
 
     path = Path(sys.argv[1])
-    bom_path = Path(sys.argv[2]) if len(sys.argv) == 3 else path.with_name("bom.csv")
+    bom_path = Path(sys.argv[2]) if len(sys.argv) >= 3 else path.with_name("bom.csv")
+    layout_path = Path(sys.argv[3]) if len(sys.argv) == 4 else default_layout_path(path)
+
     with path.open(newline="") as handle:
         reader = csv.DictReader(handle)
         rows = list(reader)
@@ -84,6 +98,7 @@ def main() -> int:
         errors.append(f"missing required parts: {', '.join(sorted(missing_parts))}")
 
     material_areas: dict[str, float] = {"MAT-01": 0.0, "MAT-02": 0.0, "MAT-03": 0.0}
+    by_part = {row["part_id"]: row for row in rows}
 
     for row in rows:
         numeric_values: dict[str, float] = {}
@@ -131,6 +146,57 @@ def main() -> int:
                 notes.append(f"{item_id} usable-sheet utilization: {utilization:.0%}")
     else:
         notes.append("bom.csv not found; skipped sheet-good coverage check")
+
+    drawer_front_ids = {"LM-07", "LM-08", "LM-09"}
+    if not drawer_front_ids <= by_part.keys():
+        errors.append("drawer front rows LM-07 through LM-09 must all exist")
+    if by_part.get("DR-07", {}).get("qty") != "3":
+        errors.append("DR-07 must provide three drawer bottoms for the three-drawer left bank")
+    if bom_counts.get("HDW-11") not in {None, 3.0}:
+        errors.append("HDW-11 must specify three pairs of drawer slides")
+
+    layout = load_layout(layout_path)
+    if layout:
+        rear_main = next(region for region in layout["bench"]["top"]["fixed_regions"] if region["name"] == "rear_main")
+        right_front = next(region for region in layout["bench"]["top"]["fixed_regions"] if region["name"] == "right_front_infill")
+        overlay = layout["assembly_mode"].get("overlay") or layout["assembly_mode"]["future_overlay"]
+        checks = {
+            "TOP-01A": (rear_main["length"], rear_main["depth"]),
+            "TOP-01B": (right_front["length"], right_front["depth"]),
+            "TOP-02A": (rear_main["length"], rear_main["depth"]),
+            "TOP-02B": (right_front["length"], right_front["depth"]),
+            "FW-01": (layout["front_wing"]["length"], layout["front_wing"]["depth"]),
+            "FW-02": (layout["front_wing"]["length"], layout["front_wing"]["depth"]),
+            "RM-06": (
+                layout["bench"]["carcass"]["modules"][2]["details"]["front_service_face"]["width"],
+                layout["bench"]["carcass"]["modules"][2]["details"]["front_service_face"]["height"],
+            ),
+            "RM-07": (
+                layout["router_module"]["access_hatch"]["width"],
+                layout["router_module"]["access_hatch"]["height"],
+            ),
+            "ASM-01": (overlay["size"]["length"], overlay["size"]["depth"]),
+            "ASM-04": (
+                overlay["underside_stiffener"]["length"],
+                overlay["underside_stiffener"]["depth"],
+            ),
+        }
+        for part_id, (expected_l, expected_w) in checks.items():
+            row = by_part.get(part_id)
+            if row is None:
+                continue
+            try:
+                final_l = float(row["final_l"])
+                final_w = float(row["final_w"])
+            except ValueError:
+                errors.append(f"{part_id} is missing numeric final dimensions for layout cross-check")
+                continue
+            if abs(final_l - expected_l) > 0.05 or abs(final_w - expected_w) > 0.05:
+                errors.append(
+                    f"{part_id} final dimensions {final_l} x {final_w} do not match layout contract {expected_l} x {expected_w}"
+                )
+    else:
+        notes.append("layout.json not found; skipped cut-list-to-layout cross-check")
 
     if errors:
         print("cut-list validation failed:")

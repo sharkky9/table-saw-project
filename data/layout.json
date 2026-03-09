@@ -566,7 +566,7 @@
       ],
       "underside_stiffener": {
         "length": 36.0,
-        "depth": 1.5,
+        "depth": 2.0,
         "location": "Runs under the overlay where it spans the saw opening."
       }
     },
@@ -604,7 +604,7 @@
       ],
       "underside_stiffener": {
         "length": 36.0,
-        "depth": 1.5,
+        "depth": 2.0,
         "location": "Runs under the overlay where it spans the saw opening."
       }
     }

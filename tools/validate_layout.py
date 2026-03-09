@@ -4,7 +4,6 @@ import argparse
 import csv
 import json
 import math
-import sys
 from pathlib import Path
 from typing import Optional
 
@@ -77,6 +76,20 @@ def unresolved_precision_ids(layout: dict, measurement_rows: dict[str, dict[str,
     return unresolved
 
 
+def overlay_rect(layout: dict) -> Optional[dict[str, float]]:
+    overlay = layout["assembly_mode"].get("overlay") or layout["assembly_mode"].get("future_overlay")
+    if overlay is None:
+        return None
+    overall = layout["bench"]["overall"]
+    size = overlay["size"]
+    return {
+        "x": 0.0 if overlay["registration"].get("left_edge") else overall["length"] - size["length"],
+        "y": overall["depth"] - size["depth"] if overlay["registration"].get("rear_edge") else 0.0,
+        "length": size["length"],
+        "depth": size["depth"],
+    }
+
+
 def main() -> int:
     args = parse_args()
     layout_path = Path(args.layout)
@@ -104,7 +117,6 @@ def main() -> int:
     for region in fixed_regions:
         if not rect_inside(region, full_bench_rect):
             errors.append(f"fixed top region {region['name']} does not fit inside the bench footprint")
-    for region in fixed_regions:
         if rects_overlap(region, wing):
             errors.append(f"fixed top region {region['name']} overlaps the fold-down wing")
     if rects_overlap(fixed_regions[0], fixed_regions[1]):
@@ -139,6 +151,26 @@ def main() -> int:
     if not math.isclose(cast_top["depth"], m["saw_table_depth"], abs_tol=0.05):
         errors.append("cast-top depth does not match measurements.csv")
 
+    opening = saw["opening"]
+    target_gap = opening["target_gap_general"]
+    max_local_gap = opening["max_local_relief_gap"]
+    opening_gaps = {
+        "left": cast_top["x"] - opening["x"],
+        "right": (opening["x"] + opening["length"]) - (cast_top["x"] + cast_top["length"]),
+        "front": cast_top["y"] - opening["y"],
+        "rear": (opening["y"] + opening["depth"]) - (cast_top["y"] + cast_top["depth"]),
+    }
+    for side, gap in opening_gaps.items():
+        if gap <= 0:
+            errors.append(f"saw opening gap on {side} side is non-positive")
+        elif gap > max_local_gap + 1e-6:
+            errors.append(
+                f"saw opening gap on {side} side is {gap:.3f} in and exceeds max local relief {max_local_gap:.3f} in"
+            )
+    average_gap = sum(opening_gaps.values()) / len(opening_gaps)
+    if abs(average_gap - target_gap) > 0.02:
+        errors.append("saw opening average gap drifts too far from the target general gap")
+
     rail = saw["rail_envelope"]
     if rail["x"] + rail["length"] > overall["length"] + 0.01:
         errors.append("rail envelope runs beyond the bench length")
@@ -152,37 +184,92 @@ def main() -> int:
     if wing["length"] < layout["bench"]["carcass"]["modules"][0]["length"] + layout["bench"]["carcass"]["modules"][1]["length"]:
         errors.append("front wing does not cover the full left and center module width")
 
+    registration = wing.get("registration")
+    primary_support = wing.get("primary_support")
+    secondary_support = wing.get("secondary_support")
+    acceptance = wing.get("acceptance_tolerance")
+    if not registration or not primary_support or not secondary_support or not acceptance:
+        errors.append("front wing is missing registration support or tolerance schema")
+    else:
+        required_keys = {
+            "seam_flush_max_high",
+            "seam_flush_max_low",
+            "slot_lateral_mismatch_max",
+            "transition_gap_max",
+            "proof_cycles",
+        }
+        missing_keys = required_keys - acceptance.keys()
+        if missing_keys:
+            errors.append(f"front wing acceptance_tolerance is missing: {', '.join(sorted(missing_keys))}")
+
     router_zone = layout["router_module"]["zone"]
     router_clearance = router_zone["x"] - (rail["x"] + rail["length"])
-    if router_clearance < 1.0:
+    required_clearance = router_zone["min_clearance_from_rail_envelope"]
+    if router_clearance < required_clearance:
         errors.append(
-            f"router zone starts only {router_clearance:.2f} in past the rail envelope; require at least 1.0 in"
+            f"router zone starts only {router_clearance:.2f} in past the rail envelope; require at least {required_clearance:.2f} in"
         )
     if router_zone["x"] + router_zone["length"] > layout["bench"]["carcass"]["x"] + layout["bench"]["carcass"]["length"] + 0.01:
         errors.append("router zone extends beyond the carcass support field")
 
-    fixed_tracks = layout["assembly_mode"]["fixed_t_tracks"]
+    fixed_tracks = layout["assembly_mode"].get("fixed_t_tracks", [])
     saw_opening = saw["opening"]
     for idx, track in enumerate(fixed_tracks, start=1):
-        if track["center_x"] + 0.5 >= saw_opening["x"]:
+        track_rect = {
+            "x": track["center_x"] - 0.375,
+            "y": track["y_start"],
+            "length": 0.75,
+            "depth": track["y_end"] - track["y_start"],
+        }
+        if rects_overlap(track_rect, wing):
+            errors.append(f"fixed T-track {idx} crosses the wing zone")
+        if track["center_x"] + 0.375 >= saw_opening["x"]:
             errors.append(f"fixed T-track {idx} intrudes into the saw-opening field")
 
-    for anchor in layout["assembly_mode"]["future_overlay"]["anchors"]:
-        if point_inside_rect(anchor["x"], anchor["y"], saw_opening):
-            errors.append(f"future overlay anchor {anchor['name']} lands in the saw opening instead of structure")
+    overlay = layout["assembly_mode"].get("overlay") or layout["assembly_mode"].get("future_overlay")
+    if overlay:
+        overlay_bounds = overlay_rect(layout)
+        assert overlay_bounds is not None
+        if rects_overlap(overlay_bounds, wing):
+            errors.append("future overlay overlaps the wing zone")
+        if rear_main and not rect_inside(overlay_bounds, rear_main):
+            errors.append("future overlay is not fully contained within the rear fixed top panel")
+        for anchor in overlay["anchors"]:
+            if not point_inside_rect(anchor["x"], anchor["y"], overlay_bounds):
+                errors.append(f"future overlay anchor {anchor['name']} does not land inside the overlay footprint")
+            if point_inside_rect(anchor["x"], anchor["y"], saw_opening):
+                errors.append(f"future overlay anchor {anchor['name']} lands in the saw opening instead of structure")
+            for lane in saw["under_top_keep_clear"]:
+                if point_inside_rect(anchor["x"], anchor["y"], lane):
+                    errors.append(f"future overlay anchor {anchor['name']} lands in rail keep-clear lane {lane['name']}")
 
-    dust_bay = layout["dust_collection"]["dust_bay"]
+    dust = layout["dust_collection"]
+    mockup_gate = dust.get("mockup_gate")
+    if not mockup_gate or not mockup_gate.get("required"):
+        errors.append("dust collection package must declare a required mockup gate")
+    dust_bay = dust["dust_bay"]
+    if "service_opening" not in dust_bay:
+        errors.append("dust bay is missing a service_opening definition")
     packages = dust_bay["packages"]
     for package in packages:
         if not rect_inside(package, dust_bay):
             errors.append(f"dust package {package['name']} does not fit inside dust bay")
+        if "base_type" not in package or "service_mode" not in package or "deck_or_tray_elevation" not in package:
+            errors.append(f"dust package {package['name']} is missing service packaging fields")
         package_height = package.get("height")
         clearance_above = package.get("clearance_above", 0.0)
+        support_elevation = package.get("deck_or_tray_elevation", 0.0)
         if package_height is not None:
-            actual_vertical_clearance = dust_bay["height"] - (package_height + clearance_above)
-            if actual_vertical_clearance < dust_bay["service_requirements"]["vertical_clearance_min"] - 1e-6:
+            actual_vertical_clearance = dust_bay["height"] - (
+                support_elevation + package_height + clearance_above
+            )
+            if actual_vertical_clearance < 0:
                 errors.append(
-                    f"dust package {package['name']} leaves only {actual_vertical_clearance:.2f} in vertical clearance"
+                    f"dust package {package['name']} exceeds bay height once support elevation is included"
+                )
+            elif actual_vertical_clearance < dust_bay["service_requirements"]["vertical_clearance_min"] - 1e-6:
+                notes.append(
+                    f"dust package {package['name']} leaves only {actual_vertical_clearance:.2f} in vertical clearance and still depends on mockup proof"
                 )
 
     if rects_overlap(packages[0], packages[1]):

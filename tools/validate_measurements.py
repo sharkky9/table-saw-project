@@ -3,7 +3,6 @@
 import argparse
 import csv
 import math
-import sys
 from pathlib import Path
 from typing import Optional
 
@@ -22,6 +21,20 @@ ALLOWED_STATUSES = {
     "required_before_precision_cut",
     "verify_before_procurement",
     "reference_only",
+}
+
+REQUIRED_COLUMNS = {
+    "category",
+    "id",
+    "description",
+    "value",
+    "units",
+    "tolerance",
+    "source",
+    "status",
+    "blocks",
+    "display_fractional",
+    "notes",
 }
 
 REQUIRED_IDS = {
@@ -94,9 +107,11 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def load_measurements(path: Path) -> list[dict[str, str]]:
+def load_measurements(path: Path) -> tuple[list[dict[str, str]], set[str]]:
     with path.open(newline="") as handle:
-        return list(csv.DictReader(handle))
+        reader = csv.DictReader(handle)
+        rows = list(reader)
+        return rows, set(reader.fieldnames or [])
 
 
 def maybe_float(value: str) -> Optional[float]:
@@ -133,10 +148,14 @@ def unresolved_precision_ids(rows: dict[str, dict[str, str]]) -> list[str]:
 def main() -> int:
     args = parse_args()
     path = Path(args.measurements)
-    raw_rows = load_measurements(path)
+    raw_rows, columns = load_measurements(path)
     rows = {row["id"]: row for row in raw_rows}
     errors: list[str] = []
     notes: list[str] = []
+
+    missing_columns = REQUIRED_COLUMNS - columns
+    if missing_columns:
+        errors.append(f"missing required columns: {', '.join(sorted(missing_columns))}")
 
     missing = sorted(REQUIRED_IDS - rows.keys())
     if missing:
@@ -146,10 +165,15 @@ def main() -> int:
         row_id = row["id"]
         source = row["source"]
         status = row["status"]
+        blocks = row["blocks"].strip()
+        display_fractional = row["display_fractional"].strip()
+
         if source not in ALLOWED_SOURCES:
             errors.append(f"{row_id} has unknown source tier: {source}")
         if status not in ALLOWED_STATUSES:
             errors.append(f"{row_id} has unknown status: {status}")
+        if blocks == "":
+            errors.append(f"{row_id} is missing blocks guidance")
 
         units = row["units"]
         numeric_value = maybe_float(row["value"])
@@ -159,22 +183,22 @@ def main() -> int:
             continue
 
         if numeric_value is None:
-            if status == "required_before_precision_cut" and source == "provisional_field_fit":
+            if status in {"required_before_precision_cut", "verify_before_procurement"} and source == "provisional_field_fit":
                 notes.append(f"{row_id} is still blank pending stripped-saw survey")
                 continue
             errors.append(f"{row_id} is not numeric: {row['value']}")
             continue
         if numeric_value <= 0:
             errors.append(f"{row_id} must be positive, got {numeric_value}")
+        if display_fractional == "":
+            errors.append(f"{row_id} is missing display_fractional")
 
     if not errors:
         bench_height = get_float(rows, "bench_height_target")
         saw_body_height = get_float(rows, "saw_body_height")
         saw_mount_plane = get_float(rows, "saw_mount_plane_height")
         if not math.isclose(bench_height - saw_body_height, saw_mount_plane, abs_tol=0.02):
-            errors.append(
-                "saw_mount_plane_height does not equal bench_height_target - saw_body_height"
-            )
+            errors.append("saw_mount_plane_height does not equal bench_height_target - saw_body_height")
 
         wall_length = get_float(rows, "wall_length")
         bench_length = get_float(rows, "parked_bench_length_target")
