@@ -2,11 +2,13 @@
 
 ## Before Buying Materials
 
-- [ ] Read [bench-requirements.md](/Users/christopherhandel/Documents/GitHub/Table Saw/docs/bench-requirements.md)
-- [ ] Read [assembly.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/assembly.md)
-- [ ] Read [tool-list.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/tool-list.md)
-- [ ] Read [joint-strategy.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/joint-strategy.md)
-- [ ] Read [right-bay-mockup.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/right-bay-mockup.md)
+- [ ] Read [../docs/bench-requirements.md](../docs/bench-requirements.md)
+- [ ] Read [assembly.md](./assembly.md)
+- [ ] Read [tool-list.md](./tool-list.md)
+- [ ] Read [joint-strategy.md](./joint-strategy.md)
+- [ ] Read [miter-station.md](./miter-station.md)
+- [ ] Read [flip-top-mechanism.md](./flip-top-mechanism.md)
+- [ ] Read [right-bay-mockup.md](./right-bay-mockup.md)
 - [ ] Confirm garage footprint still supports a `90 x 48 in` bench
 - [ ] Confirm you accept the bucket-first then extractor-second service sequence
 
@@ -18,11 +20,19 @@
 - [ ] Confirm the internal extractor is still `Hercules HE028`
 - [ ] Confirm the separator is still `Oneida Dust Deputy Low-Pro`
 - [ ] Confirm the manifold is still the Rockler `2-1/2 in` system
+- [ ] Confirm the miter saw is still the owner's DeWalt `60V 12 in` cordless sliding saw
 
 ## Before Cutting Anything
 
-- [ ] Print [stripped-saw-survey.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/stripped-saw-survey.md)
-- [ ] Print [no-cut-yet-checklist.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/no-cut-yet-checklist.md)
-- [ ] Print [panel-label-map.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/panel-label-map.md)
-- [ ] Review the `gate` column in [cut-list-final.csv](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/cut-list-final.csv)
-- [ ] Review the drawings in `/drawings`
+- [ ] Print [stripped-saw-survey.md](./stripped-saw-survey.md)
+- [ ] Print [miter-saw-survey.md](./miter-saw-survey.md)
+- [ ] Print [no-cut-yet-checklist.md](./no-cut-yet-checklist.md)
+- [ ] Print [panel-label-map.md](./panel-label-map.md)
+- [ ] Review the `gate` column in [cut-list-final.csv](./cut-list-final.csv)
+- [ ] Review these drawings:
+  - `drawings/top-dimensioned.svg`
+  - `drawings/front-elevation.svg`
+  - `drawings/miter-station-elevation.svg`
+  - `drawings/flip-top-detail.svg`
+  - `drawings/right-bay-packaging.svg`
+  - `drawings/saw-cradle-detail.svg`

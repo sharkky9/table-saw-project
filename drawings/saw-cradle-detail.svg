@@ -1,16 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="700" viewBox="0 0 1000 700">
-  <rect width="1000" height="700" fill="#ffffff"/>
-  <text x="40" y="40" font-family="Helvetica, Arial, sans-serif" font-size="24">Saw Cradle Detail</text>
-  <rect x="180" y="150" width="460" height="22" fill="#dad0be" stroke="#111" stroke-width="2"/>
-  <rect x="220" y="250" width="40" height="180" fill="#d2c09b" stroke="#333" stroke-width="2"/>
-  <rect x="560" y="250" width="40" height="180" fill="#d2c09b" stroke="#333" stroke-width="2"/>
-  <rect x="280" y="300" width="260" height="30" fill="#c7b48c" stroke="#333" stroke-width="2"/>
-  <circle cx="330" cy="345" r="10" fill="#666"/>
-  <circle cx="280" cy="345" r="10" fill="#666"/>
-  <circle cx="500" cy="345" r="10" fill="#666"/>
-  <circle cx="550" cy="345" r="10" fill="#666"/>
-  <text x="250" y="275" font-family="Helvetica, Arial, sans-serif" font-size="16">3/4 in mounting deck on CM-05 support pads</text>
-  <text x="650" y="300" font-family="Helvetica, Arial, sans-serif" font-size="16">4 jack screws with jam nuts tune final height</text>
-  <text x="650" y="330" font-family="Helvetica, Arial, sans-serif" font-size="16">Saw top must finish flush or slightly low</text>
-  <text x="650" y="360" font-family="Helvetica, Arial, sans-serif" font-size="16">Drill final bolt pattern only after flush fit is proven</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="720" viewBox="0 0 1040 720">
+  <rect width="1040" height="720" fill="#ffffff"/>
+  <text x="40" y="42" font-family="Helvetica, Arial, sans-serif" font-size="24">Saw Cradle Detail</text>
+
+  <rect x="170" y="140" width="500" height="22" fill="#dad0be" stroke="#111" stroke-width="2"/>
+  <rect x="220" y="235" width="40" height="210" fill="#d2c09b" stroke="#333" stroke-width="2"/>
+  <rect x="580" y="235" width="40" height="210" fill="#d2c09b" stroke="#333" stroke-width="2"/>
+  <rect x="285" y="295" width="270" height="32" fill="#c7b48c" stroke="#333" stroke-width="2"/>
+  <rect x="315" y="250" width="210" height="45" fill="#efe8d8" stroke="#7e6f5b" stroke-width="2"/>
+  <circle cx="300" cy="360" r="9" fill="#666"/>
+  <circle cx="350" cy="360" r="9" fill="#666"/>
+  <circle cx="540" cy="360" r="9" fill="#666"/>
+  <circle cx="590" cy="360" r="9" fill="#666"/>
+  <line x1="250" y1="230" x2="590" y2="230" stroke="#ff8800" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="625" y="230" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#ff8800">Rail keep-clear lanes stay outside the cradle structure</text>
+
+  <text x="315" y="278" font-family="Helvetica, Arial, sans-serif" font-size="16">CM-06 full mounting deck</text>
+  <text x="625" y="290" font-family="Helvetica, Arial, sans-serif" font-size="16">CM-04 ledgers establish the mount-plane zone</text>
+  <text x="625" y="320" font-family="Helvetica, Arial, sans-serif" font-size="16">CM-05 carries four jack screws with jam nuts</text>
+  <text x="625" y="350" font-family="Helvetica, Arial, sans-serif" font-size="16">Tune flush first, then transfer the real bolt pattern</text>
+  <text x="625" y="380" font-family="Helvetica, Arial, sans-serif" font-size="16">Observed 8-1/8 in front-hole note is human reference only</text>
+  <text x="625" y="410" font-family="Helvetica, Arial, sans-serif" font-size="16">Support the measured 22-11/16 in rail-to-rail span honestly</text>
+  <text x="625" y="440" font-family="Helvetica, Arial, sans-serif" font-size="16">Saw top target: flush to 0.005 in low, never proud</text>
 </svg>

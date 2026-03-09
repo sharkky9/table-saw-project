@@ -17,9 +17,9 @@ CM-02,center_module,plywood,0.75,2,29.5,4.5,29,4,cut_now,Center module top front
 CM-03,center_module,plywood,0.75,2,29.5,6.5,29,6,cut_now,Center module lower front and rear stretchers
 CM-04,center_module,2x4 lumber,1.5,2,29.5,3.5,29,3.5,cut_now,Saw-mount ledgers
 CM-05,center_module,2x4 lumber,1.5,2,25.0,3.5,24,3.5,cut_now,Mounting-deck supports and jack-screw carriers
-CM-06,center_module,plywood,0.75,1,28.5,24.5,28,24,cut_now,Adjustable saw mounting deck; drill final bolt pattern only after flush fit
+CM-06,center_module,plywood,0.75,1,28.5,24.5,28,24,after_survey,Adjustable saw mounting deck; drill final bolt pattern only after flush fit
 RM-01,right_module,plywood,0.75,2,31.5,42.5,31,42,cut_now,Right module sides
-RM-02,right_module,plywood,0.75,1,31.5,42.5,31,42,after_service_layout,Right module partition with 8 x 8 in upper notches starting 9-1/2 in and 30 in from the front edge
+RM-02,right_module,plywood,0.75,1,31.5,42.5,31,42,after_service_layout,Right module partition with upper notches transferred from the layout contract
 RM-03,right_module,plywood,0.75,1,21,41,20.5,40.5,cut_now,Dust-bay floor
 RM-04,right_module,plywood,0.75,2,27,4.5,26.5,4,cut_now,Right module top front and rear stretchers
 RM-05,right_module,plywood,0.5,1,29.25,31.5,28.75,31,after_service_layout,Right module back panel with service cutouts
@@ -28,20 +28,25 @@ RM-07,right_module,plywood,0.75,1,12.5,10.5,12,10,cut_now,Right-side router acce
 RM-08,right_module,plywood,0.75,1,24.5,19.5,24,19,after_mockup,Hercules fixed low deck or skid base field-fit to actual body stance
 RM-09,right_module,plywood,0.75,2,20.5,1.75,20,1.5,cut_now,Front service-face cleats
 RM-10,right_module,plywood,0.75,1,12.5,18.5,12,18,after_service_layout,Independent removable control subpanel for manifold aux switch and flex-hose dock
-TOP-01A,top,plywood,0.75,1,90.5,32.5,90,31.75,cut_now,Rear fixed-top substrate to final blank size; saw opening still field-fit later
-TOP-01B,top,plywood,0.75,1,31.0,17.0,30.25,16.25,cut_now,Right-front infill substrate to final blank size; saw opening and reliefs still field-fit later
-TOP-02A,top,MDF,0.75,1,90.5,32.5,90,31.75,cut_now,Rear fixed-top skin to final blank size; do not machine opening or slots yet
-TOP-02B,top,MDF,0.75,1,31.0,17.0,30.25,16.25,cut_now,Right-front infill skin to final blank size; do not machine opening or slots yet
+TOP-01A,top,plywood,0.75,1,90.5,32.5,90,31.75,cut_now,Rear fixed-top substrate panel
+TOP-01B,top,plywood,0.75,1,60.25,17.0,59.75,16.25,cut_now,Front-left fixed-top substrate panel
+TOP-01C,top,plywood,0.75,1,31.0,17.0,30.25,16.25,cut_now,Front-right fixed-top substrate panel
+TOP-02A,top,MDF,0.75,1,90.5,32.5,90,31.75,cut_now,Rear fixed-top skin panel; do not machine openings yet
+TOP-02B,top,MDF,0.75,1,60.25,17.0,59.75,16.25,cut_now,Front-left fixed-top skin panel; do not machine openings yet
+TOP-02C,top,MDF,0.75,1,31.0,17.0,30.25,16.25,cut_now,Front-right fixed-top skin panel; do not machine openings yet
 TOP-03,top,plywood,0.75,4,15,2.5,14,2,cut_now,Router plate ledgers and local blocking
-TOP-04,top,plywood,0.75,2,30.75,4.5,30.25,4,cut_now,Seam cleats under the right-front infill joint
+TOP-04,top,plywood,0.75,4,20.5,4.5,20,4,cut_now,Seam cleats under front-panel joints and miter-station bay edges
 TOP-05,top,plywood,0.75,2,42,3.5,41.25,3,cut_now,Under-top stiffeners that stay outside the rail keep-clear lanes
 TOP-06,top,plywood,0.75,4,4.5,4.5,4,4,cut_now,Future overlay anchor backing pads at x=6 and x=54 anchor stations
-FW-01,front_wing,plywood,0.75,1,60.25,17.0,59.75,16.25,cut_now,Wing substrate to final blank size; slot routing still waits for proof
-FW-02,front_wing,plywood,0.75,1,60.25,17.0,59.75,16.25,cut_now,Wing skin to final blank size; slot routing still waits for proof
-FW-03,front_wing,plywood,0.75,1,60.25,3.5,59.75,3,cut_now,Front wing stiffener batten mounted along the free edge
-FW-04,front_wing,2x4 lumber,1.5,2,37,1.75,35.5,1.5,after_wing_fit,Side-support leg blanks align to bracket centerlines at x=6 and x=53.75 before final trim
-FW-05,front_wing,plywood,0.75,1,8,3.5,7.5,3,after_wing_fit,Center load-sharing foot blank
-FW-06,front_wing,plywood,0.75,2,4.5,4.5,4,4,cut_now,Registration-pin backing blocks
+MS-01,miter_station,plywood,0.75,1,22.5,12.5,22,12,after_survey,Flip-top tray deck sized to the layout opening after the miter-saw survey
+MS-02,miter_station,plywood,0.75,2,12.5,10.5,12,10,after_miter_station_fit,Tray side walls trimmed after pivot hardware dry fit
+MS-03,miter_station,plywood,0.75,2,21.5,3.5,21,3,after_miter_station_fit,Front and rear tray rails
+MS-04,miter_station,plywood,0.75,1,22.5,12.5,22,12,after_survey,Stowed cover and work-surface panel
+MS-05,miter_station,plywood,0.75,1,34.5,4.5,34,4,after_survey,Left support fence face for stop blocks
+MS-06,miter_station,plywood,0.75,1,34.5,4.5,34,4,after_survey,Right support fence face for stop blocks
+FT-01,flip_top,plywood,0.75,2,12.5,12.5,12,12,after_miter_station_fit,Pivot side-plate blanks
+FT-02,flip_top,plywood,0.75,2,4.5,4.5,4,4,after_miter_station_fit,Stowed latch blocks
+FT-03,flip_top,plywood,0.75,2,6.5,3.5,6,3,after_miter_station_fit,Deployed hard-stop blocks
 DR-01,drawers,plywood,0.5,2,22.5,4.5,22,4,cut_now,Top drawer sides
 DR-02,drawers,plywood,0.5,2,17.5,4.5,17,4,cut_now,Top drawer fronts and backs
 DR-03,drawers,plywood,0.5,2,22.5,6.5,22,6,cut_now,Middle drawer sides
@@ -52,7 +57,7 @@ DR-07,drawers,plywood,0.5,3,17.5,22.5,17,22,cut_now,Drawer bottoms
 RF-01,router_fence,plywood,0.75,1,33,6.5,32,6,cut_now,Router fence body
 RF-02,router_fence,plywood,0.75,2,16,4.5,15.5,4,cut_now,Router fence faces
 RF-03,router_fence,plywood,0.75,2,12,5.5,11.5,5,cut_now,Router fence ends
-ASM-01,assembly_overlay,plywood,0.75,1,60.5,32.0,60,31.5,stage2,Future removable assembly overlay
-ASM-02,assembly_overlay,plywood,0.75,1,32.0,1.75,31.5,1.5,stage2,Left register cleat for overlay
+ASM-01,assembly_overlay,plywood,0.75,1,60.5,36.5,60,36,stage2,Future removable assembly overlay
+ASM-02,assembly_overlay,plywood,0.75,1,36.5,1.75,36,1.5,stage2,Left register cleat for overlay
 ASM-03,assembly_overlay,plywood,0.75,1,60.5,1.75,60,1.5,stage2,Rear register cleat for overlay
-ASM-04,assembly_overlay,plywood,0.75,1,36.5,2.5,36,2,stage2,Underside overlay stiffener across the saw-opening span
+ASM-04,assembly_overlay,plywood,0.75,1,36.5,2.5,36,2,stage2,Underside overlay stiffener across unsupported openings

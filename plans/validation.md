@@ -2,9 +2,9 @@
 
 ## Status
 
-This document is the active product-level validation target for the fixed-top reset. The machine-readable layout contract still lags one PR behind and will be rewritten in the next stacked branch.
+This is the active product-level validation target for the fixed-top bench. The machine-readable layout contract and builder package now describe the same architecture.
 
-Passing concept validation means the package is internally coherent. It does **not** mean the bench is ready for precision cuts or procurement of every hardware item.
+Passing concept validation means the package is internally coherent. It does not mean the bench is ready for precision cuts or procurement of every hardware item.
 
 ## Geometry Checks
 
@@ -30,11 +30,11 @@ Passing concept validation means the package is internally coherent. It does **n
 - Right-hand support must remain useful through the fence-extension envelope.
 - Outfeed support must remain continuous and honest.
 - Deployable infeed support is optional and must not become a new precision-wing dependency.
-- Table-saw miter-slot dimensions remain saw-reference geometry only and are no longer an active “extend through the bench” acceptance target.
+- Table-saw miter-slot dimensions remain saw-reference geometry only and are no longer an active "extend through the bench" acceptance target.
 
 ## Saw Cradle Checks
 
-- Cradle must include fixed ledgers an adjustable mounting deck and four jack screws.
+- Cradle must include fixed ledgers, an adjustable mounting deck, and four jack screws.
 - Saw top flushness must land in the same `0.000 to -0.005 in` window.
 - Exact saw mount-hole coordinates are intentionally not part of the pre-layout contract.
 - Final mount drilling is blocked until the stripped-saw survey is complete and the saw is physically fit on the deck.
@@ -52,7 +52,7 @@ Passing concept validation means the package is internally coherent. It does **n
 - Saw hose must clear bevel travel.
 - Cyclone bucket must be removable without unbuilding the bench.
 - Hercules extractor must be removable after the bucket is removed.
-- The internal Hercules + Low-Pro package is still mockup-gated and not yet proven just because the rectangles fit.
+- The internal Hercules plus Low-Pro package is still mockup-gated and not yet proven just because the rectangles fit.
 - The miter saw must be able to use the flex hose without trapping the hose path in either parked or deployed bench use.
 
 ## Power Checks
@@ -72,7 +72,7 @@ Passing concept validation means the package is internally coherent. It does **n
 
 ## Finish Checks
 
-- No exposed user-touch edge may feel sharp splintery or fuzzy.
+- No exposed user-touch edge may feel sharp, splintery, or fuzzy.
 - Finish buildup must not bind the router plate, saw fit, or miter-station stow/deploy surfaces.
 - Sample-board schedule must be approved before finishing the bench.
 
@@ -93,7 +93,7 @@ Passing concept validation does not override this gate.
 
 ## Right-Bay Mockup Gate
 
-Do not call the right-side dust package proven until the actual Hercules Low-Pro bucket and hose cuffs are checked in a physical mockup.
+Do not call the right-side dust package proven until the actual Hercules, Low-Pro bucket, and hose cuffs are checked in a physical mockup.
 
 Minimum mockup outcomes:
 

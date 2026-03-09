@@ -1,6 +1,6 @@
 # Skilsaw Garage Bench
 
-> Status: active design reset. `codex/bench-validation-hardening` is the base lineage, `codex/bench-survey-contract-hardening` hardened the stripped-saw contract, and this branch resets the product docs to the fixed-top direction. The sliding-carriage branches are superseded history, not the active path.
+> Status: active fixed-top build package. `codex/bench-validation-hardening` is the base lineage, `codex/bench-survey-contract-hardening` hardened the stripped-saw contract, `codex/bench-program-reset` reset the product goals, `codex/bench-fixed-top-layout` rewrote the layout contract, and this branch refreshes the builder package to match. The sliding-carriage branches are superseded history, not the active path.
 
 This workspace contains a build package for an integrated garage bench built around a `SKIL SPT99-11` table saw, a right-side router lift, and a centered flip-top miter station. The package stays organized like a software project: requirements first, then structured design data, then build artifacts, then validation scripts.
 
@@ -10,6 +10,7 @@ This workspace contains a build package for an integrated garage bench built aro
 - `data/` authoritative measurements and machine-readable layout data
 - `plans/` BOM, rough and final cut lists, hardware, build sequence, dust/power, finish, assembly-mode, and validation guides
 - `plans/stripped-saw-survey.md` printable survey checklist for the bare saw before precision cuts
+- `plans/miter-saw-survey.md` printable survey checklist for the DeWalt miter saw before the flip-top geometry is frozen
 - `drawings/` builder-facing SVG drawings keyed to parts and subassemblies
 - `renders/` editable SVG concept drawings generated from `data/layout.json`
 - `tools/` validation and rendering scripts
@@ -22,7 +23,7 @@ This workspace contains a build package for an integrated garage bench built aro
 - Top strategy: fixed `90 x 48` work surface with no expandable wings
 - Miter strategy: centered front-side flip-top station sized around the user's `DeWalt 60V 12 in` cordless sliding miter saw
 - Router strategy: stage-1 `JessEm Rout-R-Lift II 02310` with a `Bosch 1617EVS` class motor at the far right end
-- Dust strategy: internal `Hercules HE028` on a fixed low deck + `Oneida Dust Deputy Low-Pro` + Rockler `2-1/2 in` manifold, with flex-hose support for mobile tools including the miter saw
+- Dust strategy: internal `Hercules HE028` on a fixed low deck plus `Oneida Dust Deputy Low-Pro` plus Rockler `2-1/2 in` manifold, with flex-hose support for mobile tools including the miter saw
 - Assembly strategy: keep the permanent top clean on day one and reserve meaningful clamping complexity for a removable overlay
 
 ## Validation Commands
@@ -43,11 +44,9 @@ python3 tools/validate_measurements.py --require-precision-ready data/measuremen
 python3 tools/validate_layout.py --require-precision-ready data/layout.json data/measurements.csv
 ```
 
-## Important Caveats
+## Hard Gates
 
-This branch resets the written program direction before the layout contract catches up. The current machine-readable layout still reflects the legacy wing-based geometry and will be rewritten in the next stacked PR.
-
-The hard gates that remain in force are:
+These gates still remain in force:
 
 - actual table-saw fit before the final saw opening and mounting-deck drilling are frozen
 - real-world right-bay packaging mockup before the Hercules and Low-Pro package is treated as proven serviceable

@@ -30,10 +30,12 @@ REQUIRED_PARTS = {
     "RM-01",
     "TOP-01A",
     "TOP-01B",
+    "TOP-01C",
     "TOP-02A",
     "TOP-02B",
-    "FW-01",
-    "FW-02",
+    "TOP-02C",
+    "MS-01",
+    "FT-01",
     "RF-01",
     "ASM-01",
     "ASM-04",
@@ -54,7 +56,7 @@ ALLOWED_GATES = {
     "after_face_fit",
     "after_service_layout",
     "after_mockup",
-    "after_wing_fit",
+    "after_miter_station_fit",
     "stage2",
 }
 
@@ -145,9 +147,6 @@ def main() -> int:
             if numeric_values["rough_w"] + 1e-6 < numeric_values["final_w"]:
                 errors.append(f"{row['part_id']} rough_w is smaller than final_w")
 
-        if row["part_id"] == "FW-04" and numeric_values.get("rough_l", 0.0) < 35.0:
-            errors.append("FW-04 rough leg blanks are too short for a 36 in bench with a 1.5 in wing")
-
         if row["assembly"] == "assembly_overlay":
             continue
 
@@ -186,9 +185,6 @@ def main() -> int:
     else:
         notes.append("bom.csv not found; skipped sheet-good coverage check")
 
-    drawer_front_ids = {"LM-07", "LM-08", "LM-09"}
-    if not drawer_front_ids <= by_part.keys():
-        errors.append("drawer front rows LM-07 through LM-09 must all exist")
     if by_part.get("DR-07", {}).get("qty") != "3":
         errors.append("DR-07 must provide three drawer bottoms for the three-drawer left bank")
     if bom_counts.get("HDW-11") not in {None, 3.0}:
@@ -211,27 +207,37 @@ def main() -> int:
 
     layout = load_layout(layout_path)
     if layout:
-        rear_main = next(region for region in layout["bench"]["top"]["fixed_regions"] if region["name"] == "rear_main")
-        right_front = next(region for region in layout["bench"]["top"]["fixed_regions"] if region["name"] == "right_front_infill")
-        overlay = layout["assembly_mode"].get("overlay") or layout["assembly_mode"]["future_overlay"]
+        overall = layout["bench"]["overall"]
+        right_service = next(module for module in layout["bench"]["carcass"]["modules"] if module["name"] == "right_service")
+        front_panel_depth = layout["saw"]["cast_top"]["y"]
+        rear_panel_depth = overall["depth"] - front_panel_depth
+        overlay = layout["assembly_mode"]["overlay"]
         checks = {
-            "TOP-01A": (rear_main["length"], rear_main["depth"]),
-            "TOP-01B": (right_front["length"], right_front["depth"]),
-            "TOP-02A": (rear_main["length"], rear_main["depth"]),
-            "TOP-02B": (right_front["length"], right_front["depth"]),
-            "FW-01": (layout["front_wing"]["length"], layout["front_wing"]["depth"]),
-            "FW-02": (layout["front_wing"]["length"], layout["front_wing"]["depth"]),
+            "TOP-01A": (overall["length"], rear_panel_depth),
+            "TOP-01B": (right_service["x"], front_panel_depth),
+            "TOP-01C": (overall["length"] - right_service["x"], front_panel_depth),
+            "TOP-02A": (overall["length"], rear_panel_depth),
+            "TOP-02B": (right_service["x"], front_panel_depth),
+            "TOP-02C": (overall["length"] - right_service["x"], front_panel_depth),
+            "MS-01": (
+                layout["miter_station"]["opening"]["length"],
+                layout["miter_station"]["opening"]["depth"],
+            ),
+            "MS-04": (
+                layout["miter_station"]["stowed_surface"]["length"],
+                layout["miter_station"]["stowed_surface"]["depth"],
+            ),
             "RM-06": (
-                layout["bench"]["carcass"]["modules"][2]["details"]["front_service_face"]["width"],
-                layout["bench"]["carcass"]["modules"][2]["details"]["front_service_face"]["height"],
+                right_service["details"]["front_service_face"]["width"],
+                right_service["details"]["front_service_face"]["height"],
             ),
             "RM-07": (
                 layout["router_module"]["access_hatch"]["width"],
                 layout["router_module"]["access_hatch"]["height"],
             ),
             "RM-10": (
-                layout["bench"]["carcass"]["modules"][2]["details"]["control_subpanel"]["width"],
-                layout["bench"]["carcass"]["modules"][2]["details"]["control_subpanel"]["height"],
+                right_service["details"]["control_subpanel"]["width"],
+                right_service["details"]["control_subpanel"]["height"],
             ),
             "ASM-01": (overlay["size"]["length"], overlay["size"]["depth"]),
             "ASM-04": (
