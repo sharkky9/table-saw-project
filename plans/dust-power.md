@@ -2,7 +2,7 @@
 
 ## Dust Layout
 
-### Branches
+### Fixed Internal Branches
 
 - `Saw`
 - `Router`
@@ -10,15 +10,18 @@
 
 Only one branch is meant to be open at a time.
 
-### Right-Side Packaging
+The miter saw stays on the `Flex hose` path. Do not add a fourth permanent branch unless later real-world use proves the extra complexity is worth it.
 
-- Front of dust bay: Oneida `Dust Deputy Low-Pro` on a 5 gallon bucket
+## Right-Side Packaging
+
+- Front of dust bay: Oneida `Dust Deputy Low-Pro` on a `5 gallon` bucket
 - Rear of dust bay: Hercules `HE028` on a fixed low deck or UHMW skid base
 - `RM-06`: plain front dust-service face
 - `RM-10`: separate removable control subpanel for the Rockler manifold, aux switch, and flex-hose dock
 - Right end panel: router access hatch
+- Front-center bench zone: keep clear for the miter-station flip-top and operator stance
 
-### Confidence Boundary
+## Confidence Boundary
 
 This package intentionally targets the Hercules `HE028` inside the bench, but the package is still mockup-gated. What is currently believed:
 
@@ -26,7 +29,7 @@ This package intentionally targets the Hercules `HE028` inside the bench, but th
 - the current dust bay is `29.5 in` tall
 - the Harbor Freight manual shows the vacuum port on the front body, so the design is limited more by plan-view service access than by a tall top hose stack
 - the Oneida Low-Pro keeps the bucket stack much shorter than a taller cyclone lid system
-- owner accepts a bucket-first then extractor-second removal sequence
+- the owner accepts a bucket-first then extractor-second removal sequence
 
 What is not yet considered proven:
 
@@ -50,18 +53,19 @@ This sequence is accepted as normal. The goal is honest serviceability, not thea
 
 ### `RM-10` Disconnect Rules
 
-- `RM-10` must not hard-trap `RM-06`.
-- The aux switch harness must terminate in a plug connector so the control subpanel can unplug cleanly.
-- The flex-hose dock must use a releaseable slack loop and quick union or unclamp sequence.
-- If the chosen manifold hardware prevents `RM-10` from coming off as a plate, document the exact unclamp sequence on the back of the service face before final assembly.
+- `RM-10` must not hard-trap `RM-06`
+- the aux-switch harness must terminate in a plug connector so the control subpanel can unplug cleanly
+- the flex-hose dock must use a releasable slack loop and quick union or unclamp sequence
+- if the chosen manifold hardware prevents `RM-10` from coming off as a plate, document the exact unclamp sequence on the back of the service face before final assembly
 
 ## Hose Rules
 
-- Keep each run as short as possible.
-- Use smooth-radius bends and not crushed loops.
-- Keep at least `1 in` between the Low-Pro bucket package and the Hercules package.
-- The saw branch must respect the recorded stripped-saw dust-port geometry.
-- Current hose sweep is about `8.5 in` behind the cast top; design around `10 in` rearward allowance so future cuffs or hose changes do not instantly consume the margin.
+- keep each run as short as possible
+- use smooth-radius bends and not crushed loops
+- keep at least `1 in` between the Low-Pro bucket package and the Hercules package
+- the saw branch must respect the recorded stripped-saw dust-port geometry
+- current hose sweep is about `8.5 in` behind the cast top; design around `10 in` rearward allowance so future cuffs or hose changes do not instantly consume the margin
+- the flex hose must reach the deployed miter saw and still release cleanly from the front-right service zone
 
 ## Fittings Matrix
 
@@ -84,10 +88,10 @@ That keeps the shortest hoses in the highest-suction part of the system and lets
 
 ## Saw Dust Path
 
-- Use a dedicated short hose from the manifold to the saw port.
-- Do not trap the hose against fixed stretchers.
-- Verify full blade-height travel and full bevel travel with the hose installed.
-- Do not drill final saw-branch holes until the real dust-port center and hose sweep are measured.
+- use a dedicated short hose from the manifold to the saw port
+- do not trap the hose against fixed stretchers
+- verify full blade-height travel and full bevel travel with the hose installed
+- do not drill final saw-branch holes until the real dust-port center and hose sweep are measured
 
 ## Router Dust Path
 
@@ -100,8 +104,9 @@ Use a Y-fitting only inside the router zone and not back at the main manifold.
 
 ## Flex-Hose Path
 
-- Store the mobile-tool hose in the front-right service zone.
-- Route it so it can exit the front-right corner without pinching when the bench is parked at the wall.
+- store the mobile-tool hose in the front-right service zone
+- route it so it can exit the front-right corner without pinching when the bench is parked at the wall
+- keep enough slack that the hose can reach the deployed miter saw without dragging across the saw-rail keep-clear lanes
 
 ## Power Strategy
 
@@ -109,15 +114,15 @@ This bench needs two honest power domains.
 
 ### Tool Circuit
 
-- Dedicated pigtail or dedicated inlet
-- Serves either the saw or the router motor
-- Not routed through the aux power strip
+- dedicated pigtail or dedicated inlet
+- serves either the saw or the router motor
+- not routed through the aux power strip
 
 ### Dust / Aux Circuit
 
-- Side-mounted inlet
-- Feeds the internal strip
-- Powers:
+- side-mounted inlet
+- feeds the internal strip
+- powers:
   - Hercules extractor
   - task light
   - chargers
@@ -134,10 +139,10 @@ The package assumes the RF remote path.
 
 ## Recommended Physical Locations
 
-- Tool pigtail dock: front-left underside of the center module
-- Aux inlet: right side of the right module toward the front
-- Master aux shutoff: front-right face
-- Internal strip: front-right interior wall
+- tool pigtail dock: front-left underside of the center module
+- aux inlet: right side of the right module toward the front
+- master aux shutoff: front-right face
+- internal strip: front-right interior wall
 - RF remote receiver: in the right service bay but not buried behind the extractor
 - `RM-10` control subpanel:
   - size `12 x 18 in`
@@ -148,7 +153,7 @@ The package assumes the RF remote path.
 
 ## Weight And Mobility
 
-- estimated loaded bench weight: about `980 lb`
+- estimated loaded bench weight: about `1040 lb`
 - selected mobility system: `Foot Master GD-60F` leveling casters
 - minimum locked system capacity: `2200 lb total`
 
@@ -156,16 +161,16 @@ This is intentionally more industrial than consumer retractable workbench-caster
 
 ## Garage Power Prerequisites
 
-- Verify two real garage circuits if simultaneous saw plus dust use is expected.
-- Verify code-compliant garage protection including GFCI where required.
-- Verify the aux circuit can handle the extractor plus accessory loads without pretending everything is just a power-strip problem.
-- Verify the cord paths still work when the bench is parked and when it is rolled out.
+- verify two real garage circuits if simultaneous saw plus dust use is expected
+- verify code-compliant garage protection including GFCI where required
+- verify the aux circuit can handle the extractor plus accessory loads without pretending everything is just a power-strip problem
+- verify the cord paths still work when the bench is parked and when it is rolled out
 
 ## Serviceability Rules
 
-- Extractor must slide or lift out without removing the bench top.
-- `RM-10` and `RM-06` must remove cleanly in the documented order.
-- Cyclone bucket lid must be removable without taking out the router fence or top.
-- Manifold must be reachable while the bench is parked.
-- No permanent wiring may be buried behind the extractor.
-- The right-bay package is not considered proven until the mockup checklist in [right-bay-mockup.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/right-bay-mockup.md) passes.
+- extractor must slide or lift out without removing the bench top
+- `RM-10` and `RM-06` must remove cleanly in the documented order
+- cyclone bucket lid must be removable without taking out the router fence or top
+- manifold must be reachable while the bench is parked
+- no permanent wiring may be buried behind the extractor
+- the right-bay package is not considered proven until the mockup checklist in [right-bay-mockup.md](./right-bay-mockup.md) passes

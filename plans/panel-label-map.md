@@ -34,19 +34,24 @@ Label every part immediately after cutting with its `part_id` and reference edge
 | `RM-09` | service-face cleat | top edge | `right-module-elevation.svg` |
 | `RM-10` | control subpanel | top edge | `right-bay-packaging.svg` |
 | `TOP-01A` | rear top substrate | front edge | `top-dimensioned.svg` |
-| `TOP-01B` | right-front infill substrate | front edge | `top-dimensioned.svg` |
+| `TOP-01B` | front-left top substrate | front edge | `top-dimensioned.svg` |
+| `TOP-01C` | front-right top substrate | front edge | `top-dimensioned.svg` |
 | `TOP-02A` | rear top skin | front edge | `top-dimensioned.svg` |
-| `TOP-02B` | right-front infill skin | front edge | `top-dimensioned.svg` |
+| `TOP-02B` | front-left top skin | front edge | `top-dimensioned.svg` |
+| `TOP-02C` | front-right top skin | front edge | `top-dimensioned.svg` |
 | `TOP-03` | router plate ledger | long edge | `top-dimensioned.svg` |
 | `TOP-04` | seam cleat | front long edge | `top-dimensioned.svg` |
 | `TOP-05` | under-top stiffener | front long edge | `top-dimensioned.svg` |
 | `TOP-06` | overlay backing pad | front face | `top-dimensioned.svg` |
-| `FW-01` | wing substrate | hinge edge | `wing-detail.svg` |
-| `FW-02` | wing skin | hinge edge | `wing-detail.svg` |
-| `FW-03` | wing batten | hinge edge | `wing-detail.svg` |
-| `FW-04` | wing side support leg | top end | `wing-detail.svg` |
-| `FW-05` | center load-sharing foot | top end | `wing-detail.svg` |
-| `FW-06` | pin backing block | top face | `wing-detail.svg` |
+| `MS-01` | miter-station tray deck | front edge | `miter-station-elevation.svg` |
+| `MS-02` | tray side wall | front edge | `flip-top-detail.svg` |
+| `MS-03` | tray rail | front long edge | `flip-top-detail.svg` |
+| `MS-04` | stowed cover panel | front edge | `miter-station-elevation.svg` |
+| `MS-05` | left support face | front long edge | `miter-station-elevation.svg` |
+| `MS-06` | right support face | front long edge | `miter-station-elevation.svg` |
+| `FT-01` | pivot side plate | bottom edge | `flip-top-detail.svg` |
+| `FT-02` | latch block | top face | `flip-top-detail.svg` |
+| `FT-03` | hard-stop block | top face | `flip-top-detail.svg` |
 | `DR-01` | top drawer side | top edge | `left-module-elevation.svg` |
 | `DR-02` | top drawer front/back | top edge | `left-module-elevation.svg` |
 | `DR-03` | middle drawer side | top edge | `left-module-elevation.svg` |

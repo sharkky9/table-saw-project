@@ -2,7 +2,7 @@
 
 ## Status
 
-This branch resets the active product intent. The layout JSON and render contract still describe the older wing-based concept and are intentionally left for the next stacked PR. Use this document as the active program target.
+This is the active product intent. The layout JSON, renders, and builder package now all target the same fixed-top bench with a centered flip-top miter station.
 
 ## Mission
 
@@ -17,7 +17,7 @@ Build a garage bench that does six real jobs without turning into a mechanism pr
 
 ## Active Reset
 
-The prior sliding-carriage and precision-wing work is now superseded. The new active direction is:
+The prior sliding-carriage and precision-wing work is now superseded. The active direction is:
 
 - fixed `90 x 48 x 36 in` bench
 - no expandable wings
@@ -34,7 +34,7 @@ The prior sliding-carriage and precision-wing work is now superseded. The new ac
 - Table-saw feed direction: across the `48 in` depth
 - Miter-station placement: centered as closely as practical on the front/operator long side
 - Router placement: far-right flush insert zone
-- Dust packaging: internal `Hercules HE028` + `Oneida Dust Deputy Low-Pro` on a `5 gallon` bucket + one-tool-at-a-time `2-1/2 in` manifold
+- Dust packaging: internal `Hercules HE028` plus `Oneida Dust Deputy Low-Pro` on a `5 gallon` bucket plus one-tool-at-a-time `2-1/2 in` manifold
 - Mobility: industrial leveling casters with optional supplemental fixed leveling feet only if the slab needs more range
 - Finish standard: tactile, durable shop finish, not furniture-grade show finish
 
@@ -63,7 +63,7 @@ The bench is explicitly no longer trying to earn sheet support through fold-out 
 
 ### Dog Holes And Clamping
 
-Day one does **not** drill the permanent top into an MFT-style surface. Instead:
+Day one does not drill the permanent top into an MFT-style surface. Instead:
 
 - keep the fixed top clean and durable
 - avoid proud permanent hardware in sheet-support zones
@@ -97,11 +97,11 @@ Day one does **not** drill the permanent top into an MFT-style surface. Instead:
 ## Miter Station
 
 - A flip-top miter station is in scope for the core package.
-- The miter station is centered on the front/operator long side as closely as practical.
+- The station is centered on the front/operator long side as closely as practical.
 - The miter saw is now the primary crosscut tool.
 - The station must provide meaningful left and right support for stops and repeat cuts.
 - The stowed position must return a flush or slightly low work surface and must not sit proud.
-- Exact geometry remains blocked on a dedicated miter-saw survey of the owner's DeWalt `60V 12 in` cordless sliding saw.
+- Exact mechanism geometry remains blocked on a dedicated miter-saw survey of the owner's DeWalt `60V 12 in` cordless sliding saw.
 
 ## Router Module
 
@@ -150,7 +150,7 @@ Storage is subordinate to saw, dust, and service access. The active storage mix 
 
 ## Assembly-Table Functionality
 
-The correct approach remains overlay-first, not “cover the whole bench in slots.”
+The correct approach remains overlay-first, not "cover the whole bench in slots."
 
 ### Stage-1 Permanent Surface
 
@@ -160,8 +160,8 @@ The correct approach remains overlay-first, not “cover the whole bench in slot
 ### Overlay Strategy
 
 - add a removable overlay after the core bench proves itself
-- size and anchor geometry can be finalized after the fixed-top layout contract lands
 - overlay must stay out of the saw opening, rail keep-clear lanes, and miter-station operating envelope
+- overlay anchor geometry must land in structure, not only MDF skin
 
 ## Finish Expectations
 

@@ -11,6 +11,7 @@ The cradle sets the stripped saw flush to the surrounding top and keeps that set
 - `2x4` support members under the deck carry four `3/8-16` jack screws for fine flush tuning
 - the deck is drilled only after the saw is physically set flush in the bench
 - exact mount-hole coordinates are transferred from the real saw and are not precomputed in the measurement contract
+- the measured rail keep-clear lanes remain outside the cradle structure
 
 ## Hardware Package
 
@@ -33,8 +34,9 @@ The cradle sets the stripped saw flush to the surrounding top and keeps that set
 
 ## Field Notes
 
-- One observed front mounting-hole `x` position was about `8 1/8 in` from the left cast-top edge.
+- One observed front mounting-hole `x` position was about `8-1/8 in` from the left cast-top edge.
 - Treat that as a human reference only. It is not a validated contract datum and must not replace direct transfer from the actual saw on the deck.
+- The measured clear support span between the front and rear rails is about `22-11/16 in`; preserve real support there and keep relief cuts outside the rail-travel lanes.
 
 ## Acceptance Tolerance
 

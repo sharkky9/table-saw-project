@@ -4,39 +4,43 @@
 
 Read these first:
 
-- [prebuild-checklist.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/prebuild-checklist.md)
-- [no-cut-yet-checklist.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/no-cut-yet-checklist.md)
-- [tool-list.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/tool-list.md)
-- [joint-strategy.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/joint-strategy.md)
-- [panel-label-map.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/panel-label-map.md)
-- [top-machining-sequence.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/top-machining-sequence.md)
+- [prebuild-checklist.md](./prebuild-checklist.md)
+- [no-cut-yet-checklist.md](./no-cut-yet-checklist.md)
+- [tool-list.md](./tool-list.md)
+- [joint-strategy.md](./joint-strategy.md)
+- [panel-label-map.md](./panel-label-map.md)
+- [top-machining-sequence.md](./top-machining-sequence.md)
+- [miter-station.md](./miter-station.md)
+- [flip-top-mechanism.md](./flip-top-mechanism.md)
 
 ## Build Sequence
 
-1. Stripped-saw survey and data update
+1. Surveys and data gates
 2. Plinth
 3. Left module
 4. Center saw chassis
 5. Right service module
 6. Join modules
-7. Top and wing blanks
-8. Saw fit
-9. Wing mechanism
+7. Fixed-top blanks and blocking
+8. Saw fit and cradle
+9. Miter-station flip-top
 10. Top machining
 11. Router install
 12. Dust and power
 13. Drawers and service panels
 14. Finish
 
-## 1. Stripped-Saw Survey And Data Update
+## 1. Surveys And Data Gates
 
-- Print [stripped-saw-survey.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/stripped-saw-survey.md).
-- Record every required measurement in [data/measurements.csv](/Users/christopherhandel/Documents/GitHub/Table Saw/data/measurements.csv).
-- Do not continue to top machining or final saw-deck drilling until the precision-gate commands pass.
+- Print [stripped-saw-survey.md](./stripped-saw-survey.md).
+- Print [miter-saw-survey.md](./miter-saw-survey.md).
+- Record every required value in [data/measurements.csv](../data/measurements.csv).
+- Do not continue to precision machining or final saw-deck drilling until the precision-gate commands pass.
 
 Hold point:
 
-- [ ] survey complete
+- [ ] stripped-saw survey complete
+- [ ] miter-saw survey complete
 - [ ] precision gate open
 
 ## 2. Plinth
@@ -94,13 +98,15 @@ Steps:
 1. Build the open frame from `CM-01`, `CM-02`, and `CM-03`.
 2. Install `CM-04` ledgers at the nominal mount-plane height.
 3. Install `CM-05` as the deck supports and jack-screw carriers.
-4. Fit `CM-06` as the adjustable saw mounting deck.
-5. Build the cradle per [saw-cradle.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/saw-cradle.md).
+4. Fit `CM-06` only as a rough mounting deck until the real saw is flush-fit.
+5. Keep the front-centered bay clear for the miter-station flip-top.
+6. Build the cradle per [saw-cradle.md](./saw-cradle.md).
 
 Hold point:
 
-- [ ] open lower well remains clear for dust hose and bevel motion
+- [ ] lower well remains clear for dust hose and bevel motion
 - [ ] cradle stays adjustable
+- [ ] front miter-station bay is still unobstructed
 
 ## 5. Right Service Module
 
@@ -117,7 +123,7 @@ Steps:
 3. Cut the `8 x 8 in` notches in `RM-02` only after that layout is transferred cleanly.
 4. Install `RM-02` so the notched upper field protects the rail keep-clear lanes.
 5. Install `RM-05` only after service cutouts are marked.
-6. Install `RM-09` cleats before fitting any removable front panels.
+6. Install `RM-09` cleats before fitting removable front panels.
 7. Fit `RM-07` router hatch.
 8. Leave `RM-08` and `RM-10` as mockup-gated or service-layout-gated parts until the right-bay package is proven.
 9. Fit `RM-06` as a plain removable service face only after `RM-10` disconnect strategy is resolved.
@@ -139,36 +145,33 @@ Hold point:
 - [ ] top edges flush across all modules
 - [ ] carcass square after joining
 
-## 7. Top And Wing Blanks
+## 7. Fixed-Top Blanks And Blocking
 
 Parts:
 
 - `TOP-01A`
 - `TOP-01B`
+- `TOP-01C`
 - `TOP-02A`
 - `TOP-02B`
+- `TOP-02C`
 - `TOP-03`
 - `TOP-04`
 - `TOP-05`
 - `TOP-06`
-- `FW-01`
-- `FW-02`
-- `FW-03`
-- `FW-04`
-- `FW-05`
-- `FW-06`
 
 Steps:
 
-1. Cut the fixed-top and wing blanks to their locked blank sizes.
-2. Cut the blocking cleats and stiffeners to final size.
+1. Cut the three fixed-top substrate blanks and three skin blanks to their locked sizes.
+2. Cut the router ledgers, seam cleats, stiffeners, and overlay backing pads to size.
 3. Label every blank immediately.
+4. Do not machine the saw opening, miter-station opening, router recess, or underside rail reliefs yet.
 
 Hold point:
 
-- [ ] top and wing blanks are labeled and reserved for field-fit machining later
+- [ ] fixed-top blanks are labeled and reserved for field-fit machining later
 
-## 8. Saw Fit
+## 8. Saw Fit And Cradle
 
 1. Set the saw on `CM-06`.
 2. Tune the cradle until the cast top is flush or slightly low.
@@ -182,26 +185,38 @@ Hold point:
 - [ ] real opening marked from the actual saw
 - [ ] mounting deck ready for final drilling from the actual saw
 
-## 9. Wing Mechanism
+## 9. Miter-Station Flip-Top
 
-1. Laminate the wing blank.
-2. Install hinge pins bushings stop screws latches and support hardware per [wing-mechanism.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/wing-mechanism.md).
-3. Prove the mechanism before routing slot extensions.
+Parts:
+
+- `MS-01` through `MS-06`
+- `FT-01` through `FT-03`
+
+Steps:
+
+1. After the miter-saw survey is complete, cut `MS-01`, `MS-04`, `MS-05`, and `MS-06` to final size.
+2. Dry-fit `FT-01` pivot side plates and the selected pivot hardware in the centered front bay.
+3. Build the tray assembly per [miter-station.md](./miter-station.md) and [flip-top-mechanism.md](./flip-top-mechanism.md).
+4. Trim `MS-02` and `MS-03` only after the pivot axis and tray depth are proven.
+5. Install `FT-03` hard stops so the deployed tray returns to the target support-surface height without relying on latch slop.
+6. Install `FT-02` latch blocks and the stowed latches only after the cover panel can close flush.
+7. Fit `MS-05` and `MS-06` support faces and stop track after the fence line is confirmed from the real saw.
 
 Hold point:
 
-- [ ] 10-cycle wing proof passed
-- [ ] seam never high
+- [ ] stowed cover flush or slightly low
+- [ ] deployed tray repeats the target height
+- [ ] left and right support spans stay fully usable
 
 ## 10. Top Machining
 
-Follow [top-machining-sequence.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/top-machining-sequence.md) exactly.
+Follow [top-machining-sequence.md](./top-machining-sequence.md) exactly.
 
 Hold point:
 
 - [ ] saw opening cut from real fit
 - [ ] router recess flush
-- [ ] wing slot routing performed only after proof
+- [ ] miter-station cover proven in both stowed and deployed states
 
 ## 11. Router Install
 
@@ -215,16 +230,18 @@ Hold point:
 
 ## 12. Dust And Power
 
-1. Run [right-bay-mockup.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/right-bay-mockup.md).
+1. Run [right-bay-mockup.md](./right-bay-mockup.md).
 2. Fit the extractor base only after the mockup passes.
 3. Fit `RM-10` as an independent removable control subpanel with its plug connector and hose release strategy.
 4. Fit `RM-06` only after `RM-10` removal proves that the service face is not trapped.
-5. Install manifold hoses inlet strip and RF remote.
+5. Install manifold, hoses, inlet, strip, and RF remote.
+6. Confirm the flex hose reaches the deployed miter station without trapping the right-side service path.
 
 Hold point:
 
 - [ ] bucket-first service sequence proven
 - [ ] extractor removable without top removal
+- [ ] flex hose reaches saw, router, and miter station
 
 ## 13. Drawers And Service Panels
 
@@ -238,8 +255,4 @@ Hold point:
 
 ## 14. Finish
 
-Finish only after saw wing router and panel fit are all proven.
-
-Hold point:
-
-- [ ] no critical fit surface is finished before proof
+Finish only after saw, miter station, router, and panel fit are all proven.

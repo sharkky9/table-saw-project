@@ -2,7 +2,7 @@
 
 ## Plinth
 
-- glue + `3 in` structural screws
+- glue plus `3 in` structural screws
 - predrill near ends
 - keep rails square before adding caster reinforcement blocks
 
@@ -25,13 +25,15 @@
 - jack screws provide fine adjustment
 - saw-mount bolts drilled only after the actual saw is flush-fit on the deck
 
-## Wing
+## Miter Station
 
-- wing panel glue-up uses full-spread glue and cauls or a flat reference surface
-- hinge screws go in only after the wing blank is square
-- pins stop screws latches and support brackets are all mechanical and adjustable
+- tray and cover parts stay oversized until the miter-saw survey is complete
+- pivot hardware is mechanical and adjustable
+- deployed hard stops establish repeatable height
+- stowed latches only pull the cover flush; they are not the deployed datum
 
 ## Service Panels And Hatches
 
 - router hatch may use simple latches or magnets
 - front service face uses removable machine screws into inserts for repeatable removal
+- `RM-10` uses its own fasteners and disconnectable harness so `RM-06` is not trapped

@@ -8,12 +8,13 @@ This mockup proves the internal `Hercules HE028 + Oneida Low-Pro + Rockler 2-1/2
 
 - actual Hercules `HE028`
 - actual Oneida `Dust Deputy Low-Pro`
-- actual 5 gallon bucket
+- actual `5 gallon` bucket
 - actual short hose and cuffs between separator and extractor
 - actual manifold or a full-scale stand-in
 - scrap plywood that matches:
   - dust-bay floor footprint `20.5 x 40.5 in`
   - front service opening `20 x 28 in`
+  - control subpanel `12 x 18 in`
   - bay height `29.5 in`
 
 ## Proposed Support Logic
@@ -24,6 +25,7 @@ This mockup proves the internal `Hercules HE028 + Oneida Low-Pro + Rockler 2-1/2
 - `RM-06` service face removes second
 - bucket comes out first
 - extractor comes out second
+- flex-hose dock stays on `RM-10`, not on the plain `RM-06` service face
 
 ## Measurements To Capture
 
@@ -55,6 +57,6 @@ This mockup proves the internal `Hercules HE028 + Oneida Low-Pro + Rockler 2-1/2
 
 Record the final proven values back into:
 
-- [data/layout.json](/Users/christopherhandel/Documents/GitHub/Table Saw/data/layout.json)
-- [plans/dust-power.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/dust-power.md)
-- [plans/assembly.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/assembly.md)
+- [data/layout.json](../data/layout.json)
+- [dust-power.md](./dust-power.md)
+- [assembly.md](./assembly.md)

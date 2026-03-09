@@ -9,14 +9,14 @@ This is shop furniture. The target is:
 - easy cleanup
 - no splintery edges
 
-It is **not** a furniture-grade showpiece.
+It is not a furniture-grade showpiece.
 
 ## Surface Classes
 
 ### Class A: Touch And Precision Surfaces
 
 - fixed top
-- front wing
+- miter-station cover
 - router module
 - drawer fronts and pulls zone
 
@@ -31,6 +31,7 @@ Treatment:
 
 - outer cabinet faces
 - service doors
+- support faces
 - utility faces
 
 Treatment:
@@ -55,7 +56,7 @@ Treatment:
 
 Do not fully coat these until fit is proven:
 
-- miter-track dado shoulders
+- miter-station latch and stop contact pads
 - router-plate ledges
 - saw mount interfaces
 - overlay anchor points
@@ -68,7 +69,7 @@ Before touching the bench:
 
 1. Prepare offcuts of plywood, MDF, and construction lumber.
 2. Ease the edges exactly how you plan to ease the bench.
-3. Test shellac + waterborne finish schedule.
+3. Test shellac plus waterborne finish schedule.
 4. Confirm:
    - hand feel
    - sheen
