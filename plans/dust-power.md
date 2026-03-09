@@ -27,12 +27,14 @@ This package intentionally targets the Hercules `HE028` inside the bench, but th
 
 - official minimum height is `27.4 in` with the handle retracted
 - the current dust bay is `29.5 in` tall
+- the current model leaves only `0.35 in` of extractor headroom after a `0.75 in` support elevation and a `1.0 in` clearance allowance, so this is still a proof item and not a settled production margin
 - the Harbor Freight manual shows the vacuum port on the front body, so the design is limited more by plan-view service access than by a tall top hose stack
 - the Oneida Low-Pro keeps the bucket stack much shorter than a taller cyclone lid system
 - the owner accepts a bucket-first then extractor-second removal sequence
 
 What is not yet considered proven:
 
+- whether the modeled `0.35 in` extractor headroom survives the real skid or low-deck build
 - hand access with the real hose cuffs
 - front opening comfort
 - the real extractor support deck thickness and friction behavior
@@ -147,6 +149,7 @@ The package assumes the RF remote path.
 - RF remote receiver: in the right service bay but not buried behind the extractor
 - `RM-10` control subpanel:
   - size `12 x 18 in`
+  - these coordinates remain provisional until the physical mockup proves the disconnect path and flex-hose dock behavior
   - mounted with its lower-left corner `7 in` from the left edge and `6 in` from the bottom of `RM-06`
   - manifold center at `4.5 in` from the left and `14 in` from the bottom of `RM-10`
   - aux switch center at `10 in` from the left and `14 in` from the bottom of `RM-10`
@@ -174,4 +177,5 @@ This is intentionally more industrial than consumer retractable workbench-caster
 - cyclone bucket lid must be removable without taking out the router fence or top
 - manifold must be reachable while the bench is parked
 - no permanent wiring may be buried behind the extractor
+- concept validation may still pass before this package is physically proven; do not treat that as mockup clearance
 - the right-bay package is not considered proven until the mockup checklist in [right-bay-mockup.md](./right-bay-mockup.md) passes

@@ -4,6 +4,8 @@
 
 This mockup proves the internal `Hercules HE028 + Oneida Low-Pro + Rockler 2-1/2 in manifold` package before the right service bay is treated as build-ready.
 
+The current concept model only leaves `0.35 in` of extractor headroom once the `27.4 in` official body height, `0.75 in` support elevation, and `1.0 in` clearance allowance are all carried honestly. Treat that as a first-class proof item.
+
 ## Required Parts For The Mockup
 
 - actual Hercules `HE028`
@@ -30,6 +32,7 @@ This mockup proves the internal `Hercules HE028 + Oneida Low-Pro + Rockler 2-1/2
 ## Measurements To Capture
 
 - actual base elevation under the extractor
+- actual remaining headroom above the extractor once the real deck or skid is in place
 - actual bucket diameter with latch clearance
 - actual front-port hose cuff depth on the Hercules
 - minimum hand access width to disconnect the short hose
@@ -42,6 +45,7 @@ This mockup proves the internal `Hercules HE028 + Oneida Low-Pro + Rockler 2-1/2
 - bucket fits without crushing the hose or lid latches
 - bucket can be removed cleanly through the service opening
 - extractor can be moved out after the bucket is removed
+- the modeled `0.35 in` headroom remains real with the chosen support method and does not disappear once pads or friction material are added
 - `RM-10` disconnects or unplugs without trapping `RM-06`
 - short hose can be disconnected without skinning knuckles on sharp structure
 - service face opening is large enough that the mockup does not depend on impossible hand angles
@@ -51,6 +55,7 @@ This mockup proves the internal `Hercules HE028 + Oneida Low-Pro + Rockler 2-1/2
 - bucket cannot be removed first
 - extractor requires top removal
 - hose cuffs require more front depth than the package allows
+- actual extractor height or required support deck steals the modeled `0.35 in` headroom
 - deck thickness or support method steals too much vertical space
 
 ## Output

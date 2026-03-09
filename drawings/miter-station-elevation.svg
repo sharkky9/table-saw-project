@@ -1,6 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1120" height="720" viewBox="0 0 1120 720">
   <rect width="1120" height="720" fill="#ffffff"/>
   <text x="40" y="42" font-family="Helvetica, Arial, sans-serif" font-size="24">Miter-Station Elevation</text>
+  <rect x="40" y="60" width="1040" height="56" fill="#eef6ff" stroke="#2f6ea3" stroke-width="2"/>
+  <text x="56" y="84" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#1f4f78">Public DCS781 dimensions are accepted by default.</text>
+  <text x="56" y="106" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#1f4f78">Real tray fit, shim tuning, and final bolt transfer still remain manual before the station is actually build-ready.</text>
 
   <rect x="80" y="120" width="900" height="18" fill="#dad0be" stroke="#111" stroke-width="2"/>
   <rect x="80" y="138" width="340" height="250" fill="#d8f0d2" stroke="#4b7d3a" stroke-width="2" fill-opacity="0.7"/>

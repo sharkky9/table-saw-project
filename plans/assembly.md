@@ -15,33 +15,32 @@ Read these first:
 
 ## Build Sequence
 
-1. Surveys and data gates
+1. Prebuild review and public DCS781 acceptance
 2. Plinth
 3. Left module
 4. Center saw chassis
-5. Right service module
+5. Right service module shell
 6. Join modules
 7. Fixed-top blanks and blocking
-8. Saw fit and cradle
-9. Miter-station flip-top
+8. Stripped-saw survey plus saw fit/cradle
+9. Miter-station tray dry fit and shimming
 10. Top machining
 11. Router install
-12. Dust and power
+12. Right-bay mockup plus dust/power
 13. Drawers and service panels
 14. Finish
 
-## 1. Surveys And Data Gates
+## 1. Prebuild Review And Public DCS781 Acceptance
 
-- Print [stripped-saw-survey.md](./stripped-saw-survey.md).
-- Print [miter-saw-survey.md](./miter-saw-survey.md).
-- Record every required value in [data/measurements.csv](../data/measurements.csv).
-- Do not continue to precision machining or final saw-deck drilling until the precision-gate commands pass. The miter station still needs a real tray fit later, but it no longer needs a bespoke prebuild survey first.
+- Read [prebuild-checklist.md](./prebuild-checklist.md), [validation.md](./validation.md), and [miter-station.md](./miter-station.md) before cutting anything.
+- Confirm the accepted public `DCS781` rows in [miter-saw-survey.md](./miter-saw-survey.md) still match the saw you intend to use.
+- Run the strict validation commands once so the current data package is proven coherent before rough cutting starts.
+- Rough structure and fixed-top blanks may proceed after this review. Precision machining, underside reliefs, and final saw-deck drilling still wait for the stripped-saw survey and real fit work later.
 
 Hold point:
 
-- [ ] stripped-saw survey complete
 - [ ] public miter-saw spec rows accepted
-- [ ] precision gate open
+- [ ] builder understands that rough structure may proceed before stripped-saw survey, but top machining may not
 
 ## 2. Plinth
 
@@ -108,7 +107,7 @@ Hold point:
 - [ ] cradle stays adjustable
 - [ ] front miter-station bay is still unobstructed
 
-## 5. Right Service Module
+## 5. Right Service Module Shell
 
 Parts:
 
@@ -125,8 +124,8 @@ Steps:
 5. Install `RM-05` only after service cutouts are marked.
 6. Install `RM-09` cleats before fitting removable front panels.
 7. Fit `RM-07` router hatch.
-8. Leave `RM-08` and `RM-10` as mockup-gated or service-layout-gated parts until the right-bay package is proven.
-9. Fit `RM-06` as a plain removable service face only after `RM-10` disconnect strategy is resolved.
+8. Leave `RM-08` and `RM-10` as fully mockup-gated parts until the right-bay package is proven.
+9. Fit `RM-06` as a plain removable service face only after the `RM-10` disconnect strategy is proven in mockup.
 
 Hold point:
 
@@ -172,21 +171,24 @@ Hold point:
 
 - [ ] fixed-top blanks are labeled and reserved for field-fit machining later
 
-## 8. Saw Fit And Cradle
+## 8. Stripped-Saw Survey Plus Saw Fit And Cradle
 
-1. Set the saw on `CM-06`.
-2. Tune the cradle until the cast top is flush or slightly low.
-3. Mark the real opening local reliefs and dust-port routing from the actual saw.
-4. Transfer the final mounting-deck bolt pattern from the real saw only after the flush setting is proven.
-5. Do not pre-layout foot-center coordinates; drill from the actual saw on the deck.
+1. Print [stripped-saw-survey.md](./stripped-saw-survey.md) and record the required bare-saw values in [data/measurements.csv](../data/measurements.csv).
+2. Run the strict validation commands after those rows are transferred so the stripped-saw precision gate is actually open before machining.
+3. Set the saw on `CM-06`.
+4. Tune the cradle until the cast top is flush or slightly low.
+5. Mark the real opening local reliefs and dust-port routing from the actual saw.
+6. Transfer the final mounting-deck bolt pattern from the real saw only after the flush setting is proven.
+7. Do not pre-layout foot-center coordinates; drill from the actual saw on the deck.
 
 Hold point:
 
 - [ ] saw top never proud
 - [ ] real opening marked from the actual saw
 - [ ] mounting deck ready for final drilling from the actual saw
+- [ ] strict precision commands pass after stripped-saw rows are loaded
 
-## 9. Miter-Station Flip-Top
+## 9. Miter-Station Tray Dry Fit And Shimming
 
 Parts:
 
@@ -231,11 +233,11 @@ Hold point:
 
 - [ ] hatch access to collet confirmed
 
-## 12. Dust And Power
+## 12. Right-Bay Mockup Plus Dust And Power
 
 1. Run [right-bay-mockup.md](./right-bay-mockup.md).
 2. Fit the extractor base only after the mockup passes.
-3. Fit `RM-10` as an independent removable control subpanel with its plug connector and hose release strategy.
+3. Fit `RM-10` as an independent removable control subpanel only after the mockup proves its disconnect path and hose-dock behavior.
 4. Fit `RM-06` only after `RM-10` removal proves that the service face is not trapped.
 5. Install manifold, hoses, inlet, strip, and RF remote.
 6. Confirm the flex hose reaches the deployed miter station without trapping the right-side service path.
@@ -249,7 +251,7 @@ Hold point:
 ## 13. Drawers And Service Panels
 
 1. Final-fit the three drawer fronts with `1/8 in` reveals.
-2. Final-fit `RM-06`, `RM-10`, and the router hatch in their real service order.
+2. Final-fit `RM-06`, `RM-10`, and the router hatch in their real service order only after the mockup-proven right-bay geometry is accepted.
 3. Leave service paths removable.
 
 Hold point:

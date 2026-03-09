@@ -28,6 +28,7 @@ The automated precision-ready gate only checks that those accepted public dimens
 - the deployed tray position must be set by hard stops
 - the miter saw uses the flex hose, docked in the front-right service zone
 - battery swaps and normal saw controls happen from above with the station deployed
+- the right support span is counted with the router fence removed; stop work and router-fence work are not assumed to happen at the same time
 
 ## Build Sequence
 
@@ -44,7 +45,7 @@ The automated precision-ready gate only checks that those accepted public dimens
 
 - station centerline lands within `2 in` of bench center
 - left support span is at least `30 in`
-- right support span is at least `30 in`
+- right support span is at least `30 in` with the router fence removed
 - the stowed cover is flush or slightly low across the full opening
 - the deployed tray repeats its height after multiple open/close cycles
 - the real saw table lands flush with the surrounding bench top after the shim stack is locked
