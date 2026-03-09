@@ -6,27 +6,28 @@ Build the bench in this order so adjustments happen while they are still cheap:
 
 1. Complete the stripped-saw survey.
 2. Build and level the plinth.
-3. Build the left, center, and right modules as separate carcasses.
+3. Build the left carriage-support, center saw, and right service modules as separate carcasses.
 4. Bolt modules to the plinth and to each other.
 5. Install the saw cradle and verify the mount-plane height.
-6. Dry-fit the L-shaped fixed top parts without machining them.
-7. Fit the saw and verify the true opening, blade y datum, and rail sweep.
-8. Build and register the front infeed wing.
-9. Machine the fixed top and wing only after the precision gate is open.
-10. Fit the router module and fence.
-11. Install dust plumbing and power.
-12. Fit drawers, service panels, and storage.
-13. Finish only after dry-fitting all critical hardware.
+6. Dry-fit the three fixed-top fields without machining them.
+7. Fit the saw and verify the true opening, blade `y` datum, and rail sweep.
+8. Build the left support table and the under-carriage support drawer.
+9. Machine the fixed top only after the precision gate is open.
+10. Build and fit the sliding carriage.
+11. Fit the router module and fence.
+12. Install dust plumbing and power.
+13. Fit shallow storage, service panels, and carriage parking hardware.
+14. Finish only after dry-fitting all critical hardware.
 
 ## Step 0: Stripped-Saw Survey
 
 This step is a hard gate. Do not machine the top, drill the cradle, or buy miter track until it is complete.
 
-Use [stripped-saw-survey.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/stripped-saw-survey.md) as the working checklist.
+Use [stripped-saw-survey.md](/Users/christopherhandel/Documents/GitHub/Table Saw-sliding-carriage/plans/stripped-saw-survey.md) as the working checklist.
 
 Record these values on the bare saw:
 
-- stripped blade center y from the front cast-top edge
+- stripped blade center `y` from the front cast-top edge
 - all four foot centers
 - foot-pad size and mount-hole diameter
 - lowest underside protrusion below the mount plane
@@ -35,7 +36,7 @@ Record these values on the bare saw:
 - rear hose sweep at height and bevel extremes
 - actual miter-slot width and depth
 
-If any of those values are still blank in [measurements.csv](/Users/christopherhandel/Documents/GitHub/Table Saw/data/measurements.csv), the precision-cut gate remains closed.
+If any of those values are still blank in [measurements.csv](/Users/christopherhandel/Documents/GitHub/Table Saw-sliding-carriage/data/measurements.csv), the precision-cut gate remains closed.
 
 ## Step 1: Plinth
 
@@ -45,11 +46,12 @@ If any of those values are still blank in [measurements.csv](/Users/christopherh
 - Drill and install leveling feet near the corners.
 - Set the plinth in its parked location and verify it can still roll out cleanly.
 
-## Step 2: Left Module
+## Step 2: Left Carriage-Support Module
 
-- Build the left module first because it is the simplest cabinet.
-- Use a full bottom deck, two sides, one partition, and front/rear top stretchers.
-- Reserve the wider portion for three drawers and the narrow portion for fence, jig, or track storage.
+- Build the left module as a carriage-support bay, not as a full drawer bank.
+- Keep the central front opening clear for the under-carriage support drawer.
+- Reserve the upper interior only for shallow storage that cannot foul the carriage guide hardware.
+- Reserve one vertical parking zone for the carriage fence, stops, and setup accessories.
 - Install the back panel only after confirming the module is square.
 
 ## Step 3: Center Saw Chassis
@@ -75,57 +77,68 @@ If any of those values are still blank in [measurements.csv](/Users/christopherh
 - Confirm overall carcass size: `87 x 42 x 31 in`.
 - Confirm the carcass stays square before moving on.
 
-## Step 6: Dry-Fit The L-Shaped Fixed Top
+## Step 6: Dry-Fit The Fixed Top
 
-Do not laminate a single `90 x 48` slab. The fixed top is two-piece per layer:
+Do not machine the full-depth top fields yet.
 
-- rear main panel: `90 x 31.75 in`
-- right-front infill: `30.25 x 16.25 in`
+The fixed top is three pieces per layer:
+
+- left carriage field: `29.25 x 48 in`
+- center saw field: `30.5 x 48 in`
+- right service field: `30.25 x 48 in`
 
 ### Dry-Fit First
 
 - Cut the plywood substrate pieces oversize.
 - Cut the MDF skin pieces oversize.
-- Dry-lay the two fixed regions on the carcass and verify the wing opening remains clear.
-- Install the seam cleats under the right-front infill seam.
-- Confirm the seam lands on real support before any glue-up.
+- Dry-lay all three top fields on the carcass and verify the seams land on real support.
+- Confirm the left field leaves room for the carriage guide-strip zone and park stops.
+- Confirm the center and right seams do not compromise the saw opening or router field.
 
 ## Step 7: Fit The Saw Before Precision Machining
 
 This is the second hard gate.
 
-- Set the saw on the cradle with the fixed top pieces still unmachined.
+- Set the saw on the cradle with the fixed-top pieces still unmachined.
 - Raise and lower the mount points until the saw top is exactly flush or a few thousandths below the surrounding fixed top.
-- Confirm the stripped-saw blade y datum against the provisional layout.
+- Confirm the stripped-saw blade `y` datum against the provisional layout.
 - Confirm the actual opening size and the actual rail sweep.
 - Confirm the dust-port and hose sweep.
 
-If the real saw geometry disagrees with the concept layout, update [layout.json](/Users/christopherhandel/Documents/GitHub/Table Saw/data/layout.json) and [measurements.csv](/Users/christopherhandel/Documents/GitHub/Table Saw/data/measurements.csv) before machining anything.
+If the real saw geometry disagrees with the concept layout, update [layout.json](/Users/christopherhandel/Documents/GitHub/Table Saw-sliding-carriage/data/layout.json) and [measurements.csv](/Users/christopherhandel/Documents/GitHub/Table Saw-sliding-carriage/data/measurements.csv) before machining anything.
 
-## Step 8: Build And Register The Front Wing
+## Step 8: Build The Left Support Package
 
-- Laminate the wing to `1.5 in` thickness with plywood on both faces.
-- Hinge the wing to the front edge of the left and center modules only.
-- Install two locking folding legs.
-- Install the two tapered alignment pins and matching receivers.
-- Set the leg glides or final trim only after the hinge line and registration hardware are fixed.
-- Prove that the wing comes up flush and repeatable before any track routing.
+- Build the fold-out left support table before machining the carriage guide zones.
+- Install the hinge, hard stops, and locking leg hardware.
+- Prove that the table folds back inside the parked `90 x 48` footprint.
+- Build the under-carriage support drawer and fit its slides.
+- Prove the support drawer extends and retracts repeatably before the carriage is built.
 
-## Step 9: Machine The Fixed Top And Wing
+## Step 9: Machine The Fixed Top
 
 Machine only after Steps 0, 7, and 8 are complete.
 
 ### Machine In This Order
 
 1. Saw opening perimeter
-2. Router lift recess and cut-through
-3. Assembly T-track dados in the far-left field
-4. Miter-track recesses in the rear support and then the registered front wing
+2. Miter-track recesses in the fixed front and rear support fields
+3. Router lift recess and cut-through
+4. Carriage guide-strip zones and park-stop locations in the left field
 5. Underside reliefs for the right-side rail keep-clear lanes
 
 Machine the lift-plate recess from the MDF face, then cut through both layers.
 
-## Step 10: Router Module
+## Step 10: Build And Fit The Sliding Carriage
+
+- Laminate the carriage to `1.5 in` thickness with plywood on both faces.
+- Install the selected guide strips, wear pads, or equivalent low-play runner package.
+- Add the removable carriage fence and its hardware.
+- Fit end stops and park hardware only after the carriage glides freely.
+- Square the carriage fence to the blade before calling the carriage done.
+- Prove that the carriage parks without blocking ordinary rip-fence use.
+
+## Step 11: Router Module
 
 - Install the plate ledgers and the JessEm leveling hardware per the selected lift instructions.
 - Fit the plate flush to the surrounding top.
@@ -133,9 +146,9 @@ Machine the lift-plate recess from the MDF face, then cut through both layers.
 - Build a removable fence with independent faces and a rear dust port.
 - Keep the fence removable so the bench returns to flush-surface mode quickly.
 
-## Step 11: Dust And Power
+## Step 12: Dust And Power
 
-Install dust and power after the fixed top, saw, wing, and router geometry are proven.
+Install dust and power after the fixed top, saw, carriage, support drawer, support table, and router geometry are proven.
 
 - Set the cyclone bucket at the front of the dust bay.
 - Install the Oneida Low-Pro lid and verify the short separator-to-extractor hose path.
@@ -146,19 +159,22 @@ Install dust and power after the fixed top, saw, wing, and router geometry are p
 - Route the dedicated tool-circuit pigtail separately from the aux inlet and strip.
 - Install the extractor RF remote because the split-circuit plan disables current-sensing auto-start.
 
-## Step 12: Storage And Panels
+## Step 13: Storage And Panels
 
-- Build the three drawers to suit the final slide hardware.
+- Add only the shallow left-side storage that clears the carriage package.
 - Fit the front service panel, router hatch, and any hose covers after the dust system is tested.
 - Leave the saw-well service faces removable.
+- Install fence, stop, and carriage parking clips only after the main workflow is proven.
 
-## Step 13: Finish
+## Step 14: Finish
 
 Do not finish critical fit surfaces first. Instead:
 
 - prove the saw flushness
-- prove the wing flushness
+- prove the carriage glide and squareness
+- prove the support drawer stop locations
+- prove the left support-table height and repeatability
 - prove the router plate fit
 - prove track and slot alignment
 
-Then finish in the sequence described in [finish-schedule.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/finish-schedule.md).
+Then finish in the sequence described in [finish-schedule.md](/Users/christopherhandel/Documents/GitHub/Table Saw-sliding-carriage/plans/finish-schedule.md).

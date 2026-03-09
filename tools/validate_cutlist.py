@@ -26,10 +26,13 @@ REQUIRED_PARTS = {
     "RM-01",
     "TOP-01A",
     "TOP-01B",
+    "TOP-01C",
     "TOP-02A",
     "TOP-02B",
-    "FW-01",
-    "FW-02",
+    "TOP-02C",
+    "SC-01",
+    "ST-01",
+    "SD-01",
     "RF-01",
     "ASM-01",
     "ASM-04",
@@ -102,8 +105,8 @@ def main() -> int:
             if numeric_values["rough_w"] + 1e-6 < numeric_values["final_w"]:
                 errors.append(f"{row['part_id']} rough_w is smaller than final_w")
 
-        if row["part_id"] == "FW-04" and numeric_values.get("rough_l", 0.0) < 35.0:
-            errors.append("FW-04 rough leg blanks are too short for a 36 in bench with a 1.5 in wing")
+        if row["part_id"] == "ST-04" and numeric_values.get("rough_l", 0.0) < 33.0:
+            errors.append("ST-04 rough leg blank is too short for a 36 in bench with the deployed support table")
 
         if row["assembly"] == "assembly_overlay":
             continue

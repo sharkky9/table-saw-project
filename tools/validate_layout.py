@@ -4,7 +4,6 @@ import argparse
 import csv
 import json
 import math
-import sys
 from pathlib import Path
 from typing import Optional
 
@@ -97,35 +96,51 @@ def main() -> int:
 
     top = layout["bench"]["top"]
     fixed_regions = top["fixed_regions"]
-    if len(fixed_regions) != 2:
-        errors.append("fixed top must be modeled as exactly two fixed regions in this concept")
-    wing = layout["front_wing"]
+    expected_regions = {
+        "left_carriage_field": m["left_carriage_field_width"],
+        "center_saw_field": m["center_saw_field_width"],
+        "right_service_field": m["right_service_field_width"],
+    }
+    if len(fixed_regions) != 3:
+        errors.append("fixed top must be modeled as exactly three full-depth fields in this variant")
+
     full_bench_rect = {"x": 0.0, "y": 0.0, "length": overall["length"], "depth": overall["depth"]}
     for region in fixed_regions:
         if not rect_inside(region, full_bench_rect):
             errors.append(f"fixed top region {region['name']} does not fit inside the bench footprint")
-    for region in fixed_regions:
-        if rects_overlap(region, wing):
-            errors.append(f"fixed top region {region['name']} overlaps the fold-down wing")
-    if rects_overlap(fixed_regions[0], fixed_regions[1]):
-        errors.append("fixed top regions overlap one another")
-    covered_area = rect_area(wing) + sum(rect_area(region) for region in fixed_regions)
-    if not math.isclose(covered_area, rect_area(full_bench_rect), abs_tol=0.1):
-        errors.append("fixed top regions plus wing do not cover the full bench footprint")
 
-    rear_main = next((region for region in fixed_regions if region["name"] == "rear_main"), None)
-    right_front = next((region for region in fixed_regions if region["name"] == "right_front_infill"), None)
-    if rear_main is None or right_front is None:
-        errors.append("top fixed regions must include rear_main and right_front_infill")
+    for idx, region in enumerate(fixed_regions):
+        for other in fixed_regions[idx + 1 :]:
+            if rects_overlap(region, other):
+                errors.append(f"fixed top regions {region['name']} and {other['name']} overlap")
+
+    covered_area = sum(rect_area(region) for region in fixed_regions)
+    if not math.isclose(covered_area, rect_area(full_bench_rect), abs_tol=0.1):
+        errors.append("fixed top regions do not cover the full bench footprint")
+
+    region_map = {region["name"]: region for region in fixed_regions}
+    if set(region_map) != set(expected_regions):
+        errors.append("top fixed regions must include left_carriage_field, center_saw_field, and right_service_field")
     else:
-        if not math.isclose(right_front["length"], m["right_front_infill_width"], abs_tol=0.05):
-            errors.append("right-front infill width does not match measurements.csv")
-        if not math.isclose(wing["depth"], m["front_wing_depth"], abs_tol=0.05):
-            errors.append("front wing depth does not match measurements.csv")
-        if not math.isclose(rear_main["y"], wing["depth"], abs_tol=0.05):
-            errors.append("rear fixed top must begin where the front wing ends")
-        if not math.isclose(right_front["x"], wing["length"], abs_tol=0.05):
-            errors.append("right-front infill must begin where the wing stops")
+        if not math.isclose(region_map["left_carriage_field"]["length"], m["left_carriage_field_width"], abs_tol=0.05):
+            errors.append("left carriage field width does not match measurements.csv")
+        if not math.isclose(region_map["center_saw_field"]["length"], m["center_saw_field_width"], abs_tol=0.05):
+            errors.append("center saw field width does not match measurements.csv")
+        if not math.isclose(region_map["right_service_field"]["length"], m["right_service_field_width"], abs_tol=0.05):
+            errors.append("right service field width does not match measurements.csv")
+        if not math.isclose(region_map["center_saw_field"]["x"], region_map["left_carriage_field"]["length"], abs_tol=0.05):
+            errors.append("center saw field must begin where the left carriage field ends")
+        if not math.isclose(
+            region_map["right_service_field"]["x"],
+            region_map["left_carriage_field"]["length"] + region_map["center_saw_field"]["length"],
+            abs_tol=0.05,
+        ):
+            errors.append("right service field must begin where the center saw field ends")
+        for region in fixed_regions:
+            if not math.isclose(region["depth"], overall["depth"], abs_tol=0.05) or not math.isclose(
+                region["y"], 0.0, abs_tol=0.05
+            ):
+                errors.append(f"fixed top region {region['name']} must span the full bench depth in this variant")
 
     saw = layout["saw"]
     cast_top = saw["cast_top"]
@@ -149,8 +164,49 @@ def main() -> int:
     if not math.isclose(slot_centers["right_slot"], blade_x + m["blade_to_right_miter_center"], abs_tol=0.05):
         errors.append("right miter-slot centerline is inconsistent")
 
-    if wing["length"] < layout["bench"]["carcass"]["modules"][0]["length"] + layout["bench"]["carcass"]["modules"][1]["length"]:
-        errors.append("front wing does not cover the full left and center module width")
+    left_field = region_map.get("left_carriage_field")
+    carriage = layout["left_sliding_carriage"]
+    if left_field is not None:
+        parked = carriage["parked_envelope"]
+        guide_zone = carriage["guide_strip_zone"]
+        if not rect_inside(parked, left_field):
+            errors.append("sliding-carriage parked envelope does not fit inside the left carriage field")
+        if not rect_inside(guide_zone, left_field):
+            errors.append("sliding-carriage guide-strip zone does not fit inside the left carriage field")
+        if not math.isclose(parked["length"], m["left_carriage_width"], abs_tol=0.05):
+            errors.append("sliding-carriage width does not match measurements.csv")
+        if not math.isclose(carriage["target_stroke"], m["left_carriage_stroke_target"], abs_tol=0.05):
+            errors.append("sliding-carriage target stroke does not match measurements.csv")
+        if not math.isclose(carriage["park_gap_to_saw"], m["left_carriage_clear_gap_to_saw"], abs_tol=0.05):
+            errors.append("sliding-carriage park gap does not match measurements.csv")
+        actual_gap = cast_top["x"] - (parked["x"] + parked["length"])
+        if actual_gap + 1e-6 < carriage["park_gap_to_saw"]:
+            errors.append("sliding-carriage parked envelope intrudes too far toward the saw cast top")
+
+        left_module = layout["bench"]["carcass"]["modules"][0]
+        support_drawer = carriage["support_drawer"]
+        closed_drawer = {
+            "x": support_drawer["x"],
+            "y": support_drawer["y"],
+            "length": support_drawer["length"],
+            "depth": support_drawer["depth"],
+        }
+        if not rect_inside(closed_drawer, left_module):
+            errors.append("under-carriage support drawer does not fit inside the left carriage-support module")
+        if not math.isclose(support_drawer["extension_toward_front"], m["side_support_drawer_extension"], abs_tol=0.05):
+            errors.append("support drawer extension does not match measurements.csv")
+
+    support_table = layout["left_support_table"]
+    if not math.isclose(support_table["deployed_extension"], m["left_support_table_extension"], abs_tol=0.05):
+        errors.append("left support-table extension does not match measurements.csv")
+    if not math.isclose(support_table["covered_depth"], m["left_support_table_depth"], abs_tol=0.05):
+        errors.append("left support-table depth does not match measurements.csv")
+    if not support_table["folded_within_parked_footprint"]:
+        errors.append("left support table must fold within the parked footprint")
+    if not math.isclose(support_table["active_zone"]["length"], support_table["deployed_extension"], abs_tol=0.05):
+        errors.append("left support-table active zone length must match the deployed extension")
+    if not math.isclose(support_table["active_zone"]["depth"], support_table["covered_depth"], abs_tol=0.05):
+        errors.append("left support-table active zone depth must match the covered depth")
 
     router_zone = layout["router_module"]["zone"]
     router_clearance = router_zone["x"] - (rail["x"] + rail["length"])
@@ -161,14 +217,14 @@ def main() -> int:
     if router_zone["x"] + router_zone["length"] > layout["bench"]["carcass"]["x"] + layout["bench"]["carcass"]["length"] + 0.01:
         errors.append("router zone extends beyond the carcass support field")
 
-    fixed_tracks = layout["assembly_mode"]["fixed_t_tracks"]
-    saw_opening = saw["opening"]
-    for idx, track in enumerate(fixed_tracks, start=1):
-        if track["center_x"] + 0.5 >= saw_opening["x"]:
-            errors.append(f"fixed T-track {idx} intrudes into the saw-opening field")
+    overlay = layout["assembly_mode"]["future_overlay"]
+    if not math.isclose(overlay["size"]["length"], m["overlay_length"], abs_tol=0.05):
+        errors.append("assembly overlay length does not match measurements.csv")
+    if not math.isclose(overlay["size"]["depth"], m["overlay_depth"], abs_tol=0.05):
+        errors.append("assembly overlay depth does not match measurements.csv")
 
-    for anchor in layout["assembly_mode"]["future_overlay"]["anchors"]:
-        if point_inside_rect(anchor["x"], anchor["y"], saw_opening):
+    for anchor in overlay["anchors"]:
+        if point_inside_rect(anchor["x"], anchor["y"], saw["opening"]):
             errors.append(f"future overlay anchor {anchor['name']} lands in the saw opening instead of structure")
 
     dust_bay = layout["dust_collection"]["dust_bay"]

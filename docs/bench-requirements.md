@@ -7,7 +7,7 @@ Build a garage bench that does five jobs without becoming a gimmick:
 1. Integrate the `SKIL SPT99-11` as the primary tool.
 2. Provide real infeed, outfeed, and side support for ripping and miter-gauge work.
 3. Package router-table, dust-collection, and power access in a serviceable way.
-4. Support sheet-goods handling and track-saw use without a giant hinged-mechanism project.
+4. Support sheet-goods handling and accurate large-panel crosscuts without pretending this is a cast-iron industrial slider.
 5. Still behave like useful shop furniture, including storage and assembly support.
 
 ## Design Freeze
@@ -17,7 +17,8 @@ Build a garage bench that does five jobs without becoming a gimmick:
 - Deployed mode: roll straight out from the wall; rotation is optional, not required
 - Saw placement: blade centerline at `36 in` from the left bench edge
 - Feed direction: across the `48 in` depth
-- Crosscut approach: conventional left-slot workflow remains primary
+- Crosscut approach: left-side sliding carriage becomes primary for panels; conventional left-slot workflow remains available for narrow stock and jigs
+- Sliding-carriage package: removable left carriage + under-carriage support drawer + fold-out left support table
 - Router placement: far-right flush insert zone
 - Dust packaging: internal `Hercules HE028` + `Oneida Dust Deputy Low-Pro` on a 5 gallon bucket + one-tool-at-a-time `2-1/2 in` manifold
 - Mobility: retractable casters plus adjustable leveling feet
@@ -31,19 +32,27 @@ The `90 in` length uses the available wall cleanly and avoids an awkward leftove
 - a reasonable assembly surface
 - a near-full-size track-saw platform with foam and small end-support helpers
 
-The bench is deliberately not a transformer with giant permanent leaves. The fixed core does most of the work, which lowers failure risk and makes the build more realistic.
+This draft variant keeps the existing front-to-back feed direction on purpose. Rotating the saw `90 deg` would damage more of the accepted design than the carriage itself: it would break the current right-side router and dust-service logic, weaken parked-wall behavior, and turn the outfeed problem into a much larger transformer project.
 
 ## Top Strategy
 
 ### Permanent Top
 
-- L-shaped fixed top made from:
-  - rear main panel: `90 x 31.75 in`
-  - right-front infill: `30.25 x 16.25 in`
-- `3/4 in` plywood substrate plus `3/4 in` MDF precision skin on the fixed top regions
+- Three-field fixed top made from:
+  - left carriage field: `29.25 x 48 in`
+  - center saw field: `30.5 x 48 in`
+  - right service field: `30.25 x 48 in`
+- `3/4 in` plywood substrate plus `3/4 in` MDF precision skin on the fixed top fields
 - Blade lowered below the surface when the bench is used for assembly or track-saw support
 - Router lift plate flush with the surrounding top
-- Front-left infeed area is a separate fold-down wing, not part of the fixed top
+- Left field must stay clear of permanent T-track because it now hosts the carriage guide package and park zone
+
+### Carriage Support Strategy
+
+- Sliding carriage rides parallel to the blade on the left side of the saw
+- Carriage parks flush with the fixed top and must be removable or fully parkable for maintenance and flat-top mode
+- An under-carriage support drawer pulls toward the operator to support deeper workpieces without a permanent front projection
+- A fold-out left support table opens only for larger panels and folds back inside the parked footprint when not in use
 
 ### Rail-Clearance Strategy
 
@@ -51,11 +60,11 @@ The Skilsaw rack-and-pinion rails must be allowed to extend to full width. The b
 
 ### Dog Holes
 
-Day one does **not** drill the permanent top into an MFT-style surface. Instead:
+Day one does **not** drill the permanent top into an MFT-style surface or route permanent T-track into the carriage field. Instead:
 
 - keep the fixed top clean and durable
-- add fixed T-track only in low-conflict zones
-- plan a removable `60 x 36 x 3/4 in` assembly overlay that can later receive `20 mm` holes if it proves useful
+- accept that the sliding-carriage variant consumes the best left-side clamp real estate
+- plan a removable `54 x 36 x 3/4 in` assembly overlay that can later receive `20 mm` holes if it proves useful
 
 ## Saw Integration
 
@@ -66,24 +75,29 @@ Day one does **not** drill the permanent top into an MFT-style surface. Instead:
 
 ## Crosscut Support
 
-### Fixed Support
+### Sliding Carriage
 
-- Long left-side field supports the Vevor miter gauge and long fence
-- Rear support surface continues behind the saw
-- Both miter-slot centerlines continue through the rear support
+- Carriage target width: about `22 in`
+- Carriage target stroke: about `34 in`
+- Carriage travel is parallel to the blade
+- Carriage fence must be removable, square-able, and repeatable after reinstallation
+- Carriage park position must not block ordinary rip-fence use or saw service access
 
 ### Deployable Support
 
-- A fold-down front infeed wing spans the left and center modules
-- Nominal depth: `16.25 in`
-- Nominal width: `59.75 in`
-- Both miter-slot centerlines continue through this wing
-- Wing uses a `72 in` piano hinge, two locking leg supports, and two tapered alignment pins with receivers
-- Wing skin is plywood, not MDF, so the exposed edge is less fragile in a garage environment
+- Under-carriage support drawer extends toward the operator to prevent panel droop near the front edge
+- Fold-out left support table extends past the left end of the bench for wider crosscut support
+- Side table must fold back without increasing the parked `90 in` wall footprint
+- Side table skin is plywood, not MDF, so the exposed edge is less fragile in a garage environment
+
+### Conventional Fallback
+
+- Both miter-slot centerlines continue through the fixed top in front of and behind the saw
+- The Vevor miter gauge remains useful for narrow stock, setup cuts, and jigs even if the carriage becomes the preferred panel tool
 
 ### Performance Target
 
-The bench must allow stable, repeatable miter-gauge cuts on stock at least `24 in` deep, which is materially beyond the current stand setup.
+The bench must allow stable, repeatable squaring cuts on panels at least `24 in` deep and materially safer support for larger sheet-good work than the current stand setup.
 
 ## Right-Side Rip Support
 
@@ -128,34 +142,28 @@ This keeps the design realistic for the saw and router loads and still allows th
 
 Storage is subordinate to saw, dust, and service access. The planned storage mix is:
 
-- left drawer bank for router bits, layout tools, and small accessories
-- narrow vertical bay for fences, sleds, and jigs
+- left carriage-support module with an open mechanism bay, shallow storage only where it does not foul the carriage package, and vertical parking for the carriage fence and stops
+- narrow vertical bay for fences, sleds, and jigs that survive the carriage conversion
 - front-right service face for power switching, manifold access, and hose exits
 - dust bay below the router zone with a front bucket zone and rear extractor tray
 
 ## Assembly-Table Functionality
 
-The correct approach is hybrid, not “cover the whole bench in slots.”
-
-### Fixed Assembly Features
-
-- Two permanent flush T-tracks in the far-left top field
-- Tracks run front-to-back and stay entirely left of the saw-top opening
-- Tracks are intended for low-profile clamp heads, stops, and temporary fixtures
+The correct approach in this variant is restraint. The carriage consumes the left field that previously would have been the obvious place for permanent tracks.
 
 ### Overlay Strategy
 
-- Add a removable `60 x 36 x 3/4 in` assembly overlay after the core bench proves itself
+- Add a removable `54 x 36 x 3/4 in` assembly overlay after the carriage package proves itself
 - Overlay stores vertically when not in use
-- Overlay can start with two more T-tracks and later be perforated with `20 mm` holes if desired
+- Overlay can start with two low-conflict T-tracks and later be perforated with `20 mm` holes if desired
 - Overlay needs an underside stiffener where it spans the saw opening
-- This keeps the permanent saw/outfeed surface smooth and easy to clean
+- This keeps the permanent top smooth and easy to clean while avoiding conflicts with carriage guide hardware
 
 ## Finish Expectations
 
 - All hand-contact edges eased
 - No splinters, fuzz, or sharp plywood edges in user-touch zones
-- Main top and wing sealed with satin waterborne finish
+- Main top, carriage, and support table sealed with satin waterborne finish
 - MDF fully sealed before topcoat
 - Hidden structural areas cleaned up enough to avoid snagging, but not over-finished
 
@@ -169,3 +177,4 @@ These measurements are still mandatory before cutting the final precision top:
 - exact dust-elbow hose envelope at blade-height and bevel extremes
 - final Hercules tray hardware and hose-cuff envelope
 - final Low-Pro bucket and latch clearance with the chosen 5 gallon bucket
+- final carriage guide-strip hardware, park-stop geometry, and left support-table stop geometry

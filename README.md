@@ -15,11 +15,11 @@ This workspace contains a build package for an integrated garage bench built aro
 
 - Overall bench size: `90 in L x 48 in D x 36 in H`
 - Parked orientation: long side on the wall, rolled straight out for serious work
-- Saw strategy: left-biased placement for conventional left-slot crosscuts plus deep right-side rip support
-- Top strategy: L-shaped fixed top plus a fold-down front wing, not a single `90 x 48` slab
+- Saw strategy: keep the current front-to-back feed direction, add a removable left-side sliding carriage for large-panel crosscuts, and preserve deep right-side rip support
+- Top strategy: three-field fixed top plus a fold-out left support table, not a front-wing-centric crosscut layout
 - Router strategy: stage-1 `JessEm Rout-R-Lift II 02310` with a `Bosch 1617EVS` class motor at the far right end
 - Dust strategy: internal `Hercules HE028` on a front pull-out tray + `Oneida Dust Deputy Low-Pro` bucket separator + Rockler `2-1/2 in` manifold
-- Assembly strategy: keep the permanent saw/outfeed top mostly clean, add low-conflict fixed T-track in the far-left field, and plan for a removable assembly overlay instead of turning the whole bench into an MFT on day one
+- Assembly strategy: keep the permanent top clean, dedicate the left field to the sliding-carriage package, and treat any larger clamping surface as a removable overlay rather than routing permanent tracks into the new carriage zone
 
 ## Validation Commands
 
@@ -48,3 +48,4 @@ This package is detailed, but it still calls out a few field-fit items that must
 - exact underside rail travel envelope at minimum, mid, and maximum rip settings
 - final hose sweep around the dust elbow through height and bevel changes
 - final hose-cuff and tray clearances for the selected Hercules plus Low-Pro package
+- final sliding-carriage park clearance, guide-strip hardware, and left support-table stop geometry

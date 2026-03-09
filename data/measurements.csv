@@ -44,13 +44,17 @@ garage,bench_depth_target,Planned bench depth,48,in,0,derived,confirmed,Core dep
 garage,bench_height_target,Planned finished top height,36,in,0.125,derived,confirmed,Bench set to saw instead of generic workbench height
 bench,blade_center_from_left_bench_edge,Blade center from left finished edge,36,in,0.0625,derived,confirmed,Primary x-axis layout coordinate
 bench,assumed_blade_center_y,Assumed blade center y from front bench edge,27.3125,in,0.03125,provisional_field_fit,concept_only,Concept-render value only until stripped-saw y datum is measured
-bench,top_thickness,Finished top thickness,1.5,in,0.03125,derived,confirmed,3/4 ply plus 3/4 MDF on fixed regions
+bench,top_thickness,Finished top thickness,1.5,in,0.03125,derived,confirmed,3/4 ply plus 3/4 MDF on the fixed top fields
 bench,saw_mount_plane_height,Floor to saw mount plane,22.625,in,0.0625,derived,confirmed,36 minus 13.375 saw body height
-bench,front_wing_depth,Fold-down infeed wing depth,16.25,in,0.0625,provisional_field_fit,required_before_precision_cut,Concept depth until the real blade y datum is measured
-bench,rear_support_depth,Fixed rear support depth,9.625,in,0.125,provisional_field_fit,required_before_precision_cut,Concept depth until the real blade y datum is measured
-bench,right_front_infill_width,Fixed right-front top infill width,30.25,in,0.0625,derived,confirmed,Supports the router zone and closes the front-right corner
-bench,left_fixed_ttrack_1_center,Assembly T-track 1 centerline from left edge,8,in,0.0625,derived,confirmed,Far-left assembly field
-bench,left_fixed_ttrack_2_center,Assembly T-track 2 centerline from left edge,20,in,0.0625,derived,confirmed,Far-left assembly field
+bench,left_carriage_field_width,Left carriage fixed-top field width,29.25,in,0.0625,derived,confirmed,Aligns to the left module seam
+bench,center_saw_field_width,Center saw fixed-top field width,30.5,in,0.0625,derived,confirmed,Aligns to the center saw module
+bench,right_service_field_width,Right service fixed-top field width,30.25,in,0.0625,derived,confirmed,Closes the top at the router and dust end
+bench,left_carriage_width,Sliding carriage width,22,in,0.0625,derived,concept_only,Target parked carriage width inside the left field
+bench,left_carriage_stroke_target,Sliding carriage target stroke,34,in,0.125,derived,concept_only,Target usable travel parallel to the blade
+bench,left_support_table_extension,Fold-out left support-table extension,18,in,0.125,derived,concept_only,Deploy only for larger panels
+bench,left_support_table_depth,Support-table covered depth along the carriage travel axis,40,in,0.125,derived,concept_only,Covers the effective carriage zone
+bench,left_carriage_clear_gap_to_saw,Minimum carriage park gap to the saw cast top,0.5,in,0.03125,derived,confirmed,Protects the saw and leaves room for runners and stops
+bench,side_support_drawer_extension,Under-carriage support drawer extension,14,in,0.125,derived,concept_only,Front support for deeper panels without a permanent overhang
 dust,selected_internal_extractor_model,Selected internal extractor,Hercules HE028,text,n/a,official,confirmed,Chosen internal extractor for the stage-1 package
 dust,internal_extractor_class,Internal extractor target,Hercules 12 gallon dust extractor,text,n/a,official,confirmed,Hercules is now the primary internal extractor target
 dust,internal_extractor_width,Internal extractor width,18.25,in,0.125,official,confirmed,Harbor Freight product page
@@ -74,5 +78,5 @@ router,lift_plate_thickness,Router lift plate thickness,0.375,in,0.03125,officia
 router,selected_lift_model,Selected router lift,JessEm Rout-R-Lift II 02310,text,n/a,official,confirmed,Stage-1 router install stack is now locked to a specific lift
 router,selected_router_motor,Selected router motor,Bosch 1617EVS,text,n/a,official,confirmed,Stage-1 router install stack is now locked to a specific motor
 router,motor_body_diameter,Router motor body diameter,3.5,in,0.03125,official,confirmed,Bosch 1617 class motor body used by the selected JessEm lift model
-assembly,overlay_length,Future assembly overlay length,60,in,0.125,derived,confirmed,Stored separately and used when needed
+assembly,overlay_length,Future assembly overlay length,54,in,0.125,derived,concept_only,Smaller overlay acknowledges the new carriage field
 assembly,overlay_depth,Future assembly overlay depth,36,in,0.125,derived,confirmed,Large enough for clamping and layout work

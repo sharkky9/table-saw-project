@@ -10,8 +10,12 @@ SCALE = 8.0
 MARGIN = 40
 
 
-def px(value: float) -> float:
-    return MARGIN + value * SCALE
+def px(value: float, x_offset: float = 0.0) -> float:
+    return MARGIN + (value + x_offset) * SCALE
+
+
+def py(value: float, y_offset: float = 0.0) -> float:
+    return MARGIN + (value + y_offset) * SCALE
 
 
 def rect(
@@ -23,10 +27,12 @@ def rect(
     stroke: str = "#222",
     dash: Optional[str] = None,
     opacity: float = 1.0,
+    x_offset: float = 0.0,
+    y_offset: float = 0.0,
 ) -> str:
     dash_attr = f' stroke-dasharray="{dash}"' if dash else ""
     return (
-        f'<rect x="{px(x):.1f}" y="{px(y):.1f}" width="{w * SCALE:.1f}" height="{h * SCALE:.1f}" '
+        f'<rect x="{px(x, x_offset):.1f}" y="{py(y, y_offset):.1f}" width="{w * SCALE:.1f}" height="{h * SCALE:.1f}" '
         f'fill="{fill}" fill-opacity="{opacity}" stroke="{stroke}" stroke-width="1.5"{dash_attr} />'
     )
 
@@ -39,10 +45,12 @@ def line(
     stroke: str = "#222",
     width: float = 1.5,
     dash: Optional[str] = None,
+    x_offset: float = 0.0,
+    y_offset: float = 0.0,
 ) -> str:
     dash_attr = f' stroke-dasharray="{dash}"' if dash else ""
     return (
-        f'<line x1="{px(x1):.1f}" y1="{px(y1):.1f}" x2="{px(x2):.1f}" y2="{px(y2):.1f}" '
+        f'<line x1="{px(x1, x_offset):.1f}" y1="{py(y1, y_offset):.1f}" x2="{px(x2, x_offset):.1f}" y2="{py(y2, y_offset):.1f}" '
         f'stroke="{stroke}" stroke-width="{width}"{dash_attr} />'
     )
 
@@ -54,9 +62,11 @@ def text(
     size: int = 14,
     anchor: str = "start",
     color: str = "#111",
+    x_offset: float = 0.0,
+    y_offset: float = 0.0,
 ) -> str:
     return (
-        f'<text x="{px(x):.1f}" y="{px(y):.1f}" font-family="Helvetica, Arial, sans-serif" '
+        f'<text x="{px(x, x_offset):.1f}" y="{py(y, y_offset):.1f}" font-family="Helvetica, Arial, sans-serif" '
         f'font-size="{size}" text-anchor="{anchor}" fill="{color}">{label}</text>'
     )
 
@@ -70,6 +80,9 @@ def svg_wrapper(width: float, height: float, body: str) -> str:
 
 def render_top_view(layout: dict) -> str:
     overall = layout["bench"]["overall"]
+    carriage = layout["left_sliding_carriage"]
+    support_drawer = carriage["support_drawer"]
+
     body = [
         rect(0, 0, overall["length"], overall["depth"], "#fbfaf7", "#111"),
         text(0, -2, "Top View", 18),
@@ -85,21 +98,17 @@ def render_top_view(layout: dict) -> str:
         body.append(rect(region["x"], region["y"], region["length"], region["depth"], "#efe8d8", "#7e6f5b", opacity=0.55))
         body.append(text(region["x"] + 1, region["y"] + 2.2, region["name"].replace("_", " "), 11, color="#655848"))
 
-    body.append(
-        rect(
-            layout["front_wing"]["x"],
-            layout["front_wing"]["y"],
-            layout["front_wing"]["length"],
-            layout["front_wing"]["depth"],
-            "#cfe9c7",
-            "#4b7d3a",
-            opacity=0.45,
-        )
-    )
-    body.append(text(layout["front_wing"]["x"] + 1, 14.5, "fold-down infeed wing", 12, color="#2b5d1f"))
+    for seam in layout["bench"]["top"]["seams"]:
+        body.append(line(seam["x1"], seam["y1"], seam["x2"], seam["y2"], "#6f5c40", 2.0, "6 4"))
 
-    seam = layout["bench"]["top"]["seams"][0]
-    body.append(line(seam["x"], seam["y"], seam["x"] + seam["length"], seam["y"], "#6f5c40", 2.0, "6 4"))
+    guide_zone = carriage["guide_strip_zone"]
+    parked = carriage["parked_envelope"]
+    body.append(rect(guide_zone["x"], guide_zone["y"], guide_zone["length"], guide_zone["depth"], "#d9f1ff", "#1e6c8f", dash="6 4", opacity=0.45))
+    body.append(text(guide_zone["x"] + 0.6, guide_zone["y"] + 2.0, "carriage guide zone", 10, color="#0f5874"))
+    body.append(rect(parked["x"], parked["y"], parked["length"], parked["depth"], "#bfe7f5", "#16759c", opacity=0.75))
+    body.append(text(parked["x"] + 0.8, parked["y"] + 2.0, "sliding carriage parked", 11, color="#0d5e7d"))
+    body.append(rect(support_drawer["x"], support_drawer["y"], support_drawer["length"], support_drawer["depth"], "#e8f7d2", "#5a8920", opacity=0.65))
+    body.append(text(support_drawer["x"] + 0.6, support_drawer["y"] + 2.0, "support drawer", 10, color="#4b7319"))
 
     body.append(rect(layout["saw"]["cast_top"]["x"], layout["saw"]["cast_top"]["y"], layout["saw"]["cast_top"]["length"], layout["saw"]["cast_top"]["depth"], "#b8bcc2", "#333"))
     body.append(rect(layout["saw"]["opening"]["x"], layout["saw"]["opening"]["y"], layout["saw"]["opening"]["length"], layout["saw"]["opening"]["depth"], "none", "#b00020", dash="6 4"))
@@ -126,34 +135,44 @@ def render_top_view(layout: dict) -> str:
         body.append(rect(package["x"], package["y"], package["length"], package["depth"], "#f6f0ff", "#6f4ea5"))
         body.append(text(package["x"] + 0.4, package["y"] + 2.0, package["name"].replace("_", " "), 10, color="#543483"))
 
-    for track in layout["assembly_mode"]["fixed_t_tracks"]:
-        body.append(rect(track["center_x"] - 0.375, track["y_start"], 0.75, track["y_end"] - track["y_start"], "#90d4a0", "#20663a"))
-    body.append(text(2, 44.5, "fixed T-tracks", 11, color="#20663a"))
+    body.append(text(2, 50.5, "No permanent T-tracks in this variant; left field is reserved for the carriage package.", 11, color="#555"))
 
     width = overall["length"] * SCALE + MARGIN * 2
-    height = overall["depth"] * SCALE + MARGIN * 2
+    height = overall["depth"] * SCALE + MARGIN * 2 + 28
     return svg_wrapper(width, height, "".join(body))
 
 
 def render_deployed(layout: dict) -> str:
     overall = layout["bench"]["overall"]
-    wing = layout["front_wing"]
-    body = [
-        rect(0, 0, overall["length"], overall["depth"], "#fbfaf7", "#111"),
-        text(0, -2, "Deployed Mode", 18),
-        line(-4, -1, overall["length"] + 4, -1, "#666", 3),
-        text(0, -3.2, "wall / parked reference line", 12, color="#555"),
-    ]
-    for region in layout["bench"]["top"]["fixed_regions"]:
-        body.append(rect(region["x"], region["y"], region["length"], region["depth"], "#efe8d8", "#7e6f5b", opacity=0.45))
-    body.append(rect(wing["x"], wing["y"], wing["length"], wing["depth"], "#cfe9c7", "#4b7d3a", opacity=0.6))
-    body.append(text(1, 14.5, "wing down", 12, color="#2b5d1f"))
-    body.append(rect(layout["router_module"]["zone"]["x"], layout["router_module"]["zone"]["y"], layout["router_module"]["zone"]["length"], layout["router_module"]["zone"]["depth"], "#d4dcff", "#3047aa", opacity=0.55))
-    body.append(text(70, 6, "tool / router end", 12, color="#223177"))
-    body.append(text(2, 52, "Bench rolls straight out from the wall; no rotation required for the default workflow.", 13))
-    body.append(text(2, 55, "The front wing only spans the left and center modules. The front-right corner stays fixed for router and service access.", 13))
+    support_table = layout["left_support_table"]
+    carriage = layout["left_sliding_carriage"]
+    x_shift = support_table["deployed_extension"]
 
-    width = overall["length"] * SCALE + MARGIN * 2
+    body = [
+        rect(0, 0, overall["length"], overall["depth"], "#fbfaf7", "#111", x_offset=x_shift),
+        text(-x_shift, -2, "Deployed Crosscut Mode", 18, x_offset=x_shift),
+        line(-x_shift - 4, -1, overall["length"] + 4, -1, "#666", 3, x_offset=x_shift),
+        text(-x_shift, -3.2, "wall / parked reference line", 12, color="#555", x_offset=x_shift),
+    ]
+
+    for region in layout["bench"]["top"]["fixed_regions"]:
+        body.append(rect(region["x"], region["y"], region["length"], region["depth"], "#efe8d8", "#7e6f5b", opacity=0.45, x_offset=x_shift))
+
+    active_zone = support_table["active_zone"]
+    body.append(rect(active_zone["x"], active_zone["y"], active_zone["length"], active_zone["depth"], "#cfe9c7", "#4b7d3a", opacity=0.6, x_offset=x_shift))
+    body.append(text(active_zone["x"] + 1, active_zone["y"] + 2.0, "left support table open", 12, color="#2b5d1f", x_offset=x_shift))
+
+    parked = carriage["parked_envelope"]
+    body.append(rect(parked["x"], parked["y"], parked["length"], parked["depth"], "#bfe7f5", "#16759c", opacity=0.75, x_offset=x_shift))
+    body.append(text(parked["x"] + 0.8, parked["y"] + 2.0, "carriage parked zone", 11, color="#0d5e7d", x_offset=x_shift))
+
+    router_zone = layout["router_module"]["zone"]
+    body.append(rect(router_zone["x"], router_zone["y"], router_zone["length"], router_zone["depth"], "#d4dcff", "#3047aa", opacity=0.55, x_offset=x_shift))
+    body.append(text(router_zone["x"] + 0.8, router_zone["y"] + 2.2, "router module", 12, color="#223177", x_offset=x_shift))
+    body.append(text(-x_shift, 52, "The fixed bench footprint stays 90 x 48. Only the left support table extends in deployed mode.", 13, x_offset=x_shift))
+    body.append(text(-x_shift, 55, "Large-panel crosscuts add support to the left and front without rotating the saw or widening the permanent core.", 13, x_offset=x_shift))
+
+    width = (overall["length"] + support_table["deployed_extension"]) * SCALE + MARGIN * 2
     height = overall["depth"] * SCALE + MARGIN * 2 + 120
     return svg_wrapper(width, height, "".join(body))
 
@@ -186,8 +205,8 @@ def render_sections(layout: dict) -> str:
     body.append(f'<text x="570" y="{y_from_floor(saw["mount_plane_height"]) + 4:.1f}" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#8a0000">22.625 in saw mount plane</text>')
     body.append('<text x="66" y="366" font-family="Helvetica, Arial, sans-serif" font-size="12">floor</text>')
     body.append('<text x="150" y="190" font-family="Helvetica, Arial, sans-serif" font-size="12">carcass</text>')
-    body.append('<text x="225" y="86" font-family="Helvetica, Arial, sans-serif" font-size="12">top stack</text>')
-    body.append('<text x="170" y="236" font-family="Helvetica, Arial, sans-serif" font-size="12">open saw well for hose and bevel motion</text>')
+    body.append('<text x="225" y="86" font-family="Helvetica, Arial, sans-serif" font-size="12">fixed top stack</text>')
+    body.append('<text x="160" y="236" font-family="Helvetica, Arial, sans-serif" font-size="12">open saw well for hose and bevel motion</text>')
 
     x0 = 60
     y0 = 590
@@ -196,16 +215,19 @@ def render_sections(layout: dict) -> str:
     module_x = x0 + 12
     colors = ["#d9d9d9", "#efefef", "#d9d9d9"]
     widths = [27.75, 30.5, 28.75]
-    labels = ["left storage", "saw chassis", "right service"]
+    labels = ["left carriage support", "saw chassis", "right service"]
     for width_in, label, color in zip(widths, labels, colors):
         width_px = width_in * 6.2
         body.append(f'<rect x="{module_x:.1f}" y="{y0 - 168:.1f}" width="{width_px:.1f}" height="155" fill="{color}" stroke="#555" fill-opacity="0.6"/>')
         body.append(f'<text x="{module_x + 6:.1f}" y="{y0 - 148:.1f}" font-family="Helvetica, Arial, sans-serif" font-size="12">{label}</text>')
         module_x += width_px
+    body.append(f'<rect x="{x0 + 34:.1f}" y="{y0 - 206:.1f}" width="122" height="28" fill="#bfe7f5" stroke="#16759c" fill-opacity="0.75"/>')
+    body.append(f'<text x="{x0 + 42:.1f}" y="{y0 - 188:.1f}" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0d5e7d">sliding carriage park zone</text>')
     body.append(f'<rect x="{x0 + 448:.1f}" y="{y0 - 145:.1f}" width="118" height="116" fill="#efe3ff" stroke="#6f4ea5" fill-opacity="0.55"/>')
     body.append(f'<text x="{x0 + 456:.1f}" y="{y0 - 126:.1f}" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#543483">Hercules + Low-Pro bay</text>')
     body.append(f'<rect x="{x0 + 505:.1f}" y="{y0 - 206:.1f}" width="112" height="28" fill="#d4dcff" stroke="#3047aa" fill-opacity="0.65"/>')
     body.append(f'<text x="{x0 + 514:.1f}" y="{y0 - 188:.1f}" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#223177">router module</text>')
+    body.append(f'<text x="{x0 + 52:.1f}" y="{y0 - 52:.1f}" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0d5e7d">support drawer below carriage</text>')
     body.append(f'<text x="{x0 + 455:.1f}" y="{y0 - 52:.1f}" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#543483">extractor on service tray</text>')
 
     return svg_wrapper(width, height, "".join(body))

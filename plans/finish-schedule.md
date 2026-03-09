@@ -16,8 +16,10 @@ It is **not** a furniture-grade showpiece.
 ### Class A: Touch And Precision Surfaces
 
 - fixed top
-- front wing
+- sliding carriage
+- left support table
 - router module
+- carriage fence
 - drawer fronts and pulls zone
 
 Treatment:
@@ -56,6 +58,8 @@ Treatment:
 Do not fully coat these until fit is proven:
 
 - miter-track dado shoulders
+- carriage guide surfaces and stop faces
+- carriage fence reference faces
 - router-plate ledges
 - saw mount interfaces
 - overlay anchor points

@@ -43,7 +43,15 @@ REQUIRED_IDS = {
     "blade_center_from_left_bench_edge",
     "top_thickness",
     "saw_mount_plane_height",
-    "right_front_infill_width",
+    "left_carriage_field_width",
+    "center_saw_field_width",
+    "right_service_field_width",
+    "left_carriage_width",
+    "left_carriage_stroke_target",
+    "left_support_table_extension",
+    "left_support_table_depth",
+    "left_carriage_clear_gap_to_saw",
+    "side_support_drawer_extension",
     "internal_extractor_width",
     "internal_extractor_depth",
     "internal_extractor_body_height",
@@ -52,6 +60,8 @@ REQUIRED_IDS = {
     "compact_cyclone_hose_clearance",
     "lift_plate_width",
     "lift_plate_length",
+    "overlay_length",
+    "overlay_depth",
 }
 
 PRECISION_GATED_IDS = {
@@ -192,7 +202,7 @@ def main() -> int:
 
         if rows["assumed_blade_center_y"]["source"] == "provisional_field_fit":
             notes.append(
-                "assumed_blade_center_y is still provisional; front-wing depth and rear-support depth remain concept geometry only"
+                "assumed_blade_center_y is still provisional; front and rear slot-extension geometry remain concept-only"
             )
 
         unresolved = unresolved_precision_ids(rows)

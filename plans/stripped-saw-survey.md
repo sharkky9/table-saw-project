@@ -1,6 +1,6 @@
 # Stripped-Saw Survey
 
-Use this sheet after removing the `SKIL SPT99-11` from its rolling stand and before machining the final top opening, wing slots, or saw cradle.
+Use this sheet after removing the `SKIL SPT99-11` from its rolling stand and before machining the final top opening, slot extensions, carriage guide-strip zones, or saw cradle.
 
 ## Purpose
 
@@ -9,7 +9,8 @@ This survey closes the precision-cut gate. Until it is done, the build package i
 This survey directly unlocks:
 
 - final saw opening size and location
-- final front-wing depth and rear-support depth
+- final fixed front and rear slot-extension geometry
+- final carriage park clearance at the left side of the saw
 - final saw cradle drilling
 - final miter-track procurement
 - final saw dust-branch routing
@@ -218,7 +219,7 @@ Take photos at the worst-case positions.
 
 ## Fill-In Table
 
-Write the measured values here first, then transfer them into [data/measurements.csv](/Users/christopherhandel/Documents/GitHub/Table Saw/data/measurements.csv).
+Write the measured values here first, then transfer them into [data/measurements.csv](/Users/christopherhandel/Documents/GitHub/Table Saw-sliding-carriage/data/measurements.csv).
 
 | ID | Value | Units | Notes |
 | --- | --- | --- | --- |
@@ -254,4 +255,4 @@ Write the measured values here first, then transfer them into [data/measurements
 - [ ] Survey photos saved somewhere you can reference later
 - [ ] `python3 tools/validate_measurements.py --require-precision-ready data/measurements.csv` passes
 - [ ] `python3 tools/validate_layout.py --require-precision-ready data/layout.json data/measurements.csv` passes
-- [ ] Only after that: machine the top opening, miter-slot extensions, and saw cradle
+- [ ] Only after that: machine the top opening, miter-slot extensions, carriage guide-strip zones, and saw cradle

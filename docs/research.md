@@ -11,6 +11,12 @@
 - [JessEm Rout-R-Lift II](https://jessem.com/collections/router-lifts-and-plates/products/rout-r-lift-ii-model)
 - [JessEm Rout-R-Lift II manual](https://jessem.com/cdn/shop/files/JessEm_Rout-R-Lift_II_Manual.pdf?v=1737058753)
 
+## Inspiration Sources Used For This Variant
+
+- [Paoson mobile workbench showcase](https://www.paoson.com/blog/en/mobile-workbench-with-table-saw-router-table-showcase/)
+- [Paoson side folding table](https://www.paoson.com/blog/en/side-folding-table-for-the-router-table-saw/)
+- [Paoson sliding carriage](https://www.paoson.com/blog/en/diy-sliding-carriage-for-the-table-saw/)
+
 ## Notes That Drove The Layout
 
 ### SKIL SPT99-11
@@ -20,6 +26,14 @@
 - Official tool weight: `52.9 lb`
 - User-supplied geometry is more useful than the marketing page for table integration, so the structured layout uses the user's measurements as the primary geometry source
 - The manual and product materials are still not enough to freeze the stripped-saw mount or the true front-to-back blade datum, so the package now treats those as hard survey gates instead of pretending they are settled
+- Nothing in the saw geometry forces a `90 deg` rotation for a left-side carriage. The existing front-to-back feed direction can still support a carriage if the left module is repurposed around it.
+
+### Paoson-Inspired Crosscut Package
+
+- The high-value ideas to borrow are the removable left carriage, the fold-out side support table, and the under-carriage support drawer.
+- The full Paoson bench is not copied because its storage, router, and service assumptions are materially different from this package.
+- This repo now treats the carriage as a precision accessory integrated into the left field instead of redesigning the entire bench around Paoson's cabinet layout.
+- The branch explicitly rejects rotating the saw because that would destabilize more of the already-settled router, dust, and parked-wall decisions than it would solve.
 
 ### Rockler 2-1/2 in Manifold
 
@@ -55,8 +69,8 @@
 
 - Fixed top: better plywood plus MDF, not construction sheathing
 - Router module: flat cabinet plywood or birch
-- Drawer-slide faces and precision partitions: cabinet plywood
-- Front wing: plywood plus plywood, not MDF, because the wing edges will be bumped and handled more often
+- Carriage and support-table surfaces: plywood plus plywood, not MDF, because those edges and guide faces will be bumped, adjusted, and handled more often
+- Guide-strip backing and precision partitions: cabinet plywood
 
 ### Use Cheaper Materials Where Mass And Stiffness Matter More Than Cosmetics
 
@@ -71,12 +85,12 @@
 
 ## Assembly-Mode Recommendation
 
-Permanent T-track is useful only when it stays out of the main stock-travel zones. The recommended compromise is:
+The sliding-carriage variant spends its left-side real estate on crosscut performance instead of permanent clamping hardware. The recommended compromise is now:
 
-- two fixed tracks in the far-left top field
+- no fixed T-track in the permanent top on day one
 - one removable assembly overlay for more elaborate clamping and later `20 mm` hole experiments
 
-This gives real clamping capability without filling the outfeed surface with dust-catching grooves.
+That keeps the carriage field clean and avoids routing dust-catching grooves into the new precision zone.
 
 ## Confidence Boundaries
 

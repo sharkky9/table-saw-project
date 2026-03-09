@@ -2,19 +2,21 @@
 
 ## Geometry Checks
 
-- Bench top overall size must match `90 x 48 x 36 in`.
+- Bench footprint must remain `90 x 48 x 36 in`.
 - Saw blade centerline must land at `36 in` from the left finished edge.
 - Saw top must finish flush or slightly below the fixed top.
 - Rail keep-clear lanes must stay unobstructed under the right-side field.
-- The fixed top must remain L-shaped. The front-wing zone cannot also be claimed by a fixed `90 x 48` slab.
+- The fixed top must remain a three-field full-depth surface in this variant.
+- The fold-out left support table must fold inside the parked footprint.
 
 ## Crosscut Checks
 
-- Left miter-slot centerline must remain continuous through wing, saw, and rear support.
-- Right miter-slot centerline must remain continuous through wing, saw, and rear support.
-- Vevor miter gauge must slide across each transition without catching.
-- The wing must stay flat enough to support at least `24 in` deep crosscuts.
-- The wing registration pins must repeat slot alignment after multiple deploy/stow cycles.
+- Sliding carriage must park flush without binding.
+- Carriage travel must stay parallel to the blade through the full working stroke.
+- Carriage fence must square repeatably after removal and reinstallation.
+- The under-carriage support drawer must extend smoothly and stop repeatably.
+- The left support table must hold its height and alignment across repeated deploy/stow cycles.
+- Conventional miter-slot extensions through the fixed front and rear support fields must still accept the Vevor gauge without catching.
 
 ## Router Checks
 
@@ -40,20 +42,19 @@
 
 ## Assembly-Mode Checks
 
-- Fixed T-tracks must stay entirely left of the saw-top opening.
-- Clamp heads in the fixed tracks must not foul the miter-gauge fence during left-side support work.
-- Future overlay anchors must land in structure, not just MDF skin.
-- The future overlay needs an underside stiffener where it spans the saw opening.
+- No permanent T-track should intrude into the carriage field.
+- Future overlay anchors must land in structure, not just the saw opening or runner hardware.
+- The future overlay still needs an underside stiffener where it spans the saw opening.
 
 ## Finish Checks
 
 - No exposed user-touch edge may feel sharp, splintery, or fuzzy.
-- Finish buildup must not bind the router plate, miter tracks, or saw fit.
+- Finish buildup must not bind the router plate, miter tracks, carriage runners, or saw fit.
 - Sample-board schedule must be approved before finishing the bench.
 
 ## No-Top-Machining Gate
 
-Do not cut the final top opening, miter-track recesses, or saw cradle holes until all of the following are true:
+Do not cut the final top opening, slot-extension recesses, carriage guide-strip zones, or saw cradle holes until all of the following are true:
 
 - `stripped_blade_center_y` is measured on the bare saw
 - all four saw foot centers are measured
@@ -66,29 +67,32 @@ Do not cut the final top opening, miter-track recesses, or saw cradle holes unti
 
 Passing concept validation does not override this gate.
 
-Use [stripped-saw-survey.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/stripped-saw-survey.md) to collect the required measurements before rerunning the precision validators.
+Use [stripped-saw-survey.md](/Users/christopherhandel/Documents/GitHub/Table Saw-sliding-carriage/plans/stripped-saw-survey.md) to collect the required measurements before rerunning the precision validators.
 
 ## Procurement Gates
 
 ### Must resolve before buying hardware
 
 - exact miter-slot width and depth before buying extension track
+- exact carriage guide hardware and wear-pad strategy before machining the guide-strip zones
+- exact support-drawer slide geometry before cutting the left-module internals
+- exact left support-table hinge, stop, and leg hardware before drilling that assembly
 - verify the actual Hercules tray hardware and front opening clear the real machine
 - verify the assembled Low-Pro bucket footprint and latch clearance with the chosen bucket
-- exact wing registration hardware before drilling the wing and carcass faces
 
 ### Probably okay to defer
 
+- final carriage fence flip-stop details
 - assembly overlay hole pattern
-- drawer interior refinement
-- final flex-hose storage details
 - cosmetic finish product choice within the already defined functional finish schedule
 
 ## Post-Build Functional Tests
 
-1. Roll the bench out, deploy the wing, and lower it onto leveling feet.
-2. Run a narrow rip, a wide rip, and a long rip.
-3. Run a repeat crosscut with the Vevor gauge.
-4. Route a test edge profile and a groove.
-5. Switch the manifold between saw, router, and flex hose.
-6. Return the bench to parked mode and confirm cord and hose management still works.
+1. Roll the bench out and confirm the folded support table still keeps the bench at `90 x 48`.
+2. Unfold the left support table and extend the support drawer.
+3. Run a narrow rip, a wide rip, and a long rip.
+4. Square a `24 in` panel on the carriage and repeat the cut.
+5. Remove or park the carriage and run a repeat crosscut with the Vevor gauge.
+6. Route a test edge profile and a groove.
+7. Switch the manifold between saw, router, and flex hose.
+8. Return the bench to parked mode and confirm cord and hose management still works.
