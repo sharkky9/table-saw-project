@@ -101,7 +101,8 @@ Day one does not drill the permanent top into an MFT-style surface. Instead:
 - The miter saw is now the primary crosscut tool.
 - The station must provide meaningful left and right support for stops and repeat cuts.
 - The stowed position must return a flush or slightly low work surface and must not sit proud.
-- Exact mechanism geometry remains blocked on a dedicated miter-saw survey of the owner's DeWalt `60V 12 in` cordless sliding saw.
+- Publicly available `DeWALT DCS781` dimensions are now sufficient to size the station envelope and cover parts.
+- Real-tool fit is still required for tray bolt transfer, final hard-stop tuning, and any shims or spacer pucks needed to make the deployed saw table and stowed cover both land flush to the bench top.
 
 ## Router Module
 
@@ -127,6 +128,7 @@ Day one does not drill the permanent top into an MFT-style surface. Instead:
   - router
   - flex hose for mobile tools
 - The miter saw uses the flexible hose path rather than forcing a permanent fourth internal branch.
+- The miter-saw dust hose is a deployed-only connection to the top-exit dust port and does not justify a fixed station branch or a precision-routed hard hose.
 - Keep an open well under the saw to preserve blade-height, bevel, and hose movement.
 - Sequential bucket-first, extractor-second service remains acceptable if the real service path is honest and removable.
 
@@ -187,4 +189,6 @@ These measurements are still mandatory before cutting the final precision top:
 - exact dust-elbow hose envelope at blade-height and bevel extremes
 - final Hercules package geometry at the service opening
 - final Low-Pro bucket and latch clearance with the chosen `5 gallon` bucket
-- actual miter-saw envelope, fence height, table height, and rear slide clearance before the flip-top opening is frozen
+- actual miter-station tray fit before the final tray bolt pattern is drilled
+- actual hard-stop and latch tuning so the deployed saw table and stowed cover both land flush with the bench top
+- actual flex-hose reach and release at the deployed top-exit miter-saw dust port

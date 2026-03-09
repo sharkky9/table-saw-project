@@ -15,11 +15,13 @@ The flip-top mechanism lets the miter station switch between a flush work surfac
 - `FAST-11` and `FAST-12`: pivot hardware and bushings
 - `FAST-13`: stowed latches
 - `FAST-14`: hard-stop screws with jam nuts
+- `FAST-26`: shim pack or spacer pucks under the real saw feet
 
 ## Datum Logic
 
 - the pivot is for motion only
 - the deployed tray height is set by `FT-03` and `FAST-14`
+- the saw-to-tray offset is tuned separately with shims or spacer pucks under the real saw feet
 - the stowed surface is pulled flush by `FAST-13`
 - the saw and tray must not depend on latch slop or hinge slop for repeatability
 
@@ -28,8 +30,9 @@ The flip-top mechanism lets the miter station switch between a flush work surfac
 1. Install `FT-01` side plates and the pivot hardware in the real bay.
 2. Hang the tray assembly and confirm free rotation.
 3. Set the deployed tray position with `FT-03` and `FAST-14`.
-4. Tune the stowed close position with `FT-02` and the latch strike locations.
-5. Recheck both states after the hardware is fully tightened.
+4. Set the real saw on the tray, prove the needed shim stack or spacer height, and only then transfer the final tray bolt pattern.
+5. Tune the stowed close position with `FT-02` and the latch strike locations.
+6. Recheck both states after the hardware is fully tightened.
 
 ## Proof Procedure
 
@@ -39,11 +42,13 @@ Run this before calling the station precision-ready:
 2. Latch the cover shut in the normal sequence.
 3. Check the stowed surface at left, center, and right with a straightedge.
 4. Deploy the tray and check repeatable height at both support edges.
-5. Confirm the tray does not rub fixed structure through the full swing.
+5. Confirm the real saw table lands flush with the surrounding bench top after the shim or spacer stack is locked.
+6. Confirm the tray does not rub fixed structure through the full swing.
 
 The mechanism fails if:
 
 - any point of the cover sits proud
 - the deployed tray height drifts after cycling
+- the saw needs latch force instead of hard stops and shims to land flush
 - latch force is required to hold the deployed position
 - the tray or saw intrudes into the table-saw rail keep-clear lanes or the right-side service zone

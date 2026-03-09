@@ -5,7 +5,6 @@
 Do not start this sequence until:
 
 - the stripped-saw survey is complete
-- the miter-saw survey is complete
 - the saw cradle is tuned flush
 - the flip-top tray has been dry-fit in the real front bay
 
@@ -29,6 +28,7 @@ Cutting the top blanks to size is allowed before this gate. This gate only contr
 6. Drill the pivot-axis hardware, latch-block, and stop-block pilot holes only after the real tray fit is proven.
 7. Machine underside right-side reliefs that are required by the real rail sweep.
 8. Drill the final saw mounting-deck bolt pattern from the actual saw only after the opening and flush fit are proven.
+9. Drill the miter-station tray bolt pattern from the actual saw only after the shimmed deployed height is proven.
 
 ## Acceptance Checks
 
@@ -37,5 +37,6 @@ Cutting the top blanks to size is allowed before this gate. This gate only contr
 - router plate sits flush with no rocking
 - stowed miter-station cover sits flush or slightly low
 - deployed tray returns to the target support height without depending on latch slop
+- real saw table lands flush after the tray shim stack is locked
 - no cut intrudes into the rail keep-clear lanes or the right-side service zone
 - mounting-deck holes match the real saw and are not layout-only guesses

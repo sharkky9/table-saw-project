@@ -4,6 +4,8 @@
 
 - [SKIL SPT99-11 product page](https://www.skil.com/products/wormdrive-table-saw-spt99-11)
 - [SKIL SPT99-11 / SPT99-12 manual](https://www.skil.com/cdn/shop/files/SPT99-11_SPT99-12_Manual.pdf?v=11484006313901913477)
+- [DeWALT DCS781 product page](https://www.dewalt.com/product/dcs781b/60v-max-brushless-cordless-12-sliding-miter-saw-tool-only)
+- [DeWALT DCS781 manual](https://www.dewalt.com/GLOBALBOM/QU/DCS781B/1/Instruction_Manual/EN/N582443_DCS781.pdf)
 - [Rockler Dust Right 2-1/2 in manifold](https://www.rockler.com/dust-right-2-1-2-dust-collection-manifold)
 - [Harbor Freight Hercules 12-gallon dust extractor](https://www.harborfreight.com/12-gallon-osha-compliant-hepa-dust-extractor-58966.html)
 - [Oneida Dust Deputy Low-Pro Lid Separator](https://www.oneida-air.com/dust-deputy-low-pro-cyclone-lid-separator)
@@ -33,6 +35,14 @@ The sliding-carriage and precision-wing lineage is therefore kept only as histor
 - Official tool weight: `52.9 lb`
 - User-supplied geometry is more useful than the marketing page for table integration, so the structured layout uses the user's measurements as the primary geometry source
 - The stripped-saw contract is now intentionally lean: blade datum, rail envelope, dust envelope, and support-pad size matter; exact mount-hole transfer still happens from the real saw on the deck
+
+### DeWALT DCS781
+
+- The attached manual confirms the active saw family is `DCS781`
+- The DeWALT public product page lists the bare-tool envelope at `30.51 in` length, `19.49 in` width, `17.72 in` height, and `50.9 lb`
+- The owner-supplied retail listing is larger at `32.36 in` depth, `24.02 in` width, and `20.93 in` height, so the package now uses that larger public envelope as a conservative planning bound
+- Because the miter saw dust port exits at the top and the owner plans to connect it only with a deployed flex hose, exact dust-port coordinates no longer block the builder package
+- Because the flip-top now separates tray-height adjustment from saw-to-tray shimming, exact table height, fence height, and mount-foot geometry become fit-only notes instead of a prebuild survey gate
 
 ### Rockler 2-1/2 in Manifold
 

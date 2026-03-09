@@ -35,12 +35,12 @@ Read these first:
 - Print [stripped-saw-survey.md](./stripped-saw-survey.md).
 - Print [miter-saw-survey.md](./miter-saw-survey.md).
 - Record every required value in [data/measurements.csv](../data/measurements.csv).
-- Do not continue to precision machining or final saw-deck drilling until the precision-gate commands pass.
+- Do not continue to precision machining or final saw-deck drilling until the precision-gate commands pass. The miter station still needs a real tray fit later, but it no longer needs a bespoke prebuild survey first.
 
 Hold point:
 
 - [ ] stripped-saw survey complete
-- [ ] miter-saw survey complete
+- [ ] public miter-saw spec rows accepted
 - [ ] precision gate open
 
 ## 2. Plinth
@@ -194,18 +194,20 @@ Parts:
 
 Steps:
 
-1. After the miter-saw survey is complete, cut `MS-01`, `MS-04`, `MS-05`, and `MS-06` to final size.
+1. Cut `MS-01`, `MS-04`, `MS-05`, and `MS-06` to their public-envelope layout sizes.
 2. Dry-fit `FT-01` pivot side plates and the selected pivot hardware in the centered front bay.
 3. Build the tray assembly per [miter-station.md](./miter-station.md) and [flip-top-mechanism.md](./flip-top-mechanism.md).
-4. Trim `MS-02` and `MS-03` only after the pivot axis and tray depth are proven.
-5. Install `FT-03` hard stops so the deployed tray returns to the target support-surface height without relying on latch slop.
-6. Install `FT-02` latch blocks and the stowed latches only after the cover panel can close flush.
-7. Fit `MS-05` and `MS-06` support faces and stop track after the fence line is confirmed from the real saw.
+4. Set the real saw on `MS-01`, prove the shim or spacer stack needed under the feet, and only then transfer the final tray bolt pattern.
+5. Trim `MS-02` and `MS-03` only after the pivot axis and tray depth are proven.
+6. Install `FT-03` hard stops so the deployed tray returns to the target support-surface height without relying on latch slop.
+7. Install `FT-02` latch blocks and the stowed latches only after the cover panel can close flush.
+8. Fit `MS-05` and `MS-06` support faces and stop track after the fence line is confirmed from the real saw.
 
 Hold point:
 
 - [ ] stowed cover flush or slightly low
 - [ ] deployed tray repeats the target height
+- [ ] real saw table lands flush after the shim stack is locked
 - [ ] left and right support spans stay fully usable
 
 ## 10. Top Machining

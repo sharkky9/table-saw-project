@@ -10,7 +10,7 @@ This workspace contains a build package for an integrated garage bench built aro
 - `data/` authoritative measurements and machine-readable layout data
 - `plans/` BOM, rough and final cut lists, hardware, build sequence, dust/power, finish, assembly-mode, and validation guides
 - `plans/stripped-saw-survey.md` printable survey checklist for the bare saw before precision cuts
-- `plans/miter-saw-survey.md` printable survey checklist for the DeWalt miter saw before the flip-top geometry is frozen
+- `plans/miter-saw-survey.md` public-spec sheet plus fit-only notes for the DeWalt miter saw and flip-top tuning
 - `drawings/` builder-facing SVG drawings keyed to parts and subassemblies
 - `renders/` editable SVG concept drawings generated from `data/layout.json`
 - `tools/` validation and rendering scripts
@@ -21,7 +21,7 @@ This workspace contains a build package for an integrated garage bench built aro
 - Parked orientation: long side on the wall, rolled straight out for serious work
 - Table-saw strategy: `SKIL SPT99-11` feeding across the `48 in` depth with real right-hand and outfeed support
 - Top strategy: fixed `90 x 48` work surface with no expandable wings
-- Miter strategy: centered front-side flip-top station sized around the user's `DeWalt 60V 12 in` cordless sliding miter saw
+- Miter strategy: centered front-side flip-top station sized from public `DeWALT DCS781` dimensions with field-fit bolt transfer and adjustable height tuning
 - Router strategy: stage-1 `JessEm Rout-R-Lift II 02310` with a `Bosch 1617EVS` class motor at the far right end
 - Dust strategy: internal `Hercules HE028` on a fixed low deck plus `Oneida Dust Deputy Low-Pro` plus Rockler `2-1/2 in` manifold, with flex-hose support for mobile tools including the miter saw
 - Assembly strategy: keep the permanent top clean on day one and reserve meaningful clamping complexity for a removable overlay
@@ -50,7 +50,7 @@ These gates still remain in force:
 
 - actual table-saw fit before the final saw opening and mounting-deck drilling are frozen
 - real-world right-bay packaging mockup before the Hercules and Low-Pro package is treated as proven serviceable
-- actual miter-saw survey before the flip-top station geometry is frozen
+- actual miter-station fit before the tray bolt pattern, hard stops, and latch tuning are frozen
 
 Current owner-approved assumptions that stay in force unless changed later:
 

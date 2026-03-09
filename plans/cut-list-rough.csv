@@ -38,10 +38,10 @@ TOP-03,top,plywood,0.75,4,15,2.5,yes,Router plate ledgers and local blocking
 TOP-04,top,plywood,0.75,4,20.5,4.5,yes,Seam cleats under front-panel joints and miter-station bay edges
 TOP-05,top,plywood,0.75,2,42,3.5,yes,Under-top stiffeners that stay outside the rail keep-clear lanes
 TOP-06,top,plywood,0.75,4,4.5,4.5,yes,Future overlay anchor backing pads
-MS-01,miter_station,plywood,0.75,1,22.5,12.5,no,Flip-top tray deck sized after the miter-saw survey
+MS-01,miter_station,plywood,0.75,1,22.5,12.5,no,Flip-top tray deck sized from the public-envelope layout; final bolt transfer still happens from the real saw
 MS-02,miter_station,plywood,0.75,2,12.5,10.5,no,Tray side walls trimmed after pivot hardware dry fit
 MS-03,miter_station,plywood,0.75,2,21.5,3.5,no,Front and rear tray rails
-MS-04,miter_station,plywood,0.75,1,22.5,12.5,no,Stowed cover and work-surface panel
+MS-04,miter_station,plywood,0.75,1,22.5,12.5,no,Stowed cover and work-surface panel sized from the layout opening
 MS-05,miter_station,plywood,0.75,1,34.5,4.5,no,Left support fence face for stop blocks
 MS-06,miter_station,plywood,0.75,1,34.5,4.5,no,Right support fence face for stop blocks
 FT-01,flip_top,plywood,0.75,2,12.5,12.5,no,Pivot side-plate blanks
