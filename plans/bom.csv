@@ -1,10 +1,10 @@
 item_id,stage,category,description,qty,unit,spec_or_model,notes
-MAT-01,stage1,sheet_good,Flat cabinet plywood,8,sheets,3/4 in AC/BC or shop-grade birch,Stage-1 structure top fields carriage support-table support drawer router module and service panels with realistic yield and less nesting stress
+MAT-01,stage1,sheet_good,Flat cabinet plywood,9,sheets,3/4 in AC/BC or shop-grade birch,Stage-1 structure top fields carriage support-table support drawer router module and service panels with margin above the current high-utilization nesting estimate
 MAT-02,stage1,sheet_good,MDF,2,sheets,3/4 in,Fixed-top precision skins plus sample boards and margin for setup waste
 MAT-03,stage1,sheet_good,Prefinished plywood,1,sheets,1/2 in,Back panels and light-duty service panels
 MAT-04,stage1,lumber,Construction lumber,8,pieces,2x4x8 kiln-dried,Plinth framing saw ledgers support-table leg and general blocking
 MAT-05,stage1,lumber,Construction lumber,2,pieces,2x6x8 kiln-dried,Caster hardpoints and plinth reinforcement
-MAT-06,stage1,lumber,Optional wear edging,2,pieces,1x2 hardwood or UHMW,Only for high-abuse carriage and support-table edges if desired
+MAT-06,stage1,lumber,Recommended wear edging,2,pieces,1x2 hardwood or UHMW,Strongly recommended on carriage guide edges and other high-abuse sliding surfaces
 HDW-01,stage1,mobility,Retractable caster kit,1,set,Foot-operated system rated at least 1200 lb total,Do not use light-duty 400 to 600 lb kits on this bench
 HDW-02,stage1,mobility,Adjustable leveling feet,4,ea,Heavy-duty 3/8-16 or 1/2-13,Mount through plinth corners
 HDW-03,stage1,joinery,Pocket-hole screws,1,box,1-1/4 in coarse thread,For cabinet assembly where appropriate
@@ -12,10 +12,10 @@ HDW-04,stage1,joinery,Structural screws,1,box,3 in,For plinth and heavy blocking
 HDW-05,stage1,joinery,Cabinet screws,1,box,1-1/4 in washer head,For plywood-to-plywood structure
 HDW-06,stage1,joinery,Wood glue,1,bottle,Type II PVA,Primary panel glue
 HDW-07,stage1,hardware,Support-table hinge,1,ea,Continuous hinge or pair of heavy strap hinges,Left support-table deployment hardware
-HDW-08,stage1,hardware,Support-table leg hardware,1,set,Locking folding leg bracket or equivalent,Support the left fold-out table when deployed
+HDW-08,stage1,hardware,Support-table leg hardware,1,set,Pair of locking folding leg brackets or equivalent,Support the full-depth left fold-out table when deployed
 HDW-09,stage1,hardware,Carriage guide rail stock,2,ea,Low-profile aluminum or steel guide strips,Field-fit only after the saw survey and dry-fit
 HDW-10,stage1,hardware,Carriage wear pads and adjusters,1,set,UHMW pads plus eccentric or shim adjustment,Low-play runner tuning
-HDW-11,stage1,hardware,Support-drawer slides,1,pair,18 to 24 in full extension,Under-carriage support drawer
+HDW-11,stage1,hardware,Support-drawer runner stock,1,set,Hardwood or UHMW runner strips plus wax,Under-carriage support drawer uses simple runners instead of light-duty metal slides
 HDW-12,stage1,hardware,Carriage fence track or extrusion,1,set,T-track or aluminum fence extrusion,Removable carriage fence mounting
 HDW-13,stage1,hardware,Miter track,2,ea,48 in aluminum 3/4 x 3/8 assumption,Treat standard 3/4 x 3/8 as the working assumption unless a field-fit check proves otherwise
 HDW-14,stage1,hardware,Threaded inserts,4,ea,1/4-20,For future assembly overlay anchor points

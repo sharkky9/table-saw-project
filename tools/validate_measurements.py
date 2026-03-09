@@ -43,6 +43,7 @@ REQUIRED_IDS = {
     "saw_rail_width_min",
     "saw_rail_depth",
     "saw_body_height",
+    "miter_slot_assumption_override",
     "blade_to_left_miter_center",
     "blade_to_right_miter_center",
     "blade_to_left_table_edge",
@@ -65,6 +66,7 @@ REQUIRED_IDS = {
     "left_support_table_depth",
     "left_carriage_clear_gap_to_saw",
     "side_support_drawer_extension",
+    "support_drawer_top_below_bench_top",
     "rail_left_projection_min",
     "rail_front_overhang_y",
     "rail_rear_overhang_y",
@@ -97,6 +99,9 @@ ALLOWED_ZERO_IDS = {
     "rail_front_projection_min",
     "rail_rear_projection_min",
 }
+
+MITER_SLOT_OVERRIDE_ID = "miter_slot_assumption_override"
+MITER_SLOT_OVERRIDE_VALUE = "user_accepts_standard_3_4_x_3_8"
 
 
 def parse_args() -> argparse.Namespace:
@@ -135,10 +140,17 @@ def get_float(rows: dict[str, dict[str, str]], key: str) -> float:
 
 def unresolved_precision_ids(rows: dict[str, dict[str, str]]) -> list[str]:
     unresolved: list[str] = []
+    slot_override_active = (
+        rows.get(MITER_SLOT_OVERRIDE_ID) is not None
+        and rows[MITER_SLOT_OVERRIDE_ID]["value"] == MITER_SLOT_OVERRIDE_VALUE
+        and rows[MITER_SLOT_OVERRIDE_ID]["status"] == "confirmed"
+    )
     for row_id in sorted(PRECISION_GATED_IDS):
         row = rows.get(row_id)
         if row is None:
             unresolved.append(row_id)
+            continue
+        if row_id in {"miter_slot_width", "miter_slot_depth"} and slot_override_active:
             continue
         if row["source"] == "provisional_field_fit":
             unresolved.append(row_id)
@@ -227,8 +239,17 @@ def main() -> int:
 
         slot_width = get_float(rows, "miter_slot_width")
         slot_depth = get_float(rows, "miter_slot_depth")
+        slot_override_active = (
+            rows.get(MITER_SLOT_OVERRIDE_ID) is not None
+            and rows[MITER_SLOT_OVERRIDE_ID]["value"] == MITER_SLOT_OVERRIDE_VALUE
+            and rows[MITER_SLOT_OVERRIDE_ID]["status"] == "confirmed"
+        )
         if not math.isclose(slot_width, 0.75, abs_tol=0.01) or not math.isclose(slot_depth, 0.375, abs_tol=0.01):
             notes.append("miter-slot assumption differs from standard 3/4 x 3/8; verify before buying track")
+        elif slot_override_active and (
+            rows["miter_slot_width"]["status"] != "confirmed" or rows["miter_slot_depth"]["status"] != "confirmed"
+        ):
+            notes.append("precision gate is using the explicit user-approved standard 3/4 x 3/8 miter-slot override")
 
         unresolved = unresolved_precision_ids(rows)
         if args.require_precision_ready and unresolved:
@@ -254,7 +275,9 @@ def main() -> int:
             print(f"note: {note}")
         return 0
 
-    print(f"validated {len(raw_rows)} measurement rows from {path}; precision-cut gate is open")
+    print(
+        f"validated {len(raw_rows)} measurement rows from {path}; validator-backed top-machining inputs are complete, but manual fit-up gates still remain"
+    )
     return 0
 
 

@@ -41,6 +41,13 @@ Do not finalize the service face or Hercules support deck until [right-bay-mocku
 
 Do not final-trim the support-table leg or foot until the hinge, hard stops, and bracket geometry are installed and adjusted.
 
+## Support-Drawer Fit Gate
+
+- [ ] `LM-02`
+- [ ] `LM-06`
+
+Do not lock the left-module partition or shallow-storage parts until the support drawer runner geometry and carriage path are proven in the real module.
+
 ## Carriage-Fit Gate
 
 - [ ] `SC-03`

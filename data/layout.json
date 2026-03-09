@@ -62,7 +62,7 @@
           "y1": 0.0,
           "x2": 29.25,
           "y2": 48.0,
-          "notes": "Land this seam on the doubled wall between the left carriage module and the saw chassis."
+          "notes": "Land this seam on the doubled wall between the left carriage module and the saw chassis. The left miter-track extension lands on this seam, so the joint must be glued flush and routed with a sacrificial backer."
         },
         {
           "name": "center_to_right_top_seam",
@@ -95,7 +95,19 @@
           "length": 27.75,
           "depth": 42.0,
           "height": 31.0,
-          "notes": "Open mechanism bay plus shallow storage and fence parking for the sliding-carriage package"
+          "notes": "Open mechanism bay first. Do not lock the partition or shallow-storage parts until the support drawer and carriage runner geometry are proven.",
+          "details": {
+            "support_drawer_bay": {
+              "x_from_left": 0.0,
+              "length": 21.0,
+              "runner_type": "shop-made hardwood or UHMW runners on fixed cleats",
+              "top_surface_below_bench_top": 0.0625
+            },
+            "deferred_storage_bay": {
+              "status": "field_fit_after_support_drawer",
+              "notes": "LM-02 and LM-06 stay deferred until the drawer and carriage path are proven."
+            }
+          }
         },
         {
           "name": "saw_chassis",
@@ -271,12 +283,19 @@
     },
     "guide_strip_zone": {
       "x": 0.0,
-      "y": 4.0,
+      "y": 0.0,
       "length": 23.0,
-      "depth": 40.0
+      "depth": 48.0
     },
     "travel_axis": "y",
-    "target_stroke": 34.0,
+    "target_stroke": 12.0,
+    "travel_limits": {
+      "front_stop_y": 0.0,
+      "rear_stop_y": 12.0,
+      "parked_reference_y": 6.0,
+      "literal_translation_stroke": 12.0,
+      "notes": "This branch now models honest literal translation inside the 48 in core rather than pretending to offer industrial sliding-table travel."
+    },
     "park_gap_to_saw": 0.5,
     "construction": {
       "thickness": 1.5,
@@ -284,47 +303,75 @@
         "3/4 plywood substrate",
         "3/4 plywood wear skin"
       ],
-      "runners": "field-fit guide strips plus adjustable wear pads or equivalent low-play hardware",
-      "notes": "Do not freeze the runner hardware until the saw survey and fixed-top dry-fit are complete."
+      "runners": "top-mounted guide strips plus adjustable UHMW wear pads or equivalent low-play hardware",
+      "flush_target": {
+        "max_proud": 0.0,
+        "max_low": 0.005
+      },
+      "left_rail_bridge_zones": [
+        {
+          "name": "front_left_rail_bridge_zone",
+          "x": 16.0,
+          "y": 13.25,
+          "length": 7.0,
+          "depth": 6.75
+        },
+        {
+          "name": "rear_left_rail_bridge_zone",
+          "x": 16.0,
+          "y": 33.75,
+          "length": 7.0,
+          "depth": 6.75
+        }
+      ],
+      "notes": "Guide strips stay top-mounted and runner backers must bridge over the left rail pockets rather than hanging into them. Do not freeze the runner hardware until the saw survey and fixed-top dry-fit are complete."
     },
     "fence": {
       "primary_length": 36.0,
       "extension_capability": "removable or flip-over extension for wider panels",
-      "mounting": "front and rear T-track or extrusion anchored to the carriage body"
+      "mounting": "front and rear T-track or extrusion anchored to the carriage body",
+      "square_adjustment": "one end fixed and the other end micro-adjustable with a push-screw or slotted-bolt correction"
     },
     "support_drawer": {
       "x": 1.5,
-      "y": 3.0,
+      "y": 0.0,
       "length": 21.0,
       "depth": 12.0,
       "extension_toward_front": 14.0,
+      "runner_type": "shop-made hardwood or UHMW runners on fixed cleats",
+      "top_surface_below_bench_top": 0.0625,
+      "load_role": "near-front anti-droop support, not the primary squareness datum",
       "notes": "Acts as the no-overhang front support for deeper cuts and stores flush when not in use."
     }
   },
   "left_support_table": {
     "hinge_side": "left",
     "deployed_extension": 18.0,
-    "covered_depth": 40.0,
+    "covered_depth": 48.0,
     "active_zone": {
       "x": -18.0,
-      "y": 4.0,
+      "y": 0.0,
       "length": 18.0,
-      "depth": 40.0
+      "depth": 48.0
     },
     "folded_within_parked_footprint": true,
     "support": {
-      "type": "continuous hinge plus locking leg and hard stops",
-      "leg_count": 1,
+      "type": "continuous hinge plus paired locking legs and hard stops",
+      "leg_count": 2,
       "leg_adjustment": "adjustable glide or trim-to-fit foot",
-      "registration": "mechanical stops at the bench side"
+      "registration": "mechanical stops at the bench side",
+      "load_test": {
+        "outer_corner_load": 30.0,
+        "max_vertical_deflection": 0.0625
+      }
     },
-    "notes": "Supports the carriage only when needed for larger panels; it must not increase the parked footprint when folded."
+    "notes": "Supports the carriage only when needed for larger panels; it must not increase the parked footprint when folded. Hard stops still define position, but the paired legs are required to resist twist at the outer corners."
   },
   "router_module": {
     "zone": {
-      "x": 70.25,
+      "x": 70.5,
       "y": 8.0,
-      "length": 18.25,
+      "length": 18.0,
       "depth": 32.0,
       "min_clearance_from_rail_envelope": 1.25
     },
@@ -338,9 +385,9 @@
       "router_motor": "Bosch 1617EVS"
     },
     "fence_mount_zone": {
-      "x": 70.75,
+      "x": 71.0,
       "y": 9.0,
-      "length": 16.75,
+      "length": 16.5,
       "depth": 5.0,
       "notes": "Reserved for removable fence hardware and dust pickup"
     },
@@ -414,7 +461,8 @@
     },
     "saw_branch": {
       "service_zone": "open well below saw",
-      "hatch_dependency": "Rough dust-port center and hose-sweep measurements are now captured, but final routing holes still wait until the actual hose stack and cradle fit are marked in place."
+      "hatch_dependency": "Rough dust-port center and hose-sweep measurements are now captured, but final routing holes still wait until the actual hose stack and cradle fit are marked in place.",
+      "parked_mode_note": "The hose should drop into the open well immediately or the bench should park off the wall with a small spacer so the rear hose loop is never crushed."
     },
     "router_branch": {
       "split_strategy": "local Y-split inside router cavity for fence pickup plus cabinet pickup"

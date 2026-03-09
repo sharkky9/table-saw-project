@@ -7,6 +7,7 @@ saw,saw_rail_depth,Front rail to rear rail depth,26.25,in,0.0625,derived,confirm
 saw,saw_body_height,Saw body height from mount plane to tabletop,13.375,in,0.0625,user_measured,confirmed,none,13 3/8,Driving dimension for mount height
 saw,miter_slot_width,Miter-slot width,0.75,in,0.03125,derived,approx,none,3/4,Treat the 11/16 reading as measurement error and continue assuming standard 3/4 in slot compatibility unless field-fit disproves it
 saw,miter_slot_depth,Miter-slot depth,0.375,in,0.03125,derived,approx,none,3/8,Treat the 7/16 reading as measurement error and continue assuming standard 3/8 in slot depth unless field-fit disproves it
+saw,miter_slot_assumption_override,User-approved miter-slot assumption override,user_accepts_standard_3_4_x_3_8,text,n/a,user_measured,confirmed,none,user_accepts_standard_3_4_x_3_8,Explicit branch decision to proceed on the standard 3/4 x 3/8 track assumption until a physical fit disproves it
 saw,blade_to_left_miter_center,Blade centerline to left miter-slot centerline,6.375,in,0.03125,user_measured,confirmed,none,6 3/8,User measurement
 saw,blade_to_right_miter_center,Blade centerline to right miter-slot centerline,5.25,in,0.03125,user_measured,confirmed,none,5 1/4,User measurement
 saw,blade_to_left_table_edge,Blade centerline to left cast-top edge,13,in,0.03125,user_measured,confirmed,none,13,User measurement
@@ -48,11 +49,12 @@ bench,left_carriage_field_width,Left carriage fixed-top field width,29.25,in,0.0
 bench,center_saw_field_width,Center saw fixed-top field width,30.5,in,0.0625,derived,confirmed,none,30 1/2,Aligns to the center saw module
 bench,right_service_field_width,Right service fixed-top field width,30.25,in,0.0625,derived,confirmed,none,30 1/4,Closes the top at the router and dust end
 bench,left_carriage_width,Sliding carriage width,22,in,0.0625,derived,concept_only,carriage fit-up,22,Target parked carriage width inside the left field
-bench,left_carriage_stroke_target,Sliding carriage target stroke,34,in,0.125,derived,concept_only,carriage fit-up,34,Target usable travel parallel to the blade
+bench,left_carriage_stroke_target,Sliding carriage literal travel stroke,12,in,0.125,derived,concept_only,carriage fit-up,12,Honest translation limit inside the current 48 in core without pretending this is an industrial slider
 bench,left_support_table_extension,Fold-out left support-table extension,18,in,0.125,derived,concept_only,support-table fit-up,18,Deploy only for larger panels
-bench,left_support_table_depth,Support-table covered depth along the carriage travel axis,40,in,0.125,derived,concept_only,support-table fit-up,40,Covers the effective carriage zone
+bench,left_support_table_depth,Support-table covered depth along the carriage travel axis,48,in,0.125,derived,concept_only,support-table fit-up,48,Full-depth leaf matches the carriage travel zone instead of leaving unsupported front and rear corners
 bench,left_carriage_clear_gap_to_saw,Minimum carriage park gap to the saw cast top,0.5,in,0.03125,derived,confirmed,none,1/2,Protects the saw and leaves room for runners and stops
 bench,side_support_drawer_extension,Under-carriage support drawer extension,14,in,0.125,derived,concept_only,support-drawer fit-up,14,Front support for deeper panels without a permanent overhang
+bench,support_drawer_top_below_bench_top,Support-drawer top surface below the bench top,0.0625,in,0.03125,derived,concept_only,support-drawer fit-up,1/16,Drawer support surface should sit slightly low so panels are supported without rubbing the carriage
 dust,selected_internal_extractor_model,Selected internal extractor,Hercules HE028,text,n/a,official,confirmed,none,Hercules HE028,Chosen internal extractor for the stage-1 package
 dust,internal_extractor_class,Internal extractor target,Hercules 12 gallon dust extractor,text,n/a,official,confirmed,none,Hercules 12 gallon dust extractor,Hercules is now the primary internal extractor target
 dust,internal_extractor_width,Internal extractor width,18.25,in,0.125,official,confirmed,none,18 1/4,Harbor Freight product page

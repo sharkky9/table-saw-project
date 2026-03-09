@@ -57,6 +57,7 @@ ALLOWED_GATES = {
     "after_service_layout",
     "after_mockup",
     "after_support_table_fit",
+    "after_support_drawer_fit",
     "after_carriage_fit",
     "stage2",
 }

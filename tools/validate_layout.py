@@ -13,7 +13,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--require-precision-ready",
         action="store_true",
-        help="Fail if stripped-saw survey items are still provisional or blank.",
+        help="Fail if top-machining gate geometry is still unresolved.",
     )
     parser.add_argument("layout")
     parser.add_argument("measurements")
@@ -53,6 +53,21 @@ def rects_overlap(a: dict[str, float], b: dict[str, float]) -> bool:
     )
 
 
+def rect_intersection(a: dict[str, float], b: dict[str, float]) -> Optional[dict[str, float]]:
+    if not rects_overlap(a, b):
+        return None
+    x1 = max(a["x"], b["x"])
+    y1 = max(a["y"], b["y"])
+    x2 = min(a["x"] + a["length"], b["x"] + b["length"])
+    y2 = min(a["y"] + a["depth"], b["y"] + b["depth"])
+    return {
+        "x": x1,
+        "y": y1,
+        "length": x2 - x1,
+        "depth": y2 - y1,
+    }
+
+
 def rect_area(rect: dict[str, float]) -> float:
     return rect["length"] * rect["depth"]
 
@@ -77,10 +92,18 @@ def overlay_rect(layout: dict) -> Optional[dict[str, float]]:
 
 def unresolved_precision_ids(layout: dict, measurement_rows: dict[str, dict[str, str]]) -> list[str]:
     unresolved: list[str] = []
+    slot_override = measurement_rows.get("miter_slot_assumption_override")
+    slot_override_active = (
+        slot_override is not None
+        and slot_override["value"] == "user_accepts_standard_3_4_x_3_8"
+        and slot_override["status"] == "confirmed"
+    )
     for row_id in layout["saw"]["stripped_saw_survey_required"]:
         row = measurement_rows.get(row_id)
         if row is None:
             unresolved.append(row_id)
+            continue
+        if row_id in {"miter_slot_width", "miter_slot_depth"} and slot_override_active:
             continue
         if row["source"] == "provisional_field_fit":
             unresolved.append(row_id)
@@ -238,6 +261,59 @@ def main() -> int:
         actual_gap = cast_top["x"] - (parked["x"] + parked["length"])
         if actual_gap + 1e-6 < carriage["park_gap_to_saw"]:
             errors.append("sliding-carriage parked envelope intrudes too far toward the saw cast top")
+        travel_limits = carriage.get("travel_limits")
+        if not travel_limits:
+            errors.append("sliding carriage must declare explicit travel limits")
+        else:
+            front_stop_y = travel_limits["front_stop_y"]
+            rear_stop_y = travel_limits["rear_stop_y"]
+            if rear_stop_y < front_stop_y:
+                errors.append("sliding-carriage rear stop cannot be ahead of the front stop")
+            literal_stroke = rear_stop_y - front_stop_y
+            if not math.isclose(literal_stroke, carriage["target_stroke"], abs_tol=0.05):
+                errors.append("sliding-carriage travel limits do not produce the declared target stroke")
+            if not math.isclose(travel_limits["literal_translation_stroke"], carriage["target_stroke"], abs_tol=0.05):
+                errors.append("sliding-carriage literal translation stroke does not match the declared target stroke")
+            if not math.isclose(travel_limits["parked_reference_y"], parked["y"], abs_tol=0.05):
+                errors.append("sliding-carriage parked y does not match the declared travel-limits park reference")
+            front_rect = {
+                "x": parked["x"],
+                "y": front_stop_y,
+                "length": parked["length"],
+                "depth": parked["depth"],
+            }
+            rear_rect = {
+                "x": parked["x"],
+                "y": rear_stop_y,
+                "length": parked["length"],
+                "depth": parked["depth"],
+            }
+            if not rect_inside(front_rect, guide_zone):
+                errors.append("sliding-carriage front-stop envelope is not fully supported by the guide-strip zone")
+            if not rect_inside(rear_rect, guide_zone):
+                errors.append("sliding-carriage rear-stop envelope is not fully supported by the guide-strip zone")
+        bridge_zones = {
+            zone["name"]: zone for zone in carriage["construction"].get("left_rail_bridge_zones", [])
+        }
+        left_lane_expectations = {
+            "front_left_rail_bridge_zone": next(
+                lane for lane in saw["under_top_keep_clear"] if lane["name"] == "front_left_rail_lane"
+            ),
+            "rear_left_rail_bridge_zone": next(
+                lane for lane in saw["under_top_keep_clear"] if lane["name"] == "rear_left_rail_lane"
+            ),
+        }
+        for bridge_name, lane in left_lane_expectations.items():
+            expected_bridge = rect_intersection(guide_zone, lane)
+            if expected_bridge is None:
+                continue
+            actual_bridge = bridge_zones.get(bridge_name)
+            if actual_bridge is None:
+                errors.append(f"sliding carriage is missing explicit rail-bridge contract {bridge_name}")
+                continue
+            for key in ("x", "y", "length", "depth"):
+                if not math.isclose(actual_bridge[key], expected_bridge[key], abs_tol=0.05):
+                    errors.append(f"{bridge_name} does not match the left rail-pocket overlap that must stay clear")
 
         left_module = layout["bench"]["carcass"]["modules"][0]
         support_drawer = carriage["support_drawer"]
@@ -247,10 +323,22 @@ def main() -> int:
             "length": support_drawer["length"],
             "depth": support_drawer["depth"],
         }
-        if not rect_inside(closed_drawer, left_module):
-            errors.append("under-carriage support drawer does not fit inside the left carriage-support module")
+        if closed_drawer["x"] < left_module["x"] - 1e-6 or closed_drawer["x"] + closed_drawer["length"] > left_module["x"] + left_module["length"] + 1e-6:
+            errors.append("under-carriage support drawer does not fit between the left-module side walls")
+        if closed_drawer["y"] < -1e-6 or closed_drawer["y"] + closed_drawer["depth"] > left_module["y"] + left_module["depth"] + 1e-6:
+            errors.append("under-carriage support drawer does not fit within the bench front/rear support zone")
         if not math.isclose(support_drawer["extension_toward_front"], m["side_support_drawer_extension"], abs_tol=0.05):
             errors.append("support drawer extension does not match measurements.csv")
+        if not math.isclose(
+            support_drawer["top_surface_below_bench_top"], m["support_drawer_top_below_bench_top"], abs_tol=0.05
+        ):
+            errors.append("support drawer top-surface height does not match measurements.csv")
+        if support_drawer["top_surface_below_bench_top"] > 0.125:
+            errors.append("support drawer support surface is modeled too low to behave as near-front panel support")
+        for lane_name in {"front_left_rail_lane", "rear_left_rail_lane"}:
+            lane = next(l for l in saw["under_top_keep_clear"] if l["name"] == lane_name)
+            if rects_overlap(closed_drawer, lane):
+                errors.append(f"under-carriage support drawer intrudes into {lane_name}")
 
     support_table = layout["left_support_table"]
     if not math.isclose(support_table["deployed_extension"], m["left_support_table_extension"], abs_tol=0.05):
@@ -263,6 +351,10 @@ def main() -> int:
         errors.append("left support-table active zone length must match the deployed extension")
     if not math.isclose(support_table["active_zone"]["depth"], support_table["covered_depth"], abs_tol=0.05):
         errors.append("left support-table active zone depth must match the covered depth")
+    if support_table["support"].get("leg_count", 0) < 2:
+        errors.append("left support table must use two support legs in this full-depth variant")
+    if "load_test" not in support_table["support"]:
+        errors.append("left support table must declare a corner-load acceptance test")
 
     router_zone = layout["router_module"]["zone"]
     router_clearance = router_zone["x"] - (rail["x"] + rail["length"])
@@ -370,7 +462,9 @@ def main() -> int:
             print(f"note: {note}")
         return 0
 
-    print(f"validated layout {layout_path} against {measurement_path}; precision-cut gate is open")
+    print(
+        f"validated layout {layout_path} against {measurement_path}; validator-backed top-machining geometry is complete, but manual fit-up gates still remain"
+    )
     return 0
 
 
