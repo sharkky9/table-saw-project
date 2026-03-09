@@ -13,7 +13,18 @@
 - [Foot Master GD Series leveling casters](https://www.footmastercasters.com/leveling-casters/gd-series)
 - [Foot Master GD-60F current retail spec](https://castercentral.com/products/gd-60f-foot-master)
 
-## Notes That Drove The Layout
+## Program Reset Inputs
+
+The owner has now selected a `DeWalt 60V 12 in` cordless sliding miter saw and explicitly no longer wants the project to center crosscut capability around a table-saw precision wing or sliding carriage. That changes the active design priorities:
+
+- primary crosscuts move to the miter saw
+- the bench should become a fixed `90 x 48` support surface instead of a wing-driven surface
+- right-hand table-saw support, outfeed support, router integration, and right-bay dust packaging stay in scope
+- the flex hose becomes the natural dust path for the miter saw and other mobile tools
+
+The sliding-carriage and precision-wing lineage is therefore kept only as historical reference.
+
+## Notes That Still Drive The Package
 
 ### SKIL SPT99-11
 
@@ -21,13 +32,14 @@
 - Official left rip capacity: `16-1/2 in`
 - Official tool weight: `52.9 lb`
 - User-supplied geometry is more useful than the marketing page for table integration, so the structured layout uses the user's measurements as the primary geometry source
-- The manual and product materials were not enough to freeze the stripped-saw mount or the true front-to-back blade datum, so the package required a survey. The measured blade y datum and rail envelope are now incorporated, while final deck drilling still remains field-fit from the actual saw.
+- The stripped-saw contract is now intentionally lean: blade datum, rail envelope, dust envelope, and support-pad size matter; exact mount-hole transfer still happens from the real saw on the deck
 
 ### Rockler 2-1/2 in Manifold
 
 - Official starter-kit envelope: `6.5 in W x 4.8 in H x 4.23 in projection`
 - One-tool-at-a-time approach fits a shop-vac / dust-extractor system better than a pretend `4 in` branch network
 - The manifold is compact enough to mount in the right-side service bay without consuming the whole cabinet
+- Keeping the third branch as a flex hose is more useful than dedicating it permanently to the miter saw
 
 ### Hercules Dust Extractor
 
@@ -49,43 +61,43 @@
 
 - Official plate size: `9-1/4 in x 11-3/4 in x 3/8 in`
 - Official compatibility includes Bosch `1617/1618`, DeWalt `610/616/618`, and Porter Cable `690/890` class motors for the `02310` model
-- The package now locks the stage-1 router stack to `JessEm Rout-R-Lift II 02310` plus `Bosch 1617EVS`
-- The JessEm manual drives the need for real plate-support ledgers, leveling hardware, and service access instead of only encoding the plate opening
+- The package stays locked to `JessEm Rout-R-Lift II 02310` plus `Bosch 1617EVS`
+- The JessEm manual still drives the need for real plate-support ledgers, leveling hardware, and service access instead of only encoding the plate opening
 
 ## Material Strategy
 
 ### Use Better Materials Where Flatness Matters
 
-- Fixed top: better plywood plus MDF, not construction sheathing
-- Router module: flat cabinet plywood or birch
-- Drawer-slide faces and precision partitions: cabinet plywood
-- Front wing: plywood plus plywood, not MDF, because the wing edges will be bumped and handled more often
+- main top: better plywood plus MDF, not construction sheathing
+- router module: flat cabinet plywood or birch
+- drawer-slide faces and precision partitions: cabinet plywood
+- flip-top and miter-station support surfaces: durable plywood-based construction with replaceable sacrificial faces where appropriate
 
 ### Use Cheaper Materials Where Mass And Stiffness Matter More Than Cosmetics
 
-- Plinth and caster hardpoints: `2x4` and `2x6`
-- Hidden structural blocking: construction lumber or offcuts from better plywood
+- plinth and caster hardpoints: `2x4` and `2x6`
+- hidden structural blocking: construction lumber or offcuts from better plywood
 
 ### Use Prefinished Material Where It Saves Time
 
-- Drawer interiors
+- drawer interiors
 - utility compartments
 - light-duty internal storage zones
 
 ## Mobility Recommendation
 
-- The package now locks the mobility system to `Foot Master GD-60F` plate-mount leveling casters
+- The package stays locked to `Foot Master GD-60F` plate-mount leveling casters
 - Current market listings put the product class at roughly `550 lb` each which gives healthy margin for a bench in the `~980 lb` loaded range
 - This is intentionally more industrial than light-duty retractable workbench-caster kits
 
 ## Assembly-Mode Recommendation
 
-Permanent stage-1 T-track is not worth the conflict risk in the precision top. The current recommendation is:
+Permanent stage-1 T-track is still not worth the conflict risk in the main top. The current recommendation is:
 
 - no fixed T-track in the permanent top on day one
-- one removable assembly overlay for clamping and later `20 mm` hole experiments
+- one removable overlay for clamping, sacrificial track-saw work, and later `20 mm` hole experiments
 
-This keeps the permanent top cleaner and pushes clamping complexity into a replaceable accessory instead of the saw-support surface.
+That keeps the permanent top cleaner and avoids baking clamping compromises into the surface that now also has to coexist with a stowed miter station.
 
 ## Confidence Boundaries
 
@@ -94,7 +106,7 @@ The package is explicit about which values are concept geometry and which are pr
 - `official`: manufacturer-published facts, useful for envelopes and electrical planning
 - `user_measured`: user-supplied geometry that can drive the concept layout
 - `derived`: dimensions created from the accepted bench concept
-- `provisional_field_fit`: values that must not green-light top machining or saw-cradle drilling until the stripped-saw survey is complete
+- `provisional_field_fit`: values that must not green-light top machining or saw-cradle drilling until the relevant real-tool survey is complete
 
 Concept validation today means internal consistency, not shop readiness.
 
@@ -103,7 +115,7 @@ Concept validation today means internal consistency, not shop readiness.
 The current package intentionally commits to:
 
 - `Hercules HE028` inside the right bay on a fixed low deck or UHMW skid base
-- `Oneida Dust Deputy Low-Pro` on a 5 gallon bucket at the front of the same bay
+- `Oneida Dust Deputy Low-Pro` on a `5 gallon` bucket at the front of the same bay
 - `Rockler Dust Right 2-1/2 in` manifold on the front-right service face
 
 That combination is credible enough to keep designing around, but it is still not considered proven until the actual machine, bucket, fittings, and service opening are checked as a mockup.
@@ -114,3 +126,4 @@ These concerns are intentionally not being allowed to balloon the scope:
 
 - generalized “garage humidity means the whole top must be re-architected” arguments
 - objections to sequential bucket-first, extractor-second service order when the sequence itself is still straightforward
+- arguments for reviving the sliding-carriage or precision-wing work after the owner has reset the program around the miter saw

@@ -2,100 +2,106 @@
 
 ## Status
 
-This package is concept-valid, not shop-ready. The stripped-saw survey data is now incorporated, but actual saw fit, wing field proof, and right-bay packaging mockup are still hard gates.
+This branch resets the active product intent. The layout JSON and render contract still describe the older wing-based concept and are intentionally left for the next stacked PR. Use this document as the active program target.
 
 ## Mission
 
-Build a garage bench that does five jobs without becoming a gimmick:
+Build a garage bench that does six real jobs without turning into a mechanism project:
 
-1. Integrate the `SKIL SPT99-11` as the primary tool.
-2. Provide real infeed, outfeed, and side support for ripping and miter-gauge work.
-3. Package router-table, dust-collection, and power access in a serviceable way.
-4. Support sheet-goods handling and track-saw use without a giant hinged-mechanism project.
-5. Still behave like useful shop furniture, including storage and assembly support.
+1. Integrate the `SKIL SPT99-11` as the primary ripping tool.
+2. Provide honest right-hand and outfeed support for the table saw.
+3. Package a router table into the right-hand support field.
+4. Add a centered flip-top miter station that becomes the primary crosscut tool.
+5. Package dust collection, hose switching, and split power access in a serviceable way.
+6. Still behave like useful shop furniture with storage and enough top area to support a `4 x 8` sheet.
+
+## Active Reset
+
+The prior sliding-carriage and precision-wing work is now superseded. The new active direction is:
+
+- fixed `90 x 48 x 36 in` bench
+- no expandable wings
+- no requirement to continue table-saw miter slots through the bench
+- primary crosscut workflow moves to the miter saw
+- table saw remains responsible for ripping, dado-style support work, and general bench integration
 
 ## Design Freeze
 
 - Overall footprint: `90 in x 48 in x 36 in`
 - Parked mode: long side on the `~90 in` wall
 - Deployed mode: roll straight out from the wall; rotation is optional, not required
-- Saw placement: blade centerline at `36 in` from the left bench edge
-- Feed direction: across the `48 in` depth
-- Crosscut approach: conventional left-slot workflow remains primary
+- Table-saw placement: blade centerline remains `36 in` from the left bench edge unless a later geometry proof shows an impossible collision
+- Table-saw feed direction: across the `48 in` depth
+- Miter-station placement: centered as closely as practical on the front/operator long side
 - Router placement: far-right flush insert zone
-- Dust packaging: internal `Hercules HE028` + `Oneida Dust Deputy Low-Pro` on a 5 gallon bucket + one-tool-at-a-time `2-1/2 in` manifold
+- Dust packaging: internal `Hercules HE028` + `Oneida Dust Deputy Low-Pro` on a `5 gallon` bucket + one-tool-at-a-time `2-1/2 in` manifold
 - Mobility: industrial leveling casters with optional supplemental fixed leveling feet only if the slab needs more range
 - Finish standard: tactile, durable shop finish, not furniture-grade show finish
 
 ## Why This Geometry
 
-The `90 in` length uses the available wall cleanly and avoids an awkward leftover strip that is too narrow to be useful. The `48 in` depth is the shortest depth that still lets the bench do honest work as:
+The `90 in` length is long enough to be useful for sheet handling and miter-station support while still fitting the available wall. The `48 in` depth gives real table-saw support and enough surface area that a `4 x 8` sheet is only short by about `3 in` at either end, which the owner accepts.
 
-- a saw support surface
-- a reasonable assembly surface
-- a near-full-size track-saw platform with foam and small end-support helpers
-
-The bench is deliberately not a transformer with giant permanent leaves. The fixed core does most of the work, which lowers failure risk and makes the build more realistic.
+The bench is explicitly no longer trying to earn sheet support through fold-out wings. The fixed core should do the work.
 
 ## Top Strategy
 
 ### Permanent Top
 
-- L-shaped fixed top made from:
-  - rear main panel: concept region `90 x 31.75 in`
-  - right-front infill: concept region `30.25 x 16.25 in`
-- `3/4 in` plywood substrate plus `3/4 in` MDF precision skin on the fixed top regions
+- One fixed `90 x 48 in` work surface
+- `3/4 in` plywood substrate plus `3/4 in` MDF precision skin in the main precision fields
 - Blade lowered below the surface when the bench is used for assembly or track-saw support
 - Router lift plate flush with the surrounding top
-- Front-left infeed area is a separate fold-down wing, not part of the fixed top
-- Top and wing blank sizes are locked, but the saw opening slot routing and local reliefs remain field-fit operations
+- Miter station has a stowed position that returns the front side to a flush work surface
 
-### Rail-Clearance Strategy
+### No Expandable Wings
 
-The Skilsaw rack-and-pinion rails must be allowed to extend to full width. The bench therefore keeps a pair of underside keep-clear lanes in the right-side support field instead of treating the whole right side as ordinary cabinet construction. The top surface remains continuous, but blocking, dividers, and hardware under those lanes must stay out of the rail-travel path.
+- No front precision wing
+- No side sheet-good wing
+- No sliding carriage
+- No design obligation to preserve the earlier wing-slot continuity work
 
 ### Dog Holes And Clamping
 
 Day one does **not** drill the permanent top into an MFT-style surface. Instead:
 
 - keep the fixed top clean and durable
-- keep stage-1 permanent clamp hardware out of the precision top
-- plan a removable `60 x 31.5 x 3/4 in` assembly overlay that can later receive T-track or `20 mm` holes if it proves useful
+- avoid proud permanent hardware in sheet-support zones
+- plan a removable overlay after the core bench proves itself
 
-## Saw Integration
+## Table-Saw Integration
 
 - Saw body is removed from the rolling stand.
 - Finished bench top must end flush to the saw tabletop, never above it.
-- Final saw mounting plane is `22.625 in` from the floor, based on the user's measured `13.375 in` saw-body height and a `36 in` finished working height.
-- The saw opening and mount must be field-fit from the real saw body before the final top is machined.
-- Opening target is now:
-  - `1/32 in` general support gap
-  - `1/16 in` maximum local relief only where real field-fit interference requires it outside the stock-support path
+- Final saw mounting plane stays `22.625 in` from the floor based on the measured `13.375 in` saw-body height and a `36 in` finished working height.
+- The saw opening and mount remain field-fit from the real saw body before the final top is machined.
+- The measured rail envelope remains a hard under-top constraint:
+  - minimum setting shifts the rails left of the cast top and does not protrude to the right
+  - maximum setting projects about `18-5/8 in` to the right of the cast top
+  - the rail system overhangs about `2-1/2 in` at the front and `1-5/8 in` at the rear
+  - the clear tabletop support span between rails is about `22-11/16 in`
 
-## Crosscut Support
+## Table-Saw Support Goals
 
-### Fixed Support
+### Required
 
-- Long left-side field supports the Vevor miter gauge and long fence
-- Rear support surface continues behind the saw
-- Both miter-slot centerlines are intended to continue through the rear support
+- real right-hand support through the usable fence-extension range
+- real outfeed support
+- honest clearance for the measured rail travel and dust hose sweep
 
-### Deployable Support
+### Optional Later
 
-- A fold-down front infeed wing spans the left and center modules
-- Nominal depth: `16.25 in`
-- Nominal width: `59.75 in`
-- Both miter-slot centerlines are intended to continue through this wing
-- Precision slot continuity is now an engineered mechanism with a required field-proof procedure
-- The wing remains unproven until the deploy/stow proof and sliding checks are completed on the real bench
+- deployable infeed support is allowed as a follow-on feature
+- it must not reintroduce a precision-wing or sliding-carriage dependency into the core layout
 
-### Performance Target
+## Miter Station
 
-The bench must allow stable, repeatable miter-gauge cuts on stock at least `24 in` deep, which is materially beyond the current stand setup.
-
-## Right-Side Rip Support
-
-The bench must preserve useful support to the right of the blade through the full fence-extension envelope. The fence does not require a full `47 in` solid shelf edge-to-edge, but the workpiece must stay supported during wide rips.
+- A flip-top miter station is in scope for the core package.
+- The miter station is centered on the front/operator long side as closely as practical.
+- The miter saw is now the primary crosscut tool.
+- The station must provide meaningful left and right support for stops and repeat cuts.
+- The stowed position must return a flush or slightly low work surface and must not sit proud.
+- Exact geometry remains blocked on a dedicated miter-saw survey of the owner's DeWalt `60V 12 in` cordless sliding saw.
 
 ## Router Module
 
@@ -112,17 +118,17 @@ The bench must preserve useful support to the right of the blade through the ful
 
 - Right-side service bay houses:
   - Hercules `HE028` dust extractor
-  - Oneida `Dust Deputy Low-Pro` separator on a 5 gallon bucket
+  - Oneida `Dust Deputy Low-Pro` separator on a `5 gallon` bucket
   - manifold
   - hose routing
 - Default manifold concept: Rockler `2-1/2 in` sliding manifold
-- Default branches:
+- Default fixed internal branches:
   - saw
   - router
   - flex hose for mobile tools
+- The miter saw uses the flexible hose path rather than forcing a permanent fourth internal branch.
 - Keep an open well under the saw to preserve blade-height, bevel, and hose movement.
-- The dust package is still mockup-gated. Current geometry is a packaging concept, not a proof.
-- Sequential bucket-first, extractor-second service is acceptable if the package remains affordable, removable, and honest in the docs.
+- Sequential bucket-first, extractor-second service remains acceptable if the real service path is honest and removable.
 
 ## Power Access
 
@@ -135,7 +141,7 @@ This keeps the design realistic for the saw and router loads and still allows th
 
 ## Storage
 
-Storage is subordinate to saw, dust, and service access. The planned storage mix is:
+Storage is subordinate to saw, dust, and service access. The active storage mix is:
 
 - left drawer bank for router bits, layout tools, and small accessories
 - narrow vertical bay for fences, sleds, and jigs
@@ -144,27 +150,24 @@ Storage is subordinate to saw, dust, and service access. The planned storage mix
 
 ## Assembly-Table Functionality
 
-The correct approach is overlay-first, not “cover the whole bench in slots.”
+The correct approach remains overlay-first, not “cover the whole bench in slots.”
 
 ### Stage-1 Permanent Surface
 
-- No fixed T-track in the permanent top on day one
-- Keep the permanent top smooth for stock support, outfeed, and sheet handling
+- no fixed T-track in the permanent top on day one
+- keep the permanent top smooth for stock support, outfeed, miter-station stowage, and sheet handling
 
 ### Overlay Strategy
 
-- Add a removable `60 x 31.5 x 3/4 in` assembly overlay after the core bench proves itself
-- Overlay registers to the left and rear edges and stays entirely within the rear main panel
-- Overlay stores separately when not in use
-- Overlay can start with T-tracks and later be perforated with `20 mm` holes if desired
-- Overlay needs an underside stiffener where it spans the saw opening
-- Overlay anchors must stay left of the saw opening and outside the rail keep-clear lanes
+- add a removable overlay after the core bench proves itself
+- size and anchor geometry can be finalized after the fixed-top layout contract lands
+- overlay must stay out of the saw opening, rail keep-clear lanes, and miter-station operating envelope
 
 ## Finish Expectations
 
 - All hand-contact edges eased
 - No splinters, fuzz, or sharp plywood edges in user-touch zones
-- Main top and wing sealed with satin waterborne finish
+- Main top sealed with a durable satin waterborne finish
 - MDF fully sealed before topcoat
 - Hidden structural areas cleaned up enough to avoid snagging, but not over-finished
 
@@ -172,6 +175,7 @@ The correct approach is overlay-first, not “cover the whole bench in slots.”
 
 - The package does not need a balanced-top redesign just because the bench lives in a garage.
 - Sequential bucket/extractor service is acceptable and does not, by itself, justify re-architecting the right bay.
+- The new DeWalt miter saw meaningfully reduces the need for a table-saw-centered crosscut wing.
 
 ## Field-Verification Items
 
@@ -182,4 +186,5 @@ These measurements are still mandatory before cutting the final precision top:
 - exact front and rear rail underside sweep at minimum and maximum rip
 - exact dust-elbow hose envelope at blade-height and bevel extremes
 - final Hercules package geometry at the service opening
-- final Low-Pro bucket and latch clearance with the chosen 5 gallon bucket
+- final Low-Pro bucket and latch clearance with the chosen `5 gallon` bucket
+- actual miter-saw envelope, fence height, table height, and rear slide clearance before the flip-top opening is frozen
