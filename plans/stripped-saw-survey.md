@@ -2,6 +2,8 @@
 
 Use this sheet after removing the `SKIL SPT99-11` from its rolling stand and before machining the final top opening or drilling the final mounting deck.
 
+This is the table-saw-only survey. The centered flip-top miter station now has its own contract in [miter-saw-survey.md](/Users/christopherhandel/Documents/Github/Table Saw Project/.worktrees/bench-fixed-top-layout/plans/miter-saw-survey.md).
+
 ## Purpose
 
 This survey closes the precision-cut gate. The core front-to-back datum is now known, but this checklist still protects the final opening, rail-clearance, and mounting-deck drilling steps from guesswork.
@@ -12,6 +14,7 @@ This survey directly unlocks:
 - final mounting-deck drilling
 - final saw dust-branch routing
 - final under-top rail keep-clear geometry
+- the table-saw side of the fixed-top layout contract
 
 ## Hard Stop
 

@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.2",
+  "schema_version": "1.3",
   "units": "in",
   "coordinate_system": {
     "origin": "front-left corner of finished bench footprint",
@@ -7,12 +7,12 @@
     "y_axis": "front/infeed to rear/outfeed across the 48 in depth"
   },
   "status": {
-    "package_state": "concept_valid_only",
+    "package_state": "program_reset_concept_valid_only",
     "shop_ready": false,
     "hard_gates": [
       "right_bay_mockup",
       "actual_saw_fit",
-      "precision_wing_field_proof"
+      "miter_saw_survey"
     ]
   },
   "bench": {
@@ -21,7 +21,7 @@
       "depth": 48.0,
       "height": 36.0
     },
-    "estimated_loaded_weight_lbs": 980,
+    "estimated_loaded_weight_lbs": 1040,
     "mobility_system": {
       "selected_product": "Foot Master GD-60F plate-mount leveling caster",
       "caster_count": 4,
@@ -37,42 +37,45 @@
         "front": 3.0,
         "rear": 3.0
       },
-      "geometry_status": "Top and wing blank sizes are now locked. Actual saw opening slot routing and local reliefs still remain field-fit operations after real saw fit and wing proof.",
-      "fixed_regions": [
+      "geometry_status": "The top is now a fixed 90 x 48 surface. The only intentional interruptions are the table-saw fit opening, the router plate recess, and the centered miter-station flip-top bay.",
+      "fixed_surface": {
+        "x": 0.0,
+        "y": 0.0,
+        "length": 90.0,
+        "depth": 48.0
+      },
+      "openings": [
         {
-          "name": "rear_main",
-          "x": 0.0,
-          "y": 16.25,
-          "length": 90.0,
-          "depth": 31.75
-        },
-        {
-          "name": "right_front_infill",
-          "x": 59.75,
+          "name": "miter_station_opening",
+          "x": 34.0,
           "y": 0.0,
-          "length": 30.25,
-          "depth": 16.25
-        }
-      ],
-      "layers": [
-        {
-          "name": "substrate",
-          "material": "3/4 cabinet plywood",
-          "thickness": 0.75
+          "length": 22.0,
+          "depth": 12.0,
+          "type": "operable_flip_top_bay"
         },
         {
-          "name": "precision_skin",
-          "material": "3/4 MDF",
-          "thickness": 0.75
+          "name": "saw_opening",
+          "x": 22.96875,
+          "y": 16.21875,
+          "length": 27.625,
+          "depth": 22.1875,
+          "type": "field_fit_table_saw"
+        },
+        {
+          "name": "router_plate_opening",
+          "x": 73.625,
+          "y": 19.375,
+          "length": 11.75,
+          "depth": 9.25,
+          "type": "router_lift_recess"
         }
       ],
-      "seams": [
+      "operable_panels": [
         {
-          "name": "right_front_infill_to_rear_main",
-          "x": 59.75,
-          "y": 16.25,
-          "length": 30.25,
-          "notes": "Support with seam cleats and the right-module front stretcher before machining precision features."
+          "name": "miter_station_cover",
+          "covers_opening": "miter_station_opening",
+          "stowed_surface_delta_max_high": 0.0,
+          "stowed_surface_delta_max_low": -0.005
         }
       ]
     },
@@ -116,7 +119,7 @@
           "length": 30.5,
           "depth": 42.0,
           "height": 31.0,
-          "notes": "Open frame for saw cradle dust elbow movement and wrench access"
+          "notes": "Open frame for saw cradle dust elbow movement, wrench access, and the centered front miter-station bay."
         },
         {
           "name": "right_service",
@@ -192,12 +195,12 @@
   },
   "saw": {
     "model": "SKIL SPT99-11",
-    "geometry_status": "Front-to-back saw geometry now uses the measured stripped blade y datum. Final mount-hole drilling still remains field-fit on the adjustable mounting deck.",
+    "geometry_status": "Table-saw geometry stays driven by the stripped-saw survey. Final mount-hole drilling remains field-fit on the adjustable mounting deck.",
     "blade_center": {
       "x": 36.0,
       "y": 28.9375,
       "source": "derived",
-      "precision_cut_gate": "the numerical survey gate can open once the required stripped-saw values are recorded, but actual saw fit remains a separate field gate before machining"
+      "precision_cut_gate": "The numerical survey gate can open once the required stripped-saw values are recorded, but actual saw fit remains a separate field gate before machining."
     },
     "cast_top": {
       "x": 23.0,
@@ -238,7 +241,7 @@
       "locking_order": [
         "snug ledgers and deck supports with jack screws loose",
         "bring the mounting deck and saw to final height with jack screws",
-        "verify top flushness at all four cast-top corners and both miter-slot transitions",
+        "verify top flushness at all four cast-top corners and both saw-top support transitions",
         "lock the deck supports",
         "recheck flushness",
         "tighten jack-screw jam nuts"
@@ -302,129 +305,108 @@
         "center_x": 29.625,
         "slot_width": 0.75,
         "slot_depth": 0.375,
-        "segments": [
-          {
-            "surface": "front_wing",
-            "y_start": 0.0,
-            "y_end": 16.25
-          },
-          {
-            "surface": "saw_top",
-            "y_start": 16.25,
-            "y_end": 38.375
-          },
-          {
-            "surface": "fixed_rear_support",
-            "y_start": 38.375,
-            "y_end": 48.0
-          }
-        ]
+        "reference_y_start": 16.25,
+        "reference_y_end": 38.375,
+        "reference_only": true
       },
       {
         "name": "right_slot",
         "center_x": 41.25,
         "slot_width": 0.75,
         "slot_depth": 0.375,
-        "segments": [
-          {
-            "surface": "front_wing",
-            "y_start": 0.0,
-            "y_end": 16.25
-          },
-          {
-            "surface": "saw_top",
-            "y_start": 16.25,
-            "y_end": 38.375
-          },
-          {
-            "surface": "fixed_rear_support",
-            "y_start": 38.375,
-            "y_end": 48.0
-          }
-        ]
+        "reference_y_start": 16.25,
+        "reference_y_end": 38.375,
+        "reference_only": true
       }
     ]
   },
-  "front_wing": {
-    "x": 0.0,
-    "y": 0.0,
-    "length": 59.75,
-    "depth": 16.25,
-    "thickness": 1.5,
-    "material_stack": [
-      "3/4 plywood substrate",
-      "3/4 plywood skin"
-    ],
-    "deployed": true,
-    "precision_status": "engineering package defined; field proof still required",
-    "support": {
-      "type": "hinge for motion only",
-      "leg_count": 2,
-      "hinge_length": 72.0,
-      "notes": "The piano hinge carries motion and gross support. It is not the final-position datum."
+  "miter_station": {
+    "center_x": 45.0,
+    "centerline_tolerance_from_bench_midpoint": 2.0,
+    "opening": {
+      "x": 34.0,
+      "y": 0.0,
+      "length": 22.0,
+      "depth": 12.0
     },
-    "registration": {
-      "datum_strategy": "bench_defined",
-      "alignment_pins": {
-        "count": 2,
-        "type": "tapered steel locating pins into steel or bronze bushings",
-        "centers_x_from_left": [
-          6.0,
-          53.75
-        ],
-        "setback_from_seam": 1.25
+    "under_top_mechanism_zone": {
+      "x": 34.0,
+      "y": 0.0,
+      "length": 22.0,
+      "depth": 12.0,
+      "notes": "The flip-top mechanism must stay ahead of the front rail keep-clear lane and left of the right-side service module."
+    },
+    "flip_top": {
+      "type": "centered front-side flip-top bay",
+      "pivot_edge": "rear_edge",
+      "stowed_surface_delta_max_high": 0.0,
+      "stowed_surface_delta_max_low": -0.005,
+      "support_table_height_target": 36.0,
+      "notes": "The stowed cover returns the bench to a flush work surface. Exact hinge, latch, and deployed-height geometry remain survey-gated."
+    },
+    "stowed_surface": {
+      "x": 34.0,
+      "y": 0.0,
+      "length": 22.0,
+      "depth": 12.0
+    },
+    "deployed_surface": {
+      "x": 34.0,
+      "y": 0.0,
+      "length": 22.0,
+      "depth": 12.0
+    },
+    "deployed_envelope": {
+      "x": 31.0,
+      "y": -18.0,
+      "length": 28.0,
+      "depth": 30.0,
+      "notes": "Concept-only above-top envelope for the saw and handle while deployed."
+    },
+    "support_surfaces": {
+      "left": {
+        "x": 0.0,
+        "y": 0.0,
+        "length": 34.0,
+        "depth": 12.0
       },
-      "seam_stop_screws": {
-        "count": 2,
-        "purpose": "set wing flushness at the seam before latching",
-        "centers_x_from_left": [
-          18.0,
-          41.75
-        ],
-        "setback_from_seam": 1.0
-      },
-      "draw_latches": {
-        "count": 2,
-        "purpose": "pull the wing hard into the registered position after pin engagement",
-        "centers_x_from_left": [
-          12.0,
-          47.75
-        ],
-        "setback_from_seam": 2.0
-      },
-      "hinge_line_transition": {
-        "slot_end_treatment": "chamfered slot ends with eased aluminum-track edges",
-        "step_policy": "never high at the seam"
+      "right": {
+        "x": 56.0,
+        "y": 0.0,
+        "length": 34.0,
+        "depth": 12.0
       }
     },
-    "primary_support": {
-      "type": "bench-mounted locking side brackets",
-      "count": 2,
-      "bracket_centers_x_from_left": [
-        6.0,
-        53.75
-      ],
-      "leg_centerlines_x_from_left": [
-        6.0,
-        53.75
-      ],
-      "leg_top_mount_height_below_wing": 3.0,
-      "notes": "These carry the deployed wing height and stiffness. Floor contact is not the primary precision datum."
+    "fence_line": {
+      "y": 6.0,
+      "left_support_length": 34.0,
+      "right_support_length": 34.0,
+      "notes": "Support spans are measured by the available left and right stop-support surfaces adjacent to the saw."
     },
-    "secondary_support": {
-      "type": "center load-sharing foot",
-      "count": 1,
-      "centerline_x_from_left": 29.875,
-      "setback_from_front": 2.5,
-      "notes": "This foot shares load after the wing is registered and latched. It is trimmed or adjusted to just kiss the floor."
+    "dust_strategy": {
+      "connection": "flex_hose",
+      "dock_zone": "front_right_service_zone",
+      "notes": "The miter saw uses the flexible hose path rather than forcing a permanent fourth internal branch."
     },
-    "acceptance_tolerance": {
-      "seam_flush_max_high": 0.0,
-      "seam_flush_max_low": -0.005,
-      "slot_lateral_mismatch_max": 0.005,
-      "transition_gap_max": 0.01,
-      "proof_cycles": 10
-    }
+    "service_access": {
+      "front_service_clearance": 24.0,
+      "rear_slide_clearance_row_id": "miter_saw_required_rear_slide_clearance",
+      "battery_swap_policy": "top access with the station deployed"
+    },
+    "survey_required": [
+      "miter_saw_mount_width",
+      "miter_saw_mount_depth",
+      "miter_saw_stowed_width",
+      "miter_saw_stowed_depth",
+      "miter_saw_stowed_height",
+      "miter_saw_required_rear_slide_clearance",
+      "miter_saw_table_height",
+      "miter_saw_fence_height",
+      "miter_saw_dust_port_center_x",
+      "miter_saw_dust_port_center_y",
+      "miter_saw_dust_port_od",
+      "miter_saw_weight"
+    ]
   },
   "router_module": {
     "zone": {
@@ -448,14 +430,14 @@
       "y": 9.0,
       "length": 16.5,
       "depth": 5.0,
-      "notes": "Reserved for removable fence hardware and dust pickup"
+      "notes": "Reserved for removable fence hardware and dust pickup."
     },
     "access_hatch": {
       "face": "right end panel",
       "width": 12.0,
       "height": 10.0,
       "bottom_from_floor": 15.0,
-      "notes": "Provides reach to the router collet lift hardware and cabinet dust branch."
+      "notes": "Provides reach to the router collet, lift hardware, and cabinet dust branch."
     }
   },
   "dust_collection": {
@@ -575,7 +557,7 @@
     "overlay": {
       "size": {
         "length": 60.0,
-        "depth": 31.5,
+        "depth": 36.0,
         "thickness": 0.75
       },
       "registration": {
@@ -586,7 +568,7 @@
         {
           "name": "front_left",
           "x": 6.0,
-          "y": 20.0
+          "y": 18.0
         },
         {
           "name": "rear_left",
@@ -596,7 +578,7 @@
         {
           "name": "front_right",
           "x": 54.0,
-          "y": 20.0
+          "y": 18.0
         },
         {
           "name": "rear_right",
@@ -607,48 +589,20 @@
       "underside_stiffener": {
         "length": 36.0,
         "depth": 2.0,
-        "location": "Runs under the overlay where it spans the saw opening."
+        "location": "Runs under the overlay where it spans the saw opening or other unsupported cutouts."
       },
-      "support_policy": "Underside stiffener is mandatory over the saw opening. The lowered saw top may only act as incidental backup and never as the primary clamp-load support."
-    },
-    "future_overlay": {
-      "size": {
-        "length": 60.0,
-        "depth": 31.5,
-        "thickness": 0.75
-      },
-      "registration": {
-        "left_edge": true,
-        "rear_edge": true
-      },
-      "anchors": [
-        {
-          "name": "front_left",
-          "x": 6.0,
-          "y": 20.0
-        },
-        {
-          "name": "rear_left",
-          "x": 6.0,
-          "y": 42.0
-        },
-        {
-          "name": "front_right",
-          "x": 54.0,
-          "y": 20.0
-        },
-        {
-          "name": "rear_right",
-          "x": 54.0,
-          "y": 42.0
-        }
-      ],
-      "underside_stiffener": {
-        "length": 36.0,
-        "depth": 2.0,
-        "location": "Runs under the overlay where it spans the saw opening."
-      },
-      "support_policy": "Underside stiffener is mandatory over the saw opening. The lowered saw top may only act as incidental backup and never as the primary clamp-load support."
+      "support_policy": "Underside stiffener is mandatory over unsupported openings. The lowered saw top and stowed miter station may only act as incidental backup and never as the primary clamp-load support."
     }
+  },
+  "table_saw_infeed_support": {
+    "status": "concept_only",
+    "type": "deployable_front_support",
+    "deployed_footprint": {
+      "x": 22.0,
+      "y": -16.0,
+      "length": 28.0,
+      "depth": 16.0
+    },
+    "notes": "Optional later package. It must not drive the core fixed-top geometry or reintroduce a precision-wing dependency."
   }
 }
