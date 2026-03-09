@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1120" height="760" viewBox="0 0 1120 760">
   <rect width="1120" height="760" fill="#ffffff"/>
   <text x="40" y="42" font-family="Helvetica, Arial, sans-serif" font-size="24">Top Dimensioned View</text>
-  <text x="40" y="70" font-family="Helvetica, Arial, sans-serif" font-size="15">Fixed top only. No expandable wings. All openings stay field-fit until the real saw and miter-saw surveys are complete.</text>
+  <text x="40" y="70" font-family="Helvetica, Arial, sans-serif" font-size="15">Fixed top only. The front/rear seam is intentionally moved forward so the saw-opening front shoulder stays in the rear panel.</text>
 
   <rect x="80" y="110" width="900" height="480" fill="#faf7f2" stroke="#111" stroke-width="2"/>
 
-  <rect x="80" y="110" width="597.5" height="162.5" fill="#d8f0d2" stroke="#4b7d3a" stroke-width="2" fill-opacity="0.8"/>
-  <rect x="677.5" y="110" width="302.5" height="162.5" fill="#d7ecff" stroke="#2f6ea3" stroke-width="2" fill-opacity="0.8"/>
-  <rect x="80" y="272.5" width="900" height="317.5" fill="#efe8d8" stroke="#7e6f5b" stroke-width="2" fill-opacity="0.8"/>
+  <rect x="80" y="110" width="597.5" height="150" fill="#d8f0d2" stroke="#4b7d3a" stroke-width="2" fill-opacity="0.8"/>
+  <rect x="677.5" y="110" width="302.5" height="150" fill="#d7ecff" stroke="#2f6ea3" stroke-width="2" fill-opacity="0.8"/>
+  <rect x="80" y="260" width="900" height="330" fill="#efe8d8" stroke="#7e6f5b" stroke-width="2" fill-opacity="0.8"/>
 
   <rect x="420" y="110" width="220" height="120" fill="#fff4c8" stroke="#b48300" stroke-width="2"/>
   <rect x="309.6875" y="272.1875" width="276.25" height="221.875" fill="none" stroke="#b00020" stroke-width="2" stroke-dasharray="8 6"/>
@@ -15,13 +15,14 @@
   <rect x="816.25" y="303.75" width="117.5" height="92.5" fill="#d4dcff" stroke="#3047aa" stroke-width="2" fill-opacity="0.75"/>
   <rect x="140" y="230" width="600" height="360" fill="none" stroke="#2a6f97" stroke-width="2" stroke-dasharray="5 5"/>
 
-  <text x="115" y="195" font-family="Helvetica, Arial, sans-serif" font-size="18">TOP-01B / TOP-02B front-left panel</text>
-  <text x="712" y="195" font-family="Helvetica, Arial, sans-serif" font-size="18">TOP-01C / TOP-02C front-right panel</text>
-  <text x="120" y="450" font-family="Helvetica, Arial, sans-serif" font-size="18">TOP-01A / TOP-02A rear panel</text>
+  <text x="115" y="188" font-family="Helvetica, Arial, sans-serif" font-size="18">TOP-01B / TOP-02B front-left panel</text>
+  <text x="712" y="188" font-family="Helvetica, Arial, sans-serif" font-size="18">TOP-01C / TOP-02C front-right panel</text>
+  <text x="120" y="455" font-family="Helvetica, Arial, sans-serif" font-size="18">TOP-01A / TOP-02A rear panel</text>
   <text x="446" y="176" font-family="Helvetica, Arial, sans-serif" font-size="18">Miter-station opening</text>
   <text x="470" y="198" font-family="Helvetica, Arial, sans-serif" font-size="16">22 x 12 centered at x=45</text>
   <text x="600" y="268" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#b00020">Saw opening 27.625 x 22.1875</text>
   <text x="600" y="286" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#b00020">Origin x=22.96875 y=16.21875</text>
+  <text x="600" y="304" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#7e6f5b">Opening front shoulder now sits 1.21875 in behind the seam</text>
   <text x="620" y="240" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#ff8800">Rail envelope x=16.0 to 69.1875</text>
   <text x="620" y="258" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#ff8800">Keep underside structure out of this lane</text>
   <text x="826" y="355" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#3047aa">Router plate</text>
@@ -52,4 +53,6 @@
   <text x="530" y="90" font-family="Helvetica, Arial, sans-serif" font-size="14" text-anchor="middle">22 in station bay</text>
   <text x="810" y="90" font-family="Helvetica, Arial, sans-serif" font-size="14" text-anchor="middle">34 in right support span</text>
   <text x="595" y="607" font-family="Helvetica, Arial, sans-serif" font-size="14">Blade centerline x=36 in from left edge</text>
+  <line x1="80" y1="260" x2="980" y2="260" stroke="#7e6f5b" stroke-width="2" stroke-dasharray="6 6"/>
+  <text x="830" y="252" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#7e6f5b">Panel split y=15.0 in</text>
 </svg>

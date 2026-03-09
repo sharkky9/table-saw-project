@@ -261,6 +261,23 @@ def main() -> int:
                 errors.append(
                     f"{part_id} final dimensions {final_l} x {final_w} do not match layout contract {expected_l} x {expected_w}"
                 )
+        support_length_checks = {
+            "MS-05": layout["miter_station"]["support_surfaces"]["left"]["length"],
+            "MS-06": layout["miter_station"]["support_surfaces"]["right"]["length"],
+        }
+        for part_id, expected_length in support_length_checks.items():
+            row = by_part.get(part_id)
+            if row is None:
+                continue
+            try:
+                final_l = float(row["final_l"])
+            except ValueError:
+                errors.append(f"{part_id} is missing numeric final length for layout cross-check")
+                continue
+            if abs(final_l - expected_length) > 0.05:
+                errors.append(
+                    f"{part_id} final length {final_l} does not match miter-station support length {expected_length}"
+                )
     else:
         notes.append("layout.json not found; skipped cut-list-to-layout cross-check")
 

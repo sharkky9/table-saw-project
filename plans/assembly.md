@@ -165,7 +165,8 @@ Steps:
 1. Cut the three fixed-top substrate blanks and three skin blanks to their locked sizes.
 2. Cut the router ledgers, seam cleats, stiffeners, and overlay backing pads to size.
 3. Label every blank immediately.
-4. Do not machine the saw opening, miter-station opening, router recess, or underside rail reliefs yet.
+4. Keep the front/rear top seam at the intentional `y = 15 in` split so the saw-opening front shoulder lives fully in the rear panel.
+5. Do not machine the saw opening, miter-station opening, router recess, or underside rail reliefs yet.
 
 Hold point:
 
