@@ -203,6 +203,13 @@ def main() -> int:
     average_gap = sum(opening_gaps.values()) / len(opening_gaps)
     if abs(average_gap - target_gap) > 0.02:
         errors.append("saw opening average gap drifts too far from the target general gap")
+    if panelization is not None:
+        split_clearance = saw_opening["y"] - panelization["split_y"]
+        min_clearance = panelization.get("min_saw_opening_clearance_from_split", 0.0)
+        if split_clearance < min_clearance - 1e-6:
+            errors.append(
+                f"saw opening front edge is only {split_clearance:.3f} in behind the front/rear panel split; require at least {min_clearance:.3f} in"
+            )
 
     rail = saw["rail_envelope"]
     rail_right_projection_max = max(m["rail_front_projection_max"], m["rail_rear_projection_max"])

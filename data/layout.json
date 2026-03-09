@@ -45,20 +45,21 @@
         "depth": 48.0
       },
       "panelization": {
-        "split_y": 16.25,
+        "split_y": 15.0,
         "front_left": {
           "length": 59.75,
-          "depth": 16.25
+          "depth": 15.0
         },
         "front_right": {
           "length": 30.25,
-          "depth": 16.25
+          "depth": 15.0
         },
         "rear": {
           "length": 90.0,
-          "depth": 31.75
+          "depth": 33.0
         },
-        "notes": "This encodes the current top-panel split so cut-list validation and seam-clearance checks do not have to infer it from unrelated saw geometry."
+        "min_saw_opening_clearance_from_split": 0.75,
+        "notes": "The front and rear panel seam is intentionally held ahead of the saw-opening front shoulder so that edge lives fully in the rear panel and can be backed by TOP-04 instead of landing on the seam."
       },
       "openings": [
         {

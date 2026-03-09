@@ -28,12 +28,12 @@ RM-07,right_module,plywood,0.75,1,12.5,10.5,12,10,cut_now,Right-side router acce
 RM-08,right_module,plywood,0.75,1,24.5,19.5,24,19,after_mockup,Hercules fixed low deck or skid base field-fit to actual body stance
 RM-09,right_module,plywood,0.75,2,20.5,1.75,20,1.5,cut_now,Front service-face cleats
 RM-10,right_module,plywood,0.75,1,12.5,18.5,12,18,after_service_layout,Independent removable control subpanel for manifold aux switch and flex-hose dock
-TOP-01A,top,plywood,0.75,1,90.5,32.5,90,31.75,cut_now,Rear fixed-top substrate panel
-TOP-01B,top,plywood,0.75,1,60.25,17.0,59.75,16.25,cut_now,Front-left fixed-top substrate panel
-TOP-01C,top,plywood,0.75,1,31.0,17.0,30.25,16.25,cut_now,Front-right fixed-top substrate panel
-TOP-02A,top,MDF,0.75,1,90.5,32.5,90,31.75,cut_now,Rear fixed-top skin panel; do not machine openings yet
-TOP-02B,top,MDF,0.75,1,60.25,17.0,59.75,16.25,cut_now,Front-left fixed-top skin panel; do not machine openings yet
-TOP-02C,top,MDF,0.75,1,31.0,17.0,30.25,16.25,cut_now,Front-right fixed-top skin panel; do not machine openings yet
+TOP-01A,top,plywood,0.75,1,90.5,33.75,90,33,cut_now,Rear fixed-top substrate panel; intentionally carries the saw-opening front shoulder clear of the front-panel seam
+TOP-01B,top,plywood,0.75,1,60.25,15.75,59.75,15,cut_now,Front-left fixed-top substrate panel
+TOP-01C,top,plywood,0.75,1,31.0,15.75,30.25,15,cut_now,Front-right fixed-top substrate panel
+TOP-02A,top,MDF,0.75,1,90.5,33.75,90,33,cut_now,Rear fixed-top skin panel; do not machine openings yet
+TOP-02B,top,MDF,0.75,1,60.25,15.75,59.75,15,cut_now,Front-left fixed-top skin panel; do not machine openings yet
+TOP-02C,top,MDF,0.75,1,31.0,15.75,30.25,15,cut_now,Front-right fixed-top skin panel; do not machine openings yet
 TOP-03,top,plywood,0.75,4,15,2.5,14,2,cut_now,Router plate ledgers and local blocking
 TOP-04,top,plywood,0.75,4,20.5,4.5,20,4,cut_now,Seam cleats under front-panel joints and miter-station bay edges
 TOP-05,top,plywood,0.75,2,42,3.5,41.25,3,cut_now,Under-top stiffeners that stay outside the rail keep-clear lanes
