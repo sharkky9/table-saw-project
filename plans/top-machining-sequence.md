@@ -8,6 +8,8 @@ Do not start this sequence until:
 - the saw cradle is tuned flush
 - the wing has passed its proof procedure
 
+Cutting the top and wing blanks to size is allowed before this gate. This gate only controls the precision machining steps below.
+
 ## Tools And Bits
 
 - straight bit sized for your guide setup
@@ -17,13 +19,14 @@ Do not start this sequence until:
 
 ## Sequence
 
-1. Mark the final saw opening from the actual saw fit.
+1. Mark the final saw opening from the actual saw fit on the mounting deck and surrounding top.
 2. Cut the saw opening first.
 3. Cut the router lift recess from the top face.
 4. Cut the router through-opening.
 5. Machine rear support miter-track recesses.
 6. Machine wing miter-track recesses only after the wing is fully registered and latched.
 7. Machine underside right-side reliefs that are required by the real rail sweep.
+8. Drill the final saw mounting-deck bolt pattern from the actual saw only after the opening and flush fit are proven.
 
 ## Acceptance Checks
 
@@ -33,3 +36,4 @@ Do not start this sequence until:
 - rear-support tracks align to the saw slots
 - wing tracks align only after the full deployed mechanism is engaged
 - no cut intrudes into the rail keep-clear lanes
+- mounting-deck holes match the real saw and are not layout-only guesses

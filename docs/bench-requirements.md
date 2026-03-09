@@ -2,7 +2,7 @@
 
 ## Status
 
-This package is concept-valid, not shop-ready. The stripped-saw survey, precision-wing detail, and right-bay packaging mockup are still hard gates.
+This package is concept-valid, not shop-ready. The stripped-saw survey data is now incorporated, but actual saw fit, wing field proof, and right-bay packaging mockup are still hard gates.
 
 ## Mission
 
@@ -48,7 +48,7 @@ The bench is deliberately not a transformer with giant permanent leaves. The fix
 - Blade lowered below the surface when the bench is used for assembly or track-saw support
 - Router lift plate flush with the surrounding top
 - Front-left infeed area is a separate fold-down wing, not part of the fixed top
-- Survey-driven top dimensions are rough-only until the stripped-saw gate is open
+- Top and wing blank sizes are locked, but the saw opening slot routing and local reliefs remain field-fit operations
 
 ### Rail-Clearance Strategy
 
@@ -86,8 +86,8 @@ Day one does **not** drill the permanent top into an MFT-style surface. Instead:
 - Nominal depth: `16.25 in`
 - Nominal width: `59.75 in`
 - Both miter-slot centerlines are intended to continue through this wing
-- Precision slot continuity is a design goal, not a proven stage-1 claim yet
-- The current package only preserves the geometry and registration requirement; the repeatable precision mechanism is not considered engineered until the dedicated wing package is complete
+- Precision slot continuity is now an engineered mechanism with a required field-proof procedure
+- The wing remains unproven until the deploy/stow proof and sliding checks are completed on the real bench
 
 ### Performance Target
 
@@ -178,8 +178,8 @@ The correct approach is overlay-first, not “cover the whole bench in slots.”
 These measurements are still mandatory before cutting the final precision top:
 
 - actual stripped-saw blade front-to-back datum
-- actual saw mounting points, foot spacing, and underside protrusions
-- exact front and rear rail underside sweep at minimum, mid, and maximum rip
+- actual saw fit on the adjustable mounting deck before drilling final bolt holes
+- exact front and rear rail underside sweep at minimum and maximum rip
 - exact dust-elbow hose envelope at blade-height and bevel extremes
 - final Hercules package geometry at the service opening
 - final Low-Pro bucket and latch clearance with the chosen 5 gallon bucket

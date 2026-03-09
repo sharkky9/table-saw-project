@@ -21,9 +21,9 @@
 ## Saw Cradle
 
 - ledgers screwed and glued to carcass sides
-- slotted crossrails bolted
+- adjustable mounting deck supported by `CM-05` carriers and jack screws
 - jack screws provide fine adjustment
-- saw-mount bolts drilled only after the survey and fit-up
+- saw-mount bolts drilled only after the actual saw is flush-fit on the deck
 
 ## Wing
 

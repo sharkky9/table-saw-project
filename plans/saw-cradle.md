@@ -7,9 +7,9 @@ The cradle sets the stripped saw flush to the surrounding top and keeps that set
 ## Architecture
 
 - fixed side ledgers establish the broad mount-plane zone
-- slotted crossrails provide coarse front-to-back and side-to-side adjustment
-- four `3/8-16` jack screws provide fine flush tuning
-- saw bolts lock only after the jack screws have set the final height
+- a full plywood mounting deck carries the stripped saw inside that zone
+- `2x4` support members under the deck carry four `3/8-16` jack screws for fine flush tuning
+- the deck is drilled only after the saw is physically set flush in the bench
 
 ## Hardware Package
 
@@ -20,16 +20,15 @@ The cradle sets the stripped saw flush to the surrounding top and keeps that set
 ## Adjustment Sequence
 
 1. Install the side ledgers at nominal mount-plane height.
-2. Install the slotted crossrails loosely.
-3. Install the jack screws so each crossrail has fine height control.
-4. Set the stripped saw on the cradle.
-5. Bring the saw roughly into position with the slotted rails.
-6. Tune height with the jack screws until the cast top is flush or slightly low.
-7. Check all four cast-top corners plus both miter-slot transitions.
-8. Tighten the crossrail bolts.
-9. Recheck flushness.
-10. Tighten the jack-screw jam nuts.
-11. Drill and install final saw-mount hardware only after the setting is proven.
+2. Install the deck supports and jack screws loosely enough to tune the deck.
+3. Set the mounting deck on those supports.
+4. Set the stripped saw on the deck.
+5. Tune height with the jack screws until the cast top is flush or slightly low.
+6. Check all four cast-top corners plus both miter-slot transitions.
+7. Lock the deck supports.
+8. Recheck flushness.
+9. Tighten the jack-screw jam nuts.
+10. Drill and install final saw-mount hardware only after the setting is proven.
 
 ## Acceptance Tolerance
 
@@ -38,10 +37,9 @@ The cradle sets the stripped saw flush to the surrounding top and keeps that set
 
 ## Measurement Inputs Required Before Final Drilling
 
-- all four foot centers
-- foot-pad footprint
-- mount-hole diameter
-- lowest underside protrusion
 - stripped blade `y` datum
+- confirmed or owner-accepted miter-slot size
+- confirmed rail sweep envelope
+- confirmed dust-port center and hose sweep
 
 If any of those are unresolved, the cradle remains rough-fit only.

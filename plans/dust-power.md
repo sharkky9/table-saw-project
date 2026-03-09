@@ -60,7 +60,8 @@ This sequence is accepted as normal. The goal is honest serviceability, not thea
 - Keep each run as short as possible.
 - Use smooth-radius bends and not crushed loops.
 - Keep at least `1 in` between the Low-Pro bucket package and the Hercules package.
-- The saw branch must be rechecked after the stripped-saw survey because the real dust-port location and hose sweep are still field measurements.
+- The saw branch must respect the recorded stripped-saw dust-port geometry.
+- Current hose sweep is about `8.5 in` behind the cast top; design around `10 in` rearward allowance so future cuffs or hose changes do not instantly consume the margin.
 
 ## Fittings Matrix
 

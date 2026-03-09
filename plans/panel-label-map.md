@@ -21,7 +21,8 @@ Label every part immediately after cutting with its `part_id` and reference edge
 | `CM-02` | center top stretcher | front long edge | `front-elevation.svg` |
 | `CM-03` | center lower stretcher | front long edge | `front-elevation.svg` |
 | `CM-04` | saw ledger | front long edge | `saw-cradle-detail.svg` |
-| `CM-05` | cradle crossrail | front long edge | `saw-cradle-detail.svg` |
+| `CM-05` | mounting-deck support | front long edge | `saw-cradle-detail.svg` |
+| `CM-06` | adjustable saw mounting deck | front edge | `saw-cradle-detail.svg` |
 | `RM-01` | right module side | front edge | `right-module-elevation.svg` |
 | `RM-02` | right module partition | front edge | `right-module-elevation.svg` |
 | `RM-03` | dust-bay floor | front edge | `right-bay-packaging.svg` |

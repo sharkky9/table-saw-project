@@ -21,7 +21,7 @@
 - Official left rip capacity: `16-1/2 in`
 - Official tool weight: `52.9 lb`
 - User-supplied geometry is more useful than the marketing page for table integration, so the structured layout uses the user's measurements as the primary geometry source
-- The manual and product materials are still not enough to freeze the stripped-saw mount or the true front-to-back blade datum, so the package treats those as hard survey gates instead of pretending they are settled
+- The manual and product materials were not enough to freeze the stripped-saw mount or the true front-to-back blade datum, so the package required a survey. The measured blade y datum and rail envelope are now incorporated, while final deck drilling still remains field-fit from the actual saw.
 
 ### Rockler 2-1/2 in Manifold
 

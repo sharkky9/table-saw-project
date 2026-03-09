@@ -40,9 +40,9 @@ The wing fails if any seam point sits high or if any slot transition catches.
 
 ## Saw Cradle Checks
 
-- Cradle must include fixed ledgers slotted crossrails and four jack screws.
+- Cradle must include fixed ledgers an adjustable mounting deck and four jack screws.
 - Saw top flushness must land in the same `0.000 to -0.005 in` window.
-- Final mount drilling is blocked until the stripped-saw survey is complete.
+- Final mount drilling is blocked until the stripped-saw survey is complete and the saw is physically fit on the deck.
 
 ## Router Checks
 
@@ -84,16 +84,14 @@ The wing fails if any seam point sits high or if any slot transition catches.
 
 ## No-Top-Machining Gate
 
-Do not cut the final top opening miter-track recesses or saw cradle holes until all of the following are true:
+Do not cut the final top opening miter-track recesses underside rail reliefs or final saw mounting-deck holes until all of the following are true:
 
 - `stripped_blade_center_y` is measured on the bare saw
-- all four saw foot centers are measured
-- foot-pad size and mount-hole diameter are measured
-- lowest underside protrusion below the mount plane is measured
-- front and rear rail projection are measured at minimum mid and maximum rip
+- front and rear rail projection are measured at the real minimum and maximum settings
 - dust-port center is measured
 - dust hose sweep is measured at height and bevel extremes
-- actual saw miter-slot width and depth are verified
+- actual or owner-accepted saw miter-slot width and depth are recorded
+- the actual saw is set flush on the adjustable mounting deck
 - the front wing has passed its proof procedure
 
 Passing concept validation does not override this gate.
@@ -119,9 +117,12 @@ Minimum mockup outcomes:
 
 ### Must resolve before buying hardware
 
-- exact miter-slot width and depth before buying extension track
 - actual right-bay mockup before claiming the Hercules package is proven
 - exact wing registration hardware before drilling the wing and carcass faces
+
+### Already accepted by the current package
+
+- standard `3/4 x 3/8 in` miter-track assumption for the SKIL slots unless later fit testing disproves it
 
 ### Probably okay to defer
 

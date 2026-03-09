@@ -13,13 +13,13 @@ Read these first:
 
 ## Build Sequence
 
-1. Stripped-saw survey
+1. Stripped-saw survey and data update
 2. Plinth
 3. Left module
 4. Center saw chassis
 5. Right service module
 6. Join modules
-7. Rough top blanks
+7. Top and wing blanks
 8. Saw fit
 9. Wing mechanism
 10. Top machining
@@ -28,7 +28,7 @@ Read these first:
 13. Drawers and service panels
 14. Finish
 
-## 1. Stripped-Saw Survey
+## 1. Stripped-Saw Survey And Data Update
 
 - Print [stripped-saw-survey.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/stripped-saw-survey.md).
 - Record every required measurement in [data/measurements.csv](/Users/christopherhandel/Documents/GitHub/Table Saw/data/measurements.csv).
@@ -87,14 +87,15 @@ Hold point:
 
 Parts:
 
-- `CM-01` through `CM-05`
+- `CM-01` through `CM-06`
 
 Steps:
 
 1. Build the open frame from `CM-01`, `CM-02`, and `CM-03`.
 2. Install `CM-04` ledgers at the nominal mount-plane height.
-3. Leave `CM-05` rough until the stripped-saw survey is complete.
-4. Build the cradle per [saw-cradle.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/saw-cradle.md).
+3. Install `CM-05` as the deck supports and jack-screw carriers.
+4. Fit `CM-06` as the adjustable saw mounting deck.
+5. Build the cradle per [saw-cradle.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/saw-cradle.md).
 
 Hold point:
 
@@ -138,7 +139,7 @@ Hold point:
 - [ ] top edges flush across all modules
 - [ ] carcass square after joining
 
-## 7. Rough Top Blanks
+## 7. Top And Wing Blanks
 
 Parts:
 
@@ -159,24 +160,26 @@ Parts:
 
 Steps:
 
-1. Rough-cut the gated top and wing blanks oversize.
-2. Cut the ungated blocking and cleats to final size.
+1. Cut the fixed-top and wing blanks to their locked blank sizes.
+2. Cut the blocking cleats and stiffeners to final size.
 3. Label every blank immediately.
 
 Hold point:
 
-- [ ] no gated top or wing part has been cut to pretend-final size early
+- [ ] top and wing blanks are labeled and reserved for field-fit machining later
 
 ## 8. Saw Fit
 
-1. Set the saw on the cradle.
+1. Set the saw on `CM-06`.
 2. Tune the cradle until the cast top is flush or slightly low.
-3. Reconcile the real saw geometry with the modeled opening.
+3. Mark the real opening local reliefs and dust-port routing from the actual saw.
+4. Drill the final mounting-deck bolt pattern only after the flush setting is proven.
 
 Hold point:
 
 - [ ] saw top never proud
 - [ ] real opening marked from the actual saw
+- [ ] mounting deck ready for final drilling
 
 ## 9. Wing Mechanism
 

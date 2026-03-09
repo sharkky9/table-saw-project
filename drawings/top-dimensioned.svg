@@ -9,7 +9,7 @@
   <rect x="310" y="262.5" width="276.25" height="221.25" fill="#c2c7ce" stroke="#333" stroke-width="2"/>
   <rect x="309.6875" y="262.1875" width="276.25" height="221.875" fill="none" stroke="#b00020" stroke-width="2" stroke-dasharray="8 6"/>
   <rect x="297.5" y="250" width="470" height="246.25" fill="none" stroke="#ff8800" stroke-width="2" stroke-dasharray="10 8"/>
-  <rect x="780" y="180" width="185" height="320" fill="#d4dcff" stroke="#3047aa" stroke-width="2" fill-opacity="0.55"/>
+  <rect x="785" y="180" width="180" height="320" fill="#d4dcff" stroke="#3047aa" stroke-width="2" fill-opacity="0.55"/>
   <text x="804" y="340" font-family="Helvetica, Arial, sans-serif" font-size="18">Router zone</text>
   <rect x="752.5" y="137.5" width="205" height="405" fill="none" stroke="#6f4ea5" stroke-width="2" stroke-dasharray="8 6"/>
   <text x="760" y="158" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#6f4ea5">Dust bay 20.5 x 40.5</text>
@@ -35,6 +35,6 @@
   <line x1="1002" y1="100" x2="1018" y2="100" stroke="#111" stroke-width="1.5"/>
   <line x1="1002" y1="580" x2="1018" y2="580" stroke="#111" stroke-width="1.5"/>
   <text x="1040" y="345" font-family="Helvetica, Arial, sans-serif" font-size="18" text-anchor="middle" transform="rotate(90 1040 345)">48 in overall depth</text>
-  <text x="330" y="85" font-family="Helvetica, Arial, sans-serif" font-size="16">All top and wing sizes remain rough-only until survey gate is open.</text>
+  <text x="210" y="85" font-family="Helvetica, Arial, sans-serif" font-size="16">Top and wing blank sizes are locked. Opening slot routing and local reliefs stay field-fit.</text>
   <text x="640" y="602" font-family="Helvetica, Arial, sans-serif" font-size="14">Blade centerline x=36</text>
 </svg>

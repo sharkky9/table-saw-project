@@ -16,7 +16,8 @@ CM-01,center_module,plywood,0.75,2,31.5,42.5,yes,Center module sides
 CM-02,center_module,plywood,0.75,2,29.5,4.5,yes,Center module top front and rear stretchers
 CM-03,center_module,plywood,0.75,2,29.5,6.5,yes,Center module lower front and rear stretchers
 CM-04,center_module,2x4 lumber,1.5,2,29.5,3.5,yes,Saw-mount ledgers
-CM-05,center_module,2x4 lumber,1.5,2,25.0,3.5,no,Cradle crossrails stay rough until stripped-saw survey is complete
+CM-05,center_module,2x4 lumber,1.5,2,25.0,3.5,yes,Mounting-deck supports and jack-screw carriers
+CM-06,center_module,plywood,0.75,1,28.5,24.5,yes,Adjustable saw mounting deck blank; drill final bolt pattern only after flush fit
 RM-01,right_module,plywood,0.75,2,31.5,42.5,yes,Right module sides
 RM-02,right_module,plywood,0.75,1,31.5,42.5,yes,Right module partition blank before notch layout is cut
 RM-03,right_module,plywood,0.75,1,21,41,yes,Dust-bay floor
@@ -27,16 +28,16 @@ RM-07,right_module,plywood,0.75,1,12.5,10.5,yes,Right-side router access hatch
 RM-08,right_module,plywood,0.75,1,24.5,19.5,yes,Hercules low-deck or skid base blank
 RM-09,right_module,plywood,0.75,2,20.5,1.75,yes,Front service-face cleats
 RM-10,right_module,plywood,0.75,1,12.5,18.5,yes,Independent removable control subpanel for manifold aux switch and flex-hose dock
-TOP-01A,top,plywood,0.75,1,90.5,32.5,yes,Rear fixed-top substrate rough blank only until survey
-TOP-01B,top,plywood,0.75,1,31.0,17.0,yes,Right-front infill substrate rough blank only until survey
-TOP-02A,top,MDF,0.75,1,90.5,32.5,yes,Rear fixed-top skin rough blank only until survey
-TOP-02B,top,MDF,0.75,1,31.0,17.0,yes,Right-front infill skin rough blank only until survey
+TOP-01A,top,plywood,0.75,1,90.5,32.5,yes,Rear fixed-top substrate blank can be cut now; opening stays field-fit
+TOP-01B,top,plywood,0.75,1,31.0,17.0,yes,Right-front infill substrate blank can be cut now; reliefs stay field-fit
+TOP-02A,top,MDF,0.75,1,90.5,32.5,yes,Rear fixed-top skin blank can be cut now; opening and slot routing wait for fit
+TOP-02B,top,MDF,0.75,1,31.0,17.0,yes,Right-front infill skin blank can be cut now; reliefs stay field-fit
 TOP-03,top,plywood,0.75,4,15,2.5,yes,Router plate ledgers and local blocking
 TOP-04,top,plywood,0.75,2,30.75,4.5,yes,Seam cleats under the right-front infill joint
 TOP-05,top,plywood,0.75,2,42,3.5,yes,Under-top stiffeners that stay outside the rail keep-clear lanes
 TOP-06,top,plywood,0.75,4,4.5,4.5,yes,Future overlay anchor backing pads
-FW-01,front_wing,plywood,0.75,1,60.25,17.0,yes,Wing substrate rough blank only until survey
-FW-02,front_wing,plywood,0.75,1,60.25,17.0,yes,Wing skin rough blank only until survey
+FW-01,front_wing,plywood,0.75,1,60.25,17.0,yes,Wing substrate blank can be cut now; slot routing waits for proof
+FW-02,front_wing,plywood,0.75,1,60.25,17.0,yes,Wing skin blank can be cut now; slot routing waits for proof
 FW-03,front_wing,plywood,0.75,1,60.25,3.5,yes,Front wing stiffener batten
 FW-04,front_wing,2x4 lumber,1.5,2,37,1.75,yes,Side-support leg blanks rip and trim later
 FW-05,front_wing,plywood,0.75,1,8,3.5,yes,Center load-sharing foot blank

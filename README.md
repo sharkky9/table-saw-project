@@ -1,6 +1,6 @@
 # Skilsaw Garage Bench
 
-> Status: concept-valid only. This package is not shop-ready until the stripped-saw survey, right-bay dust mockup, and detail-package work are complete.
+> Status: concept-valid only. The stripped-saw survey data is now incorporated, but this package is still not shop-ready until the actual saw fit, right-bay dust mockup, and final field-proof steps are complete.
 
 This workspace contains a build package for an integrated garage bench built around a `SKIL SPT99-11` table saw. The package is organized the way a software project would be: requirements first, then structured design data, then build artifacts, then validation scripts.
 
@@ -47,7 +47,7 @@ python3 tools/validate_layout.py --require-precision-ready data/layout.json data
 
 This package still has two hard gates that must not be hand-waved away:
 
-- stripped-saw survey before the final saw opening, cradle drilling, and slot-routing geometry are frozen
+- actual saw fit before the final saw opening, mounting-deck drilling, and slot-routing geometry are frozen
 - real-world right-bay packaging mockup before the Hercules and Low-Pro package is treated as proven serviceable
 
 Current owner-approved assumptions that stay in force unless changed later:

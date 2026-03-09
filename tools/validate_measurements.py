@@ -69,23 +69,9 @@ REQUIRED_IDS = {
 
 PRECISION_GATED_IDS = {
     "stripped_blade_center_y",
-    "front_left_foot_center_x",
-    "front_left_foot_center_y",
-    "front_right_foot_center_x",
-    "front_right_foot_center_y",
-    "rear_left_foot_center_x",
-    "rear_left_foot_center_y",
-    "rear_right_foot_center_x",
-    "rear_right_foot_center_y",
-    "foot_pad_width_x",
-    "foot_pad_depth_y",
-    "mount_hole_diameter",
-    "lowest_underside_protrusion_below_mount_plane",
     "rail_front_projection_min",
-    "rail_front_projection_mid",
     "rail_front_projection_max",
     "rail_rear_projection_min",
-    "rail_rear_projection_mid",
     "rail_rear_projection_max",
     "dust_port_center_x",
     "dust_port_center_y",
@@ -93,6 +79,11 @@ PRECISION_GATED_IDS = {
     "dust_hose_sweep_depth_45deg",
     "miter_slot_width",
     "miter_slot_depth",
+}
+
+ZERO_ALLOWED_IDS = {
+    "rail_front_projection_min",
+    "rail_rear_projection_min",
 }
 
 
@@ -183,12 +174,15 @@ def main() -> int:
             continue
 
         if numeric_value is None:
-            if status in {"required_before_precision_cut", "verify_before_procurement"} and source == "provisional_field_fit":
-                notes.append(f"{row_id} is still blank pending stripped-saw survey")
+            if status in {"required_before_precision_cut", "verify_before_procurement", "reference_only", "concept_only"} and source == "provisional_field_fit":
+                if status in {"reference_only", "concept_only"}:
+                    notes.append(f"{row_id} is intentionally blank reference geometry")
+                else:
+                    notes.append(f"{row_id} is still blank pending stripped-saw survey")
                 continue
             errors.append(f"{row_id} is not numeric: {row['value']}")
             continue
-        if numeric_value <= 0:
+        if numeric_value < 0 or (numeric_value == 0 and row_id not in ZERO_ALLOWED_IDS):
             errors.append(f"{row_id} must be positive, got {numeric_value}")
         if display_fractional == "":
             errors.append(f"{row_id} is missing display_fractional")

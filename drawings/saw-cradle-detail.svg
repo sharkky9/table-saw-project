@@ -9,8 +9,8 @@
   <circle cx="280" cy="345" r="10" fill="#666"/>
   <circle cx="500" cy="345" r="10" fill="#666"/>
   <circle cx="550" cy="345" r="10" fill="#666"/>
-  <text x="280" y="275" font-family="Helvetica, Arial, sans-serif" font-size="16">Slotted crossrail, 1.5 in slot length</text>
+  <text x="250" y="275" font-family="Helvetica, Arial, sans-serif" font-size="16">3/4 in mounting deck on CM-05 support pads</text>
   <text x="650" y="300" font-family="Helvetica, Arial, sans-serif" font-size="16">4 jack screws with jam nuts tune final height</text>
   <text x="650" y="330" font-family="Helvetica, Arial, sans-serif" font-size="16">Saw top must finish flush or slightly low</text>
-  <text x="650" y="360" font-family="Helvetica, Arial, sans-serif" font-size="16">Lock order: tune, tighten bolts, recheck, jam-nut</text>
+  <text x="650" y="360" font-family="Helvetica, Arial, sans-serif" font-size="16">Drill final bolt pattern only after flush fit is proven</text>
 </svg>

@@ -10,9 +10,9 @@
     "package_state": "concept_valid_only",
     "shop_ready": false,
     "hard_gates": [
-      "stripped_saw_survey",
       "right_bay_mockup",
-      "precision_wing_detail_package"
+      "actual_saw_fit",
+      "precision_wing_field_proof"
     ]
   },
   "bench": {
@@ -37,7 +37,7 @@
         "front": 3.0,
         "rear": 3.0
       },
-      "geometry_status": "Survey-driven top and wing final dimensions remain rough-only until the stripped-saw gate opens.",
+      "geometry_status": "Top and wing blank sizes are now locked. Actual saw opening slot routing and local reliefs still remain field-fit operations after real saw fit and wing proof.",
       "fixed_regions": [
         {
           "name": "rear_main",
@@ -157,7 +157,7 @@
                 "height": 8.0,
                 "from_front": 9.5,
                 "from_top": 0.0,
-                "covers_keep_clear_lane": "front_right_rail_lane"
+                "covers_keep_clear_lane": "front_rail_lane"
               },
               {
                 "name": "rear_upper",
@@ -165,7 +165,7 @@
                 "height": 8.0,
                 "from_front": 30.0,
                 "from_top": 0.0,
-                "covers_keep_clear_lane": "rear_right_rail_lane"
+                "covers_keep_clear_lane": "rear_rail_lane"
               }
             ],
             "control_subpanel_cutouts": [
@@ -192,12 +192,12 @@
   },
   "saw": {
     "model": "SKIL SPT99-11",
-    "geometry_status": "Concept geometry only in Y until stripped-saw survey is complete.",
+    "geometry_status": "Front-to-back saw geometry now uses the measured stripped blade y datum. Final mount-hole drilling still remains field-fit on the adjustable mounting deck.",
     "blade_center": {
       "x": 36.0,
-      "y": 27.3125,
-      "source": "provisional_field_fit",
-      "precision_cut_gate": "closed until stripped_blade_center_y is measured on the bare saw"
+      "y": 28.9375,
+      "source": "derived",
+      "precision_cut_gate": "the numerical survey gate can open once the required stripped-saw values are recorded, but actual saw fit remains a separate field gate before machining"
     },
     "cast_top": {
       "x": 23.0,
@@ -206,38 +206,40 @@
       "depth": 22.125
     },
     "rail_envelope": {
-      "x": 21.75,
-      "y": 15.0,
-      "length": 47.0,
-      "depth": 24.625,
-      "notes": "Bounding box only. Real moving hardware must be surveyed at minimum mid and maximum rip before top machining."
+      "x": 16.0,
+      "y": 13.75,
+      "length": 53.1875,
+      "depth": 26.25,
+      "notes": "Measured union envelope using 7 in left projection at minimum rip, 18-5/8 in right projection at maximum rip, 2-1/2 in front overhang, and 1-5/8 in rear overhang."
     },
     "mount_plane_height": 22.625,
     "cradle": {
       "status": "design_defined_not_yet_field_fit",
       "coarse_support": {
-        "type": "fixed side ledgers plus slotted crossrails",
+        "type": "fixed side ledgers plus adjustable mounting deck",
         "ledger_material": "2x4",
         "crossrail_material": "2x4",
-        "slot_length": 1.5,
-        "notes": "Crossrails stay loose until the stripped-saw survey and first physical fit are complete."
+        "mount_deck_material": "3/4 plywood",
+        "mount_deck_length": 28.0,
+        "mount_deck_depth": 24.0,
+        "notes": "The saw sits on a full mounting deck sized to the cast-top footprint zone. Drill the final mount holes only after the saw is set flush on the deck."
       },
       "fine_adjustment": {
         "type": "jack screws",
         "count": 4,
         "thread": "3/8-16",
         "jam_nuts": true,
-        "pad_type": "steel cup or nylon tip against crossrail pads"
+        "pad_type": "steel cup or nylon tip against mounting-deck support pads"
       },
       "acceptance_tolerance": {
         "saw_top_flush_max_high": 0.0,
         "saw_top_flush_max_low": -0.005
       },
       "locking_order": [
-        "snug ledgers and crossrail bolts with jack screws loose",
-        "bring saw to final height with jack screws",
+        "snug ledgers and deck supports with jack screws loose",
+        "bring the mounting deck and saw to final height with jack screws",
         "verify top flushness at all four cast-top corners and both miter-slot transitions",
-        "tighten crossrail bolts",
+        "lock the deck supports",
         "recheck flushness",
         "tighten jack-screw jam nuts"
       ]
@@ -259,27 +261,13 @@
           "notes": "Local relief is allowed only where it helps wrench or fastener access after real saw fit-up."
         }
       ],
-      "notes": "Final opening is field-fit only after stripped-saw survey confirms foot pattern blade y datum and underside protrusions."
+      "notes": "Final opening is field-fit only after the recorded survey values are reconciled against the actual saw set flush on the mounting deck."
     },
     "stripped_saw_survey_required": [
       "stripped_blade_center_y",
-      "front_left_foot_center_x",
-      "front_left_foot_center_y",
-      "front_right_foot_center_x",
-      "front_right_foot_center_y",
-      "rear_left_foot_center_x",
-      "rear_left_foot_center_y",
-      "rear_right_foot_center_x",
-      "rear_right_foot_center_y",
-      "foot_pad_width_x",
-      "foot_pad_depth_y",
-      "mount_hole_diameter",
-      "lowest_underside_protrusion_below_mount_plane",
       "rail_front_projection_min",
-      "rail_front_projection_mid",
       "rail_front_projection_max",
       "rail_rear_projection_min",
-      "rail_rear_projection_mid",
       "rail_rear_projection_max",
       "miter_slot_width",
       "miter_slot_depth",
@@ -290,22 +278,22 @@
     ],
     "under_top_keep_clear": [
       {
-        "name": "front_right_rail_lane",
-        "x": 50.75,
-        "y": 12.5,
-        "length": 18.0,
-        "depth": 6.5,
+        "name": "front_rail_lane",
+        "x": 16.0,
+        "y": 13.75,
+        "length": 53.1875,
+        "depth": 2.5,
         "min_clearance_below": 2.25,
-        "notes": "No divider wiring chase or hose bracket may intrude into this lane above the plinth."
+        "notes": "No divider, wiring chase, hose bracket, or subpanel cleat may intrude into this lane above the plinth."
       },
       {
-        "name": "rear_right_rail_lane",
-        "x": 50.75,
-        "y": 34.0,
-        "length": 18.0,
-        "depth": 7.0,
+        "name": "rear_rail_lane",
+        "x": 16.0,
+        "y": 38.375,
+        "length": 53.1875,
+        "depth": 1.625,
         "min_clearance_below": 2.25,
-        "notes": "No divider wiring chase or hose bracket may intrude into this lane above the plinth."
+        "notes": "No divider, wiring chase, hose bracket, or subpanel cleat may intrude into this lane above the plinth."
       }
     ],
     "miter_slots": [
@@ -313,6 +301,7 @@
         "name": "left_slot",
         "center_x": 29.625,
         "slot_width": 0.75,
+        "slot_depth": 0.375,
         "segments": [
           {
             "surface": "front_wing",
@@ -335,6 +324,7 @@
         "name": "right_slot",
         "center_x": 41.25,
         "slot_width": 0.75,
+        "slot_depth": 0.375,
         "segments": [
           {
             "surface": "front_wing",
@@ -438,14 +428,14 @@
   },
   "router_module": {
     "zone": {
-      "x": 70.0,
+      "x": 70.5,
       "y": 8.0,
-      "length": 18.5,
+      "length": 18.0,
       "depth": 32.0,
       "min_clearance_from_rail_envelope": 1.25
     },
     "plate_opening": {
-      "center_x": 79.25,
+      "center_x": 79.5,
       "center_y": 24.0,
       "length": 11.75,
       "depth": 9.25,
@@ -454,9 +444,9 @@
       "router_motor": "Bosch 1617EVS"
     },
     "fence_mount_zone": {
-      "x": 70.5,
+      "x": 71.0,
       "y": 9.0,
-      "length": 17.0,
+      "length": 16.5,
       "depth": 5.0,
       "notes": "Reserved for removable fence hardware and dust pickup"
     },
