@@ -15,6 +15,7 @@ FAST-13,miter_station,Over-center latches,2,ea,Pull the stowed miter-station cov
 FAST-14,miter_station,Hard-stop screws with jam nuts,2,ea,Set the deployed tray position repeatably
 FAST-15,miter_station,Support-face track fasteners,1,set,Install stop track on the left and right support fences
 FAST-16,miter_station,Latch-block and stop-block screws,1,set,Mount FT-02 and FT-03 parts after dry fit
+FAST-26,miter_station,Shim pack or spacer pucks,1,set,Tune the real saw table height relative to the tray before drilling the final tray bolt pattern
 FAST-17,saw_cradle,3/8-16 jack screws with jam nuts,4,ea,Fine height adjustment for saw flush tuning
 FAST-18,saw_cradle,Threaded inserts or tee nuts for jack screws,4,ea,Mount FAST-17 in cradle crossrails or pads
 FAST-19,right_service,Hatch latches or magnets,2,ea,For the router access hatch only

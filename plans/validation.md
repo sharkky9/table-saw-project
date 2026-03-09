@@ -23,6 +23,7 @@ Passing concept validation means the package is internally coherent. It does not
 - The deployed station must provide meaningful left and right support for stops and repeat cuts.
 - The target support span is at least `30 in` to the left and `30 in` to the right of the saw.
 - The stowed surface must finish flush or slightly low and must never sit proud.
+- The deployed tray height must come from hard stops, while the real saw table flushness is tuned separately with shims or spacer pucks under the saw feet.
 - The miter-station mechanism must not intrude into the table-saw rail keep-clear lanes or the right-side service bay.
 
 ## Table-Saw Support Checks
@@ -53,7 +54,7 @@ Passing concept validation means the package is internally coherent. It does not
 - Cyclone bucket must be removable without unbuilding the bench.
 - Hercules extractor must be removable after the bucket is removed.
 - The internal Hercules plus Low-Pro package is still mockup-gated and not yet proven just because the rectangles fit.
-- The miter saw must be able to use the flex hose without trapping the hose path in either parked or deployed bench use.
+- The miter saw must be able to use the flex hose at the top-exit dust port without trapping the hose path in either parked or deployed bench use.
 
 ## Power Checks
 
@@ -87,7 +88,8 @@ Do not cut the final top openings, underside rail reliefs, or final saw mounting
 - dust hose sweep is measured at height and bevel extremes
 - actual or owner-accepted saw miter-slot width and depth are recorded
 - the actual saw is set flush on the adjustable mounting deck
-- the miter-station geometry is frozen from the real miter-saw survey
+- the miter-station opening is frozen from accepted public DCS781 dimensions
+- the real miter-station tray has been dry-fit, the deployed hard stops are tuned, and the real saw table lands flush after the shim stack is locked
 
 Passing concept validation does not override this gate.
 
@@ -111,7 +113,7 @@ Minimum mockup outcomes:
 ### Must resolve before buying hardware
 
 - actual right-bay mockup before claiming the Hercules package is proven
-- actual miter-saw survey before drilling the flip-top opening or fence-support faces
+- actual miter-station tray fit before drilling the final tray bolt pattern or locking the stop-track line
 
 ### Already accepted by the current package
 

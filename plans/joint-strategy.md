@@ -27,9 +27,10 @@
 
 ## Miter Station
 
-- tray and cover parts stay oversized until the miter-saw survey is complete
+- tray and cover parts can be cut from the public DCS781 envelope and layout opening without a bespoke prebuild survey
 - pivot hardware is mechanical and adjustable
 - deployed hard stops establish repeatable height
+- final saw-surface flushness comes from a separate shim or spacer stack under the real saw feet
 - stowed latches only pull the cover flush; they are not the deployed datum
 
 ## Service Panels And Hatches

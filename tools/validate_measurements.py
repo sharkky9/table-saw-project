@@ -107,18 +107,6 @@ PRECISION_GATED_IDS = {
     "dust_hose_sweep_depth_45deg",
     "miter_slot_width",
     "miter_slot_depth",
-    "miter_saw_mount_width",
-    "miter_saw_mount_depth",
-    "miter_saw_stowed_width",
-    "miter_saw_stowed_depth",
-    "miter_saw_stowed_height",
-    "miter_saw_required_rear_slide_clearance",
-    "miter_saw_table_height",
-    "miter_saw_fence_height",
-    "miter_saw_dust_port_center_x",
-    "miter_saw_dust_port_center_y",
-    "miter_saw_dust_port_od",
-    "miter_saw_weight",
 }
 
 ZERO_ALLOWED_IDS = {
@@ -132,7 +120,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--require-precision-ready",
         action="store_true",
-        help="Fail if any stripped-saw or miter-saw survey gate remains unresolved.",
+        help="Fail if any stripped-saw precision-cut gate remains unresolved. Miter-station fit remains a manual gate.",
     )
     parser.add_argument("measurements")
     return parser.parse_args()

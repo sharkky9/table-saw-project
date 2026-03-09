@@ -20,12 +20,12 @@
 - [ ] Confirm the internal extractor is still `Hercules HE028`
 - [ ] Confirm the separator is still `Oneida Dust Deputy Low-Pro`
 - [ ] Confirm the manifold is still the Rockler `2-1/2 in` system
-- [ ] Confirm the miter saw is still the owner's DeWalt `60V 12 in` cordless sliding saw
+- [ ] Confirm the miter saw is still the owner's `DeWALT DCS781` family `60V 12 in` cordless sliding saw
 
 ## Before Cutting Anything
 
 - [ ] Print [stripped-saw-survey.md](./stripped-saw-survey.md)
-- [ ] Print [miter-saw-survey.md](./miter-saw-survey.md)
+- [ ] Print [miter-saw-survey.md](./miter-saw-survey.md) or keep it open as the public-spec and fit-notes sheet
 - [ ] Print [no-cut-yet-checklist.md](./no-cut-yet-checklist.md)
 - [ ] Print [panel-label-map.md](./panel-label-map.md)
 - [ ] Review the `gate` column in [cut-list-final.csv](./cut-list-final.csv)

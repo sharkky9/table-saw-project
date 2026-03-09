@@ -13,7 +13,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--require-precision-ready",
         action="store_true",
-        help="Fail if stripped-saw or miter-saw survey items are still provisional or blank.",
+        help="Fail if stripped-saw precision inputs or required public miter-station spec rows are still provisional or blank.",
     )
     parser.add_argument("layout")
     parser.add_argument("measurements")
@@ -65,7 +65,7 @@ def point_inside_rect(x: float, y: float, rect: dict[str, float]) -> bool:
 
 def unresolved_precision_ids(layout: dict, measurement_rows: dict[str, dict[str, str]]) -> list[str]:
     unresolved: list[str] = []
-    gated_ids = list(layout["saw"]["stripped_saw_survey_required"]) + list(layout["miter_station"]["survey_required"])
+    gated_ids = list(layout["saw"]["stripped_saw_survey_required"]) + list(layout["miter_station"]["public_spec_rows"])
     for row_id in sorted(set(gated_ids)):
         row = measurement_rows.get(row_id)
         if row is None:
@@ -386,12 +386,12 @@ def main() -> int:
     unresolved = unresolved_precision_ids(layout, measurement_rows)
     if args.require_precision_ready and unresolved:
         errors.append(
-            "precision-cut gate is still closed because these survey ids are unresolved: "
+            "precision-cut gate is still closed because these required ids are unresolved: "
             + ", ".join(unresolved)
         )
     elif unresolved:
         notes.append(
-            "precision-cut gate remains closed until these survey ids are resolved: "
+            "precision-cut gate remains closed until these required ids are resolved: "
             + ", ".join(unresolved)
         )
 

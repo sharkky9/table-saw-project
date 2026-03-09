@@ -1,196 +1,64 @@
-# Miter-Saw Survey
+# Miter-Saw Public Spec Sheet And Fit Notes
 
-Use this sheet for the owner's `DeWalt 60V 12 in` cordless sliding miter saw before freezing the centered flip-top miter-station opening, support fences, or dust path.
+Use this sheet for the owner's `DeWALT DCS781` before finalizing the tray bolt pattern, hard-stop tuning, and deployed flex-hose dock.
 
 ## Purpose
 
-This survey closes the miter-station geometry gate. The bench program is now centered on a fixed `90 x 48` top with a front-side miter station, so the real saw envelope must be recorded before the flip-top cutout is treated as more than concept geometry.
+The miter-station opening and cover parts no longer depend on a bespoke prebuild survey. Publicly available saw dimensions are now accepted for the bay envelope.
 
-This survey directly unlocks:
+Real-tool fit is still required for:
 
-- final flip-top opening size
-- final deployed support-surface height
-- final stop-fence height
-- final rear slide clearance
-- final miter-station dust-port routing
+- final tray bolt transfer
+- deployed hard-stop tuning
+- stowed latch tuning
+- any shim or spacer stack needed under the saw feet
+- deployed flex-hose reach to the top-exit dust port
 
 ## Hard Stop
 
-Do not machine the miter-station opening, drill the flip-top tray, or finalize the stop fences until every required miter-saw row is real in [data/measurements.csv](/Users/christopherhandel/Documents/Github/Table Saw Project/.worktrees/bench-fixed-top-layout/data/measurements.csv).
+Do not drill the final tray bolt pattern or lock the deployed hard stops until the real saw has been test-fit on the tray.
 
-## Tools
+## Public Rows Already Loaded
 
-- `tape measure`
-- `6 in` steel rule
-- `combination square`
-- `digital calipers`
-- `straightedge`
-- `phone camera`
-- `painter's tape`
-- `scrap support blocks`
+These rows in `data/measurements.csv` are now satisfied from public data rather than a bespoke survey:
 
-## Datum System
-
-Use a simple repeatable datum system from the deployed saw:
-
-- `x`: from the **left deployed support datum** toward the right
-- `y`: from the **front deployed support datum** toward the rear
-- `z`: upward from the **miter-saw mount plane**
-
-Definitions:
-
-- `front` means the operator side of the miter station
-- `left` and `right` are from the normal cutting position
-- `mount plane` means the plane that the saw base or mounting feet sit on in the deployed station
-
-## Setup
-
-### Setup A: Stowed Envelope
-
-Use this for:
-
-- overall stowed width
-- overall stowed depth
-- overall stowed height
-
-Put the saw in the exact stowed configuration you expect the flip-top bay to contain:
-
-- battery installed or the battery size you actually plan to store on the saw
-- head locked if that is the intended storage state
-- any permanent fences or support faces removed only if they truly store elsewhere
-
-### Setup B: Deployed Geometry
-
-Use this for:
-
-- mount footprint width and depth
-- table height
-- fence height
-- rear slide clearance
-- dust-port center and outside diameter
-
-Support the saw on a flat surface and set it to its normal deployed cutting position.
-
-## Before You Start
-
-- [ ] Saw in the exact storage configuration you intend to design around
-- [ ] Saw deployed on a flat surface for geometry checks
-- [ ] Fence and table cleaned so the straightedge sits honestly
-- [ ] Photos taken of both stowed and deployed positions
-
-## Procedure
-
-### 1. Record the selected model
-
-Required id:
-
-- `miter_saw_model`
-
-Method:
-
-1. Copy the product label or model text from the tool, box, or receipt.
-2. Record the exact model code in notes if it is more specific than the current placeholder text.
-
-### 2. Measure the mount footprint
-
-Required ids:
-
-- `miter_saw_mount_width`
-- `miter_saw_mount_depth`
-
-Method:
-
-1. Measure the real width and depth of the part of the saw base that actually has to sit on the flip-top tray.
-2. If feet or pads sit inboard of the outer casting, note both numbers and state which one drives the tray.
-
-### 3. Measure the stowed envelope
-
-Required ids:
-
-- `miter_saw_stowed_width`
-- `miter_saw_stowed_depth`
-- `miter_saw_stowed_height`
-
-Method:
-
-1. Put the saw into the exact stowed state you plan to store below the cover.
-2. Measure the widest, deepest, and tallest points.
-3. Include handles, knobs, rails, battery, and dust-port hardware if they remain installed in storage.
-
-### 4. Measure required rear slide clearance
-
-Required id:
-
-- `miter_saw_required_rear_slide_clearance`
-
-Method:
-
-1. Deploy the saw normally.
-2. Run the head through its full slide travel.
-3. Measure how far behind the support datum the rear-most moving part needs to travel.
-
-### 5. Measure table and fence height
-
-Required ids:
-
-- `miter_saw_table_height`
-- `miter_saw_fence_height`
-
-Method:
-
-1. Measure from the saw mount plane to the top of the saw table.
-2. Measure from the saw table to the top of the fence.
-3. Use the same straightedge and reference point for both measurements.
-
-### 6. Measure the dust-port location
-
-Required ids:
-
-- `miter_saw_dust_port_center_x`
-- `miter_saw_dust_port_center_y`
-- `miter_saw_dust_port_od`
-
-Method:
-
-1. Identify the center of the deployed saw dust port.
-2. Measure its center from the left and front deployed support datums.
-3. Measure the outside diameter that matters for a hose cuff or adapter.
-
-### 7. Record tool weight
-
-Required id:
-
-- `miter_saw_weight`
-
-Method:
-
-1. Use the manufacturer spec if it matches the exact model in hand.
-2. If the spec is ambiguous, weigh the saw or record the best available real number in notes.
-
-## Fill-In Table
-
-Write the measured values here first then transfer them into [data/measurements.csv](/Users/christopherhandel/Documents/Github/Table Saw Project/.worktrees/bench-fixed-top-layout/data/measurements.csv).
-
-| ID | Value | Units | Blocks |
+| ID | Value | Units | Notes |
 | --- | --- | --- | --- |
-| `miter_saw_model` | ______ | text | miter-station geometry freeze |
-| `miter_saw_mount_width` | ______ | in | flip-top tray size |
-| `miter_saw_mount_depth` | ______ | in | flip-top tray size |
-| `miter_saw_stowed_width` | ______ | in | stowed opening width |
-| `miter_saw_stowed_depth` | ______ | in | stowed opening depth |
-| `miter_saw_stowed_height` | ______ | in | stowed opening height |
-| `miter_saw_required_rear_slide_clearance` | ______ | in | rear slide clearance |
-| `miter_saw_table_height` | ______ | in | deployed support height |
-| `miter_saw_fence_height` | ______ | in | stop-fence height |
-| `miter_saw_dust_port_center_x` | ______ | in | miter-station dust path |
-| `miter_saw_dust_port_center_y` | ______ | in | miter-station dust path |
-| `miter_saw_dust_port_od` | ______ | in | hose cuff strategy |
-| `miter_saw_weight` | ______ | lb | flip-top hardware sizing |
+| `miter_saw_model` | `DeWALT DCS781` | text | manual plus DeWalt product page |
+| `miter_saw_stowed_width` | `24.02` | in | conservative owner-supplied public listing width |
+| `miter_saw_stowed_depth` | `32.36` | in | conservative owner-supplied public listing depth |
+| `miter_saw_stowed_height` | `20.93` | in | conservative owner-supplied public listing height |
+| `miter_saw_weight` | `50.9` | lb | DeWalt tool-only public product page |
+
+## Fit-Only Rows
+
+These rows no longer block precision-ready validation. Record them only if the real tray fit needs them:
+
+| ID | When It Matters |
+| --- | --- |
+| `miter_saw_mount_width` | tray bolt transfer or local mount-block sizing |
+| `miter_saw_mount_depth` | tray bolt transfer or local mount-block sizing |
+| `miter_saw_required_rear_slide_clearance` | only if the real carriage proves deeper than the public envelope |
+| `miter_saw_table_height` | deployed hard-stop plus shim tuning |
+| `miter_saw_fence_height` | stop-track and support-face tuning |
+| `miter_saw_dust_port_center_x` | deployed flex-hose dock tuning |
+| `miter_saw_dust_port_center_y` | deployed flex-hose dock tuning |
+| `miter_saw_dust_port_od` | hose cuff or adapter choice |
+
+## Fit Procedure
+
+1. Confirm the saw is still the intended `DCS781` family and that the public envelope in `data/measurements.csv` still matches the design intent.
+2. Dry-fit the tray, pivot hardware, hard stops, and latch blocks in the real front bay.
+3. Set the saw on the tray and tune the deployed height with `FT-03` plus a shim or spacer stack under the saw feet until the saw table is flush with the surrounding bench top.
+4. Tune the stowed close with `FT-02` and the latch locations until the cover is flush or slightly low.
+5. Only after the real saw height is proven, transfer the actual tray bolt pattern from the saw to `MS-01`.
+6. Attach the flex hose in the deployed position and confirm it reaches the top-exit dust port without trapping the service path.
 
 ## Done Checklist
 
-- [ ] All survey values copied into `data/measurements.csv`
-- [ ] Survey photos saved somewhere you can reference later
-- [ ] `python3 tools/validate_measurements.py --require-precision-ready data/measurements.csv` passes
-- [ ] `python3 tools/validate_layout.py --require-precision-ready data/layout.json data/measurements.csv` passes
-- [ ] Only after that: machine the miter-station opening and finalize the flip-top hardware layout
+- [ ] Public miter-saw rows are accepted in `data/measurements.csv`
+- [ ] Tray dry fit is complete in the real front bay
+- [ ] Real saw table lands flush with the surrounding bench top in deployed mode
+- [ ] Stowed cover lands flush or slightly low
+- [ ] Final tray bolt pattern is transferred from the real saw only after the height is proven
+- [ ] Flex hose reaches and releases cleanly at the deployed top-exit dust port

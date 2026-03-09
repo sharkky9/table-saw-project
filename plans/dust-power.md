@@ -65,7 +65,7 @@ This sequence is accepted as normal. The goal is honest serviceability, not thea
 - keep at least `1 in` between the Low-Pro bucket package and the Hercules package
 - the saw branch must respect the recorded stripped-saw dust-port geometry
 - current hose sweep is about `8.5 in` behind the cast top; design around `10 in` rearward allowance so future cuffs or hose changes do not instantly consume the margin
-- the flex hose must reach the deployed miter saw and still release cleanly from the front-right service zone
+- the flex hose must reach the deployed miter saw top-exit dust port and still release cleanly from the front-right service zone
 
 ## Fittings Matrix
 
@@ -107,6 +107,7 @@ Use a Y-fitting only inside the router zone and not back at the main manifold.
 - store the mobile-tool hose in the front-right service zone
 - route it so it can exit the front-right corner without pinching when the bench is parked at the wall
 - keep enough slack that the hose can reach the deployed miter saw without dragging across the saw-rail keep-clear lanes
+- do not hard-plumb the miter station; connect the hose only when the saw is flipped up for use
 
 ## Power Strategy
 
