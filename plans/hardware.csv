@@ -1,0 +1,16 @@
+item_id,assembly,description,qty,unit,notes
+FAST-01,all_cabinets,Confirmat or cabinet screws,75,ea,Use for carcass if you prefer them over pocket screws
+FAST-02,plinth,3 in structural screws,48,ea,Plinth perimeter and internal blocking
+FAST-03,module_joining,1-1/4 in washer-head screws,60,ea,Join modules to one another and to stretchers
+FAST-04,wing,No. 8 x 3/4 pan-head screws,48,ea,Piano hinge and aluminum track installation
+FAST-05,drawer_bank,No. 6 x 1/2 slide screws,36,ea,Drawer slide installation
+FAST-06,router_module,Flat-head machine screws,8,ea,Match JessEm lift plate pattern
+FAST-07,saw_mount,Hex bolts washers and lock nuts,1,set,Field-fit only after the stripped-saw mount pattern is surveyed
+FAST-08,overlay_anchors,1/4-20 threaded inserts,4,ea,Install only where the backing pads land under the fixed top
+FAST-09,overlay_anchors,1/4-20 star knobs,4,ea,Future assembly overlay hold-downs
+FAST-10,power_service,Cable clamps and strain reliefs,8,ea,Manage cords and hose drops
+FAST-11,front_wing,Tapered alignment pins,2,ea,Install before routing slot extensions in the wing
+FAST-12,front_wing,Alignment bushings,2,ea,Match FAST-11 pins
+FAST-13,front_wing,Adjustable leg glides,2,ea,Provide repeatable floor contact without shims
+FAST-14,right_service,Heavy-duty tray slides,1,set,Support the Hercules pull-out tray with at least 100 lb rating
+FAST-15,right_service,Hatch latches or magnets,2,ea,For the router access hatch and front service panel

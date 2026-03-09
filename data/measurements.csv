@@ -1,0 +1,78 @@
+category,id,description,value,units,tolerance,source,status,notes
+saw,saw_model,Table saw model,SPT99-11,text,n/a,official,confirmed,Model corroborated by user photos and SKIL documentation
+saw,saw_table_width,Cast top width,27.5625,in,0.0625,user_measured,confirmed,User measurement
+saw,saw_table_depth,Cast top depth,22.125,in,0.0625,user_measured,confirmed,User measurement
+saw,saw_rail_width_min,Overall width at minimum rail setting,28.375,in,0.0625,user_measured,confirmed,User measurement
+saw,saw_rail_depth,Front rail to rear rail depth,24.625,in,0.0625,user_measured,confirmed,User measurement
+saw,saw_body_height,Saw body height from mount plane to tabletop,13.375,in,0.0625,user_measured,confirmed,Driving dimension for mount height
+saw,miter_slot_width,Miter-slot width,0.75,in,0.03125,provisional_field_fit,verify_before_procurement,Verify on the actual saw before ordering extension track
+saw,miter_slot_depth,Miter-slot depth,0.375,in,0.03125,provisional_field_fit,verify_before_procurement,Verify on the actual saw before ordering extension track
+saw,blade_to_left_miter_center,Blade centerline to left miter-slot centerline,6.375,in,0.03125,user_measured,confirmed,User measurement
+saw,blade_to_right_miter_center,Blade centerline to right miter-slot centerline,5.25,in,0.03125,user_measured,confirmed,User measurement
+saw,blade_to_left_table_edge,Blade centerline to left cast-top edge,13,in,0.03125,user_measured,confirmed,User measurement
+saw,blade_to_right_table_edge,Blade centerline to right cast-top edge,14.5625,in,0.03125,user_measured,confirmed,User measurement
+saw,max_overall_width_fence_extended,Overall saw width with fence fully extended,47,in,0.125,user_measured,confirmed,Used for right-side rail envelope
+saw,max_rip_left,Maximum rip capacity left of blade,16.5,in,0.125,official,confirmed,SKIL product page
+saw,max_rip_right,Maximum rip capacity right of blade,30.5,in,0.125,official,confirmed,SKIL product page
+saw,tool_weight,Tool-only weight,52.9,lb,0.1,official,confirmed,SKIL product page
+saw,stripped_blade_center_y,Blade center y from front cast-top edge,,in,0.03125,provisional_field_fit,required_before_precision_cut,Measure after the saw is removed from its stand
+saw,front_left_foot_center_x,Front-left foot center x from left cast-top edge,,in,0.03125,provisional_field_fit,required_before_precision_cut,Part of the stripped-saw survey
+saw,front_left_foot_center_y,Front-left foot center y from front cast-top edge,,in,0.03125,provisional_field_fit,required_before_precision_cut,Part of the stripped-saw survey
+saw,front_right_foot_center_x,Front-right foot center x from left cast-top edge,,in,0.03125,provisional_field_fit,required_before_precision_cut,Part of the stripped-saw survey
+saw,front_right_foot_center_y,Front-right foot center y from front cast-top edge,,in,0.03125,provisional_field_fit,required_before_precision_cut,Part of the stripped-saw survey
+saw,rear_left_foot_center_x,Rear-left foot center x from left cast-top edge,,in,0.03125,provisional_field_fit,required_before_precision_cut,Part of the stripped-saw survey
+saw,rear_left_foot_center_y,Rear-left foot center y from front cast-top edge,,in,0.03125,provisional_field_fit,required_before_precision_cut,Part of the stripped-saw survey
+saw,rear_right_foot_center_x,Rear-right foot center x from left cast-top edge,,in,0.03125,provisional_field_fit,required_before_precision_cut,Part of the stripped-saw survey
+saw,rear_right_foot_center_y,Rear-right foot center y from front cast-top edge,,in,0.03125,provisional_field_fit,required_before_precision_cut,Part of the stripped-saw survey
+saw,foot_pad_width_x,Typical foot-pad width in x,,in,0.03125,provisional_field_fit,required_before_precision_cut,Record the true support-pad envelope and not just the hole center
+saw,foot_pad_depth_y,Typical foot-pad depth in y,,in,0.03125,provisional_field_fit,required_before_precision_cut,Record the true support-pad envelope and not just the hole center
+saw,mount_hole_diameter,Saw mount-hole diameter,,in,0.015625,provisional_field_fit,required_before_precision_cut,Needed before drilling the cradle
+saw,lowest_underside_protrusion_below_mount_plane,Lowest underside protrusion below the saw mount plane,,in,0.03125,provisional_field_fit,required_before_precision_cut,Protects wrench access and dust-well clearance
+saw,rail_front_projection_min,Front rail underside projection at minimum rip,,in,0.03125,provisional_field_fit,required_before_precision_cut,Measure the real moving hardware not just the bounding box
+saw,rail_front_projection_mid,Front rail underside projection at mid rip,,in,0.03125,provisional_field_fit,required_before_precision_cut,Measure the real moving hardware not just the bounding box
+saw,rail_front_projection_max,Front rail underside projection at maximum rip,,in,0.03125,provisional_field_fit,required_before_precision_cut,Measure the real moving hardware not just the bounding box
+saw,rail_rear_projection_min,Rear rail underside projection at minimum rip,,in,0.03125,provisional_field_fit,required_before_precision_cut,Measure the real moving hardware not just the bounding box
+saw,rail_rear_projection_mid,Rear rail underside projection at mid rip,,in,0.03125,provisional_field_fit,required_before_precision_cut,Measure the real moving hardware not just the bounding box
+saw,rail_rear_projection_max,Rear rail underside projection at maximum rip,,in,0.03125,provisional_field_fit,required_before_precision_cut,Measure the real moving hardware not just the bounding box
+saw,dust_port_center_x,Dust-port center x from left cast-top edge,,in,0.03125,provisional_field_fit,required_before_precision_cut,Needed to route the short saw branch honestly
+saw,dust_port_center_y,Dust-port center y from front cast-top edge,,in,0.03125,provisional_field_fit,required_before_precision_cut,Needed to route the short saw branch honestly
+saw,dust_hose_sweep_depth_0deg,Rear hose sweep behind saw at 0 degree bevel,,in,0.03125,provisional_field_fit,required_before_precision_cut,Measure at full blade-height range
+saw,dust_hose_sweep_depth_45deg,Rear hose sweep behind saw at 45 degree bevel,,in,0.03125,provisional_field_fit,required_before_precision_cut,Measure at full blade-height range
+garage,wall_length,Usable wall length for parked mode,90,in,1,user_measured,approx,Approximate wall envelope from user
+garage,parked_bench_length_target,Planned parked bench length,90,in,0,derived,confirmed,Uses the wall nearly full length
+garage,bench_depth_target,Planned bench depth,48,in,0,derived,confirmed,Core depth target
+garage,bench_height_target,Planned finished top height,36,in,0.125,derived,confirmed,Bench set to saw instead of generic workbench height
+bench,blade_center_from_left_bench_edge,Blade center from left finished edge,36,in,0.0625,derived,confirmed,Primary x-axis layout coordinate
+bench,assumed_blade_center_y,Assumed blade center y from front bench edge,27.3125,in,0.03125,provisional_field_fit,concept_only,Concept-render value only until stripped-saw y datum is measured
+bench,top_thickness,Finished top thickness,1.5,in,0.03125,derived,confirmed,3/4 ply plus 3/4 MDF on fixed regions
+bench,saw_mount_plane_height,Floor to saw mount plane,22.625,in,0.0625,derived,confirmed,36 minus 13.375 saw body height
+bench,front_wing_depth,Fold-down infeed wing depth,16.25,in,0.0625,provisional_field_fit,required_before_precision_cut,Concept depth until the real blade y datum is measured
+bench,rear_support_depth,Fixed rear support depth,9.625,in,0.125,provisional_field_fit,required_before_precision_cut,Concept depth until the real blade y datum is measured
+bench,right_front_infill_width,Fixed right-front top infill width,30.25,in,0.0625,derived,confirmed,Supports the router zone and closes the front-right corner
+bench,left_fixed_ttrack_1_center,Assembly T-track 1 centerline from left edge,8,in,0.0625,derived,confirmed,Far-left assembly field
+bench,left_fixed_ttrack_2_center,Assembly T-track 2 centerline from left edge,20,in,0.0625,derived,confirmed,Far-left assembly field
+dust,selected_internal_extractor_model,Selected internal extractor,Hercules HE028,text,n/a,official,confirmed,Chosen internal extractor for the stage-1 package
+dust,internal_extractor_class,Internal extractor target,Hercules 12 gallon dust extractor,text,n/a,official,confirmed,Hercules is now the primary internal extractor target
+dust,internal_extractor_width,Internal extractor width,18.25,in,0.125,official,confirmed,Harbor Freight product page
+dust,internal_extractor_depth,Internal extractor depth,23.5,in,0.125,official,confirmed,Harbor Freight product page
+dust,internal_extractor_body_height,Internal extractor minimum body height with handle retracted,27.4,in,0.125,official,confirmed,Harbor Freight product page
+dust,internal_extractor_hose_clearance,Internal extractor above-body clearance allowance,1,in,0.125,derived,confirmed,Front body vacuum port reduces the vertical hose-clearance requirement
+dust,selected_separator_model,Selected separator,Oneida Dust Deputy Low-Pro Lid Separator,text,n/a,official,confirmed,Chosen separator for the stage-1 package
+dust,separator_bucket_diameter,Selected separator bucket diameter,12.375,in,0.125,official,confirmed,Oneida Low-Pro 5 gallon bucket system dimensions
+dust,compact_cyclone_stack_height,Selected Low-Pro plus bucket stack height,18.5,in,0.125,official,confirmed,Oneida Low-Pro system dimensions on a 5 gallon bucket
+dust,compact_cyclone_hose_clearance,Selected Low-Pro hose and latch clearance allowance,2,in,0.125,derived,confirmed,Allows the short hose to the extractor and bucket-latch access
+dust,reference_extractor_height_max,Hercules reference height maximum,37.5,in,0.125,official,reference_only,Handle extended
+dust,reference_extractor_amperage,Hercules reference amperage,11.5,A,0.1,official,reference_only,15A max with tool per Harbor Freight
+dust,separator_port_od,Low-Pro nominal port outside diameter,2.5,in,0.0625,official,confirmed,Oneida Low-Pro uses 2.5 inch nominal ports
+dust,separator_port_id,Low-Pro nominal port inside diameter,2.25,in,0.0625,official,confirmed,Oneida Low-Pro tapered port inside diameter
+dust,manifold_width,Rockler starter manifold width,6.5,in,0.125,official,confirmed,Rockler product page
+dust,manifold_height,Rockler starter manifold height,4.8,in,0.125,official,confirmed,Rockler product page
+dust,manifold_projection,Rockler starter manifold projection,4.23,in,0.125,official,confirmed,Rockler product page
+router,lift_plate_width,Router lift plate width,9.25,in,0.03125,official,confirmed,JessEm Rout-R-Lift II
+router,lift_plate_length,Router lift plate length,11.75,in,0.03125,official,confirmed,JessEm Rout-R-Lift II
+router,lift_plate_thickness,Router lift plate thickness,0.375,in,0.03125,official,confirmed,JessEm Rout-R-Lift II
+router,selected_lift_model,Selected router lift,JessEm Rout-R-Lift II 02310,text,n/a,official,confirmed,Stage-1 router install stack is now locked to a specific lift
+router,selected_router_motor,Selected router motor,Bosch 1617EVS,text,n/a,official,confirmed,Stage-1 router install stack is now locked to a specific motor
+router,motor_body_diameter,Router motor body diameter,3.5,in,0.03125,official,confirmed,Bosch 1617 class motor body used by the selected JessEm lift model
+assembly,overlay_length,Future assembly overlay length,60,in,0.125,derived,confirmed,Stored separately and used when needed
+assembly,overlay_depth,Future assembly overlay depth,36,in,0.125,derived,confirmed,Large enough for clamping and layout work

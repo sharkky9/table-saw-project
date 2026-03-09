@@ -1,0 +1,420 @@
+{
+  "schema_version": "1.1",
+  "units": "in",
+  "coordinate_system": {
+    "origin": "front-left corner of finished bench footprint",
+    "x_axis": "left to right along the 90 in wall",
+    "y_axis": "front/infeed to rear/outfeed across the 48 in depth"
+  },
+  "bench": {
+    "overall": {
+      "length": 90.0,
+      "depth": 48.0,
+      "height": 36.0
+    },
+    "top": {
+      "thickness": 1.5,
+      "overhang": {
+        "left": 1.5,
+        "right": 1.5,
+        "front": 3.0,
+        "rear": 3.0
+      },
+      "fixed_regions": [
+        {
+          "name": "rear_main",
+          "x": 0.0,
+          "y": 16.25,
+          "length": 90.0,
+          "depth": 31.75
+        },
+        {
+          "name": "right_front_infill",
+          "x": 59.75,
+          "y": 0.0,
+          "length": 30.25,
+          "depth": 16.25
+        }
+      ],
+      "layers": [
+        {
+          "name": "substrate",
+          "material": "3/4 cabinet plywood",
+          "thickness": 0.75
+        },
+        {
+          "name": "precision_skin",
+          "material": "3/4 MDF",
+          "thickness": 0.75
+        }
+      ],
+      "seams": [
+        {
+          "name": "right_front_infill_to_rear_main",
+          "x": 59.75,
+          "y": 16.25,
+          "length": 30.25,
+          "notes": "Support with seam cleats and the right-module front stretcher before machining precision features."
+        }
+      ]
+    },
+    "plinth": {
+      "x": 3.0,
+      "y": 4.5,
+      "length": 84.0,
+      "depth": 39.0,
+      "height": 3.5
+    },
+    "carcass": {
+      "x": 1.5,
+      "y": 3.0,
+      "length": 87.0,
+      "depth": 42.0,
+      "height": 31.0,
+      "modules": [
+        {
+          "name": "left_storage",
+          "x": 1.5,
+          "y": 3.0,
+          "length": 27.75,
+          "depth": 42.0,
+          "height": 31.0,
+          "notes": "Drawer bank plus narrow vertical cubby"
+        },
+        {
+          "name": "saw_chassis",
+          "x": 29.25,
+          "y": 3.0,
+          "length": 30.5,
+          "depth": 42.0,
+          "height": 31.0,
+          "notes": "Open frame for saw cradle, dust elbow movement, and wrench access"
+        },
+        {
+          "name": "right_service",
+          "x": 59.75,
+          "y": 3.0,
+          "length": 28.75,
+          "depth": 42.0,
+          "height": 31.0,
+          "notes": "Router above, Hercules plus Low-Pro dust package below, no full-height divider may intrude into the rail keep-clear lanes"
+        }
+      ]
+    }
+  },
+  "saw": {
+    "model": "SKIL SPT99-11",
+    "geometry_status": "Concept geometry only in Y until stripped-saw survey is complete.",
+    "blade_center": {
+      "x": 36.0,
+      "y": 27.3125,
+      "source": "provisional_field_fit",
+      "precision_cut_gate": "closed until stripped_blade_center_y is measured on the bare saw"
+    },
+    "cast_top": {
+      "x": 23.0,
+      "y": 16.25,
+      "length": 27.5625,
+      "depth": 22.125
+    },
+    "rail_envelope": {
+      "x": 21.75,
+      "y": 15.0,
+      "length": 47.0,
+      "depth": 24.625,
+      "notes": "Bounding box only. Real moving hardware must be surveyed at minimum, mid, and maximum rip before top machining."
+    },
+    "mount_plane_height": 22.625,
+    "opening": {
+      "x": 22.875,
+      "y": 16.125,
+      "length": 27.8125,
+      "depth": 22.375,
+      "gap": 0.125,
+      "notes": "Final opening is field-fit only after stripped-saw survey confirms foot pattern, blade y datum, and underside protrusions."
+    },
+    "stripped_saw_survey_required": [
+      "stripped_blade_center_y",
+      "front_left_foot_center_x",
+      "front_left_foot_center_y",
+      "front_right_foot_center_x",
+      "front_right_foot_center_y",
+      "rear_left_foot_center_x",
+      "rear_left_foot_center_y",
+      "rear_right_foot_center_x",
+      "rear_right_foot_center_y",
+      "foot_pad_width_x",
+      "foot_pad_depth_y",
+      "mount_hole_diameter",
+      "lowest_underside_protrusion_below_mount_plane",
+      "rail_front_projection_min",
+      "rail_front_projection_mid",
+      "rail_front_projection_max",
+      "rail_rear_projection_min",
+      "rail_rear_projection_mid",
+      "rail_rear_projection_max",
+      "dust_port_center_x",
+      "dust_port_center_y",
+      "dust_hose_sweep_depth_0deg",
+      "dust_hose_sweep_depth_45deg"
+    ],
+    "under_top_keep_clear": [
+      {
+        "name": "front_right_rail_lane",
+        "x": 50.75,
+        "y": 12.5,
+        "length": 18.0,
+        "depth": 6.5,
+        "min_clearance_below": 2.25,
+        "notes": "No divider, wiring chase, or hose bracket may intrude into this lane above the plinth."
+      },
+      {
+        "name": "rear_right_rail_lane",
+        "x": 50.75,
+        "y": 34.0,
+        "length": 18.0,
+        "depth": 7.0,
+        "min_clearance_below": 2.25,
+        "notes": "No divider, wiring chase, or hose bracket may intrude into this lane above the plinth."
+      }
+    ],
+    "miter_slots": [
+      {
+        "name": "left_slot",
+        "center_x": 29.625,
+        "slot_width": 0.75,
+        "segments": [
+          {
+            "surface": "front_wing",
+            "y_start": 0.0,
+            "y_end": 16.25
+          },
+          {
+            "surface": "saw_top",
+            "y_start": 16.25,
+            "y_end": 38.375
+          },
+          {
+            "surface": "fixed_rear_support",
+            "y_start": 38.375,
+            "y_end": 48.0
+          }
+        ]
+      },
+      {
+        "name": "right_slot",
+        "center_x": 41.25,
+        "slot_width": 0.75,
+        "segments": [
+          {
+            "surface": "front_wing",
+            "y_start": 0.0,
+            "y_end": 16.25
+          },
+          {
+            "surface": "saw_top",
+            "y_start": 16.25,
+            "y_end": 38.375
+          },
+          {
+            "surface": "fixed_rear_support",
+            "y_start": 38.375,
+            "y_end": 48.0
+          }
+        ]
+      }
+    ]
+  },
+  "front_wing": {
+    "x": 0.0,
+    "y": 0.0,
+    "length": 59.75,
+    "depth": 16.25,
+    "thickness": 1.5,
+    "material_stack": [
+      "3/4 plywood substrate",
+      "3/4 plywood skin"
+    ],
+    "deployed": true,
+    "support": {
+      "type": "piano hinge plus folding legs plus tapered registration pins",
+      "leg_count": 2,
+      "hinge_length": 72.0,
+      "alignment": {
+        "pin_count": 2,
+        "receiver_type": "steel or bronze bushings",
+        "notes": "Do not machine slot extensions until the registration hardware is installed and repeatable."
+      },
+      "leg_adjustment": "Locking brackets plus adjustable feet or overlength trim-to-fit legs"
+    }
+  },
+  "router_module": {
+    "zone": {
+      "x": 70.0,
+      "y": 8.0,
+      "length": 18.5,
+      "depth": 32.0,
+      "min_clearance_from_rail_envelope": 1.25
+    },
+    "plate_opening": {
+      "center_x": 79.25,
+      "center_y": 24.0,
+      "length": 11.75,
+      "depth": 9.25,
+      "recess_depth": 0.375,
+      "lift_model": "JessEm Rout-R-Lift II 02310",
+      "router_motor": "Bosch 1617EVS"
+    },
+    "fence_mount_zone": {
+      "x": 70.5,
+      "y": 9.0,
+      "length": 17.0,
+      "depth": 5.0,
+      "notes": "Reserved for removable fence hardware and dust pickup"
+    },
+    "access_hatch": {
+      "face": "right end panel",
+      "width": 12.0,
+      "height": 10.0,
+      "bottom_from_floor": 15.0,
+      "notes": "Provides reach to the router collet, lift hardware, and cabinet dust branch without removing the dust package."
+    }
+  },
+  "dust_collection": {
+    "dust_bay": {
+      "x": 67.25,
+      "y": 3.75,
+      "length": 20.5,
+      "depth": 40.5,
+      "height": 29.5,
+      "packages": [
+        {
+          "name": "oneida_low_pro_bucket_front",
+          "x": 71.3125,
+          "y": 5.0,
+          "length": 12.375,
+          "depth": 12.375,
+          "height": 18.5,
+          "clearance_above": 2.0,
+          "mount": "fixed bucket pad"
+        },
+        {
+          "name": "hercules_extractor_rear",
+          "x": 68.375,
+          "y": 19.5,
+          "length": 18.25,
+          "depth": 23.5,
+          "height": 27.4,
+          "clearance_above": 1.0,
+          "mount": "front pull-out tray"
+        }
+      ],
+      "service_requirements": {
+        "rear_min": 1.0,
+        "package_gap_min": 1.0,
+        "vertical_clearance_min": 1.0
+      },
+      "notes": "This bay is intentionally modeled around the Hercules HE028 on a front pull-out tray plus a Oneida Dust Deputy Low-Pro on a 5 gallon bucket. Service access is from the front, not from a large static rear void."
+    },
+    "manifold": {
+      "mount_face": "front-right service face",
+      "starter_and_extensions": 3,
+      "ports": [
+        "saw",
+        "router",
+        "flex_hose"
+      ],
+      "plumbing_sequence": "tools to manifold, manifold to Low-Pro inlet, Low-Pro outlet to Hercules vacuum port"
+    },
+    "saw_branch": {
+      "service_zone": "open well below saw",
+      "hatch_dependency": "Requires stripped-saw dust-port and hose-sweep survey before final routing holes are drilled."
+    },
+    "router_branch": {
+      "split_strategy": "local Y-split inside router cavity for fence pickup plus cabinet pickup"
+    },
+    "flex_hose_storage": {
+      "face": "front-right service zone",
+      "exit": "front-right corner"
+    }
+  },
+  "power": {
+    "tool_circuit": {
+      "type": "dedicated pigtail",
+      "loads": [
+        "table_saw",
+        "router_motor"
+      ],
+      "notes": "Saw and router are never intended to run simultaneously on this branch."
+    },
+    "aux_circuit": {
+      "type": "side inlet to internal strip",
+      "loads": [
+        "compact_extractor",
+        "task_light",
+        "chargers"
+      ]
+    },
+    "control_strategy": {
+      "extractor_start": "RF remote or similar because split circuits disable current-sensing auto-start",
+      "master_aux_shutoff": "front-right face"
+    },
+    "garage_prerequisites": [
+      "Two real garage circuits if simultaneous saw plus dust use is expected",
+      "GFCI-protected garage receptacles or equivalent code-compliant protection",
+      "Cord routing and strain relief that works in parked and rolled-out positions"
+    ]
+  },
+  "assembly_mode": {
+    "fixed_t_tracks": [
+      {
+        "center_x": 8.0,
+        "y_start": 6.0,
+        "y_end": 42.0
+      },
+      {
+        "center_x": 20.0,
+        "y_start": 6.0,
+        "y_end": 42.0
+      }
+    ],
+    "future_overlay": {
+      "size": {
+        "length": 60.0,
+        "depth": 36.0,
+        "thickness": 0.75
+      },
+      "registration": {
+        "left_edge": true,
+        "rear_edge": true
+      },
+      "anchors": [
+        {
+          "name": "front_left",
+          "x": 6.0,
+          "y": 20.0
+        },
+        {
+          "name": "rear_left",
+          "x": 6.0,
+          "y": 40.0
+        },
+        {
+          "name": "front_right",
+          "x": 54.0,
+          "y": 20.0
+        },
+        {
+          "name": "rear_right",
+          "x": 54.0,
+          "y": 40.0
+        }
+      ],
+      "underside_stiffener": {
+        "length": 30.0,
+        "depth": 1.5,
+        "location": "Runs under the overlay where it spans the saw opening."
+      }
+    }
+  }
+}
