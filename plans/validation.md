@@ -33,6 +33,7 @@ Real miter-station tray fit remains a separate manual gate after that.
 - The target support span is at least `30 in` to the left and `30 in` to the right of the saw.
 - The stowed surface must finish flush or slightly low and must never sit proud.
 - The deployed tray height must come from hard stops, while the real saw table flushness is tuned separately with shims or spacer pucks under the saw feet.
+- Any top-surface T-track added beside the station for stop blocks must be field-aligned to the real deployed fence line after installation, not frozen from nominal coordinates.
 - The miter-station mechanism must not intrude into the table-saw rail keep-clear lanes or the right-side service bay.
 
 ## Table-Saw Support Checks
@@ -125,7 +126,7 @@ Minimum mockup outcomes:
 
 - actual right-bay mockup before claiming the Hercules package is proven
 - actual right-bay mockup before freezing `RM-10` cutout geometry or hose-dock placement
-- actual miter-station tray fit before drilling the final tray bolt pattern or locking the stop-track line
+- actual miter-station tray fit before drilling the final tray bolt pattern or locking the stop-track line or any adjacent stop-block T-track line
 
 ### Already accepted by the current package
 

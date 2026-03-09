@@ -27,9 +27,10 @@ Cutting the top blanks to size is allowed before this gate. This gate only contr
 5. Cut the router through-opening.
 6. Machine the miter-station opening edges and cover panel only after the tray dry fit proves the real opening clearances.
 7. Drill the pivot-axis hardware, latch-block, and stop-block pilot holes only after the real tray fit is proven.
-8. Machine underside right-side reliefs that are required by the real rail sweep.
-9. Drill the final saw mounting-deck bolt pattern from the actual saw only after the opening and flush fit are proven.
-10. Drill the miter-station tray bolt pattern from the actual saw only after the shimmed deployed height is proven.
+8. If top-surface T-track will be used beside the miter station for stop blocks, mark and route it from the installed deployed fence line after the station is tuned; do not route that line from nominal CAD coordinates.
+9. Machine underside right-side reliefs that are required by the real rail sweep.
+10. Drill the final saw mounting-deck bolt pattern from the actual saw only after the opening and flush fit are proven.
+11. Drill the miter-station tray bolt pattern from the actual saw only after the shimmed deployed height is proven.
 
 ## Acceptance Checks
 
@@ -40,5 +41,6 @@ Cutting the top blanks to size is allowed before this gate. This gate only contr
 - stowed miter-station cover sits flush or slightly low
 - deployed tray returns to the target support height without depending on latch slop
 - real saw table lands flush after the tray shim stack is locked
+- any miter-station stop-block T-track is routed from the real deployed fence line rather than nominal coordinates
 - no cut intrudes into the rail keep-clear lanes or the right-side service zone
 - mounting-deck holes match the real saw and are not layout-only guesses

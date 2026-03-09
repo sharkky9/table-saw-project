@@ -103,6 +103,7 @@ Day one does not drill the permanent top into an MFT-style surface. Instead:
 - The stowed position must return a flush or slightly low work surface and must not sit proud.
 - Publicly available `DeWALT DCS781` dimensions are now sufficient to size the station envelope and cover parts.
 - Real-tool fit is still required for tray bolt transfer, final hard-stop tuning, and any shims or spacer pucks needed to make the deployed saw table and stowed cover both land flush to the bench top.
+- If top-surface T-track is later added beside the miter station for stop-block work, field-align that track to the installed deployed fence line instead of freezing a nominal coordinate before tray fit.
 
 ## Router Module
 
@@ -191,4 +192,5 @@ These measurements are still mandatory before cutting the final precision top:
 - final Low-Pro bucket and latch clearance with the chosen `5 gallon` bucket
 - actual miter-station tray fit before the final tray bolt pattern is drilled
 - actual hard-stop and latch tuning so the deployed saw table and stowed cover both land flush with the bench top
+- actual deployed fence line before locking any adjacent stop-block T-track location
 - actual flex-hose reach and release at the deployed top-exit miter-saw dust port
