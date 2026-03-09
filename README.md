@@ -10,6 +10,7 @@ This workspace contains a build package for an integrated garage bench built aro
 - `data/` authoritative measurements and machine-readable layout data
 - `plans/` BOM, rough and final cut lists, hardware, build sequence, dust/power, finish, assembly-mode, and validation guides
 - `plans/stripped-saw-survey.md` printable survey checklist for the bare saw before precision cuts
+- `drawings/` builder-facing SVG drawings keyed to parts and subassemblies
 - `renders/` editable SVG concept drawings generated from `data/layout.json`
 - `tools/` validation and rendering scripts
 

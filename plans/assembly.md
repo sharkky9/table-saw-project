@@ -1,164 +1,234 @@
 # Assembly Instructions
 
-## Build Order Overview
+## Before You Start
 
-Build the bench in this order so adjustments happen while they are still cheap:
+Read these first:
 
-1. Complete the stripped-saw survey.
-2. Build and level the plinth.
-3. Build the left center and right modules as separate carcasses.
-4. Bolt modules to the plinth and to each other.
-5. Install the saw cradle and verify the mount-plane height.
-6. Rough-cut the L-shaped fixed top parts without precision machining them.
-7. Fit the saw and verify the true opening blade y datum and rail sweep.
-8. Build and prove the front infeed wing.
-9. Machine the fixed top and wing only after the precision gate is open.
-10. Fit the router module and fence.
-11. Mock up and install dust plumbing and power.
-12. Fit drawers service panels and storage.
-13. Finish only after dry-fitting all critical hardware.
+- [prebuild-checklist.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/prebuild-checklist.md)
+- [no-cut-yet-checklist.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/no-cut-yet-checklist.md)
+- [tool-list.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/tool-list.md)
+- [joint-strategy.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/joint-strategy.md)
+- [panel-label-map.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/panel-label-map.md)
+- [top-machining-sequence.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/top-machining-sequence.md)
 
-## Cut Package Rule
+## Build Sequence
 
-Use:
+1. Stripped-saw survey
+2. Plinth
+3. Left module
+4. Center saw chassis
+5. Right service module
+6. Join modules
+7. Rough top blanks
+8. Saw fit
+9. Wing mechanism
+10. Top machining
+11. Router install
+12. Dust and power
+13. Drawers and service panels
+14. Finish
 
-- [cut-list-rough.csv](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/cut-list-rough.csv) for blanks you can cut now
-- [cut-list-final.csv](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/cut-list-final.csv) only after the gate shown in the `gate` column is actually open
+## 1. Stripped-Saw Survey
 
-Do not treat the concept final dimensions for `TOP-*`, `FW-*`, or `CM-05` as safe before the stripped-saw survey is complete.
+- Print [stripped-saw-survey.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/stripped-saw-survey.md).
+- Record every required measurement in [data/measurements.csv](/Users/christopherhandel/Documents/GitHub/Table Saw/data/measurements.csv).
+- Do not continue to top machining until the precision-gate commands pass.
 
-## Step 0: Stripped-Saw Survey
+Hold point:
 
-This step is a hard gate. Do not machine the top drill the cradle or buy miter track until it is complete.
+- [ ] survey complete
+- [ ] precision gate open
 
-Use [stripped-saw-survey.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/stripped-saw-survey.md) as the working checklist.
+## 2. Plinth
 
-## Step 1: Plinth
+Parts:
 
-- Build an `84 x 39 x 3.5 in` plinth from `2x4` rails on edge.
-- Use `2x6` stock only for caster reinforcement blocks.
-- Glue and screw the plinth square.
-- Install the selected leveling casters and confirm the plinth rolls and settles cleanly.
+- `PL-01`
+- `PL-02`
+- `PL-03`
+- `PL-04`
 
-## Step 2: Left Module
+Steps:
 
-- Build the left module first because it is the simplest cabinet.
-- Use one full bottom deck two sides one partition and top front/rear stretchers.
-- Place the partition so the module yields:
-  - one `7.5 in` clear vertical cubby
-  - one `18 in` clear drawer bay
-- Reserve the drawer stack for three drawers:
-  - top shallow
-  - middle medium
-  - bottom deep
+1. Build the `84 x 39 in` plinth rectangle from `PL-01` and `PL-02`.
+2. Install `PL-03` crossmembers evenly.
+3. Install `PL-04` caster reinforcement blocks at the selected caster locations.
+4. Install the selected leveling casters.
 
-## Step 3: Center Saw Chassis
+Hold point:
 
-- Build the saw chassis as an open-frame module and not as a full cabinet.
-- Keep the lower front and lower rear stretchers low enough that the dust hose and blade-tilt motion are not trapped.
-- Install the saw ledgers at a nominal `22.625 in` mount-plane height from the floor.
-- Build the cradle per [saw-cradle.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/saw-cradle.md).
+- [ ] plinth diagonals match
+- [ ] plinth rolls and settles cleanly
 
-## Step 4: Right Service Module
+## 3. Left Module
 
-- Build the right module around the router zone above and the dust package below.
-- The internal partition is notched. No full-height divider may intrude into the front or rear rail lanes.
-- Use a removable front service face about `20 x 28 in`.
-- Use a fixed low deck or UHMW skid base for the Hercules and not a pull-out tray.
-- Keep the front-right face accessible for the manifold aux shutoff and flex-hose exit.
-- Cut the right-side router access hatch now but leave final latch hardware until the router is test-fit.
+Parts:
 
-## Step 5: Join The Modules
+- `LM-01` through `LM-09`
+- `DR-01` through `DR-07`
 
-- Set the three modules on the plinth.
-- Clamp them flush at the top edges.
-- Screw the modules together through the doubled side walls.
-- Confirm overall carcass size: `87 x 42 x 31 in`.
-- Confirm the carcass stays square before moving on.
+Steps:
 
-## Step 6: Rough-Cut The L-Shaped Fixed Top
+1. Build the carcass from `LM-01`, `LM-02`, `LM-03`, and `LM-04`.
+2. Place the partition so the clear openings are:
+   - `7.5 in` vertical cubby
+   - `18 in` drawer bay
+3. Install `LM-05` only after the box is square.
+4. Install `LM-06` shelves.
+5. Build three drawer boxes from `DR-*`.
+6. Do not final-fit `LM-07`, `LM-08`, or `LM-09` until the cabinet is real and the reveal can be checked.
 
-Do not laminate a single `90 x 48` slab.
+Hold point:
 
-Use the rough cut list for:
+- [ ] module square before back panel
+- [ ] drawer bay clear width verified
+
+## 4. Center Saw Chassis
+
+Parts:
+
+- `CM-01` through `CM-05`
+
+Steps:
+
+1. Build the open frame from `CM-01`, `CM-02`, and `CM-03`.
+2. Install `CM-04` ledgers at the nominal mount-plane height.
+3. Leave `CM-05` rough until the stripped-saw survey is complete.
+4. Build the cradle per [saw-cradle.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/saw-cradle.md).
+
+Hold point:
+
+- [ ] open lower well remains clear for dust hose and bevel motion
+- [ ] cradle stays adjustable
+
+## 5. Right Service Module
+
+Parts:
+
+- `RM-01` through `RM-10`
+
+Steps:
+
+1. Build the module shell from `RM-01`, `RM-03`, and `RM-04`.
+2. Cut the notches in `RM-02` only after marking the real keep-clear strategy from the current layout.
+3. Install `RM-05` only after service cutouts are marked.
+4. Fit `RM-06` as a removable front service face.
+5. Fit `RM-07` router hatch.
+6. Leave `RM-08` and `RM-10` as mockup-gated parts until the right-bay package is proven.
+
+Hold point:
+
+- [ ] service face removable
+- [ ] no full-height divider enters the rail keep-clear lanes
+
+## 6. Join Modules
+
+1. Set all three modules on the plinth.
+2. Clamp top edges flush.
+3. Join modules with washer-head screws through doubled walls.
+4. Recheck overall carcass size.
+
+Hold point:
+
+- [ ] top edges flush across all modules
+- [ ] carcass square after joining
+
+## 7. Rough Top Blanks
+
+Parts:
 
 - `TOP-01A`
 - `TOP-01B`
 - `TOP-02A`
 - `TOP-02B`
+- `TOP-03`
+- `TOP-04`
+- `TOP-05`
+- `TOP-06`
 - `FW-01`
 - `FW-02`
+- `FW-03`
+- `FW-04`
+- `FW-05`
+- `FW-06`
 
-These stay rough until the stripped-saw survey is complete.
+Steps:
 
-## Step 7: Fit The Saw Before Precision Machining
+1. Rough-cut the gated top and wing blanks oversize.
+2. Cut the ungated blocking and cleats to final size.
+3. Label every blank immediately.
 
-This is the second hard gate.
+Hold point:
 
-- Set the saw on the cradle with the fixed top pieces still unmachined.
-- Tune the cradle per [saw-cradle.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/saw-cradle.md).
-- Raise and lower the mount points until the saw top is exactly flush or a few thousandths below the surrounding fixed top.
-- Confirm the stripped-saw blade y datum against the provisional layout.
-- Confirm the actual opening size and the actual rail sweep.
-- Confirm the dust-port and hose sweep.
+- [ ] no gated top or wing part has been cut to pretend-final size early
 
-If the real saw geometry disagrees with the concept layout update [layout.json](/Users/christopherhandel/Documents/GitHub/Table Saw/data/layout.json) and [measurements.csv](/Users/christopherhandel/Documents/GitHub/Table Saw/data/measurements.csv) before machining anything.
+## 8. Saw Fit
 
-## Step 8: Build And Prove The Front Wing
+1. Set the saw on the cradle.
+2. Tune the cradle until the cast top is flush or slightly low.
+3. Reconcile the real saw geometry with the modeled opening.
 
-- Laminate the wing to `1.5 in` thickness with plywood on both faces.
-- Hinge the wing to the front edge of the left and center modules only.
-- Install the bench-mounted registration and support hardware described in [wing-mechanism.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/wing-mechanism.md).
-- Prove the mechanism before slot routing.
+Hold point:
 
-## Step 9: Machine The Fixed Top And Wing
+- [ ] saw top never proud
+- [ ] real opening marked from the actual saw
 
-Machine only after Steps 0 7 and 8 are complete.
+## 9. Wing Mechanism
 
-Machine in this order:
+1. Laminate the wing blank.
+2. Install hinge pins bushings stop screws latches and support hardware per [wing-mechanism.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/wing-mechanism.md).
+3. Prove the mechanism before routing slot extensions.
 
-1. saw opening perimeter
-2. router lift recess and cut-through
-3. miter-track recesses in the rear support and then the proven front wing
-4. underside reliefs for the right-side rail keep-clear lanes
+Hold point:
 
-## Step 10: Router Module
+- [ ] 10-cycle wing proof passed
+- [ ] seam never high
 
-- Install the plate ledgers and the JessEm leveling hardware per the selected lift instructions.
-- Fit the plate flush to the surrounding top.
-- Verify you can reach the Bosch collet and the lower dust branch through the right-side access hatch.
-- Build a removable fence with independent faces and a rear dust port.
+## 10. Top Machining
 
-## Step 11: Dust And Power
+Follow [top-machining-sequence.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/top-machining-sequence.md) exactly.
 
-Install dust and power only after the fixed top saw wing and router geometry are proven.
+Hold point:
 
-- Run the physical mockup in [right-bay-mockup.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/right-bay-mockup.md) before you call the package proven.
-- Set the bucket at the front of the dust bay.
-- Set the Hercules at the rear on the fixed low deck or skid base.
-- Mount the manifold in the front-right service zone.
-- Use this service sequence:
-  1. remove front service face
-  2. remove bucket
-  3. disconnect short hose if needed
-  4. move extractor
-- Route the dedicated tool-circuit pigtail separately from the aux inlet and strip.
-- Install the extractor RF remote because the split-circuit plan disables current-sensing auto-start.
+- [ ] saw opening cut from real fit
+- [ ] router recess flush
+- [ ] wing slot routing performed only after proof
 
-## Step 12: Storage And Panels
+## 11. Router Install
 
-- Build the three drawers to suit the final slide hardware.
-- Fit the applied drawer fronts with `1/8 in` reveals.
-- Fit the front service panel router hatch and any hose covers after the dust system is tested.
-- Leave the saw-well service faces removable.
+1. Install `TOP-03` ledgers and the JessEm support hardware.
+2. Fit the router lift flush.
+3. Build and fit the removable fence from `RF-01` through `RF-03`.
 
-## Step 13: Finish
+Hold point:
 
-Do not finish critical fit surfaces first. Instead:
+- [ ] hatch access to collet confirmed
 
-- prove the saw flushness
-- prove the wing flushness
-- prove the router plate fit
-- prove track and slot alignment
+## 12. Dust And Power
 
-Then finish in the sequence described in [finish-schedule.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/finish-schedule.md).
+1. Run [right-bay-mockup.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/right-bay-mockup.md).
+2. Fit the service face and extractor base only after the mockup passes.
+3. Install manifold hoses inlet strip and RF remote.
+
+Hold point:
+
+- [ ] bucket-first service sequence proven
+- [ ] extractor removable without top removal
+
+## 13. Drawers And Service Panels
+
+1. Final-fit the three drawer fronts with `1/8 in` reveals.
+2. Final-fit the front service face and router hatch.
+3. Leave service paths removable.
+
+Hold point:
+
+- [ ] all removable panels come off without disturbing the top
+
+## 14. Finish
+
+Finish only after saw wing router and panel fit are all proven.
+
+Hold point:
+
+- [ ] no critical fit surface is finished before proof

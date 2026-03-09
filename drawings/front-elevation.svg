@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="700" viewBox="0 0 1100 700">
+  <rect width="1100" height="700" fill="#ffffff"/>
+  <text x="40" y="40" font-family="Helvetica, Arial, sans-serif" font-size="24">Front Elevation</text>
+  <rect x="80" y="110" width="900" height="18" fill="#dad0be" stroke="#111" stroke-width="2"/>
+  <rect x="95" y="128" width="277.5" height="310" fill="#d9d9d9" stroke="#555" stroke-width="2" fill-opacity="0.75"/>
+  <rect x="372.5" y="128" width="305" height="310" fill="#eeeeee" stroke="#555" stroke-width="2" fill-opacity="0.75"/>
+  <rect x="677.5" y="128" width="287.5" height="310" fill="#d9d9d9" stroke="#555" stroke-width="2" fill-opacity="0.75"/>
+  <rect x="95" y="438" width="870" height="35" fill="#c7b48c" stroke="#333" stroke-width="2"/>
+  <text x="185" y="220" font-family="Helvetica, Arial, sans-serif" font-size="18">Left module</text>
+  <text x="475" y="220" font-family="Helvetica, Arial, sans-serif" font-size="18">Center saw chassis</text>
+  <text x="760" y="220" font-family="Helvetica, Arial, sans-serif" font-size="18">Right service module</text>
+  <line x1="95" y1="510" x2="372.5" y2="510" stroke="#111" stroke-width="1.5"/>
+  <line x1="95" y1="502" x2="95" y2="518" stroke="#111" stroke-width="1.5"/>
+  <line x1="372.5" y1="502" x2="372.5" y2="518" stroke="#111" stroke-width="1.5"/>
+  <text x="233.75" y="535" font-family="Helvetica, Arial, sans-serif" font-size="18" text-anchor="middle">27.75 in</text>
+  <line x1="372.5" y1="510" x2="677.5" y2="510" stroke="#111" stroke-width="1.5"/>
+  <line x1="677.5" y1="502" x2="677.5" y2="518" stroke="#111" stroke-width="1.5"/>
+  <text x="525" y="535" font-family="Helvetica, Arial, sans-serif" font-size="18" text-anchor="middle">30.5 in</text>
+  <line x1="677.5" y1="510" x2="965" y2="510" stroke="#111" stroke-width="1.5"/>
+  <line x1="965" y1="502" x2="965" y2="518" stroke="#111" stroke-width="1.5"/>
+  <text x="821.25" y="535" font-family="Helvetica, Arial, sans-serif" font-size="18" text-anchor="middle">28.75 in</text>
+  <text x="1000" y="130" font-family="Helvetica, Arial, sans-serif" font-size="16" transform="rotate(90 1000 130)">36 in top height</text>
+</svg>

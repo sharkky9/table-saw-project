@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="700" viewBox="0 0 1000 700">
+  <rect width="1000" height="700" fill="#ffffff"/>
+  <text x="40" y="40" font-family="Helvetica, Arial, sans-serif" font-size="24">Saw Cradle Detail</text>
+  <rect x="180" y="150" width="460" height="22" fill="#dad0be" stroke="#111" stroke-width="2"/>
+  <rect x="220" y="250" width="40" height="180" fill="#d2c09b" stroke="#333" stroke-width="2"/>
+  <rect x="560" y="250" width="40" height="180" fill="#d2c09b" stroke="#333" stroke-width="2"/>
+  <rect x="280" y="300" width="260" height="30" fill="#c7b48c" stroke="#333" stroke-width="2"/>
+  <circle cx="330" cy="345" r="10" fill="#666"/>
+  <circle cx="500" cy="345" r="10" fill="#666"/>
+  <text x="280" y="275" font-family="Helvetica, Arial, sans-serif" font-size="16">Slotted crossrail</text>
+  <text x="650" y="300" font-family="Helvetica, Arial, sans-serif" font-size="16">Jack screws tune final height</text>
+  <text x="650" y="330" font-family="Helvetica, Arial, sans-serif" font-size="16">Saw top must finish flush or slightly low</text>
+</svg>

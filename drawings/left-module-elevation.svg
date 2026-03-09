@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="700" viewBox="0 0 900 700">
+  <rect width="900" height="700" fill="#ffffff"/>
+  <text x="40" y="40" font-family="Helvetica, Arial, sans-serif" font-size="24">Left Module Elevation</text>
+  <rect x="120" y="120" width="277.5" height="310" fill="#f4f4f4" stroke="#333" stroke-width="2"/>
+  <line x1="200" y1="120" x2="200" y2="430" stroke="#333" stroke-width="2"/>
+  <rect x="218" y="140" width="140" height="60" fill="#d9d9d9" stroke="#555" stroke-width="2"/>
+  <rect x="218" y="210" width="140" height="85" fill="#d9d9d9" stroke="#555" stroke-width="2"/>
+  <rect x="218" y="305" width="140" height="110" fill="#d9d9d9" stroke="#555" stroke-width="2"/>
+  <text x="135" y="215" font-family="Helvetica, Arial, sans-serif" font-size="16">Vertical</text>
+  <text x="135" y="238" font-family="Helvetica, Arial, sans-serif" font-size="16">cubby</text>
+  <text x="250" y="175" font-family="Helvetica, Arial, sans-serif" font-size="16">Top drawer</text>
+  <text x="240" y="255" font-family="Helvetica, Arial, sans-serif" font-size="16">Middle drawer</text>
+  <text x="240" y="360" font-family="Helvetica, Arial, sans-serif" font-size="16">Bottom drawer</text>
+  <text x="120" y="470" font-family="Helvetica, Arial, sans-serif" font-size="16">Partition yields 7.5 in cubby and 18 in drawer bay.</text>
+</svg>
