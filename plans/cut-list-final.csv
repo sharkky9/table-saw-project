@@ -1,0 +1,57 @@
+part_id,assembly,material,thickness,qty,rough_l,rough_w,final_l,final_w,gate,notes
+PL-01,plinth,2x4 lumber,1.5,2,84.5,3.5,84,3.5,cut_now,Front and rear plinth rails
+PL-02,plinth,2x4 lumber,1.5,2,39.5,3.5,36,3.5,cut_now,Side plinth rails
+PL-03,plinth,2x4 lumber,1.5,4,39.5,3.5,36,3.5,cut_now,Internal plinth crossmembers
+PL-04,plinth,2x6 lumber,1.5,4,8,5.5,7,5.5,cut_now,Caster reinforcement blocks
+LM-01,left_module,plywood,0.75,2,31.5,42.5,31,42,cut_now,Left module sides
+LM-02,left_module,plywood,0.75,1,31.5,42.5,31,42,cut_now,Left module partition located to leave 7.5 in clear cubby and 18 in clear drawer bay
+LM-03,left_module,plywood,0.75,1,26.75,42.5,26.25,42,cut_now,Left module bottom deck
+LM-04,left_module,plywood,0.75,2,26.75,4.5,26.25,4,cut_now,Left module top front and rear stretchers
+LM-05,left_module,plywood,0.5,1,28.25,31.5,27.75,31,cut_now,Left module back panel
+LM-06,left_module,plywood,0.75,2,8.5,41,8,40.5,cut_now,Vertical-cubby shelves
+LM-07,left_module,plywood,0.75,1,18.25,5.25,17.75,4.875,after_face_fit,Top applied drawer front with 1/8 in reveals
+LM-08,left_module,plywood,0.75,1,18.25,7.25,17.75,6.875,after_face_fit,Middle applied drawer front with 1/8 in reveals
+LM-09,left_module,plywood,0.75,1,18.25,9.25,17.75,8.875,after_face_fit,Bottom applied drawer front with 1/8 in reveals
+CM-01,center_module,plywood,0.75,2,31.5,42.5,31,42,cut_now,Center module sides
+CM-02,center_module,plywood,0.75,2,29.5,4.5,29,4,cut_now,Center module top front and rear stretchers
+CM-03,center_module,plywood,0.75,2,29.5,6.5,29,6,cut_now,Center module lower front and rear stretchers
+CM-04,center_module,2x4 lumber,1.5,2,29.5,3.5,29,3.5,cut_now,Saw-mount ledgers
+CM-05,center_module,2x4 lumber,1.5,2,25.0,3.5,24,3.5,after_survey,Cradle crossrails remain rough-only until stripped-saw survey and first fit
+RM-01,right_module,plywood,0.75,2,31.5,42.5,31,42,cut_now,Right module sides
+RM-02,right_module,plywood,0.75,1,31.5,42.5,31,42,after_service_layout,Right module partition with 8 x 8 in upper front and upper rear notches
+RM-03,right_module,plywood,0.75,1,21,41,20.5,40.5,cut_now,Dust-bay floor
+RM-04,right_module,plywood,0.75,2,27,4.5,26.5,4,cut_now,Right module top front and rear stretchers
+RM-05,right_module,plywood,0.5,1,29.25,31.5,28.75,31,after_service_layout,Right module back panel with service cutouts
+RM-06,right_module,plywood,0.75,1,20.5,28.5,20,28,after_mockup,Front lower removable service face sized around the proven dust package
+RM-07,right_module,plywood,0.75,1,12.5,10.5,12,10,cut_now,Right-side router access hatch
+RM-08,right_module,plywood,0.75,1,24.5,19.5,24,19,after_mockup,Hercules fixed low deck or skid base field-fit to actual body stance
+RM-09,right_module,plywood,0.75,2,20.5,1.75,20,1.5,cut_now,Front service-face cleats
+RM-10,right_module,plywood,0.75,1,12.5,8.5,12,8,after_service_layout,Manifold and control mounting plate
+TOP-01A,top,plywood,0.75,1,90.5,32.5,90,31.75,after_survey,Rear fixed-top substrate concept final only until stripped-saw survey is complete
+TOP-01B,top,plywood,0.75,1,31.0,17.0,30.25,16.25,after_survey,Right-front infill substrate concept final only until stripped-saw survey is complete
+TOP-02A,top,MDF,0.75,1,90.5,32.5,90,31.75,after_survey,Rear fixed-top skin concept final only until stripped-saw survey is complete
+TOP-02B,top,MDF,0.75,1,31.0,17.0,30.25,16.25,after_survey,Right-front infill skin concept final only until stripped-saw survey is complete
+TOP-03,top,plywood,0.75,4,15,2.5,14,2,cut_now,Router plate ledgers and local blocking
+TOP-04,top,plywood,0.75,2,30.75,4.5,30.25,4,cut_now,Seam cleats under the right-front infill joint
+TOP-05,top,plywood,0.75,2,42,3.5,41.25,3,cut_now,Under-top stiffeners that stay outside the rail keep-clear lanes
+TOP-06,top,plywood,0.75,4,4.5,4.5,4,4,cut_now,Future overlay anchor backing pads
+FW-01,front_wing,plywood,0.75,1,60.25,17.0,59.75,16.25,after_survey,Wing substrate concept final only until stripped-saw survey is complete
+FW-02,front_wing,plywood,0.75,1,60.25,17.0,59.75,16.25,after_survey,Wing skin concept final only until stripped-saw survey is complete
+FW-03,front_wing,plywood,0.75,1,60.25,3.5,59.75,3,cut_now,Front wing stiffener batten
+FW-04,front_wing,2x4 lumber,1.5,2,37,1.75,35.5,1.5,after_wing_fit,Side-support leg blanks rip to final size and trim after bracket geometry is set
+FW-05,front_wing,plywood,0.75,1,8,3.5,7.5,3,after_wing_fit,Center load-sharing foot blank
+FW-06,front_wing,plywood,0.75,2,4.5,4.5,4,4,cut_now,Registration-pin backing blocks
+DR-01,drawers,plywood,0.5,2,22.5,4.5,22,4,cut_now,Top drawer sides
+DR-02,drawers,plywood,0.5,2,17.5,4.5,17,4,cut_now,Top drawer fronts and backs
+DR-03,drawers,plywood,0.5,2,22.5,6.5,22,6,cut_now,Middle drawer sides
+DR-04,drawers,plywood,0.5,2,17.5,6.5,17,6,cut_now,Middle drawer fronts and backs
+DR-05,drawers,plywood,0.5,2,22.5,8.5,22,8,cut_now,Bottom drawer sides
+DR-06,drawers,plywood,0.5,2,17.5,8.5,17,8,cut_now,Bottom drawer fronts and backs
+DR-07,drawers,plywood,0.5,3,17.5,22.5,17,22,cut_now,Drawer bottoms
+RF-01,router_fence,plywood,0.75,1,33,6.5,32,6,cut_now,Router fence body
+RF-02,router_fence,plywood,0.75,2,16,4.5,15.5,4,cut_now,Router fence faces
+RF-03,router_fence,plywood,0.75,2,12,5.5,11.5,5,cut_now,Router fence ends
+ASM-01,assembly_overlay,plywood,0.75,1,60.5,32.0,60,31.5,stage2,Future removable assembly overlay
+ASM-02,assembly_overlay,plywood,0.75,1,32.0,1.75,31.5,1.5,stage2,Left register cleat for overlay
+ASM-03,assembly_overlay,plywood,0.75,1,60.5,1.75,60,1.5,stage2,Rear register cleat for overlay
+ASM-04,assembly_overlay,plywood,0.75,1,36.5,2.5,36,2,stage2,Underside overlay stiffener across the saw-opening span

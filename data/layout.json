@@ -21,6 +21,14 @@
       "depth": 48.0,
       "height": 36.0
     },
+    "estimated_loaded_weight_lbs": 980,
+    "mobility_system": {
+      "selected_product": "Foot Master GD-60F plate-mount leveling caster",
+      "caster_count": 4,
+      "minimum_rating_each_lbs": 550,
+      "minimum_rating_total_lbs": 2200,
+      "notes": "This replaces light-duty retractable workbench caster kits. Supplemental fixed leveling feet stay optional only if the floor needs more range."
+    },
     "top": {
       "thickness": 1.5,
       "overhang": {
@@ -89,7 +97,17 @@
           "length": 27.75,
           "depth": 42.0,
           "height": 31.0,
-          "notes": "Drawer bank plus narrow vertical cubby"
+          "notes": "Three drawers plus one vertical cubby",
+          "details": {
+            "vertical_cubby_clear_width": 7.5,
+            "drawer_bay_clear_width": 18.0,
+            "drawer_front_reveal": 0.125,
+            "drawer_stack_front_heights": [
+              4.875,
+              6.875,
+              8.875
+            ]
+          }
         },
         {
           "name": "saw_chassis",
@@ -107,7 +125,46 @@
           "length": 28.75,
           "depth": 42.0,
           "height": 31.0,
-          "notes": "Router above and Hercules plus Low-Pro concept package below. No full-height divider may intrude into the rail keep-clear lanes."
+          "notes": "Router above and Hercules plus Low-Pro below. No full-height divider may intrude into the rail keep-clear lanes.",
+          "details": {
+            "front_service_face": {
+              "width": 20.0,
+              "height": 28.0
+            },
+            "router_hatch": {
+              "width": 12.0,
+              "height": 10.0
+            },
+            "partition_notches": [
+              {
+                "name": "front_upper",
+                "width": 8.0,
+                "height": 8.0
+              },
+              {
+                "name": "rear_upper",
+                "width": 8.0,
+                "height": 8.0
+              }
+            ],
+            "service_face_cutouts": [
+              {
+                "name": "manifold_panel_center",
+                "x_from_left": 7.5,
+                "y_from_bottom": 20.0
+              },
+              {
+                "name": "aux_switch_center",
+                "x_from_left": 15.5,
+                "y_from_bottom": 20.0
+              },
+              {
+                "name": "flex_hose_exit_center",
+                "x_from_left": 16.5,
+                "y_from_bottom": 8.0
+              }
+            ]
+          }
         }
       ]
     }
@@ -366,7 +423,14 @@
     "mockup_gate": {
       "required": true,
       "status": "open",
-      "notes": "The internal Hercules plus Low-Pro package is still concept-only until real machine and fitting mockup confirms serviceability."
+      "notes": "The internal Hercules plus Low-Pro package is still concept-only until real machine and fitting mockup confirms serviceability.",
+      "required_checks": [
+        "bucket clearance",
+        "front-port hose cuff depth",
+        "hand access",
+        "front service opening",
+        "bucket-first service sequence"
+      ]
     },
     "service_sequence": [
       "remove front service face",
@@ -401,17 +465,21 @@
           "depth": 23.5,
           "height": 27.4,
           "clearance_above": 1.0,
-          "base_type": "mockup-gated internal support",
+          "base_type": "fixed low deck or UHMW skid base",
           "service_mode": "remove_after_bucket",
           "deck_or_tray_elevation": 0.75
         }
       ],
+      "service_opening": {
+        "width": 20.0,
+        "height": 28.0
+      },
       "service_requirements": {
         "rear_min": 1.0,
         "package_gap_min": 1.0,
         "vertical_clearance_min": 1.0
       },
-      "notes": "This bay intentionally models an internal Hercules plus Low-Pro package with front service. It is still a packaging concept until real mockup confirms the service path."
+      "notes": "This bay intentionally models an internal Hercules plus Low-Pro package with front service. Default extractor support is now a fixed low deck or low-friction skid and not a pull-out tray."
     },
     "manifold": {
       "mount_face": "front-right service face",

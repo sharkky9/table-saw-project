@@ -8,7 +8,7 @@ This workspace contains a build package for an integrated garage bench built aro
 
 - `docs/` design intent, research notes, and product strategy
 - `data/` authoritative measurements and machine-readable layout data
-- `plans/` BOM, cut lists, hardware, build sequence, dust/power, finish, assembly-mode, and validation guides
+- `plans/` BOM, rough and final cut lists, hardware, build sequence, dust/power, finish, assembly-mode, and validation guides
 - `plans/stripped-saw-survey.md` printable survey checklist for the bare saw before precision cuts
 - `renders/` editable SVG concept drawings generated from `data/layout.json`
 - `tools/` validation and rendering scripts
@@ -21,7 +21,7 @@ This workspace contains a build package for an integrated garage bench built aro
 - Top strategy: L-shaped fixed top plus a fold-down front wing, not a single `90 x 48` slab
 - Opening strategy: target `1/32 in` general support gap around the cast top, with no broad quarter-inch moat
 - Router strategy: stage-1 `JessEm Rout-R-Lift II 02310` with a `Bosch 1617EVS` class motor at the far right end
-- Dust strategy: internal `Hercules HE028` + `Oneida Dust Deputy Low-Pro` + Rockler `2-1/2 in` manifold, but still mockup-gated for real service fit
+- Dust strategy: internal `Hercules HE028` on a fixed low deck + `Oneida Dust Deputy Low-Pro` + Rockler `2-1/2 in` manifold, but still mockup-gated for real service fit
 - Assembly strategy: keep the permanent saw/outfeed top clean on day one and push meaningful clamp features into a removable overlay instead of fixed T-tracks
 
 ## Validation Commands
@@ -31,7 +31,7 @@ Run these from the workspace root:
 ```bash
 python3 tools/validate_measurements.py data/measurements.csv
 python3 tools/validate_layout.py data/layout.json data/measurements.csv
-python3 tools/validate_cutlist.py plans/cut-list.csv
+python3 tools/validate_cutlist.py plans/cut-list-final.csv plans/bom.csv
 python3 tools/render_layout.py data/layout.json renders
 ```
 

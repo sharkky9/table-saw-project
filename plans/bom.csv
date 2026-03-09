@@ -1,42 +1,42 @@
 item_id,stage,category,description,qty,unit,spec_or_model,notes
-MAT-01,stage1,sheet_good,Flat cabinet plywood,8,sheets,3/4 in AC/BC or shop-grade birch,Stage-1 structure top substrate wing router module and service panels with realistic yield and less nesting stress
-MAT-02,stage1,sheet_good,MDF,2,sheets,3/4 in,Fixed-top precision skins plus sample boards and margin for setup waste
+MAT-01,stage1,sheet_good,Flat cabinet plywood,8,sheets,3/4 in AC/BC or shop-grade birch,Stage-1 structure top substrate wing router module and service panels with realistic yield and nesting margin
+MAT-02,stage1,sheet_good,MDF,2,sheets,3/4 in,Fixed-top precision skins plus sample boards and setup margin
 MAT-03,stage1,sheet_good,Prefinished plywood,2,sheets,1/2 in,Drawer boxes backs and lighter service panels
 MAT-04,stage1,lumber,Construction lumber,8,pieces,2x4x8 kiln-dried,Plinth framing saw ledgers wing legs and general blocking
-MAT-05,stage1,lumber,Construction lumber,2,pieces,2x6x8 kiln-dried,Caster hardpoints and plinth reinforcement
+MAT-05,stage1,lumber,Construction lumber,2,pieces,2x6x8 kiln-dried,Caster hardpoints and local reinforcement only
 MAT-06,stage1,lumber,Optional wear edging,2,pieces,1x2 hardwood or UHMW,Only for high-abuse front edges if desired
-HDW-01,stage1,mobility,Retractable caster kit,1,set,Foot-operated system rated at least 1200 lb total,Do not use light-duty 400 to 600 lb kits on this bench
-HDW-02,stage1,mobility,Adjustable leveling feet,4,ea,Heavy-duty 3/8-16 or 1/2-13,Mount through plinth corners
+HDW-01,stage1,mobility,Leveling casters,4,ea,Foot Master GD-60F plate-mount leveling caster,Minimum 550 lb each and 2200 lb total system capacity
+HDW-02,stage1,mobility,Supplemental leveling feet,4,ea,Heavy-duty 3/8-16 or 1/2-13,Optional only if the garage floor needs more range than the selected casters provide
 HDW-03,stage1,joinery,Pocket-hole screws,1,box,1-1/4 in coarse thread,For cabinet assembly where appropriate
 HDW-04,stage1,joinery,Structural screws,1,box,3 in,For plinth and heavy blocking
 HDW-05,stage1,joinery,Cabinet screws,1,box,1-1/4 in washer head,For plywood-to-plywood structure
 HDW-06,stage1,joinery,Wood glue,1,bottle,Type II PVA,Primary panel glue
 HDW-07,stage1,hardware,Piano hinge,1,ea,72 in heavy-duty cut-to-fit,Front infeed wing hinge
-HDW-08,stage1,hardware,Folding leg brackets,2,ea,Locking table-leg brackets,Support front wing when deployed
+HDW-08,stage1,hardware,Wing support brackets,2,ea,Locking folding or side-mount support brackets,Primary deployed support for the precision wing
 HDW-09,stage1,hardware,Alignment pins and bushings,1,set,Two tapered pins plus matching bushings,Positive wing registration before slot machining
-HDW-10,stage1,hardware,Adjustable foot glides,2,ea,Threaded,Install in wing legs for repeatable floor contact
+HDW-10,stage1,hardware,Wing latch and stop kit,1,set,Two seam stop screws plus two over-center draw latches,Sets final wing seam height and pull-in force
 HDW-11,stage1,hardware,Drawer slides,3,pairs,22 in full extension,Left drawer bank
-HDW-12,stage1,hardware,T-track,2,ea,36 in low-profile aluminum,Fixed assembly tracks in far-left top field
-HDW-13,stage1,hardware,Miter track,2,ea,48 in aluminum 3/4 x 3/8,Do not buy until the real saw slot width and depth are confirmed
-HDW-14,stage1,hardware,Threaded inserts,4,ea,1/4-20,For future assembly overlay anchor points
-HDW-15,stage1,hardware,Star knobs,4,ea,1/4-20,For future assembly overlay
-HDW-16,stage1,hardware,Hose clamps,10,ea,2-1/2 in compatible,For dust plumbing
-HDW-17,stage1,dust,Blast-gate alternative,1,set,Rockler 2-1/2 in manifold starter plus 2 extensions,Three-branch one-tool-at-a-time switching
-HDW-18,stage1,dust,Hose,12,ft,2-1/2 in flexible antistatic if budget allows,Keep runs short
-HDW-19,stage1,dust,Dust extractor,1,ea,Hercules HE028 12 gallon HEPA dust extractor,Selected internal extractor for the right-side service bay
-HDW-20,stage1,dust,Low-profile separator,1,ea,Oneida Dust Deputy Low-Pro Lid Separator,Selected separator for the internal dust package
-HDW-21,stage1,dust,Bucket,1,ea,5 gal heavy-wall bucket with compatible lid,Separator collection vessel for the Low-Pro
-HDW-22,stage1,power,Flanged inlet,1,ea,15A or 20A weather-protected,Aux circuit inlet for dust and accessories
-HDW-23,stage1,power,Internal power strip,1,ea,Metal-body strip with overload protection,Feeds extractor charger and task light
-HDW-24,stage1,power,Tool pigtail,1,ea,12/3 SJTW 8 to 12 ft,Dedicated tool circuit for saw or router
-HDW-25,stage1,power,Cable grommets and strain reliefs,1,set,Assorted,For side-wall cord and hose penetrations
-HDW-26,stage1,power,Switch box,1,ea,Paddle or guarded switch,Master aux shutoff near front-right service zone
-HDW-27,stage1,power,RF remote switch,1,set,iVac or equivalent,Extractor trigger strategy for split circuits
-HDW-28,stage1,dust,Heavy-duty tray slides,1,pair,24 in full extension 100 lb or greater,For the Hercules pull-out tray
+HDW-12,stage1,hardware,Miter track,2,ea,48 in aluminum 3/4 x 3/8,Do not buy until the real saw slot width and depth are confirmed
+HDW-13,stage1,hardware,Threaded inserts,4,ea,1/4-20,For future assembly overlay anchor points
+HDW-14,stage1,hardware,Star knobs,4,ea,1/4-20,For future assembly overlay
+HDW-15,stage1,dust,Rockler manifold,1,set,Dust Right 2-1/2 in manifold starter plus 2 extensions,Three-branch one-tool-at-a-time switching
+HDW-16,stage1,dust,Hose,12,ft,2-1/2 in flexible antistatic if budget allows,Keep runs short
+HDW-17,stage1,dust,Hose cuffs and reducers,1,set,2-1/2 in compatible assortment,For real-world fit at tool and manifold ends
+HDW-18,stage1,dust,Quick-connect couplers,1,set,Compatible with existing SennTech hose,Mobile-tool hose connection
+HDW-19,stage1,dust,Local Y-fitting,1,ea,2-1/2 in Y,Router fence plus cabinet branch split
+HDW-20,stage1,dust,Dust extractor,1,ea,Hercules HE028 12 gallon HEPA dust extractor,Selected internal extractor for the right-side service bay
+HDW-21,stage1,dust,Low-profile separator,1,ea,Oneida Dust Deputy Low-Pro Lid Separator,Selected separator for the internal dust package
+HDW-22,stage1,dust,Bucket,1,ea,5 gal heavy-wall bucket with compatible lid,Separator collection vessel for the Low-Pro
+HDW-23,stage1,power,Flanged inlet,1,ea,15A or 20A weather-protected,Aux circuit inlet for dust and accessories
+HDW-24,stage1,power,Internal power strip,1,ea,Metal-body strip with overload protection,Feeds extractor charger and task light
+HDW-25,stage1,power,Tool pigtail,1,ea,12/3 SJTW 8 to 12 ft,Dedicated tool circuit for saw or router
+HDW-26,stage1,power,Cable grommets and strain reliefs,1,set,Assorted,For side-wall cord and hose penetrations
+HDW-27,stage1,power,Switch box,1,ea,Paddle or guarded switch,Master aux shutoff near front-right service zone
+HDW-28,stage1,power,RF remote switch,1,set,iVac or equivalent,Extractor trigger strategy for split circuits
 RT-01,stage1,router,Router lift,1,ea,JessEm Rout-R-Lift II 02310,Locked stage-1 lift stack
 RT-02,stage1,router,Router motor,1,ea,Bosch 1617EVS,Locked stage-1 router motor
 RT-03,stage1,router,Router fence,1,ea,Shop-built or commercial removable fence,Dust pickup at fence plus cabinet
 FIN-01,stage1,finish,Waterborne polyurethane,1,quart,Satin,Main top wing and router module
 FIN-02,stage1,finish,Dewaxed shellac sealer,1,quart,Clear,Seal MDF faces and edges before topcoat
 FIN-03,stage1,finish,Sandpaper assortment,1,set,80 120 150 180 grit,Finishing and touch-surface prep
-ASM-01,stage2,assembly,Future removable overlay panel,1,ea,60 x 36 x 3/4,Add only after the core bench proves itself
+ASM-01,stage2,assembly,Future removable overlay panel,1,ea,60 x 31-1/2 x 3/4,Add only after the core bench proves itself

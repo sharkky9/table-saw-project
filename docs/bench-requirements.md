@@ -24,7 +24,7 @@ Build a garage bench that does five jobs without becoming a gimmick:
 - Crosscut approach: conventional left-slot workflow remains primary
 - Router placement: far-right flush insert zone
 - Dust packaging: internal `Hercules HE028` + `Oneida Dust Deputy Low-Pro` on a 5 gallon bucket + one-tool-at-a-time `2-1/2 in` manifold
-- Mobility: retractable casters plus adjustable leveling feet
+- Mobility: industrial leveling casters with optional supplemental fixed leveling feet only if the slab needs more range
 - Finish standard: tactile, durable shop finish, not furniture-grade show finish
 
 ## Why This Geometry

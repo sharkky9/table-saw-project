@@ -10,6 +10,8 @@
 - [Oneida Dust Deputy Low-Pro manual](https://cdn.oneida-air.com/media/pdf/manuals/DD%20Low-Pro%20Manual%20v2.pdf)
 - [JessEm Rout-R-Lift II](https://jessem.com/collections/router-lifts-and-plates/products/rout-r-lift-ii-model)
 - [JessEm Rout-R-Lift II manual](https://jessem.com/cdn/shop/files/JessEm_Rout-R-Lift_II_Manual.pdf?v=1737058753)
+- [Foot Master GD Series leveling casters](https://www.footmastercasters.com/leveling-casters/gd-series)
+- [Foot Master GD-60F current retail spec](https://castercentral.com/products/gd-60f-foot-master)
 
 ## Notes That Drove The Layout
 
@@ -70,6 +72,12 @@
 - utility compartments
 - light-duty internal storage zones
 
+## Mobility Recommendation
+
+- The package now locks the mobility system to `Foot Master GD-60F` plate-mount leveling casters
+- Current market listings put the product class at roughly `550 lb` each which gives healthy margin for a bench in the `~980 lb` loaded range
+- This is intentionally more industrial than light-duty retractable workbench-caster kits
+
 ## Assembly-Mode Recommendation
 
 Permanent stage-1 T-track is not worth the conflict risk in the precision top. The current recommendation is:
@@ -94,7 +102,7 @@ Concept validation today means internal consistency, not shop readiness.
 
 The current package intentionally commits to:
 
-- `Hercules HE028` inside the right bay
+- `Hercules HE028` inside the right bay on a fixed low deck or UHMW skid base
 - `Oneida Dust Deputy Low-Pro` on a 5 gallon bucket at the front of the same bay
 - `Rockler Dust Right 2-1/2 in` manifold on the front-right service face
 
