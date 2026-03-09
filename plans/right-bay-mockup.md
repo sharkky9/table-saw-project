@@ -6,6 +6,8 @@ This mockup proves the internal `Hercules HE028 + Oneida Low-Pro + Rockler 2-1/2
 
 The current concept model only leaves `0.35 in` of extractor headroom once the `27.4 in` official body height, `0.75 in` support elevation, and `1.0 in` clearance allowance are all carried honestly. Treat that as a first-class proof item.
 
+If you want to de-risk the right module earlier, run this as a loose scrap or cardboard mockup before finalizing `RM-02`, `RM-03`, `RM-06`, `RM-08`, or `RM-10`.
+
 ## Required Parts For The Mockup
 
 - actual Hercules `HE028`

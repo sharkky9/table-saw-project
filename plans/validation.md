@@ -46,7 +46,7 @@ Real miter-station tray fit remains a separate manual gate after that.
 ## Saw Cradle Checks
 
 - Cradle must include fixed ledgers, an adjustable mounting deck, and four jack screws.
-- Saw top flushness must land in the same `0.000 to -0.005 in` window.
+- Saw top flushness must land flush or slightly low, up to about `1/32 in` below the surrounding top.
 - Exact saw mount-hole coordinates are intentionally not part of the pre-layout contract.
 - Final mount drilling is blocked until the stripped-saw survey is complete and the saw is physically fit on the deck.
 

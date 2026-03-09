@@ -6,7 +6,7 @@ PL-04,plinth,2x6 lumber,1.5,4,8,5.5,yes,Caster reinforcement blocks
 LM-01,left_module,plywood,0.75,2,31.5,42.5,yes,Left module sides
 LM-02,left_module,plywood,0.75,1,31.5,42.5,yes,Left module internal partition
 LM-03,left_module,plywood,0.75,1,26.75,42.5,yes,Left module bottom deck
-LM-04,left_module,plywood,0.75,2,26.75,4.5,yes,Left module top front and rear stretchers
+LM-04,left_module,plywood,0.75,2,26.75,4.5,yes,Left module top front and rear stretchers; do not batch-crosscut with RM-04 because the final lengths differ
 LM-05,left_module,plywood,0.5,1,28.25,31.5,yes,Left module back panel
 LM-06,left_module,plywood,0.75,2,8.5,41,yes,Vertical-cubby shelves
 LM-07,left_module,plywood,0.75,1,18.25,5.25,no,Top applied drawer front after cabinet face is proven
@@ -21,13 +21,13 @@ CM-06,center_module,plywood,0.75,1,28.5,24.5,no,Adjustable saw mounting deck bla
 RM-01,right_module,plywood,0.75,2,31.5,42.5,yes,Right module sides
 RM-02,right_module,plywood,0.75,1,31.5,42.5,no,Right module partition blank before notch layout is cut
 RM-03,right_module,plywood,0.75,1,21,41,yes,Dust-bay floor
-RM-04,right_module,plywood,0.75,2,27,4.5,yes,Right module top front and rear stretchers
+RM-04,right_module,plywood,0.75,2,27,4.5,yes,Right module top front and rear stretchers; do not batch-crosscut with LM-04 because the final lengths differ
 RM-05,right_module,plywood,0.5,1,29.25,31.5,no,Right module back panel blank before service cutouts
-RM-06,right_module,plywood,0.75,1,20.5,28.5,no,Front removable service face blank before cutouts
+RM-06,right_module,plywood,0.75,1,20.5,28.5,no,Front removable service-face blank before cutouts or hardware layout; template from the mockup before finalizing
 RM-07,right_module,plywood,0.75,1,12.5,10.5,yes,Right-side router access hatch
-RM-08,right_module,plywood,0.75,1,24.5,19.5,no,Hercules low-deck or skid base blank
+RM-08,right_module,plywood,0.75,1,24.5,19.5,no,Hercules low-deck or skid-base blank; trim only after the real mockup confirms height and stance
 RM-09,right_module,plywood,0.75,2,20.5,1.75,yes,Front service-face cleats
-RM-10,right_module,plywood,0.75,1,12.5,18.5,no,Independent removable control subpanel blank; keep uncut until mockup proves disconnect path and flex-hose dock behavior
+RM-10,right_module,plywood,0.75,1,12.5,18.5,no,Independent removable control subpanel blank; transfer actual hole and dock layout from the mockup template instead of paper coordinates
 TOP-01A,top,plywood,0.75,1,90.5,33.75,yes,Rear fixed-top substrate panel keeps the saw-opening front shoulder in the rear field
 TOP-01B,top,plywood,0.75,1,60.25,15.75,yes,Front-left fixed-top substrate panel
 TOP-01C,top,plywood,0.75,1,31.0,15.75,yes,Front-right fixed-top substrate panel
@@ -37,15 +37,15 @@ TOP-02C,top,prefinished plywood,0.75,1,31.0,15.75,yes,Front-right fixed-top wear
 TOP-03,top,plywood,0.75,4,15,2.5,yes,Router plate ledgers and local blocking
 TOP-04,top,plywood,0.75,4,20.5,4.5,yes,Seam cleats under front-panel joints and miter-station bay edges
 TOP-05,top,plywood,0.75,2,42,3.5,yes,Under-top stiffeners that stay outside the rail keep-clear lanes
-TOP-06,top,plywood,0.75,4,4.5,4.5,yes,Future overlay anchor backing pads
-MS-01,miter_station,plywood,0.75,1,22.5,12.5,no,Flip-top tray deck sized from the public-envelope layout; final bolt transfer still happens from the real saw
+TOP-06,top,plywood,0.75,4,4.5,4.5,yes,Future overlay anchor backing pads; batch-cut with FT-02 from one small-part setup if scrap size allows
+MS-01,miter_station,plywood,0.75,1,22.5,12.5,no,Flip-top tray deck sized from the public-envelope layout; same blank size as MS-04 if you want one setup
 MS-02,miter_station,plywood,0.75,2,12.5,10.5,no,Tray side walls trimmed after pivot hardware dry fit
 MS-03,miter_station,plywood,0.75,2,21.5,3.5,no,Front and rear tray rails
-MS-04,miter_station,prefinished plywood,0.75,1,22.5,12.5,no,Stowed cover and work-surface panel sized from the layout opening with finished face reserved for the work surface
+MS-04,miter_station,prefinished plywood,0.75,1,22.5,12.5,no,Stowed cover and work-surface panel sized from the layout opening with finished face reserved for the work surface; same blank size as MS-01
 MS-05,miter_station,plywood,0.75,1,34.5,4.5,no,Left support fence face for stop blocks
 MS-06,miter_station,plywood,0.75,1,34.5,4.5,no,Right support fence face for stop blocks
 FT-01,flip_top,plywood,0.75,2,12.5,12.5,no,Pivot side-plate blanks
-FT-02,flip_top,plywood,0.75,2,4.5,4.5,no,Stowed latch blocks
+FT-02,flip_top,plywood,0.75,2,4.5,4.5,no,Stowed latch blocks; batch-cut with TOP-06 from one small-part setup if scrap size allows
 FT-03,flip_top,plywood,0.75,2,6.5,3.5,no,Deployed hard-stop blocks
 DR-01,drawers,plywood,0.5,2,22.5,4.5,yes,Top drawer sides
 DR-02,drawers,plywood,0.5,2,17.5,4.5,yes,Top drawer fronts and backs

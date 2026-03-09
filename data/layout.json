@@ -92,7 +92,7 @@
           "name": "miter_station_cover",
           "covers_opening": "miter_station_opening",
           "stowed_surface_delta_max_high": 0.0,
-          "stowed_surface_delta_max_low": -0.005
+          "stowed_surface_delta_max_low": -0.03125
         }
       ]
     },
@@ -253,7 +253,7 @@
       },
       "acceptance_tolerance": {
         "saw_top_flush_max_high": 0.0,
-        "saw_top_flush_max_low": -0.005
+        "saw_top_flush_max_low": -0.03125
       },
       "locking_order": [
         "snug ledgers and deck supports with jack screws loose",
@@ -357,7 +357,7 @@
       "type": "centered front-side flip-top bay",
       "pivot_edge": "rear_edge",
       "stowed_surface_delta_max_high": 0.0,
-      "stowed_surface_delta_max_low": -0.005,
+      "stowed_surface_delta_max_low": -0.03125,
       "support_table_height_target": 36.0,
       "notes": "The stowed cover returns the bench to a flush work surface. Public saw dimensions lock the envelope, while the real tray height still gets tuned with hard stops and mount shims during fit-up."
     },
