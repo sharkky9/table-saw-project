@@ -29,5 +29,5 @@
 - painter's tape
 - pencils and markers for panel labeling
 - glue
-- screws per [hardware.csv](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/hardware.csv)
-- sandpaper per [bom.csv](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/bom.csv)
+- screws per [hardware.csv](./hardware.csv)
+- sandpaper per [bom.csv](./bom.csv)

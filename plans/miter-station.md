@@ -18,6 +18,8 @@ The operator-side overhang in deployed mode is acceptable. The fixed top is what
 
 The opening and cover sizes are now driven by public `DCS781` dimensions plus the accepted conservative retail envelope, not by a bespoke prebuild survey.
 
+The automated precision-ready gate only checks that those accepted public dimensions still fit the contract. Real tray fit, shimming, and bolt transfer remain manual steps.
+
 ## Operating Rules
 
 - the stowed cover is a work surface first and a storage position second

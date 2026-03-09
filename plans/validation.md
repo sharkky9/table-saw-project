@@ -6,6 +6,13 @@ This is the active product-level validation target for the fixed-top bench. The 
 
 Passing concept validation means the package is internally coherent. It does not mean the bench is ready for precision cuts or procurement of every hardware item.
 
+The strict `--require-precision-ready` commands now open on two conditions only:
+
+- stripped-saw precision rows are resolved
+- the accepted public `DCS781` envelope still fits the fixed contract
+
+Real miter-station tray fit remains a separate manual gate after that.
+
 ## Geometry Checks
 
 - Bench top overall size must remain `90 x 48 x 36 in`.
