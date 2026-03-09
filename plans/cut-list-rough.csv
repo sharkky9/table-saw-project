@@ -26,7 +26,7 @@ RM-06,right_module,plywood,0.75,1,20.5,28.5,yes,Front removable service face bla
 RM-07,right_module,plywood,0.75,1,12.5,10.5,yes,Right-side router access hatch
 RM-08,right_module,plywood,0.75,1,24.5,19.5,yes,Hercules low-deck or skid base blank
 RM-09,right_module,plywood,0.75,2,20.5,1.75,yes,Front service-face cleats
-RM-10,right_module,plywood,0.75,1,12.5,8.5,yes,Manifold and control mounting plate
+RM-10,right_module,plywood,0.75,1,12.5,18.5,yes,Independent removable control subpanel for manifold aux switch and flex-hose dock
 TOP-01A,top,plywood,0.75,1,90.5,32.5,yes,Rear fixed-top substrate rough blank only until survey
 TOP-01B,top,plywood,0.75,1,31.0,17.0,yes,Right-front infill substrate rough blank only until survey
 TOP-02A,top,MDF,0.75,1,90.5,32.5,yes,Rear fixed-top skin rough blank only until survey

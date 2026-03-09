@@ -29,7 +29,7 @@ Do not cut applied drawer fronts to final size until the left module is assemble
 
 - [ ] `RM-02` final notch cut
 - [ ] `RM-05` back-panel service cutouts
-- [ ] `RM-10` manifold/control plate cutouts
+- [ ] `RM-10` control-subpanel cutouts and disconnect layout
 
 Do not finalize these until the real service layout is marked from the actual manifold and switch hardware.
 

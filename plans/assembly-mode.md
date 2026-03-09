@@ -22,7 +22,8 @@ Plan a `60 x 31.5 x 3/4 in` removable overlay that:
 - registers to the left and rear edges
 - stays entirely within the rear fixed panel and never crosses into the fold-down wing zone
 - anchors with four star knobs into threaded inserts
-- keeps all anchors left of the saw opening and outside the rail keep-clear lanes
+- uses anchor stations at `x = 6 in` and `x = 54 in` with front and rear rows at `y = 20 in` and `y = 42 in`
+- keeps all anchors outside the saw opening and outside the rail keep-clear lanes
 - starts as a clean panel or light clamping surface and can later receive T-track or `20 mm` holes if you actually want MFT behavior
 - carries an underside stiffener where it spans the saw opening so clamp loads do not sag the panel into the throat area
 
@@ -38,4 +39,6 @@ Plan a `60 x 31.5 x 3/4 in` removable overlay that:
 - Do not place permanent T-track in the stage-1 fixed top.
 - Do not put proud hardware where sheet goods need to slide.
 - Do not route the permanent top for a full dog-hole grid until you have used the bench enough to know you want it.
-- Do not assume the overlay can float unsupported over the saw opening; it needs either the lowered saw top beneath it or its dedicated stiffener.
+- Do not assume the overlay can float unsupported over the saw opening.
+- The underside stiffener is mandatory anywhere the overlay spans the saw opening.
+- The lowered saw top may only act as incidental backup and never as the primary structural clamp support.

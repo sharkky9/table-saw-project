@@ -201,6 +201,24 @@ def main() -> int:
         missing_keys = required_keys - acceptance.keys()
         if missing_keys:
             errors.append(f"front wing acceptance_tolerance is missing: {', '.join(sorted(missing_keys))}")
+        if "alignment_pins" in registration and "centers_x_from_left" not in registration["alignment_pins"]:
+            errors.append("front wing alignment pins must declare placement geometry")
+        if "draw_latches" in registration and "centers_x_from_left" not in registration["draw_latches"]:
+            errors.append("front wing draw latches must declare placement geometry")
+        if "seam_stop_screws" in registration and "centers_x_from_left" not in registration["seam_stop_screws"]:
+            errors.append("front wing seam stop screws must declare placement geometry")
+        if "bracket_centers_x_from_left" not in primary_support:
+            errors.append("front wing primary support must declare bracket placement geometry")
+        if "centerline_x_from_left" not in secondary_support:
+            errors.append("front wing secondary support must declare center-foot placement geometry")
+
+    required_survey_ids = {"miter_slot_width", "miter_slot_depth"}
+    missing_survey_ids = required_survey_ids - set(saw["stripped_saw_survey_required"])
+    if missing_survey_ids:
+        errors.append(
+            "saw.stripped_saw_survey_required is missing precision-gated ids: "
+            + ", ".join(sorted(missing_survey_ids))
+        )
 
     router_zone = layout["router_module"]["zone"]
     router_clearance = router_zone["x"] - (rail["x"] + rail["length"])
@@ -242,11 +260,16 @@ def main() -> int:
             for lane in saw["under_top_keep_clear"]:
                 if point_inside_rect(anchor["x"], anchor["y"], lane):
                     errors.append(f"future overlay anchor {anchor['name']} lands in rail keep-clear lane {lane['name']}")
+        x_positions = sorted({anchor["x"] for anchor in overlay["anchors"]})
+        if len(x_positions) < 2 or x_positions[-1] - x_positions[0] < 40.0:
+            errors.append("future overlay anchors do not span enough of the overlay width to resist tipping")
 
     dust = layout["dust_collection"]
     mockup_gate = dust.get("mockup_gate")
     if not mockup_gate or not mockup_gate.get("required"):
         errors.append("dust collection package must declare a required mockup gate")
+    elif mockup_gate.get("status") not in {"pending", "proven"}:
+        errors.append("dust collection mockup gate status must be pending or proven")
     dust_bay = dust["dust_bay"]
     if "service_opening" not in dust_bay:
         errors.append("dust bay is missing a service_opening definition")
@@ -268,6 +291,10 @@ def main() -> int:
                     f"dust package {package['name']} exceeds bay height once support elevation is included"
                 )
             elif actual_vertical_clearance < dust_bay["service_requirements"]["vertical_clearance_min"] - 1e-6:
+                errors.append(
+                    f"dust package {package['name']} leaves only {actual_vertical_clearance:.2f} in vertical clearance; require at least {dust_bay['service_requirements']['vertical_clearance_min']:.2f} in"
+                )
+            elif actual_vertical_clearance < 0.5:
                 notes.append(
                     f"dust package {package['name']} leaves only {actual_vertical_clearance:.2f} in vertical clearance and still depends on mockup proof"
                 )
@@ -288,6 +315,45 @@ def main() -> int:
         errors.append(
             f"dust-bay rear service void is only {actual_rear_void:.2f} in; require at least {dust_bay['service_requirements']['rear_min']:.2f} in"
         )
+
+    right_service = layout["bench"]["carcass"]["modules"][2]
+    details = right_service.get("details", {})
+    front_service_face = details.get("front_service_face")
+    control_subpanel = details.get("control_subpanel")
+    if not front_service_face:
+        errors.append("right service module must declare the RM-06 front service face")
+    if not control_subpanel or not control_subpanel.get("disconnects"):
+        errors.append("right service module must declare an RM-10 control subpanel with disconnect strategy")
+    elif front_service_face:
+        if control_subpanel["x_from_left"] + control_subpanel["width"] > front_service_face["width"] + 1e-6:
+            errors.append("RM-10 control subpanel extends beyond the RM-06 service face width")
+        if control_subpanel["y_from_bottom"] + control_subpanel["height"] > front_service_face["height"] + 1e-6:
+            errors.append("RM-10 control subpanel extends beyond the RM-06 service face height")
+    notches = details.get("partition_notches", [])
+    if len(notches) != 2:
+        errors.append("right service partition must define two upper notches")
+    else:
+        lane_lookup = {lane["name"]: lane for lane in saw["under_top_keep_clear"]}
+        module_front_y = right_service["y"]
+        for notch in notches:
+            if "from_front" not in notch or "from_top" not in notch:
+                errors.append(f"partition notch {notch['name']} is missing origin dimensions")
+                continue
+            lane_name = notch.get("covers_keep_clear_lane")
+            lane = lane_lookup.get(lane_name) if lane_name else None
+            if lane is None:
+                errors.append(f"partition notch {notch['name']} does not name a keep-clear lane to cover")
+                continue
+            lane_start_local = lane["y"] - module_front_y
+            lane_end_local = lane_start_local + lane["depth"]
+            notch_start = notch["from_front"]
+            notch_end = notch_start + notch["width"]
+            if notch["from_top"] > 1e-6:
+                errors.append(f"partition notch {notch['name']} must start at the top edge to preserve upper rail clearance")
+            if notch_start > lane_start_local + 1e-6 or notch_end < lane_end_local - 1e-6:
+                errors.append(
+                    f"partition notch {notch['name']} does not fully cover keep-clear lane {lane_name}"
+                )
 
     unresolved = unresolved_precision_ids(layout, measurement_rows)
     if args.require_precision_ready and unresolved:

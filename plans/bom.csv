@@ -27,12 +27,14 @@ HDW-19,stage1,dust,Local Y-fitting,1,ea,2-1/2 in Y,Router fence plus cabinet bra
 HDW-20,stage1,dust,Dust extractor,1,ea,Hercules HE028 12 gallon HEPA dust extractor,Selected internal extractor for the right-side service bay
 HDW-21,stage1,dust,Low-profile separator,1,ea,Oneida Dust Deputy Low-Pro Lid Separator,Selected separator for the internal dust package
 HDW-22,stage1,dust,Bucket,1,ea,5 gal heavy-wall bucket with compatible lid,Separator collection vessel for the Low-Pro
+HDW-22A,stage1,dust,Quick hose union or releaseable clamp,1,set,2-1/2 in compatible,Allows RM-10 or RM-06 removal without trapping hose hardware
 HDW-23,stage1,power,Flanged inlet,1,ea,15A or 20A weather-protected,Aux circuit inlet for dust and accessories
 HDW-24,stage1,power,Internal power strip,1,ea,Metal-body strip with overload protection,Feeds extractor charger and task light
 HDW-25,stage1,power,Tool pigtail,1,ea,12/3 SJTW 8 to 12 ft,Dedicated tool circuit for saw or router
 HDW-26,stage1,power,Cable grommets and strain reliefs,1,set,Assorted,For side-wall cord and hose penetrations
 HDW-27,stage1,power,Switch box,1,ea,Paddle or guarded switch,Master aux shutoff near front-right service zone
 HDW-28,stage1,power,RF remote switch,1,set,iVac or equivalent,Extractor trigger strategy for split circuits
+HDW-29,stage1,power,Service-harness plug connector,1,set,Polarized plug or lever connector pair,Allows RM-10 harness disconnect before service-face removal
 RT-01,stage1,router,Router lift,1,ea,JessEm Rout-R-Lift II 02310,Locked stage-1 lift stack
 RT-02,stage1,router,Router motor,1,ea,Bosch 1617EVS,Locked stage-1 router motor
 RT-03,stage1,router,Router fence,1,ea,Shop-built or commercial removable fence,Dust pickup at fence plus cabinet

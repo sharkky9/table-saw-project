@@ -58,6 +58,7 @@ The wing fails if any seam point sits high or if any slot transition catches.
 - Cyclone bucket must be removable without unbuilding the bench.
 - Hercules extractor must be removable after the bucket is removed.
 - The internal Hercules + Low-Pro package is still mockup-gated and not yet proven just because the rectangles fit.
+- The dust-bay minimum vertical margin in the layout contract must still be met even before the mockup is called proven.
 
 ## Power Checks
 
@@ -73,6 +74,7 @@ The wing fails if any seam point sits high or if any slot transition catches.
 - Future overlay must stay entirely in the rear fixed panel and outside the front-wing zone.
 - Future overlay anchors must stay outside the saw opening and outside the rail keep-clear lanes.
 - The future overlay needs an underside stiffener where it spans the saw opening.
+- The future overlay must not rely on the saw itself as the primary support for clamp loads.
 
 ## Finish Checks
 
@@ -107,7 +109,8 @@ Minimum mockup outcomes:
 - bucket fits the front zone with latch clearance
 - extractor fits the rear zone with hand access at the front service opening
 - the documented service sequence works:
-  - remove service face
+  - remove `RM-10` or disconnect its tethered services
+  - remove `RM-06`
   - remove bucket
   - disconnect short hose if needed
   - remove or slide extractor

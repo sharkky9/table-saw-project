@@ -11,5 +11,9 @@
   <rect x="275" y="255" width="24" height="120" fill="#d2c09b" stroke="#333" stroke-width="2"/>
   <text x="520" y="210" font-family="Helvetica, Arial, sans-serif" font-size="16">Fixed top</text>
   <text x="260" y="245" font-family="Helvetica, Arial, sans-serif" font-size="16">Center load-sharing foot</text>
-  <text x="150" y="390" font-family="Helvetica, Arial, sans-serif" font-size="16">Pins + stop screws + latches define position. Side brackets carry load.</text>
+  <text x="140" y="410" font-family="Helvetica, Arial, sans-serif" font-size="16">Pins x=6 and x=53.75, 1.25 in forward of seam</text>
+  <text x="140" y="438" font-family="Helvetica, Arial, sans-serif" font-size="16">Stop screws x=18 and x=41.75, 1.0 in forward of seam</text>
+  <text x="140" y="466" font-family="Helvetica, Arial, sans-serif" font-size="16">Latches x=12 and x=47.75, 2.0 in forward of seam</text>
+  <text x="140" y="494" font-family="Helvetica, Arial, sans-serif" font-size="16">Support legs/brackets on x=6 and x=53.75 centerlines</text>
+  <text x="140" y="522" font-family="Helvetica, Arial, sans-serif" font-size="16">FW-03 front batten runs the free edge; center foot x=29.875</text>
 </svg>

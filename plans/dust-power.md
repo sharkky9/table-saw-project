@@ -14,7 +14,8 @@ Only one branch is meant to be open at a time.
 
 - Front of dust bay: Oneida `Dust Deputy Low-Pro` on a 5 gallon bucket
 - Rear of dust bay: Hercules `HE028` on a fixed low deck or UHMW skid base
-- Front-right service face: Rockler manifold and controls
+- `RM-06`: plain front dust-service face
+- `RM-10`: separate removable control subpanel for the Rockler manifold, aux switch, and flex-hose dock
 - Right end panel: router access hatch
 
 ### Confidence Boundary
@@ -33,17 +34,26 @@ What is not yet considered proven:
 - front opening comfort
 - the real extractor support deck thickness and friction behavior
 - the true removal path with the chosen fittings installed
+- the exact disconnect sequence for `RM-10`, the flex-hose dock, and the short separator-to-extractor hose
 
 ## Right-Bay Service Sequence
 
 The intended service sequence is:
 
-1. remove the front service face
-2. remove the Low-Pro bucket package
-3. disconnect the short separator-to-extractor hose if needed
-4. slide or lift the extractor forward from the fixed low deck
+1. remove `RM-10` or disconnect its tethered services
+2. remove `RM-06`
+3. remove the Low-Pro bucket package
+4. disconnect the short separator-to-extractor hose if needed
+5. slide or lift the extractor forward from the fixed low deck
 
 This sequence is accepted as normal. The goal is honest serviceability, not theatrical one-motion access.
+
+### `RM-10` Disconnect Rules
+
+- `RM-10` must not hard-trap `RM-06`.
+- The aux switch harness must terminate in a plug connector so the control subpanel can unplug cleanly.
+- The flex-hose dock must use a releaseable slack loop and quick union or unclamp sequence.
+- If the chosen manifold hardware prevents `RM-10` from coming off as a plate, document the exact unclamp sequence on the back of the service face before final assembly.
 
 ## Hose Rules
 
@@ -128,10 +138,12 @@ The package assumes the RF remote path.
 - Master aux shutoff: front-right face
 - Internal strip: front-right interior wall
 - RF remote receiver: in the right service bay but not buried behind the extractor
-- Service face cutouts:
-  - manifold center at `7.5 in` from the left and `20 in` from the bottom
-  - aux switch center at `15.5 in` from the left and `20 in` from the bottom
-  - flex-hose exit center at `16.5 in` from the left and `8 in` from the bottom
+- `RM-10` control subpanel:
+  - size `12 x 18 in`
+  - mounted with its lower-left corner `7 in` from the left edge and `6 in` from the bottom of `RM-06`
+  - manifold center at `4.5 in` from the left and `14 in` from the bottom of `RM-10`
+  - aux switch center at `10 in` from the left and `14 in` from the bottom of `RM-10`
+  - flex-hose exit center at `10 in` from the left and `4 in` from the bottom of `RM-10`
 
 ## Weight And Mobility
 
@@ -151,7 +163,7 @@ This is intentionally more industrial than consumer retractable workbench-caster
 ## Serviceability Rules
 
 - Extractor must slide or lift out without removing the bench top.
-- The front service face must remove cleanly.
+- `RM-10` and `RM-06` must remove cleanly in the documented order.
 - Cyclone bucket lid must be removable without taking out the router fence or top.
 - Manifold must be reachable while the bench is parked.
 - No permanent wiring may be buried behind the extractor.

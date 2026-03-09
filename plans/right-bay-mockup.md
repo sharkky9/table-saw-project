@@ -20,7 +20,8 @@ This mockup proves the internal `Hercules HE028 + Oneida Low-Pro + Rockler 2-1/2
 
 - bucket sits on a fixed front pad
 - extractor sits on a fixed low deck or UHMW skid base
-- front service face removes first
+- `RM-10` control subpanel removes or disconnects first
+- `RM-06` service face removes second
 - bucket comes out first
 - extractor comes out second
 
@@ -32,12 +33,14 @@ This mockup proves the internal `Hercules HE028 + Oneida Low-Pro + Rockler 2-1/2
 - minimum hand access width to disconnect the short hose
 - comfortable front opening width and height
 - actual removal path once the bucket is removed
+- actual `RM-10` disconnect sequence and slack-loop behavior
 
 ## Pass Criteria
 
 - bucket fits without crushing the hose or lid latches
 - bucket can be removed cleanly through the service opening
 - extractor can be moved out after the bucket is removed
+- `RM-10` disconnects or unplugs without trapping `RM-06`
 - short hose can be disconnected without skinning knuckles on sharp structure
 - service face opening is large enough that the mockup does not depend on impossible hand angles
 

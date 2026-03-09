@@ -39,6 +39,25 @@ Important rule:
 - `FAST-15` locking side support brackets
 - `FAST-16` center load-sharing foot and glide
 
+## Placement Map
+
+Use the wing blank left edge as `x = 0` and the rear seam edge as the seam reference.
+
+- tapered alignment pin centers: `x = 6.0 in` and `x = 53.75 in`, each `1.25 in` forward of the seam
+- seam stop screw centers: `x = 18.0 in` and `x = 41.75 in`, each `1.0 in` forward of the seam
+- draw-latch centers: `x = 12.0 in` and `x = 47.75 in`, each `2.0 in` forward of the seam
+- side-support bracket and leg centerlines: `x = 6.0 in` and `x = 53.75 in`
+- center load-sharing foot centerline: `x = 29.875 in`, about `2.5 in` back from the front edge
+
+These positions intentionally stay clear of the miter-slot centerlines while bracketing the wing span with support near both ends.
+
+## Support Hardware Clarification
+
+- `FAST-15` are the locking bracket sets that mount to the bench and wing.
+- `FW-04` are the actual wooden support legs that those brackets control.
+- The brackets define the deployed geometry; the legs supply stiffness and carry load after the wing is already registered.
+- `FW-03` mounts along the free front edge as the wing stiffener batten.
+
 ## Seam And Slot Tolerances
 
 - seam flushness: `0.000 to -0.005 in`
@@ -75,5 +94,5 @@ The wing fails if:
 
 - install the pins and bushings before routing slot extensions
 - set seam stop screws before final latch adjustment
-- mount the side brackets so they carry the deployed load without relying on the center foot
+- mount the side brackets on the `x = 6.0 in` and `x = 53.75 in` centerlines so they carry the deployed load without relying on the center foot
 - trim or adjust the center foot last

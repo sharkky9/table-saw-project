@@ -110,11 +110,16 @@ Parts:
 Steps:
 
 1. Build the module shell from `RM-01`, `RM-03`, and `RM-04`.
-2. Cut the notches in `RM-02` only after marking the real keep-clear strategy from the current layout.
-3. Install `RM-05` only after service cutouts are marked.
-4. Fit `RM-06` as a removable front service face.
-5. Fit `RM-07` router hatch.
-6. Leave `RM-08` and `RM-10` as mockup-gated parts until the right-bay package is proven.
+2. Mark `RM-02` notch origins from the layout contract:
+   - front notch `9.5 in` from the front edge and `0 in` from the top
+   - rear notch `30 in` from the front edge and `0 in` from the top
+3. Cut the `8 x 8 in` notches in `RM-02` only after that layout is transferred cleanly.
+4. Install `RM-02` so the notched upper field protects the rail keep-clear lanes.
+5. Install `RM-05` only after service cutouts are marked.
+6. Install `RM-09` cleats before fitting any removable front panels.
+7. Fit `RM-07` router hatch.
+8. Leave `RM-08` and `RM-10` as mockup-gated or service-layout-gated parts until the right-bay package is proven.
+9. Fit `RM-06` as a plain removable service face only after `RM-10` disconnect strategy is resolved.
 
 Hold point:
 
@@ -207,8 +212,10 @@ Hold point:
 ## 12. Dust And Power
 
 1. Run [right-bay-mockup.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/right-bay-mockup.md).
-2. Fit the service face and extractor base only after the mockup passes.
-3. Install manifold hoses inlet strip and RF remote.
+2. Fit the extractor base only after the mockup passes.
+3. Fit `RM-10` as an independent removable control subpanel with its plug connector and hose release strategy.
+4. Fit `RM-06` only after `RM-10` removal proves that the service face is not trapped.
+5. Install manifold hoses inlet strip and RF remote.
 
 Hold point:
 
@@ -218,7 +225,7 @@ Hold point:
 ## 13. Drawers And Service Panels
 
 1. Final-fit the three drawer fronts with `1/8 in` reveals.
-2. Final-fit the front service face and router hatch.
+2. Final-fit `RM-06`, `RM-10`, and the router hatch in their real service order.
 3. Leave service paths removable.
 
 Hold point:

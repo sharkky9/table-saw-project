@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
   <rect width="1200" height="760" fill="#ffffff"/>
-  <text x="40" y="40" font-family="Helvetica, Arial, sans-serif" font-size="24">3/4 in Plywood Sheet Allocation</text>
+  <text x="40" y="40" font-family="Helvetica, Arial, sans-serif" font-size="24">3/4 in Plywood Sheet Allocation (Sheets 1-4 of 8)</text>
   <rect x="60" y="100" width="220" height="440" fill="#faf7f2" stroke="#111" stroke-width="2"/>
   <rect x="320" y="100" width="220" height="440" fill="#faf7f2" stroke="#111" stroke-width="2"/>
   <rect x="580" y="100" width="220" height="440" fill="#faf7f2" stroke="#111" stroke-width="2"/>
@@ -13,5 +13,5 @@
   <text x="350" y="170" font-family="Helvetica, Arial, sans-serif" font-size="16">Wing + module sides</text>
   <text x="610" y="170" font-family="Helvetica, Arial, sans-serif" font-size="16">Cabinet partitions</text>
   <text x="870" y="170" font-family="Helvetica, Arial, sans-serif" font-size="16">Service parts + fence</text>
-  <text x="60" y="610" font-family="Helvetica, Arial, sans-serif" font-size="16">Use this as a planning map only. Final nested layouts still depend on local sheet stock and cutter preference.</text>
+  <text x="60" y="610" font-family="Helvetica, Arial, sans-serif" font-size="16">Planning example only. BOM still calls for 8 sheets total; this sketch shows only the first 4 sheets.</text>
 </svg>

@@ -17,8 +17,16 @@
   <text x="160" y="300" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#2a6f97">Future overlay 60 x 31.5</text>
   <circle cx="140" cy="300" r="6" fill="#2a6f97"/>
   <circle cx="140" cy="520" r="6" fill="#2a6f97"/>
-  <circle cx="260" cy="300" r="6" fill="#2a6f97"/>
-  <circle cx="260" cy="520" r="6" fill="#2a6f97"/>
+  <circle cx="620" cy="300" r="6" fill="#2a6f97"/>
+  <circle cx="620" cy="520" r="6" fill="#2a6f97"/>
+  <line x1="376.25" y1="100" x2="376.25" y2="580" stroke="#7a4d00" stroke-width="2" stroke-dasharray="6 6"/>
+  <line x1="492.5" y1="100" x2="492.5" y2="580" stroke="#7a4d00" stroke-width="2" stroke-dasharray="6 6"/>
+  <text x="386" y="128" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#7a4d00">Left slot center x=29.625</text>
+  <text x="502" y="148" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#7a4d00">Right slot center x=41.25</text>
+  <text x="596" y="258" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#b00020">Saw opening 27.625 x 22.1875</text>
+  <text x="596" y="276" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#b00020">Origin x=22.96875 y=16.21875</text>
+  <text x="132" y="548" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#2a6f97">Anchors x=6</text>
+  <text x="595" y="548" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#2a6f97">Anchors x=54</text>
   <line x1="80" y1="620" x2="980" y2="620" stroke="#111" stroke-width="1.5"/>
   <line x1="80" y1="612" x2="80" y2="628" stroke="#111" stroke-width="1.5"/>
   <line x1="980" y1="612" x2="980" y2="628" stroke="#111" stroke-width="1.5"/>
@@ -27,5 +35,6 @@
   <line x1="1002" y1="100" x2="1018" y2="100" stroke="#111" stroke-width="1.5"/>
   <line x1="1002" y1="580" x2="1018" y2="580" stroke="#111" stroke-width="1.5"/>
   <text x="1040" y="345" font-family="Helvetica, Arial, sans-serif" font-size="18" text-anchor="middle" transform="rotate(90 1040 345)">48 in overall depth</text>
-  <text x="380" y="85" font-family="Helvetica, Arial, sans-serif" font-size="16">All top and wing sizes remain rough-only until survey gate is open.</text>
+  <text x="330" y="85" font-family="Helvetica, Arial, sans-serif" font-size="16">All top and wing sizes remain rough-only until survey gate is open.</text>
+  <text x="640" y="602" font-family="Helvetica, Arial, sans-serif" font-size="14">Blade centerline x=36</text>
 </svg>

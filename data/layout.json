@@ -129,7 +129,22 @@
           "details": {
             "front_service_face": {
               "width": 20.0,
-              "height": 28.0
+              "height": 28.0,
+              "retention": "screw_fastened_removable_panel",
+              "notes": "RM-06 is the plain removable dust-access face. RM-10 is a separate removable control cassette that must come off or disconnect first."
+            },
+            "control_subpanel": {
+              "width": 12.0,
+              "height": 18.0,
+              "x_from_left": 7.0,
+              "y_from_bottom": 6.0,
+              "retention": "machine_screws_into_threaded_inserts",
+              "disconnects": [
+                "plug connector for aux-switch harness",
+                "releaseable slack loop for flex-hose dock",
+                "quick disconnect or union for manifold hose if the chosen hardware requires it"
+              ],
+              "notes": "RM-10 carries the manifold, aux switch, and flex-hose dock on its own removable plate so RM-06 can still come off cleanly."
             },
             "router_hatch": {
               "width": 12.0,
@@ -139,29 +154,35 @@
               {
                 "name": "front_upper",
                 "width": 8.0,
-                "height": 8.0
+                "height": 8.0,
+                "from_front": 9.5,
+                "from_top": 0.0,
+                "covers_keep_clear_lane": "front_right_rail_lane"
               },
               {
                 "name": "rear_upper",
                 "width": 8.0,
-                "height": 8.0
+                "height": 8.0,
+                "from_front": 30.0,
+                "from_top": 0.0,
+                "covers_keep_clear_lane": "rear_right_rail_lane"
               }
             ],
-            "service_face_cutouts": [
+            "control_subpanel_cutouts": [
               {
                 "name": "manifold_panel_center",
-                "x_from_left": 7.5,
-                "y_from_bottom": 20.0
+                "x_from_left": 4.5,
+                "y_from_bottom": 14.0
               },
               {
                 "name": "aux_switch_center",
-                "x_from_left": 15.5,
-                "y_from_bottom": 20.0
+                "x_from_left": 10.0,
+                "y_from_bottom": 14.0
               },
               {
                 "name": "flex_hose_exit_center",
-                "x_from_left": 16.5,
-                "y_from_bottom": 8.0
+                "x_from_left": 10.0,
+                "y_from_bottom": 4.0
               }
             ]
           }
@@ -260,6 +281,8 @@
       "rail_rear_projection_min",
       "rail_rear_projection_mid",
       "rail_rear_projection_max",
+      "miter_slot_width",
+      "miter_slot_depth",
       "dust_port_center_x",
       "dust_port_center_y",
       "dust_hose_sweep_depth_0deg",
@@ -354,15 +377,30 @@
       "datum_strategy": "bench_defined",
       "alignment_pins": {
         "count": 2,
-        "type": "tapered steel locating pins into steel or bronze bushings"
+        "type": "tapered steel locating pins into steel or bronze bushings",
+        "centers_x_from_left": [
+          6.0,
+          53.75
+        ],
+        "setback_from_seam": 1.25
       },
       "seam_stop_screws": {
         "count": 2,
-        "purpose": "set wing flushness at the seam before latching"
+        "purpose": "set wing flushness at the seam before latching",
+        "centers_x_from_left": [
+          18.0,
+          41.75
+        ],
+        "setback_from_seam": 1.0
       },
       "draw_latches": {
         "count": 2,
-        "purpose": "pull the wing hard into the registered position after pin engagement"
+        "purpose": "pull the wing hard into the registered position after pin engagement",
+        "centers_x_from_left": [
+          12.0,
+          47.75
+        ],
+        "setback_from_seam": 2.0
       },
       "hinge_line_transition": {
         "slot_end_treatment": "chamfered slot ends with eased aluminum-track edges",
@@ -372,11 +410,22 @@
     "primary_support": {
       "type": "bench-mounted locking side brackets",
       "count": 2,
+      "bracket_centers_x_from_left": [
+        6.0,
+        53.75
+      ],
+      "leg_centerlines_x_from_left": [
+        6.0,
+        53.75
+      ],
+      "leg_top_mount_height_below_wing": 3.0,
       "notes": "These carry the deployed wing height and stiffness. Floor contact is not the primary precision datum."
     },
     "secondary_support": {
       "type": "center load-sharing foot",
       "count": 1,
+      "centerline_x_from_left": 29.875,
+      "setback_from_front": 2.5,
       "notes": "This foot shares load after the wing is registered and latched. It is trimmed or adjusted to just kiss the floor."
     },
     "acceptance_tolerance": {
@@ -422,7 +471,7 @@
   "dust_collection": {
     "mockup_gate": {
       "required": true,
-      "status": "open",
+      "status": "pending",
       "notes": "The internal Hercules plus Low-Pro package is still concept-only until real machine and fitting mockup confirms serviceability.",
       "required_checks": [
         "bucket clearance",
@@ -433,7 +482,8 @@
       ]
     },
     "service_sequence": [
-      "remove front service face",
+      "remove RM-10 control subpanel or disconnect its tethered services",
+      "remove RM-06 front service face",
       "remove Low-Pro bucket package",
       "disconnect short hose if needed",
       "remove or slide extractor"
@@ -477,7 +527,7 @@
       "service_requirements": {
         "rear_min": 1.0,
         "package_gap_min": 1.0,
-        "vertical_clearance_min": 1.0
+        "vertical_clearance_min": 0.25
       },
       "notes": "This bay intentionally models an internal Hercules plus Low-Pro package with front service. Default extractor support is now a fixed low deck or low-friction skid and not a pull-out tray."
     },
@@ -554,13 +604,13 @@
           "y": 42.0
         },
         {
-          "name": "front_inner",
-          "x": 18.0,
+          "name": "front_right",
+          "x": 54.0,
           "y": 20.0
         },
         {
-          "name": "rear_inner",
-          "x": 18.0,
+          "name": "rear_right",
+          "x": 54.0,
           "y": 42.0
         }
       ],
@@ -568,7 +618,8 @@
         "length": 36.0,
         "depth": 2.0,
         "location": "Runs under the overlay where it spans the saw opening."
-      }
+      },
+      "support_policy": "Underside stiffener is mandatory over the saw opening. The lowered saw top may only act as incidental backup and never as the primary clamp-load support."
     },
     "future_overlay": {
       "size": {
@@ -592,13 +643,13 @@
           "y": 42.0
         },
         {
-          "name": "front_inner",
-          "x": 18.0,
+          "name": "front_right",
+          "x": 54.0,
           "y": 20.0
         },
         {
-          "name": "rear_inner",
-          "x": 18.0,
+          "name": "rear_right",
+          "x": 54.0,
           "y": 42.0
         }
       ],
@@ -606,7 +657,8 @@
         "length": 36.0,
         "depth": 2.0,
         "location": "Runs under the overlay where it spans the saw opening."
-      }
+      },
+      "support_policy": "Underside stiffener is mandatory over the saw opening. The lowered saw top may only act as incidental backup and never as the primary clamp-load support."
     }
   }
 }

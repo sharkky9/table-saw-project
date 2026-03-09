@@ -2,6 +2,7 @@
 
 import csv
 import json
+import re
 import sys
 from collections import Counter
 from pathlib import Path
@@ -18,6 +19,7 @@ REQUIRED_COLUMNS = {
     "rough_w",
     "final_l",
     "final_w",
+    "gate",
     "notes",
 }
 
@@ -42,6 +44,18 @@ SHEET_MAP = {
     ("plywood", "0.75"): "MAT-01",
     ("MDF", "0.75"): "MAT-02",
     ("plywood", "0.5"): "MAT-03",
+}
+SHEET_LENGTH = 96.0
+SHEET_WIDTH = 48.0
+
+ALLOWED_GATES = {
+    "cut_now",
+    "after_survey",
+    "after_face_fit",
+    "after_service_layout",
+    "after_mockup",
+    "after_wing_fit",
+    "stage2",
 }
 
 
@@ -69,6 +83,16 @@ def default_layout_path(cutlist_path: Path) -> Path:
     return cutlist_path.resolve().parents[1] / "data" / "layout.json"
 
 
+def default_no_cut_checklist_path(cutlist_path: Path) -> Path:
+    return cutlist_path.resolve().with_name("no-cut-yet-checklist.md")
+
+
+def parse_checklist_part_ids(path: Path) -> set[str]:
+    if not path.exists():
+        return set()
+    return set(re.findall(r"`([A-Z]+-\d+[A-Z]?)`", path.read_text()))
+
+
 def main() -> int:
     if len(sys.argv) not in {2, 3, 4}:
         print("usage: validate_cutlist.py <cut-list.csv> [bom.csv] [layout.json]", file=sys.stderr)
@@ -77,6 +101,7 @@ def main() -> int:
     path = Path(sys.argv[1])
     bom_path = Path(sys.argv[2]) if len(sys.argv) >= 3 else path.with_name("bom.csv")
     layout_path = Path(sys.argv[3]) if len(sys.argv) == 4 else default_layout_path(path)
+    checklist_path = default_no_cut_checklist_path(path)
 
     with path.open(newline="") as handle:
         reader = csv.DictReader(handle)
@@ -102,6 +127,9 @@ def main() -> int:
 
     for row in rows:
         numeric_values: dict[str, float] = {}
+        gate = row["gate"].strip()
+        if gate not in ALLOWED_GATES:
+            errors.append(f"{row['part_id']} has unknown gate: {gate}")
         for key in ("thickness", "qty", "rough_l", "rough_w", "final_l", "final_w"):
             try:
                 value = float(row[key])
@@ -125,11 +153,22 @@ def main() -> int:
 
         sheet_key = SHEET_MAP.get((row["material"], row["thickness"]))
         if sheet_key and {"qty", "rough_l", "rough_w"} <= numeric_values.keys():
+            rough_l = numeric_values["rough_l"]
+            rough_w = numeric_values["rough_w"]
+            fits_sheet = (
+                (rough_l <= SHEET_LENGTH + 1e-6 and rough_w <= SHEET_WIDTH + 1e-6)
+                or (rough_w <= SHEET_LENGTH + 1e-6 and rough_l <= SHEET_WIDTH + 1e-6)
+            )
+            if not fits_sheet:
+                errors.append(
+                    f"{row['part_id']} rough blank {rough_l} x {rough_w} does not fit within a 48 x 96 sheet in either orientation"
+                )
             material_areas[sheet_key] += (
                 numeric_values["qty"] * numeric_values["rough_l"] * numeric_values["rough_w"]
             )
 
     bom_counts = load_bom_sheet_counts(bom_path)
+    checklist_part_ids = parse_checklist_part_ids(checklist_path)
     if bom_counts:
         for item_id, rough_area in material_areas.items():
             required_sheets = rough_area / USABLE_SHEET_AREA
@@ -155,6 +194,21 @@ def main() -> int:
     if bom_counts.get("HDW-11") not in {None, 3.0}:
         errors.append("HDW-11 must specify three pairs of drawer slides")
 
+    gated_parts = {
+        row["part_id"]
+        for row in rows
+        if row["gate"] not in {"cut_now", "stage2"}
+    }
+    if not checklist_part_ids:
+        errors.append("no-cut-yet checklist is missing or contains no part ids")
+    else:
+        missing_checklist_parts = gated_parts - checklist_part_ids
+        if missing_checklist_parts:
+            errors.append(
+                "gated cut-list parts missing from no-cut-yet checklist: "
+                + ", ".join(sorted(missing_checklist_parts))
+            )
+
     layout = load_layout(layout_path)
     if layout:
         rear_main = next(region for region in layout["bench"]["top"]["fixed_regions"] if region["name"] == "rear_main")
@@ -174,6 +228,10 @@ def main() -> int:
             "RM-07": (
                 layout["router_module"]["access_hatch"]["width"],
                 layout["router_module"]["access_hatch"]["height"],
+            ),
+            "RM-10": (
+                layout["bench"]["carcass"]["modules"][2]["details"]["control_subpanel"]["width"],
+                layout["bench"]["carcass"]["modules"][2]["details"]["control_subpanel"]["height"],
             ),
             "ASM-01": (overlay["size"]["length"], overlay["size"]["depth"]),
             "ASM-04": (

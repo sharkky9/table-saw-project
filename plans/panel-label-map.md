@@ -27,11 +27,11 @@ Label every part immediately after cutting with its `part_id` and reference edge
 | `RM-03` | dust-bay floor | front edge | `right-bay-packaging.svg` |
 | `RM-04` | right module stretcher | front long edge | `right-module-elevation.svg` |
 | `RM-05` | right module back | top edge | `right-module-elevation.svg` |
-| `RM-06` | front service face | top edge | `right-module-elevation.svg` |
+| `RM-06` | plain front service face | top edge | `right-module-elevation.svg` |
 | `RM-07` | router access hatch | top edge | `right-elevation.svg` |
 | `RM-08` | extractor base | front edge | `right-bay-packaging.svg` |
 | `RM-09` | service-face cleat | top edge | `right-module-elevation.svg` |
-| `RM-10` | manifold plate | top edge | `right-bay-packaging.svg` |
+| `RM-10` | control subpanel | top edge | `right-bay-packaging.svg` |
 | `TOP-01A` | rear top substrate | front edge | `top-dimensioned.svg` |
 | `TOP-01B` | right-front infill substrate | front edge | `top-dimensioned.svg` |
 | `TOP-02A` | rear top skin | front edge | `top-dimensioned.svg` |
