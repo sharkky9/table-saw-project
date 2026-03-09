@@ -209,16 +209,18 @@ def main() -> int:
     if layout:
         overall = layout["bench"]["overall"]
         right_service = next(module for module in layout["bench"]["carcass"]["modules"] if module["name"] == "right_service")
-        front_panel_depth = layout["saw"]["cast_top"]["y"]
-        rear_panel_depth = overall["depth"] - front_panel_depth
+        panelization = layout["bench"]["top"]["panelization"]
+        front_left_panel = panelization["front_left"]
+        front_right_panel = panelization["front_right"]
+        rear_panel = panelization["rear"]
         overlay = layout["assembly_mode"]["overlay"]
         checks = {
-            "TOP-01A": (overall["length"], rear_panel_depth),
-            "TOP-01B": (right_service["x"], front_panel_depth),
-            "TOP-01C": (overall["length"] - right_service["x"], front_panel_depth),
-            "TOP-02A": (overall["length"], rear_panel_depth),
-            "TOP-02B": (right_service["x"], front_panel_depth),
-            "TOP-02C": (overall["length"] - right_service["x"], front_panel_depth),
+            "TOP-01A": (rear_panel["length"], rear_panel["depth"]),
+            "TOP-01B": (front_left_panel["length"], front_left_panel["depth"]),
+            "TOP-01C": (front_right_panel["length"], front_right_panel["depth"]),
+            "TOP-02A": (rear_panel["length"], rear_panel["depth"]),
+            "TOP-02B": (front_left_panel["length"], front_left_panel["depth"]),
+            "TOP-02C": (front_right_panel["length"], front_right_panel["depth"]),
             "MS-01": (
                 layout["miter_station"]["opening"]["length"],
                 layout["miter_station"]["opening"]["depth"],

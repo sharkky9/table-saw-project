@@ -44,6 +44,8 @@ python3 tools/validate_measurements.py --require-precision-ready data/measuremen
 python3 tools/validate_layout.py --require-precision-ready data/layout.json data/measurements.csv
 ```
 
+Those strict commands now mean: stripped-saw precision rows are resolved and the accepted public `DCS781` envelope still fits the contract. They do not replace the later manual tray-fit, hard-stop, shim, and flex-hose proof steps for the real miter saw.
+
 ## Hard Gates
 
 These gates still remain in force:

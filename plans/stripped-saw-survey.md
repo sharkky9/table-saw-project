@@ -2,7 +2,7 @@
 
 Use this sheet after removing the `SKIL SPT99-11` from its rolling stand and before machining the final top opening or drilling the final mounting deck.
 
-This is the table-saw-only survey. The centered flip-top miter station now has its own contract in [miter-saw-survey.md](/Users/christopherhandel/Documents/Github/Table Saw Project/.worktrees/bench-fixed-top-layout/plans/miter-saw-survey.md).
+This is the table-saw-only survey. The centered flip-top miter station now has its own contract in [miter-saw-survey.md](./miter-saw-survey.md).
 
 ## Purpose
 
@@ -18,7 +18,7 @@ This survey directly unlocks:
 
 ## Hard Stop
 
-Do not machine the top or drill the final mounting deck until every required survey row is real in [data/measurements.csv](/Users/christopherhandel/Documents/GitHub/Table Saw/data/measurements.csv).
+Do not machine the top or drill the final mounting deck until every required survey row is real in [data/measurements.csv](../data/measurements.csv).
 
 ## Tools
 
@@ -215,7 +215,7 @@ Take photos at the worst-case positions.
 
 ## Fill-In Table
 
-Write the measured values here first then transfer them into [data/measurements.csv](/Users/christopherhandel/Documents/GitHub/Table Saw/data/measurements.csv).
+Write the measured values here first then transfer them into [data/measurements.csv](../data/measurements.csv).
 
 | ID | Value | Units | Blocks |
 | --- | --- | --- | --- |

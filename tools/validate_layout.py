@@ -13,7 +13,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--require-precision-ready",
         action="store_true",
-        help="Fail if stripped-saw precision inputs or required public miter-station spec rows are still provisional or blank.",
+        help="Fail if stripped-saw precision inputs are unresolved or the accepted public DCS781 envelope no longer fits the contract. Real tray fit remains a manual gate.",
     )
     parser.add_argument("layout")
     parser.add_argument("measurements")
@@ -39,6 +39,12 @@ def row_has_value(row: dict[str, str]) -> bool:
     if row["units"] in {"text", "n/a"}:
         return row["value"] != ""
     return numeric_value(row) is not None
+
+
+def text_value(row: Optional[dict[str, str]]) -> str:
+    if row is None:
+        return ""
+    return row["value"].strip()
 
 
 def rect_inside(inner: dict[str, float], outer: dict[str, float]) -> bool:
@@ -111,8 +117,8 @@ def main() -> int:
     errors: list[str] = []
     notes: list[str] = []
 
-    if layout.get("schema_version") != "1.3":
-        errors.append("layout schema_version must be 1.3 for the fixed-top reset")
+    if layout.get("schema_version") != "1.4":
+        errors.append("layout schema_version must be 1.4 for the public-fit hardening pass")
     if "front_wing" in layout:
         errors.append("front_wing must not appear in the fixed-top layout contract")
     if "fixed_regions" in layout["bench"]["top"]:
@@ -131,6 +137,24 @@ def main() -> int:
     full_bench_rect = {"x": 0.0, "y": 0.0, "length": overall["length"], "depth": overall["depth"]}
     if fixed_surface != full_bench_rect:
         errors.append("bench.top.fixed_surface must describe the full 90 x 48 top")
+    panelization = top.get("panelization")
+    if panelization is None:
+        errors.append("bench.top.panelization must describe the front and rear top-panel split")
+    else:
+        split_y = panelization["split_y"]
+        front_left = panelization["front_left"]
+        front_right = panelization["front_right"]
+        rear_panel = panelization["rear"]
+        if not math.isclose(front_left["depth"], split_y, abs_tol=0.05):
+            errors.append("front-left panel depth must match bench.top.panelization split_y")
+        if not math.isclose(front_right["depth"], split_y, abs_tol=0.05):
+            errors.append("front-right panel depth must match bench.top.panelization split_y")
+        if not math.isclose(rear_panel["depth"], overall["depth"] - split_y, abs_tol=0.05):
+            errors.append("rear panel depth must match overall depth minus bench.top.panelization split_y")
+        if not math.isclose(front_left["length"] + front_right["length"], overall["length"], abs_tol=0.05):
+            errors.append("front top-panel lengths must add up to the full bench length")
+        if not math.isclose(rear_panel["length"], overall["length"], abs_tol=0.05):
+            errors.append("rear top panel must span the full bench length")
 
     openings = opening_lookup(layout)
     required_openings = {"miter_station_opening", "saw_opening", "router_plate_opening"}
@@ -181,10 +205,11 @@ def main() -> int:
         errors.append("saw opening average gap drifts too far from the target general gap")
 
     rail = saw["rail_envelope"]
+    rail_right_projection_max = max(m["rail_front_projection_max"], m["rail_rear_projection_max"])
     expected_rail = {
         "x": cast_top["x"] - m["rail_left_projection_min_setting"],
         "y": cast_top["y"] - m["rail_front_overhang_from_cast_top"],
-        "length": m["saw_table_width"] + m["rail_left_projection_min_setting"] + m["rail_front_projection_max"],
+        "length": m["saw_table_width"] + m["rail_left_projection_min_setting"] + rail_right_projection_max,
         "depth": m["saw_table_depth"] + m["rail_front_overhang_from_cast_top"] + m["rail_rear_overhang_from_cast_top"],
     }
     for key, expected in expected_rail.items():
@@ -249,6 +274,31 @@ def main() -> int:
         errors.append("left miter-station support must terminate at the opening edge")
     if not math.isclose(right_support["x"], miter_station["opening"]["x"] + miter_station["opening"]["length"], abs_tol=0.05):
         errors.append("right miter-station support must begin at the opening edge")
+    public_fit_validation = miter_station.get("public_fit_validation")
+    if public_fit_validation is None:
+        errors.append("miter_station.public_fit_validation must encode the accepted public DCS781 contract")
+    else:
+        model_substring = public_fit_validation["accepted_model_substring"].lower()
+        if model_substring not in text_value(measurement_rows.get("miter_saw_model")).lower():
+            errors.append("miter_saw_model does not match the accepted public DCS781 family")
+        public_row_to_limit = {
+            "miter_saw_stowed_width": public_fit_validation["accepted_public_width_max"],
+            "miter_saw_stowed_depth": public_fit_validation["accepted_public_depth_max"],
+            "miter_saw_stowed_height": public_fit_validation["accepted_public_height_max"],
+            "miter_saw_weight": public_fit_validation["max_supported_tool_weight_lbs"],
+        }
+        for row_id, maximum in public_row_to_limit.items():
+            row_value = m.get(row_id)
+            if row_value is None:
+                errors.append(f"{row_id} must be numeric for the public-fit contract")
+                continue
+            if row_value > maximum + 1e-6:
+                errors.append(f"{row_id} exceeds the accepted public-fit limit of {maximum:.2f}")
+        deployed_envelope = miter_station["deployed_envelope"]
+        if deployed_envelope["length"] + 1e-6 < public_fit_validation["accepted_public_width_max"]:
+            errors.append("miter-station deployed envelope is narrower than the accepted public DCS781 width")
+        if deployed_envelope["depth"] + 1e-6 < public_fit_validation["accepted_public_depth_max"]:
+            errors.append("miter-station deployed envelope is shallower than the accepted public DCS781 depth")
 
     mechanism_zone = miter_station["under_top_mechanism_zone"]
     right_service = next(module for module in carcass["modules"] if module["name"] == "right_service")
@@ -394,6 +444,11 @@ def main() -> int:
             "precision-cut gate remains closed until these required ids are resolved: "
             + ", ".join(unresolved)
         )
+    elif public_fit_validation is not None:
+        notes.append(
+            "precision-ready is open on public-sanity only; real tray fit still remains a manual gate for: "
+            + ", ".join(public_fit_validation["manual_fit_required"])
+        )
 
     if errors:
         print("layout validation failed:")
@@ -401,13 +456,12 @@ def main() -> int:
             print(f"- {error}")
         return 1
 
-    if notes:
+    if unresolved:
         print(f"validated concept layout {layout_path} against {measurement_path}")
-        for note in notes:
-            print(f"note: {note}")
-        return 0
-
-    print(f"validated layout {layout_path} against {measurement_path}; precision-cut gate is open")
+    else:
+        print(f"validated layout {layout_path} against {measurement_path}; precision-cut gate is open")
+    for note in notes:
+        print(f"note: {note}")
     return 0
 
 

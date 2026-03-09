@@ -18,6 +18,8 @@ Real-tool fit is still required for:
 
 Do not drill the final tray bolt pattern or lock the deployed hard stops until the real saw has been test-fit on the tray.
 
+The strict validation commands do not wait for the fit-only rows below. They only require the stripped-saw rows plus the already-loaded public `DCS781` envelope rows.
+
 ## Public Rows Already Loaded
 
 These rows in `data/measurements.csv` are now satisfied from public data rather than a bespoke survey:
@@ -29,6 +31,8 @@ These rows in `data/measurements.csv` are now satisfied from public data rather 
 | `miter_saw_stowed_depth` | `32.36` | in | conservative owner-supplied public listing depth |
 | `miter_saw_stowed_height` | `20.93` | in | conservative owner-supplied public listing height |
 | `miter_saw_weight` | `50.9` | lb | DeWalt tool-only public product page |
+
+These rows are already loaded with non-provisional source tiers. You do not need to change their source metadata just to open `--require-precision-ready`.
 
 ## Fit-Only Rows
 
@@ -57,6 +61,7 @@ These rows no longer block precision-ready validation. Record them only if the r
 ## Done Checklist
 
 - [ ] Public miter-saw rows are accepted in `data/measurements.csv`
+- [ ] Strict validation commands pass without editing the fit-only rows
 - [ ] Tray dry fit is complete in the real front bay
 - [ ] Real saw table lands flush with the surrounding bench top in deployed mode
 - [ ] Stowed cover lands flush or slightly low

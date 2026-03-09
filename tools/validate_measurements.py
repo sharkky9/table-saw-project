@@ -120,7 +120,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--require-precision-ready",
         action="store_true",
-        help="Fail if any stripped-saw precision-cut gate remains unresolved. Miter-station fit remains a manual gate.",
+        help="Fail if any stripped-saw precision-cut gate remains unresolved. Public DCS781 sanity is enforced by layout validation; real miter-station tray fit remains a manual gate.",
     )
     parser.add_argument("measurements")
     return parser.parse_args()
@@ -264,6 +264,10 @@ def main() -> int:
             notes.append(
                 "precision-cut gate remains closed until these ids are resolved: "
                 + ", ".join(unresolved)
+            )
+        else:
+            notes.append(
+                "table-saw precision rows are resolved; miter-station public-sanity is enforced by validate_layout.py and real tray fit remains a manual gate"
             )
 
     if errors:

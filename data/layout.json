@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.3",
+  "schema_version": "1.4",
   "units": "in",
   "coordinate_system": {
     "origin": "front-left corner of finished bench footprint",
@@ -43,6 +43,22 @@
         "y": 0.0,
         "length": 90.0,
         "depth": 48.0
+      },
+      "panelization": {
+        "split_y": 16.25,
+        "front_left": {
+          "length": 59.75,
+          "depth": 16.25
+        },
+        "front_right": {
+          "length": 30.25,
+          "depth": 16.25
+        },
+        "rear": {
+          "length": 90.0,
+          "depth": 31.75
+        },
+        "notes": "This encodes the current top-panel split so cut-list validation and seam-clearance checks do not have to infer it from unrelated saw geometry."
       },
       "openings": [
         {
@@ -407,6 +423,21 @@
       "miter_saw_stowed_height",
       "miter_saw_weight"
     ],
+    "public_fit_validation": {
+      "accepted_model_substring": "DCS781",
+      "accepted_public_width_max": 24.02,
+      "accepted_public_depth_max": 32.36,
+      "accepted_public_height_max": 20.93,
+      "max_supported_tool_weight_lbs": 55.0,
+      "precision_ready_policy": "public_sanity_only",
+      "manual_fit_required": [
+        "final tray bolt transfer from the real saw",
+        "FT-03 hard-stop tuning",
+        "shim or spacer tuning under the saw feet",
+        "fence-line and stop-track tuning",
+        "deployed flex-hose proof to the top-exit port"
+      ]
+    },
     "fit_note_rows": [
       "miter_saw_mount_width",
       "miter_saw_mount_depth",
