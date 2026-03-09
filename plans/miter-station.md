@@ -40,6 +40,7 @@ The automated precision-ready gate only checks that those accepted public dimens
 6. Install `FT-03` hard stops and tune the deployed tray to the target support height.
 7. Install `FT-02` latch blocks and the stowed latches after the cover can close flush.
 8. Install stop track on `MS-05` and `MS-06` only after the fence line is confirmed from the real saw.
+9. If top-surface T-track is added beside the station for stop-block use, field-fit that run to the real deployed fence line after the station is installed instead of machining to nominal layout coordinates.
 
 ## Acceptance Checks
 
@@ -49,6 +50,7 @@ The automated precision-ready gate only checks that those accepted public dimens
 - the stowed cover is flush or slightly low across the full opening
 - the deployed tray repeats its height after multiple open/close cycles
 - the real saw table lands flush with the surrounding bench top after the shim stack is locked
+- any adjacent top-surface T-track intended for stop blocks is aligned to the real deployed fence line
 - the mechanism stays clear of the saw rail keep-clear lanes and right-side service zone
 
 ## Fit-Only Unknowns
