@@ -44,8 +44,9 @@ REQUIRED_PARTS = {
 USABLE_SHEET_AREA = 48 * 96 * 0.75
 SHEET_MAP = {
     ("plywood", "0.75"): "MAT-01",
-    ("MDF", "0.75"): "MAT-02",
+    ("prefinished plywood", "0.75"): "MAT-02",
     ("plywood", "0.5"): "MAT-03",
+    ("prefinished plywood", "0.5"): "MAT-03",
 }
 SHEET_LENGTH = 96.0
 SHEET_WIDTH = 48.0

@@ -36,9 +36,9 @@ Label every part immediately after cutting with its `part_id` and reference edge
 | `TOP-01A` | rear top substrate | front edge | `top-dimensioned.svg` |
 | `TOP-01B` | front-left top substrate | front edge | `top-dimensioned.svg` |
 | `TOP-01C` | front-right top substrate | front edge | `top-dimensioned.svg` |
-| `TOP-02A` | rear top skin | front edge | `top-dimensioned.svg` |
-| `TOP-02B` | front-left top skin | front edge | `top-dimensioned.svg` |
-| `TOP-02C` | front-right top skin | front edge | `top-dimensioned.svg` |
+| `TOP-02A` | rear top wear skin | front edge | `top-dimensioned.svg` |
+| `TOP-02B` | front-left top wear skin | front edge | `top-dimensioned.svg` |
+| `TOP-02C` | front-right top wear skin | front edge | `top-dimensioned.svg` |
 | `TOP-03` | router plate ledger | long edge | `top-dimensioned.svg` |
 | `TOP-04` | seam cleat | front long edge | `top-dimensioned.svg` |
 | `TOP-05` | under-top stiffener | front long edge | `top-dimensioned.svg` |

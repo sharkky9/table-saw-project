@@ -31,9 +31,9 @@ RM-10,right_module,plywood,0.75,1,12.5,18.5,no,Independent removable control sub
 TOP-01A,top,plywood,0.75,1,90.5,33.75,yes,Rear fixed-top substrate panel keeps the saw-opening front shoulder in the rear field
 TOP-01B,top,plywood,0.75,1,60.25,15.75,yes,Front-left fixed-top substrate panel
 TOP-01C,top,plywood,0.75,1,31.0,15.75,yes,Front-right fixed-top substrate panel
-TOP-02A,top,MDF,0.75,1,90.5,33.75,yes,Rear fixed-top skin panel blank
-TOP-02B,top,MDF,0.75,1,60.25,15.75,yes,Front-left fixed-top skin panel blank
-TOP-02C,top,MDF,0.75,1,31.0,15.75,yes,Front-right fixed-top skin panel blank
+TOP-02A,top,prefinished plywood,0.75,1,90.5,33.75,yes,Rear fixed-top wear-skin blank with the finished face reserved for the top surface
+TOP-02B,top,prefinished plywood,0.75,1,60.25,15.75,yes,Front-left fixed-top wear-skin blank with the finished face reserved for the top surface
+TOP-02C,top,prefinished plywood,0.75,1,31.0,15.75,yes,Front-right fixed-top wear-skin blank with the finished face reserved for the top surface
 TOP-03,top,plywood,0.75,4,15,2.5,yes,Router plate ledgers and local blocking
 TOP-04,top,plywood,0.75,4,20.5,4.5,yes,Seam cleats under front-panel joints and miter-station bay edges
 TOP-05,top,plywood,0.75,2,42,3.5,yes,Under-top stiffeners that stay outside the rail keep-clear lanes
@@ -41,7 +41,7 @@ TOP-06,top,plywood,0.75,4,4.5,4.5,yes,Future overlay anchor backing pads
 MS-01,miter_station,plywood,0.75,1,22.5,12.5,no,Flip-top tray deck sized from the public-envelope layout; final bolt transfer still happens from the real saw
 MS-02,miter_station,plywood,0.75,2,12.5,10.5,no,Tray side walls trimmed after pivot hardware dry fit
 MS-03,miter_station,plywood,0.75,2,21.5,3.5,no,Front and rear tray rails
-MS-04,miter_station,plywood,0.75,1,22.5,12.5,no,Stowed cover and work-surface panel sized from the layout opening
+MS-04,miter_station,prefinished plywood,0.75,1,22.5,12.5,no,Stowed cover and work-surface panel sized from the layout opening with finished face reserved for the work surface
 MS-05,miter_station,plywood,0.75,1,34.5,4.5,no,Left support fence face for stop blocks
 MS-06,miter_station,plywood,0.75,1,34.5,4.5,no,Right support fence face for stop blocks
 FT-01,flip_top,plywood,0.75,2,12.5,12.5,no,Pivot side-plate blanks

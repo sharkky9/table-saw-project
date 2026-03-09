@@ -31,9 +31,9 @@ RM-10,right_module,plywood,0.75,1,12.5,18.5,12,18,after_mockup,Independent remov
 TOP-01A,top,plywood,0.75,1,90.5,33.75,90,33,cut_now,Rear fixed-top substrate panel; intentionally carries the saw-opening front shoulder clear of the front-panel seam
 TOP-01B,top,plywood,0.75,1,60.25,15.75,59.75,15,cut_now,Front-left fixed-top substrate panel
 TOP-01C,top,plywood,0.75,1,31.0,15.75,30.25,15,cut_now,Front-right fixed-top substrate panel
-TOP-02A,top,MDF,0.75,1,90.5,33.75,90,33,cut_now,Rear fixed-top skin panel; do not machine openings yet
-TOP-02B,top,MDF,0.75,1,60.25,15.75,59.75,15,cut_now,Front-left fixed-top skin panel; do not machine openings yet
-TOP-02C,top,MDF,0.75,1,31.0,15.75,30.25,15,cut_now,Front-right fixed-top skin panel; do not machine openings yet
+TOP-02A,top,prefinished plywood,0.75,1,90.5,33.75,90,33,cut_now,Rear fixed-top wear skin with finished face up; do not machine openings yet
+TOP-02B,top,prefinished plywood,0.75,1,60.25,15.75,59.75,15,cut_now,Front-left fixed-top wear skin with finished face up; do not machine openings yet
+TOP-02C,top,prefinished plywood,0.75,1,31.0,15.75,30.25,15,cut_now,Front-right fixed-top wear skin with finished face up; do not machine openings yet
 TOP-03,top,plywood,0.75,4,15,2.5,14,2,cut_now,Router plate ledgers and local blocking
 TOP-04,top,plywood,0.75,4,20.5,4.5,20,4,cut_now,Seam cleats under front-panel joints and miter-station bay edges
 TOP-05,top,plywood,0.75,2,42,3.5,41.25,3,cut_now,Under-top stiffeners that stay outside the rail keep-clear lanes
@@ -41,7 +41,7 @@ TOP-06,top,plywood,0.75,4,4.5,4.5,4,4,cut_now,Future overlay anchor backing pads
 MS-01,miter_station,plywood,0.75,1,22.5,12.5,22,12,cut_now,Flip-top tray deck sized from the public-envelope layout; transfer the real saw bolt pattern only after tray shims are proven
 MS-02,miter_station,plywood,0.75,2,12.5,10.5,12,10,after_miter_station_fit,Tray side walls trimmed after pivot hardware dry fit
 MS-03,miter_station,plywood,0.75,2,21.5,3.5,21,3,after_miter_station_fit,Front and rear tray rails
-MS-04,miter_station,plywood,0.75,1,22.5,12.5,22,12,cut_now,Stowed cover and work-surface panel; flushness is tuned later with FT-02 and the latch set
+MS-04,miter_station,prefinished plywood,0.75,1,22.5,12.5,22,12,cut_now,Stowed cover and work-surface panel with finished face up; flushness is tuned later with FT-02 and the latch set
 MS-05,miter_station,plywood,0.75,1,34.5,4.5,34,4,cut_now,Left support fence face blank; final stop-track line still comes from the real saw during fit-up
 MS-06,miter_station,plywood,0.75,1,34.5,4.5,34,4,cut_now,Right support fence face blank; final stop-track line still comes from the real saw during fit-up
 FT-01,flip_top,plywood,0.75,2,12.5,12.5,12,12,after_miter_station_fit,Pivot side-plate blanks

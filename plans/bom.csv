@@ -1,6 +1,6 @@
 item_id,stage,category,description,qty,unit,spec_or_model,notes
 MAT-01,stage1,sheet_good,Flat cabinet plywood,8,sheets,3/4 in AC/BC or shop-grade birch,Stage-1 structure fixed top miter-station parts router module service panels and realistic yield margin
-MAT-02,stage1,sheet_good,MDF,2,sheets,3/4 in,Fixed-top precision skins plus setup margin
+MAT-02,stage1,sheet_good,Prefinished plywood,2,sheets,3/4 in,Fixed-top wear skins plus the miter-station cover with setup margin
 MAT-03,stage1,sheet_good,Prefinished plywood,2,sheets,1/2 in,Drawer boxes backs and lighter service panels
 MAT-04,stage1,lumber,Construction lumber,8,pieces,2x4x8 kiln-dried,Plinth framing saw ledgers flip-top blocking and general structure
 MAT-05,stage1,lumber,Construction lumber,2,pieces,2x6x8 kiln-dried,Caster hardpoints and local reinforcement only
@@ -39,7 +39,7 @@ HDW-29,stage1,power,Service-harness plug connector,1,set,Polarized plug or lever
 RT-01,stage1,router,Router lift,1,ea,JessEm Rout-R-Lift II 02310,Locked stage-1 lift stack
 RT-02,stage1,router,Router motor,1,ea,Bosch 1617EVS,Locked stage-1 router motor
 RT-03,stage1,router,Router fence,1,ea,Shop-built or commercial removable fence,Dust pickup at fence plus cabinet
-FIN-01,stage1,finish,Waterborne polyurethane,1,quart,Satin,Main top miter-station cover and router module
-FIN-02,stage1,finish,Dewaxed shellac sealer,1,quart,Clear,Seal MDF faces and edges before topcoat
-FIN-03,stage1,finish,Sandpaper assortment,1,set,80 120 150 180 grit,Finishing and touch-surface prep
+FIN-01,stage1,finish,Waterborne polyurethane,1,quart,Satin,Raw top edges exposed plywood faces and any shop-made surfaces that are not already prefinished
+FIN-02,stage1,finish,Optional wipe-on seal coat,1,pint,Shellac or sanding sealer,Only for thirsty end grain scuff repairs or any non-prefinished sacrificial surfaces
+FIN-03,stage1,finish,Sandpaper assortment,1,set,120 150 180 grit,Edge easing scuff sanding and touch-surface prep
 ASM-01,stage2,assembly,Future removable overlay panel,1,ea,60 x 36 x 3/4,Add only after the core bench proves itself
