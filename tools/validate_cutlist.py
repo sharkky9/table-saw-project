@@ -189,6 +189,8 @@ def main() -> int:
         errors.append("DR-07 must provide three drawer bottoms for the three-drawer left bank")
     if bom_counts.get("HDW-11") not in {None, 3.0}:
         errors.append("HDW-11 must specify three pairs of drawer slides")
+    if by_part.get("RM-10", {}).get("gate") != "after_mockup":
+        errors.append("RM-10 must stay gated after_mockup until the right-bay mockup proves disconnect geometry")
 
     gated_parts = {
         row["part_id"]

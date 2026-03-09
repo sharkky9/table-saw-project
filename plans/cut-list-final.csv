@@ -27,7 +27,7 @@ RM-06,right_module,plywood,0.75,1,20.5,28.5,20,28,after_mockup,Plain removable d
 RM-07,right_module,plywood,0.75,1,12.5,10.5,12,10,cut_now,Right-side router access hatch
 RM-08,right_module,plywood,0.75,1,24.5,19.5,24,19,after_mockup,Hercules fixed low deck or skid base field-fit to actual body stance
 RM-09,right_module,plywood,0.75,2,20.5,1.75,20,1.5,cut_now,Front service-face cleats
-RM-10,right_module,plywood,0.75,1,12.5,18.5,12,18,after_service_layout,Independent removable control subpanel for manifold aux switch and flex-hose dock
+RM-10,right_module,plywood,0.75,1,12.5,18.5,12,18,after_mockup,Independent removable control subpanel; keep provisional until mockup proves disconnect path and flex-hose dock behavior
 TOP-01A,top,plywood,0.75,1,90.5,33.75,90,33,cut_now,Rear fixed-top substrate panel; intentionally carries the saw-opening front shoulder clear of the front-panel seam
 TOP-01B,top,plywood,0.75,1,60.25,15.75,59.75,15,cut_now,Front-left fixed-top substrate panel
 TOP-01C,top,plywood,0.75,1,31.0,15.75,30.25,15,cut_now,Front-right fixed-top substrate panel

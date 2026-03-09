@@ -6,6 +6,8 @@ This is the active product-level validation target for the fixed-top bench. The 
 
 Passing concept validation means the package is internally coherent. It does not mean the bench is ready for precision cuts or procurement of every hardware item.
 
+Concept validation may still pass while the right-bay dust package remains mockup-gated. That is expected and does not authorize final `RM-10` geometry, final service cutouts, or procurement claims that the Hercules package is already proven.
+
 The strict `--require-precision-ready` commands now open on two conditions only:
 
 - stripped-saw precision rows are resolved
@@ -104,6 +106,8 @@ Passing concept validation does not override this gate.
 
 Do not call the right-side dust package proven until the actual Hercules, Low-Pro bucket, and hose cuffs are checked in a physical mockup.
 
+The current concept fit is intentionally conservative but still only leaves `0.35 in` of modeled extractor headroom. Treat that as a live risk until the mockup proves otherwise.
+
 Minimum mockup outcomes:
 
 - bucket fits the front zone with latch clearance
@@ -120,6 +124,7 @@ Minimum mockup outcomes:
 ### Must resolve before buying hardware
 
 - actual right-bay mockup before claiming the Hercules package is proven
+- actual right-bay mockup before freezing `RM-10` cutout geometry or hose-dock placement
 - actual miter-station tray fit before drilling the final tray bolt pattern or locking the stop-track line
 
 ### Already accepted by the current package

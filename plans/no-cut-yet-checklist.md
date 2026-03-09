@@ -56,7 +56,6 @@ Do not cut applied drawer fronts to final size until the left module is assemble
 
 - [ ] `RM-02`
 - [ ] `RM-05`
-- [ ] `RM-10`
 
 Do not finalize these until the real service layout is marked from the actual manifold, switch, and hose hardware.
 
@@ -64,5 +63,8 @@ Do not finalize these until the real service layout is marked from the actual ma
 
 - [ ] `RM-06`
 - [ ] `RM-08`
+- [ ] `RM-10`
 
-Do not finalize the service face or Hercules base until [right-bay-mockup.md](./right-bay-mockup.md) passes.
+Do not finalize the service face, Hercules base, or `RM-10` control subpanel until [right-bay-mockup.md](./right-bay-mockup.md) passes.
+
+`RM-10` is intentionally held until the physical mockup proves the disconnect path, flex-hose dock behavior, and connector slack are real rather than just plausible on paper.
