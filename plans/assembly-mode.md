@@ -2,7 +2,7 @@
 
 ## Recommendation
 
-Do not convert the permanent top into a full-time clamping grid on day one. In the sliding-carriage variant, the left field is now precision crosscut real estate.
+Do not convert the permanent top into a full-time clamping grid on day one. In the sliding-carriage variant, the left field is precision crosscut real estate.
 
 Use a layered approach instead.
 
@@ -11,8 +11,9 @@ Use a layered approach instead.
 - no fixed T-track in the left carriage field
 - no proud hardware where sheet goods or the carriage fence need to travel
 - no casual drilling into the carriage guide zone
+- no permanent stage-1 T-track in the fixed top
 
-This branch intentionally gives up the old far-left permanent T-tracks to protect the new carriage package.
+This branch intentionally gives up the old far-left fixed-track plan to protect the new carriage package.
 
 ## Layer 2: Use The Bench Surface Itself
 
@@ -32,8 +33,8 @@ Plan a `54 x 36 x 3/4 in` removable overlay that:
 
 - registers to the rear edge
 - anchors only after the carriage is removed or parked out of the way
-- starts with two low-conflict T-tracks
-- can later be perforated with `20 mm` holes if you actually want MFT behavior
+- stays entirely in the rear fixed panel and never crosses into the left support-table zone
+- starts as a clean panel or light clamping surface and can later receive low-conflict T-track or `20 mm` holes
 - carries an underside stiffener where it spans the saw opening so clamp loads do not sag the panel into the throat area
 
 ## What The Overlay Should Solve

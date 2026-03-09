@@ -61,6 +61,20 @@ def point_inside_rect(x: float, y: float, rect: dict[str, float]) -> bool:
     return rect["x"] <= x <= rect["x"] + rect["length"] and rect["y"] <= y <= rect["y"] + rect["depth"]
 
 
+def overlay_rect(layout: dict) -> Optional[dict[str, float]]:
+    overlay = layout["assembly_mode"].get("overlay") or layout["assembly_mode"].get("future_overlay")
+    if overlay is None:
+        return None
+    overall = layout["bench"]["overall"]
+    size = overlay["size"]
+    return {
+        "x": 0.0 if overlay["registration"].get("left_edge") else overall["length"] - size["length"],
+        "y": overall["depth"] - size["depth"] if overlay["registration"].get("rear_edge") else 0.0,
+        "length": size["length"],
+        "depth": size["depth"],
+    }
+
+
 def unresolved_precision_ids(layout: dict, measurement_rows: dict[str, dict[str, str]]) -> list[str]:
     unresolved: list[str] = []
     for row_id in layout["saw"]["stripped_saw_survey_required"]:
@@ -154,6 +168,26 @@ def main() -> int:
     if not math.isclose(cast_top["depth"], m["saw_table_depth"], abs_tol=0.05):
         errors.append("cast-top depth does not match measurements.csv")
 
+    opening = saw["opening"]
+    target_gap = opening["target_gap_general"]
+    max_local_gap = opening["max_local_relief_gap"]
+    opening_gaps = {
+        "left": cast_top["x"] - opening["x"],
+        "right": (opening["x"] + opening["length"]) - (cast_top["x"] + cast_top["length"]),
+        "front": cast_top["y"] - opening["y"],
+        "rear": (opening["y"] + opening["depth"]) - (cast_top["y"] + cast_top["depth"]),
+    }
+    for side, gap in opening_gaps.items():
+        if gap <= 0:
+            errors.append(f"saw opening gap on {side} side is non-positive")
+        elif gap > max_local_gap + 1e-6:
+            errors.append(
+                f"saw opening gap on {side} side is {gap:.3f} in and exceeds max local relief {max_local_gap:.3f} in"
+            )
+    average_gap = sum(opening_gaps.values()) / len(opening_gaps)
+    if abs(average_gap - target_gap) > 0.02:
+        errors.append("saw opening average gap drifts too far from the target general gap")
+
     rail = saw["rail_envelope"]
     if rail["x"] + rail["length"] > overall["length"] + 0.01:
         errors.append("rail envelope runs beyond the bench length")
@@ -223,19 +257,37 @@ def main() -> int:
     if not math.isclose(overlay["size"]["depth"], m["overlay_depth"], abs_tol=0.05):
         errors.append("assembly overlay depth does not match measurements.csv")
 
+    overlay_bounds = overlay_rect(layout)
+    assert overlay_bounds is not None
     for anchor in overlay["anchors"]:
+        if not point_inside_rect(anchor["x"], anchor["y"], overlay_bounds):
+            errors.append(f"future overlay anchor {anchor['name']} does not land inside the overlay footprint")
         if point_inside_rect(anchor["x"], anchor["y"], saw["opening"]):
             errors.append(f"future overlay anchor {anchor['name']} lands in the saw opening instead of structure")
+        for lane in saw["under_top_keep_clear"]:
+            if point_inside_rect(anchor["x"], anchor["y"], lane):
+                errors.append(f"future overlay anchor {anchor['name']} lands in rail keep-clear lane {lane['name']}")
 
+    dust = layout["dust_collection"]
+    mockup_gate = dust.get("mockup_gate")
+    if not mockup_gate or not mockup_gate.get("required"):
+        errors.append("dust collection package must declare a required mockup gate")
+    elif mockup_gate.get("status") not in {"pending", "proven"}:
+        errors.append("dust collection mockup gate status must be pending or proven")
     dust_bay = layout["dust_collection"]["dust_bay"]
+    if "service_opening" not in dust_bay:
+        errors.append("dust bay is missing a service_opening definition")
     packages = dust_bay["packages"]
     for package in packages:
         if not rect_inside(package, dust_bay):
             errors.append(f"dust package {package['name']} does not fit inside dust bay")
+        if "base_type" not in package or "service_mode" not in package or "deck_or_tray_elevation" not in package:
+            errors.append(f"dust package {package['name']} is missing service packaging fields")
         package_height = package.get("height")
         clearance_above = package.get("clearance_above", 0.0)
+        support_elevation = package.get("deck_or_tray_elevation", 0.0)
         if package_height is not None:
-            actual_vertical_clearance = dust_bay["height"] - (package_height + clearance_above)
+            actual_vertical_clearance = dust_bay["height"] - (support_elevation + package_height + clearance_above)
             if actual_vertical_clearance < dust_bay["service_requirements"]["vertical_clearance_min"] - 1e-6:
                 errors.append(
                     f"dust package {package['name']} leaves only {actual_vertical_clearance:.2f} in vertical clearance"
@@ -257,6 +309,20 @@ def main() -> int:
         errors.append(
             f"dust-bay rear service void is only {actual_rear_void:.2f} in; require at least {dust_bay['service_requirements']['rear_min']:.2f} in"
         )
+
+    right_service = layout["bench"]["carcass"]["modules"][2]
+    details = right_service.get("details", {})
+    front_service_face = details.get("front_service_face")
+    control_subpanel = details.get("control_subpanel")
+    if not front_service_face:
+        errors.append("right service module must declare the RM-06 front service face")
+    if not control_subpanel or not control_subpanel.get("disconnects"):
+        errors.append("right service module must declare an RM-10 control subpanel with disconnect strategy")
+    elif front_service_face:
+        if control_subpanel["x_from_left"] + control_subpanel["width"] > front_service_face["width"] + 1e-6:
+            errors.append("RM-10 control subpanel extends beyond the RM-06 service face width")
+        if control_subpanel["y_from_bottom"] + control_subpanel["height"] > front_service_face["height"] + 1e-6:
+            errors.append("RM-10 control subpanel extends beyond the RM-06 service face height")
 
     unresolved = unresolved_precision_ids(layout, measurement_rows)
     if args.require_precision_ready and unresolved:

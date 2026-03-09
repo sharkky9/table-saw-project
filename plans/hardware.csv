@@ -9,9 +9,14 @@ FAST-07,saw_mount,Hex bolts washers and lock nuts,1,set,Field-fit only after the
 FAST-08,overlay_anchors,1/4-20 threaded inserts,4,ea,Install only where the backing pads land under the fixed top
 FAST-09,overlay_anchors,1/4-20 star knobs,4,ea,Future assembly overlay hold-downs
 FAST-10,power_service,Cable clamps and strain reliefs,8,ea,Manage cords and hose drops
-FAST-11,left_support_table,Adjustable leg glides,1,ea,Provide repeatable floor contact without shims
+FAST-11,left_support_table,Adjustable leg glide,1,ea,Provide repeatable floor contact without shims
 FAST-12,sliding_carriage,T-bolts or flat-head machine screws,12,ea,Mount fence extrusion and adjustable stops to the carriage
 FAST-13,sliding_carriage,Pad-adjustment fasteners,8,ea,For UHMW wear pads or equivalent runner adjustment
-FAST-14,right_service,Heavy-duty tray slides,1,set,Support the Hercules pull-out tray with at least 100 lb rating
-FAST-15,right_service,Hatch latches or magnets,2,ea,For the router access hatch and front service panel
+FAST-14,right_service,RM-08 deck or skid retainers,12,ea,Fasten the fixed extractor low deck or UHMW skid retainers
+FAST-15,right_service,Hatch latches or magnets,2,ea,For the router access hatch and removable service faces
 FAST-16,sliding_carriage,Stop pins or knob bolts,4,ea,Positive park and travel limit hardware
+FAST-17,saw_cradle,3/8-16 jack screws with jam nuts,4,ea,Fine cradle flush-tuning hardware
+FAST-18,saw_cradle,Threaded inserts or tee nuts for jack screws,4,ea,Install in cradle crossrails before first fit
+FAST-19,right_service,No. 8 x 3/4 pan-head screws,12,ea,Mount the RM-10 control subpanel to its cleats
+FAST-20,right_service,Service-harness connector hardware,1,set,Plug connector and strain relief hardware for the RM-10 harness
+FAST-21,right_service,Hose union clamps or quick-release hardware,1,set,Release the short hose or flex-hose dock without trapping RM-06

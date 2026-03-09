@@ -228,7 +228,7 @@ def render_sections(layout: dict) -> str:
     body.append(f'<rect x="{x0 + 505:.1f}" y="{y0 - 206:.1f}" width="112" height="28" fill="#d4dcff" stroke="#3047aa" fill-opacity="0.65"/>')
     body.append(f'<text x="{x0 + 514:.1f}" y="{y0 - 188:.1f}" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#223177">router module</text>')
     body.append(f'<text x="{x0 + 52:.1f}" y="{y0 - 52:.1f}" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0d5e7d">support drawer below carriage</text>')
-    body.append(f'<text x="{x0 + 455:.1f}" y="{y0 - 52:.1f}" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#543483">extractor on service tray</text>')
+    body.append(f'<text x="{x0 + 455:.1f}" y="{y0 - 52:.1f}" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#543483">extractor on fixed low deck</text>')
 
     return svg_wrapper(width, height, "".join(body))
 

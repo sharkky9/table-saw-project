@@ -1,5 +1,7 @@
 # Bench Requirements
 
+This package is concept-valid, not shop-ready. The stripped-saw survey, sliding-carriage/support-table fit-up, and right-bay packaging mockup are still hard gates.
+
 ## Mission
 
 Build a garage bench that does five jobs without becoming a gimmick:
@@ -45,6 +47,7 @@ This draft variant keeps the existing front-to-back feed direction on purpose. R
 - `3/4 in` plywood substrate plus `3/4 in` MDF precision skin on the fixed top fields
 - Blade lowered below the surface when the bench is used for assembly or track-saw support
 - Router lift plate flush with the surrounding top
+- Saw opening should target a tight general support gap around the cast top rather than a broad clearance moat
 - Left field must stay clear of permanent T-track because it now hosts the carriage guide package and park zone
 
 ### Carriage Support Strategy
@@ -121,13 +124,14 @@ The bench must preserve useful support to the right of the blade through the ful
   - Oneida `Dust Deputy Low-Pro` separator on a 5 gallon bucket
   - manifold
   - hose routing
+- The right-bay package remains mockup-gated even after the concept rectangles fit.
 - Default manifold concept: Rockler `2-1/2 in` sliding manifold
 - Default branches:
   - saw
   - router
   - flex hose for mobile tools
 - Keep an open well under the saw to preserve blade-height, bevel, and hose movement.
-- The Hercules lives on a front-access pull-out tray so the design depends on front serviceability rather than a large static rear void.
+- The Hercules lives on a fixed low deck or UHMW skid base so the design depends on honest front serviceability rather than a large static rear void.
 
 ## Power Access
 
@@ -145,7 +149,7 @@ Storage is subordinate to saw, dust, and service access. The planned storage mix
 - left carriage-support module with an open mechanism bay, shallow storage only where it does not foul the carriage package, and vertical parking for the carriage fence and stops
 - narrow vertical bay for fences, sleds, and jigs that survive the carriage conversion
 - front-right service face for power switching, manifold access, and hose exits
-- dust bay below the router zone with a front bucket zone and rear extractor tray
+- dust bay below the router zone with a front bucket zone and rear extractor deck / skid base
 
 ## Assembly-Table Functionality
 
@@ -175,6 +179,7 @@ These measurements are still mandatory before cutting the final precision top:
 - actual saw mounting points, foot spacing, and underside protrusions
 - exact front and rear rail underside sweep at minimum, mid, and maximum rip
 - exact dust-elbow hose envelope at blade-height and bevel extremes
-- final Hercules tray hardware and hose-cuff envelope
+- final Hercules support-deck thickness or UHMW skid behavior plus hose-cuff envelope
 - final Low-Pro bucket and latch clearance with the chosen 5 gallon bucket
 - final carriage guide-strip hardware, park-stop geometry, and left support-table stop geometry
+- final right-bay disconnect sequence for the removable service face and control subpanel

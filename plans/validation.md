@@ -1,5 +1,9 @@
 # Validation Plan
 
+## Status
+
+Passing concept validation means the package is internally coherent. It does **not** mean the bench is ready for precision cuts or procurement of every hardware item.
+
 ## Geometry Checks
 
 - Bench footprint must remain `90 x 48 x 36 in`.
@@ -7,7 +11,8 @@
 - Saw top must finish flush or slightly below the fixed top.
 - Rail keep-clear lanes must stay unobstructed under the right-side field.
 - The fixed top must remain a three-field full-depth surface in this variant.
-- The fold-out left support table must fold inside the parked footprint.
+- The left support table must fold inside the parked footprint.
+- The saw opening target must reflect a tight support gap and never a broad perimeter moat.
 
 ## Crosscut Checks
 
@@ -17,6 +22,12 @@
 - The under-carriage support drawer must extend smoothly and stop repeatably.
 - The left support table must hold its height and alignment across repeated deploy/stow cycles.
 - Conventional miter-slot extensions through the fixed front and rear support fields must still accept the Vevor gauge without catching.
+
+## Saw Cradle Checks
+
+- Cradle must include fixed ledgers, slotted crossrails, and four jack screws.
+- Saw top flushness must land in the same `0.000 to -0.005 in` window.
+- Final mount drilling is blocked until the stripped-saw survey is complete.
 
 ## Router Checks
 
@@ -29,9 +40,9 @@
 
 - Saw hose must clear blade-height travel.
 - Saw hose must clear bevel travel.
-- Hercules extractor must be removable from the right bay through the front tray path without removing the bench top.
-- Cyclone bucket must be emptyable without unbuilding the manifold.
-- Actual package gap, rear buffer, and vertical clearance must be computed from the layout, not merely declared in prose.
+- Cyclone bucket must be removable without unbuilding the bench.
+- Hercules extractor must be removable after the bucket is removed.
+- The internal Hercules + Low-Pro package is still mockup-gated and not yet proven just because the rectangles fit.
 
 ## Power Checks
 
@@ -42,9 +53,12 @@
 
 ## Assembly-Mode Checks
 
-- No permanent T-track should intrude into the carriage field.
-- Future overlay anchors must land in structure, not just the saw opening or runner hardware.
-- The future overlay still needs an underside stiffener where it spans the saw opening.
+- The permanent top must remain free of fixed stage-1 T-track.
+- Future overlay anchors must land in structure and not just MDF skin.
+- Future overlay must stay entirely in the rear fixed field and outside the support-table zone.
+- Future overlay anchors must stay outside the saw opening and outside the rail keep-clear lanes.
+- The future overlay needs an underside stiffener where it spans the saw opening.
+- The future overlay must not rely on the saw itself as the primary support for clamp loads.
 
 ## Finish Checks
 
@@ -64,10 +78,26 @@ Do not cut the final top opening, slot-extension recesses, carriage guide-strip 
 - dust-port center is measured
 - dust hose sweep is measured at height and bevel extremes
 - actual saw miter-slot width and depth are verified
+- the support table and support drawer have passed their fit-up proof
 
 Passing concept validation does not override this gate.
 
 Use [stripped-saw-survey.md](/Users/christopherhandel/Documents/GitHub/Table Saw-sliding-carriage/plans/stripped-saw-survey.md) to collect the required measurements before rerunning the precision validators.
+
+## Right-Bay Mockup Gate
+
+Do not call the right-side dust package proven until the actual Hercules, Low-Pro, bucket, and hose cuffs are checked in a physical mockup.
+
+Minimum mockup outcomes:
+
+- bucket fits the front zone with latch clearance
+- extractor fits the rear zone with hand access at the front service opening
+- the documented service sequence works:
+  - remove `RM-10` or disconnect its tethered services
+  - remove `RM-06`
+  - remove bucket
+  - disconnect short hose if needed
+  - remove or slide extractor
 
 ## Procurement Gates
 
@@ -76,9 +106,8 @@ Use [stripped-saw-survey.md](/Users/christopherhandel/Documents/GitHub/Table Saw
 - exact miter-slot width and depth before buying extension track
 - exact carriage guide hardware and wear-pad strategy before machining the guide-strip zones
 - exact support-drawer slide geometry before cutting the left-module internals
-- exact left support-table hinge, stop, and leg hardware before drilling that assembly
-- verify the actual Hercules tray hardware and front opening clear the real machine
-- verify the assembled Low-Pro bucket footprint and latch clearance with the chosen bucket
+- exact support-table hinge, stop, and leg hardware before drilling that assembly
+- actual right-bay mockup before claiming the Hercules package is proven
 
 ### Probably okay to defer
 

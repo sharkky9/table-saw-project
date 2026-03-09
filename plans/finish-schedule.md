@@ -20,7 +20,7 @@ It is **not** a furniture-grade showpiece.
 - left support table
 - router module
 - carriage fence
-- drawer fronts and pulls zone
+- service faces and frequently handled storage edges
 
 Treatment:
 

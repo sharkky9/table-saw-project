@@ -1,5 +1,7 @@
 # Research Notes
 
+These notes support a concept-valid package, not a shop-ready release. The stripped-saw survey and right-bay mockup still govern whether the precision surfaces and internal dust package are actually build-ready.
+
 ## Official Sources Used
 
 - [SKIL SPT99-11 product page](https://www.skil.com/products/wormdrive-table-saw-spt99-11)
@@ -27,6 +29,7 @@
 - User-supplied geometry is more useful than the marketing page for table integration, so the structured layout uses the user's measurements as the primary geometry source
 - The manual and product materials are still not enough to freeze the stripped-saw mount or the true front-to-back blade datum, so the package now treats those as hard survey gates instead of pretending they are settled
 - Nothing in the saw geometry forces a `90 deg` rotation for a left-side carriage. The existing front-to-back feed direction can still support a carriage if the left module is repurposed around it.
+- A tighter opening target around the cast top is preferable to the earlier broad-gap assumption because support quality matters more once the carriage package is introduced.
 
 ### Paoson-Inspired Crosscut Package
 
@@ -46,7 +49,7 @@
 - Official envelope: `23.5 in L x 18.25 in W x 27.4-37.5 in H`
 - Official amperage: `11.5A motor, 15A max with tool`
 - The Harbor Freight manual shows the vacuum port on the front body, which means the package is limited more by plan-view depth and service access than by a tall top hose stack
-- With the handle collapsed and the machine mounted on a front pull-out tray, the Hercules is now the selected internal extractor for this package
+- With the handle collapsed and the machine supported on a fixed low deck or UHMW skid base, the Hercules is now the selected internal extractor for this package
 
 ### Oneida Dust Deputy Low-Pro
 
@@ -105,8 +108,8 @@ The package is now explicit about which values are concept geometry and which ar
 
 The current package now intentionally commits to:
 
-- `Hercules HE028` inside the right bay on a front pull-out tray
+- `Hercules HE028` inside the right bay on a fixed low deck or UHMW skid base
 - `Oneida Dust Deputy Low-Pro` on a 5 gallon bucket at the front of the same bay
 - `Rockler Dust Right 2-1/2 in` manifold on the front-right service face
 
-That combination is more credible than the earlier “generic compact extractor class” because the Hercules front vacuum port and the Low-Pro separator both fit the current bay logic without pretending there is a large rear service void.
+That combination is more credible than the earlier “generic compact extractor class” because the Hercules front vacuum port and the Low-Pro separator both fit the current bay logic without pretending there is a large rear service void. It is still mockup-gated because the real service path, hose cuffs, and disconnect order matter more than concept rectangles alone.

@@ -113,7 +113,22 @@
           "length": 28.75,
           "depth": 42.0,
           "height": 31.0,
-          "notes": "Router above, Hercules plus Low-Pro dust package below, no full-height divider may intrude into the rail keep-clear lanes"
+          "notes": "Router above, Hercules plus Low-Pro dust package below, no full-height divider may intrude into the rail keep-clear lanes",
+          "details": {
+            "front_service_face": {
+              "width": 20.0,
+              "height": 28.0,
+              "notes": "RM-06 is the plain removable dust-service face."
+            },
+            "control_subpanel": {
+              "width": 12.0,
+              "height": 18.0,
+              "x_from_left": 7.0,
+              "y_from_bottom": 6.0,
+              "disconnects": true,
+              "notes": "RM-10 is a separate removable control subpanel that must come off or disconnect before RM-06."
+            }
+          }
         }
       ]
     }
@@ -142,12 +157,13 @@
     },
     "mount_plane_height": 22.625,
     "opening": {
-      "x": 22.875,
-      "y": 16.125,
-      "length": 27.8125,
-      "depth": 22.375,
-      "gap": 0.125,
-      "notes": "Final opening is field-fit only after stripped-saw survey confirms foot pattern, blade y datum, and underside protrusions."
+      "x": 22.96875,
+      "y": 16.21875,
+      "length": 27.625,
+      "depth": 22.1875,
+      "target_gap_general": 0.03125,
+      "max_local_relief_gap": 0.0625,
+      "notes": "Final opening is field-fit only after stripped-saw survey confirms foot pattern, blade y datum, and underside protrusions. Support quality matters more than a generous clearance moat."
     },
     "stripped_saw_survey_required": [
       "stripped_blade_center_y",
@@ -332,12 +348,20 @@
     }
   },
   "dust_collection": {
+    "mockup_gate": {
+      "required": true,
+      "status": "pending"
+    },
     "dust_bay": {
       "x": 67.25,
       "y": 3.75,
       "length": 20.5,
       "depth": 40.5,
       "height": 29.5,
+      "service_opening": {
+        "width": 20.0,
+        "height": 28.0
+      },
       "packages": [
         {
           "name": "oneida_low_pro_bucket_front",
@@ -347,7 +371,10 @@
           "depth": 12.375,
           "height": 18.5,
           "clearance_above": 2.0,
-          "mount": "fixed bucket pad"
+          "mount": "fixed bucket pad",
+          "base_type": "fixed_pad",
+          "service_mode": "remove_first",
+          "deck_or_tray_elevation": 0.0
         },
         {
           "name": "hercules_extractor_rear",
@@ -357,7 +384,10 @@
           "depth": 23.5,
           "height": 27.4,
           "clearance_above": 1.0,
-          "mount": "front pull-out tray"
+          "mount": "fixed low deck or UHMW skid base",
+          "base_type": "fixed_low_deck_or_skid",
+          "service_mode": "remove_second",
+          "deck_or_tray_elevation": 0.0
         }
       ],
       "service_requirements": {
@@ -365,7 +395,7 @@
         "package_gap_min": 1.0,
         "vertical_clearance_min": 1.0
       },
-      "notes": "This bay is intentionally modeled around the Hercules HE028 on a front pull-out tray plus a Oneida Dust Deputy Low-Pro on a 5 gallon bucket. Service access is from the front, not from a large static rear void."
+      "notes": "This bay is intentionally modeled around the Hercules HE028 on a fixed low deck or UHMW skid base plus a Oneida Dust Deputy Low-Pro on a 5 gallon bucket. Service access is from the front, not from a large static rear void."
     },
     "manifold": {
       "mount_face": "front-right service face",
@@ -431,18 +461,18 @@
       "anchors": [
         {
           "name": "front_left",
-          "x": 30.0,
-          "y": 8.0
+          "x": 40.0,
+          "y": 14.0
         },
         {
           "name": "rear_left",
-          "x": 30.0,
+          "x": 40.0,
           "y": 44.0
         },
         {
           "name": "front_right",
           "x": 76.0,
-          "y": 8.0
+          "y": 14.0
         },
         {
           "name": "rear_right",
