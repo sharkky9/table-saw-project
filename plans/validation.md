@@ -2,41 +2,35 @@
 
 ## Status
 
+This document is the active product-level validation target for the fixed-top reset. The machine-readable layout contract still lags one PR behind and will be rewritten in the next stacked branch.
+
 Passing concept validation means the package is internally coherent. It does **not** mean the bench is ready for precision cuts or procurement of every hardware item.
 
 ## Geometry Checks
 
-- Bench top overall size must match `90 x 48 x 36 in`.
-- Saw blade centerline must land at `36 in` from the left finished edge.
+- Bench top overall size must remain `90 x 48 x 36 in`.
+- The finished top must be a fixed full-size surface and must not depend on expandable wings.
+- Saw blade centerline must still land at `36 in` from the left finished edge unless a later geometry proof shows an impossible collision.
 - Saw top must finish flush or slightly below the fixed top.
 - Rail keep-clear lanes must stay unobstructed under the right-side field.
-- The fixed top must remain L-shaped. The front-wing zone cannot also be claimed by a fixed `90 x 48` slab.
 - The saw opening target must reflect a tight support gap and never a broad perimeter moat.
+- The router zone must remain part of the right-hand table-saw support field.
 
-## Crosscut Checks
+## Miter-Station Checks
 
-- Left miter-slot centerline geometry must remain continuous through wing saw and rear support.
-- Right miter-slot centerline geometry must remain continuous through wing saw and rear support.
-- The front wing must be bench-defined in its final deployed position.
-- The hinge may carry motion but not final precision.
+- The miter station is the primary crosscut tool.
+- The station must be centered within `2 in` of the bench midpoint on the operator-side long face.
+- The deployed station must provide meaningful left and right support for stops and repeat cuts.
+- The target support span is at least `30 in` to the left and `30 in` to the right of the saw.
+- The stowed surface must finish flush or slightly low and must never sit proud.
+- The miter-station mechanism must not intrude into the table-saw rail keep-clear lanes or the right-side service bay.
 
-### Precision Wing Acceptance
+## Table-Saw Support Checks
 
-- seam flushness after latching: `0.000 to -0.005 in`
-- lateral slot mismatch across each transition: `<= 0.005 in`
-- slot-end transition gap after edge treatment: `<= 0.010 in`
-- proof cycles required before slot routing: `10`
-
-### Precision Wing Proof Procedure
-
-1. Deploy and stow the wing `10` full cycles.
-2. After the final cycle engage pins stop screws latches and supports in normal order.
-3. Check seam flushness with a straightedge and feeler gauges.
-4. Check slot alignment at both transitions.
-5. Slide a plain miter bar through the full path.
-6. Slide the actual Vevor gauge through the full path.
-
-The wing fails if any seam point sits high or if any slot transition catches.
+- Right-hand support must remain useful through the fence-extension envelope.
+- Outfeed support must remain continuous and honest.
+- Deployable infeed support is optional and must not become a new precision-wing dependency.
+- Table-saw miter-slot dimensions remain saw-reference geometry only and are no longer an active “extend through the bench” acceptance target.
 
 ## Saw Cradle Checks
 
@@ -59,7 +53,7 @@ The wing fails if any seam point sits high or if any slot transition catches.
 - Cyclone bucket must be removable without unbuilding the bench.
 - Hercules extractor must be removable after the bucket is removed.
 - The internal Hercules + Low-Pro package is still mockup-gated and not yet proven just because the rectangles fit.
-- The dust-bay minimum vertical margin in the layout contract must still be met even before the mockup is called proven.
+- The miter saw must be able to use the flex hose without trapping the hose path in either parked or deployed bench use.
 
 ## Power Checks
 
@@ -72,20 +66,19 @@ The wing fails if any seam point sits high or if any slot transition catches.
 
 - The permanent top must remain free of fixed stage-1 T-track.
 - Future overlay anchors must land in structure and not just MDF skin.
-- Future overlay must stay entirely in the rear fixed panel and outside the front-wing zone.
-- Future overlay anchors must stay outside the saw opening and outside the rail keep-clear lanes.
-- The future overlay needs an underside stiffener where it spans the saw opening.
-- The future overlay must not rely on the saw itself as the primary support for clamp loads.
+- Future overlay must stay outside the saw opening, rail keep-clear lanes, and miter-station operating envelope.
+- The future overlay needs an underside stiffener where it spans unsupported openings.
+- The future overlay must not rely on the saw or miter-station mechanism as the primary support for clamp loads.
 
 ## Finish Checks
 
 - No exposed user-touch edge may feel sharp splintery or fuzzy.
-- Finish buildup must not bind the router plate miter tracks or saw fit.
+- Finish buildup must not bind the router plate, saw fit, or miter-station stow/deploy surfaces.
 - Sample-board schedule must be approved before finishing the bench.
 
 ## No-Top-Machining Gate
 
-Do not cut the final top opening underside rail reliefs or final saw mounting-deck holes until all of the following are true:
+Do not cut the final top openings, underside rail reliefs, or final saw mounting-deck holes until all of the following are true:
 
 - `stripped_blade_center_y` is measured on the bare saw
 - front and rear rail projection are measured at the real minimum and maximum settings
@@ -94,11 +87,9 @@ Do not cut the final top opening underside rail reliefs or final saw mounting-de
 - dust hose sweep is measured at height and bevel extremes
 - actual or owner-accepted saw miter-slot width and depth are recorded
 - the actual saw is set flush on the adjustable mounting deck
-- the front wing has passed its proof procedure
+- the miter-station geometry is frozen from the real miter-saw survey
 
 Passing concept validation does not override this gate.
-
-Use [stripped-saw-survey.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/stripped-saw-survey.md) to collect the required measurements before rerunning the precision validators.
 
 ## Right-Bay Mockup Gate
 
@@ -120,11 +111,12 @@ Minimum mockup outcomes:
 ### Must resolve before buying hardware
 
 - actual right-bay mockup before claiming the Hercules package is proven
-- exact wing registration hardware before drilling the wing and carcass faces
+- actual miter-saw survey before drilling the flip-top opening or fence-support faces
 
 ### Already accepted by the current package
 
-- standard `3/4 x 3/8 in` miter-track assumption for the SKIL slots unless later fit testing disproves it
+- standard `3/4 x 3/8 in` miter-slot assumption for the SKIL slots unless later fit testing disproves it
+- flex hose remains the default dust path for the miter saw and other mobile tools
 
 ### Probably okay to defer
 
@@ -133,11 +125,20 @@ Minimum mockup outcomes:
 - final flex-hose storage details
 - cosmetic finish product choice within the already defined functional finish schedule
 
+## Superseded Work
+
+These are no longer active validation targets:
+
+- sliding-carriage travel and bridge-zone checks
+- front precision-wing proof cycles
+- continuous table-saw miter-slot routing through the bench as a first-order requirement
+
 ## Post-Build Functional Tests
 
-1. Roll the bench out deploy the wing and lower it onto leveling feet.
-2. Run a narrow rip a wide rip and a long rip.
-3. Run a repeat crosscut with the Vevor gauge.
-4. Route a test edge profile and a groove.
-5. Switch the manifold between saw router and flex hose.
-6. Return the bench to parked mode and confirm cord and hose management still works.
+1. Roll the bench out and level it in work position.
+2. Stow the miter station and confirm the top is flush enough for sheet support.
+3. Deploy the miter station and run a repeat stop-based crosscut workflow.
+4. Run a narrow rip, a wide rip, and a long rip.
+5. Route a test edge profile and a groove.
+6. Switch the manifold between saw, router, and flex hose.
+7. Return the bench to parked mode and confirm cord and hose management still works.

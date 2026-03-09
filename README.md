@@ -1,8 +1,8 @@
 # Skilsaw Garage Bench
 
-> Status: concept-valid only. The stripped-saw survey data is now incorporated, but this package is still not shop-ready until the actual saw fit, right-bay dust mockup, and final field-proof steps are complete.
+> Status: active design reset. `codex/bench-validation-hardening` is the base lineage, `codex/bench-survey-contract-hardening` hardened the stripped-saw contract, and this branch resets the product docs to the fixed-top direction. The sliding-carriage branches are superseded history, not the active path.
 
-This workspace contains a build package for an integrated garage bench built around a `SKIL SPT99-11` table saw. The package is organized the way a software project would be: requirements first, then structured design data, then build artifacts, then validation scripts.
+This workspace contains a build package for an integrated garage bench built around a `SKIL SPT99-11` table saw, a right-side router lift, and a centered flip-top miter station. The package stays organized like a software project: requirements first, then structured design data, then build artifacts, then validation scripts.
 
 ## Directory Layout
 
@@ -11,19 +11,19 @@ This workspace contains a build package for an integrated garage bench built aro
 - `plans/` BOM, rough and final cut lists, hardware, build sequence, dust/power, finish, assembly-mode, and validation guides
 - `plans/stripped-saw-survey.md` printable survey checklist for the bare saw before precision cuts
 - `drawings/` builder-facing SVG drawings keyed to parts and subassemblies
-- `renders/` editable SVG concept drawings generated from `data/layout.json` and explicitly marked concept-only
+- `renders/` editable SVG concept drawings generated from `data/layout.json`
 - `tools/` validation and rendering scripts
 
 ## Design Snapshot
 
 - Overall bench size: `90 in L x 48 in D x 36 in H`
 - Parked orientation: long side on the wall, rolled straight out for serious work
-- Saw strategy: left-biased placement for conventional left-slot crosscuts plus deep right-side rip support
-- Top strategy: L-shaped fixed top plus a fold-down front wing, not a single `90 x 48` slab
-- Opening strategy: target `1/32 in` general support gap around the cast top, with no broad quarter-inch moat
+- Table-saw strategy: `SKIL SPT99-11` feeding across the `48 in` depth with real right-hand and outfeed support
+- Top strategy: fixed `90 x 48` work surface with no expandable wings
+- Miter strategy: centered front-side flip-top station sized around the user's `DeWalt 60V 12 in` cordless sliding miter saw
 - Router strategy: stage-1 `JessEm Rout-R-Lift II 02310` with a `Bosch 1617EVS` class motor at the far right end
-- Dust strategy: internal `Hercules HE028` on a fixed low deck + `Oneida Dust Deputy Low-Pro` + Rockler `2-1/2 in` manifold, but still mockup-gated for real service fit
-- Assembly strategy: keep the permanent saw/outfeed top clean on day one and push meaningful clamp features into a removable overlay instead of fixed T-tracks
+- Dust strategy: internal `Hercules HE028` on a fixed low deck + `Oneida Dust Deputy Low-Pro` + Rockler `2-1/2 in` manifold, with flex-hose support for mobile tools including the miter saw
+- Assembly strategy: keep the permanent top clean on day one and reserve meaningful clamping complexity for a removable overlay
 
 ## Validation Commands
 
@@ -45,12 +45,16 @@ python3 tools/validate_layout.py --require-precision-ready data/layout.json data
 
 ## Important Caveats
 
-This package still has two hard gates that must not be hand-waved away:
+This branch resets the written program direction before the layout contract catches up. The current machine-readable layout still reflects the legacy wing-based geometry and will be rewritten in the next stacked PR.
 
-- actual saw fit before the final saw opening, mounting-deck drilling, and slot-routing geometry are frozen
+The hard gates that remain in force are:
+
+- actual table-saw fit before the final saw opening and mounting-deck drilling are frozen
 - real-world right-bay packaging mockup before the Hercules and Low-Pro package is treated as proven serviceable
+- actual miter-saw survey before the flip-top station geometry is frozen
 
 Current owner-approved assumptions that stay in force unless changed later:
 
 - no redesign of the MDF-over-plywood top just to appease generalized garage-humidity concerns
 - sequential bucket-first, extractor-second dust-bay service is acceptable if the path is honest and affordable
+- the sliding-carriage and precision-wing lineage is abandoned in favor of the fixed-top plus miter-station direction
