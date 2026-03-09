@@ -135,6 +135,35 @@
       "notes": "Bounding box only. Real moving hardware must be surveyed at minimum mid and maximum rip before top machining."
     },
     "mount_plane_height": 22.625,
+    "cradle": {
+      "status": "design_defined_not_yet_field_fit",
+      "coarse_support": {
+        "type": "fixed side ledgers plus slotted crossrails",
+        "ledger_material": "2x4",
+        "crossrail_material": "2x4",
+        "slot_length": 1.5,
+        "notes": "Crossrails stay loose until the stripped-saw survey and first physical fit are complete."
+      },
+      "fine_adjustment": {
+        "type": "jack screws",
+        "count": 4,
+        "thread": "3/8-16",
+        "jam_nuts": true,
+        "pad_type": "steel cup or nylon tip against crossrail pads"
+      },
+      "acceptance_tolerance": {
+        "saw_top_flush_max_high": 0.0,
+        "saw_top_flush_max_low": -0.005
+      },
+      "locking_order": [
+        "snug ledgers and crossrail bolts with jack screws loose",
+        "bring saw to final height with jack screws",
+        "verify top flushness at all four cast-top corners and both miter-slot transitions",
+        "tighten crossrail bolts",
+        "recheck flushness",
+        "tighten jack-screw jam nuts"
+      ]
+    },
     "opening": {
       "x": 22.96875,
       "y": 16.21875,
@@ -257,17 +286,48 @@
       "3/4 plywood skin"
     ],
     "deployed": true,
-    "precision_status": "not yet engineered for repeatable slot alignment",
+    "precision_status": "engineering package defined; field proof still required",
     "support": {
-      "type": "motion and registration concept only",
+      "type": "hinge for motion only",
       "leg_count": 2,
       "hinge_length": 72.0,
-      "alignment": {
-        "pin_count": 2,
-        "receiver_type": "steel or bronze bushings",
-        "notes": "Do not machine slot extensions until the full wing registration package exists and is proven repeatable."
+      "notes": "The piano hinge carries motion and gross support. It is not the final-position datum."
+    },
+    "registration": {
+      "datum_strategy": "bench_defined",
+      "alignment_pins": {
+        "count": 2,
+        "type": "tapered steel locating pins into steel or bronze bushings"
       },
-      "notes": "Current package preserves the need for bench-defined registration but does not yet claim a finished precision mechanism."
+      "seam_stop_screws": {
+        "count": 2,
+        "purpose": "set wing flushness at the seam before latching"
+      },
+      "draw_latches": {
+        "count": 2,
+        "purpose": "pull the wing hard into the registered position after pin engagement"
+      },
+      "hinge_line_transition": {
+        "slot_end_treatment": "chamfered slot ends with eased aluminum-track edges",
+        "step_policy": "never high at the seam"
+      }
+    },
+    "primary_support": {
+      "type": "bench-mounted locking side brackets",
+      "count": 2,
+      "notes": "These carry the deployed wing height and stiffness. Floor contact is not the primary precision datum."
+    },
+    "secondary_support": {
+      "type": "center load-sharing foot",
+      "count": 1,
+      "notes": "This foot shares load after the wing is registered and latched. It is trimmed or adjusted to just kiss the floor."
+    },
+    "acceptance_tolerance": {
+      "seam_flush_max_high": 0.0,
+      "seam_flush_max_low": -0.005,
+      "slot_lateral_mismatch_max": 0.005,
+      "transition_gap_max": 0.01,
+      "proof_cycles": 10
     }
   },
   "router_module": {

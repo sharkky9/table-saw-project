@@ -11,14 +11,38 @@ Passing concept validation means the package is internally coherent. It does **n
 - Saw top must finish flush or slightly below the fixed top.
 - Rail keep-clear lanes must stay unobstructed under the right-side field.
 - The fixed top must remain L-shaped. The front-wing zone cannot also be claimed by a fixed `90 x 48` slab.
-- The saw opening target must reflect a tight support gap, not a broad perimeter moat.
+- The saw opening target must reflect a tight support gap and never a broad perimeter moat.
 
 ## Crosscut Checks
 
-- Left miter-slot centerline geometry must remain continuous through wing, saw, and rear support.
-- Right miter-slot centerline geometry must remain continuous through wing, saw, and rear support.
-- Do not treat the current front-wing mechanism as precision-proven yet.
-- Do not machine slot extensions in the wing until the dedicated wing-registration package is complete and tested.
+- Left miter-slot centerline geometry must remain continuous through wing saw and rear support.
+- Right miter-slot centerline geometry must remain continuous through wing saw and rear support.
+- The front wing must be bench-defined in its final deployed position.
+- The hinge may carry motion but not final precision.
+
+### Precision Wing Acceptance
+
+- seam flushness after latching: `0.000 to -0.005 in`
+- lateral slot mismatch across each transition: `<= 0.005 in`
+- slot-end transition gap after edge treatment: `<= 0.010 in`
+- proof cycles required before slot routing: `10`
+
+### Precision Wing Proof Procedure
+
+1. Deploy and stow the wing `10` full cycles.
+2. After the final cycle engage pins stop screws latches and supports in normal order.
+3. Check seam flushness with a straightedge and feeler gauges.
+4. Check slot alignment at both transitions.
+5. Slide a plain miter bar through the full path.
+6. Slide the actual Vevor gauge through the full path.
+
+The wing fails if any seam point sits high or if any slot transition catches.
+
+## Saw Cradle Checks
+
+- Cradle must include fixed ledgers slotted crossrails and four jack screws.
+- Saw top flushness must land in the same `0.000 to -0.005 in` window.
+- Final mount drilling is blocked until the stripped-saw survey is complete.
 
 ## Router Checks
 
@@ -33,7 +57,7 @@ Passing concept validation means the package is internally coherent. It does **n
 - Saw hose must clear bevel travel.
 - Cyclone bucket must be removable without unbuilding the bench.
 - Hercules extractor must be removable after the bucket is removed.
-- The internal Hercules + Low-Pro package is still mockup-gated; bounding-box fit alone is not enough.
+- The internal Hercules + Low-Pro package is still mockup-gated and not yet proven just because the rectangles fit.
 
 ## Power Checks
 
@@ -45,29 +69,30 @@ Passing concept validation means the package is internally coherent. It does **n
 ## Assembly-Mode Checks
 
 - The permanent top must remain free of fixed stage-1 T-track.
-- Future overlay anchors must land in structure, not just MDF skin.
+- Future overlay anchors must land in structure and not just MDF skin.
 - Future overlay must stay entirely in the rear fixed panel and outside the front-wing zone.
 - Future overlay anchors must stay outside the saw opening and outside the rail keep-clear lanes.
 - The future overlay needs an underside stiffener where it spans the saw opening.
 
 ## Finish Checks
 
-- No exposed user-touch edge may feel sharp, splintery, or fuzzy.
-- Finish buildup must not bind the router plate, miter tracks, or saw fit.
+- No exposed user-touch edge may feel sharp splintery or fuzzy.
+- Finish buildup must not bind the router plate miter tracks or saw fit.
 - Sample-board schedule must be approved before finishing the bench.
 
 ## No-Top-Machining Gate
 
-Do not cut the final top opening, miter-track recesses, or saw cradle holes until all of the following are true:
+Do not cut the final top opening miter-track recesses or saw cradle holes until all of the following are true:
 
 - `stripped_blade_center_y` is measured on the bare saw
 - all four saw foot centers are measured
 - foot-pad size and mount-hole diameter are measured
 - lowest underside protrusion below the mount plane is measured
-- front and rear rail projection are measured at minimum, mid, and maximum rip
+- front and rear rail projection are measured at minimum mid and maximum rip
 - dust-port center is measured
 - dust hose sweep is measured at height and bevel extremes
 - actual saw miter-slot width and depth are verified
+- the front wing has passed its proof procedure
 
 Passing concept validation does not override this gate.
 
@@ -75,7 +100,7 @@ Use [stripped-saw-survey.md](/Users/christopherhandel/Documents/GitHub/Table Saw
 
 ## Right-Bay Mockup Gate
 
-Do not call the right-side dust package “proven” until the actual Hercules, Low-Pro, bucket, and hose cuffs are checked in a physical mockup.
+Do not call the right-side dust package proven until the actual Hercules Low-Pro bucket and hose cuffs are checked in a physical mockup.
 
 Minimum mockup outcomes:
 
@@ -104,9 +129,9 @@ Minimum mockup outcomes:
 
 ## Post-Build Functional Tests
 
-1. Roll the bench out, deploy the wing, and lower it onto leveling feet.
-2. Run a narrow rip, a wide rip, and a long rip.
+1. Roll the bench out deploy the wing and lower it onto leveling feet.
+2. Run a narrow rip a wide rip and a long rip.
 3. Run a repeat crosscut with the Vevor gauge.
 4. Route a test edge profile and a groove.
-5. Switch the manifold between saw, router, and flex hose.
+5. Switch the manifold between saw router and flex hose.
 6. Return the bench to parked mode and confirm cord and hose management still works.

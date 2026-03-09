@@ -1,10 +1,10 @@
 # Stripped-Saw Survey
 
-Use this sheet after removing the `SKIL SPT99-11` from its rolling stand and before machining the final top opening, wing slots, or saw cradle.
+Use this sheet after removing the `SKIL SPT99-11` from its rolling stand and before machining the final top opening wing slots or saw cradle.
 
 ## Purpose
 
-This survey closes the precision-cut gate. Until it is done, the build package is only concept-accurate in the saw's front-to-back direction.
+This survey closes the precision-cut gate. Until it is done the build package is only concept-accurate in the saw's front-to-back direction.
 
 This survey directly unlocks:
 
@@ -13,6 +13,10 @@ This survey directly unlocks:
 - final saw cradle drilling
 - final miter-track procurement
 - final saw dust-branch routing
+
+## Hard Stop
+
+Do not machine the top do not route the wing slots and do not drill the final cradle until every required survey row is real in [data/measurements.csv](/Users/christopherhandel/Documents/GitHub/Table Saw/data/measurements.csv).
 
 ## Tools
 
@@ -39,7 +43,7 @@ Definitions:
 
 - `front` means the operator side of the saw
 - `left` and `right` are from the operator position
-- `mount plane` means the plane that touches the bottoms of the four saw support feet / pads
+- `mount plane` means the plane that touches the bottoms of the four saw support feet or pads
 
 Mark the front and left cast-top edges with painter's tape before you start measuring.
 
@@ -66,14 +70,14 @@ Use this for:
 - lowest underside protrusion
 - dust-port center location
 
-Set the saw upside down on padded blocks that support the cast top safely. Do not rest the saw on knobs, handwheels, or fence rails.
+Set the saw upside down on padded blocks that support the cast top safely. Do not rest the saw on knobs handwheels or fence rails.
 
 ## Before You Start
 
 - [ ] Saw unplugged
 - [ ] Fence removed
 - [ ] Miter gauge removed
-- [ ] Blade guard / riving components removed if they interfere
+- [ ] Blade guard and riving components removed if they interfere
 - [ ] Throat plate removed if it helps sight the blade center
 - [ ] Photos taken of the saw before teardown
 - [ ] Front and left datum edges marked with tape
@@ -101,11 +105,11 @@ Use `Setup A`.
 
 Method:
 
-1. Measure each slot with calipers at the front, middle, and rear.
+1. Measure each slot with calipers at the front middle and rear.
 2. Record the tightest honest width that matches the slot.
 3. Measure depth from the cast-top surface to the bottom of the slot with the caliper depth rod or rule.
 
-If left and right slots differ, stop and record both in notes before buying track.
+If left and right slots differ stop and record both in notes before buying track.
 
 ### 3. Measure foot centers and foot-pad size
 
@@ -128,8 +132,8 @@ Required ids:
 Method:
 
 1. Label the four feet `front-left`, `front-right`, `rear-left`, `rear-right`.
-2. For each foot, measure to the **center of the mounting hole or mounting pad center** from the left and front cast-top edges.
-3. Measure the actual support pad footprint, not just the hole center.
+2. For each foot measure to the **center of the mounting hole or mounting pad center** from the left and front cast-top edges.
+3. Measure the actual support pad footprint and not just the hole center.
 4. Measure the hole diameter with calipers.
 
 Take one photo per foot with a ruler visible.
@@ -142,7 +146,7 @@ Method:
 
 1. Bridge a straightedge across two foot pads that define the mount plane.
 2. Measure from that plane down to the lowest non-foot feature.
-3. Include anything that could hit a stretcher, block wrench access, or foul the dust well.
+3. Include anything that could hit a stretcher block wrench access or foul the dust well.
 
 ### 5. Measure rail sweep at min / mid / max rip
 
@@ -159,21 +163,20 @@ Required ids:
 
 Definition:
 
-For these values, `projection` means:
+For these values `projection` means:
 
-- how far the moving rail / carriage hardware extends **to the right of the cast-top right edge**
-- measured under the top, not including the removable fence face
+- how far the moving rail or carriage hardware extends **to the right of the cast-top right edge**
+- measured under the top and not including the removable fence face
 
 Method:
 
 1. Set the rip system to minimum width.
-2. At the front rail, find the furthest-right hard point under the top and measure from the cast-top right edge.
+2. At the front rail find the furthest-right hard point under the top and measure from the cast-top right edge.
 3. Repeat at the rear rail.
 4. Repeat for a `mid` setting.
-   Suggested rule: set the carriage halfway between minimum and maximum right-rip position.
 5. Repeat for maximum right-rip position.
 
-Take photos of min, mid, and max.
+Take photos of min mid and max.
 
 ### 6. Measure dust-port center
 
@@ -201,14 +204,14 @@ Required ids:
 
 Definition:
 
-For these values, `sweep depth` means:
+For these values `sweep depth` means:
 
-- the maximum distance any attached elbow / hose loop projects **behind the rear cast-top edge**
+- the maximum distance any attached elbow or hose loop projects **behind the rear cast-top edge**
 - while cycling the saw through the full intended motion
 
 Method:
 
-1. Attach the actual hose / elbow you intend to use, or the closest realistic stand-in.
+1. Attach the actual hose or elbow you intend to use or the closest realistic stand-in.
 2. Set blade to `0 deg`.
 3. Run the blade through the full height range and watch the hose path.
 4. Measure the maximum rearward projection behind the rear cast-top edge.
@@ -218,35 +221,35 @@ Take photos at the worst-case positions.
 
 ## Fill-In Table
 
-Write the measured values here first, then transfer them into [data/measurements.csv](/Users/christopherhandel/Documents/GitHub/Table Saw/data/measurements.csv).
+Write the measured values here first then transfer them into [data/measurements.csv](/Users/christopherhandel/Documents/GitHub/Table Saw/data/measurements.csv).
 
-| ID | Value | Units | Notes |
+| ID | Value | Units | Blocks |
 | --- | --- | --- | --- |
-| `stripped_blade_center_y` | ______ | in | average of front and rear tooth readings |
-| `miter_slot_width` | ______ | in | verify both slots match |
-| `miter_slot_depth` | ______ | in | verify both slots match |
-| `front_left_foot_center_x` | ______ | in |  |
-| `front_left_foot_center_y` | ______ | in |  |
-| `front_right_foot_center_x` | ______ | in |  |
-| `front_right_foot_center_y` | ______ | in |  |
-| `rear_left_foot_center_x` | ______ | in |  |
-| `rear_left_foot_center_y` | ______ | in |  |
-| `rear_right_foot_center_x` | ______ | in |  |
-| `rear_right_foot_center_y` | ______ | in |  |
-| `foot_pad_width_x` | ______ | in | actual support footprint |
-| `foot_pad_depth_y` | ______ | in | actual support footprint |
-| `mount_hole_diameter` | ______ | in |  |
-| `lowest_underside_protrusion_below_mount_plane` | ______ | in | include wrench-access conflicts |
-| `rail_front_projection_min` | ______ | in | measured from cast-top right edge |
-| `rail_front_projection_mid` | ______ | in | measured from cast-top right edge |
-| `rail_front_projection_max` | ______ | in | measured from cast-top right edge |
-| `rail_rear_projection_min` | ______ | in | measured from cast-top right edge |
-| `rail_rear_projection_mid` | ______ | in | measured from cast-top right edge |
-| `rail_rear_projection_max` | ______ | in | measured from cast-top right edge |
-| `dust_port_center_x` | ______ | in | port center from left cast-top edge |
-| `dust_port_center_y` | ______ | in | port center from front cast-top edge |
-| `dust_hose_sweep_depth_0deg` | ______ | in | max projection behind rear edge |
-| `dust_hose_sweep_depth_45deg` | ______ | in | max projection behind rear edge |
+| `stripped_blade_center_y` | ______ | in | top machining and slot routing |
+| `miter_slot_width` | ______ | in | miter-track procurement |
+| `miter_slot_depth` | ______ | in | miter-track procurement |
+| `front_left_foot_center_x` | ______ | in | cradle drilling and top machining |
+| `front_left_foot_center_y` | ______ | in | cradle drilling and top machining |
+| `front_right_foot_center_x` | ______ | in | cradle drilling and top machining |
+| `front_right_foot_center_y` | ______ | in | cradle drilling and top machining |
+| `rear_left_foot_center_x` | ______ | in | cradle drilling and top machining |
+| `rear_left_foot_center_y` | ______ | in | cradle drilling and top machining |
+| `rear_right_foot_center_x` | ______ | in | cradle drilling and top machining |
+| `rear_right_foot_center_y` | ______ | in | cradle drilling and top machining |
+| `foot_pad_width_x` | ______ | in | cradle drilling and top machining |
+| `foot_pad_depth_y` | ______ | in | cradle drilling and top machining |
+| `mount_hole_diameter` | ______ | in | cradle drilling |
+| `lowest_underside_protrusion_below_mount_plane` | ______ | in | top machining and cradle drilling |
+| `rail_front_projection_min` | ______ | in | right-side relief machining |
+| `rail_front_projection_mid` | ______ | in | right-side relief machining |
+| `rail_front_projection_max` | ______ | in | right-side relief machining |
+| `rail_rear_projection_min` | ______ | in | right-side relief machining |
+| `rail_rear_projection_mid` | ______ | in | right-side relief machining |
+| `rail_rear_projection_max` | ______ | in | right-side relief machining |
+| `dust_port_center_x` | ______ | in | saw dust branch drilling |
+| `dust_port_center_y` | ______ | in | saw dust branch drilling |
+| `dust_hose_sweep_depth_0deg` | ______ | in | saw dust branch drilling |
+| `dust_hose_sweep_depth_45deg` | ______ | in | saw dust branch drilling |
 
 ## Done Checklist
 
@@ -254,4 +257,4 @@ Write the measured values here first, then transfer them into [data/measurements
 - [ ] Survey photos saved somewhere you can reference later
 - [ ] `python3 tools/validate_measurements.py --require-precision-ready data/measurements.csv` passes
 - [ ] `python3 tools/validate_layout.py --require-precision-ready data/layout.json data/measurements.csv` passes
-- [ ] Only after that: machine the top opening, miter-slot extensions, and saw cradle
+- [ ] Only after that: machine the top opening miter-slot extensions and saw cradle

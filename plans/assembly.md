@@ -11,7 +11,7 @@ Build the bench in this order so adjustments happen while they are still cheap:
 5. Install the saw cradle and verify the mount-plane height.
 6. Dry-fit the L-shaped fixed top parts without machining them.
 7. Fit the saw and verify the true opening, blade y datum, and rail sweep.
-8. Build and register the front infeed wing.
+8. Build and prove the front infeed wing.
 9. Machine the fixed top and wing only after the precision gate is open.
 10. Fit the router module and fence.
 11. Install dust plumbing and power.
@@ -24,18 +24,7 @@ This step is a hard gate. Do not machine the top, drill the cradle, or buy miter
 
 Use [stripped-saw-survey.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/stripped-saw-survey.md) as the working checklist.
 
-Record these values on the bare saw:
-
-- stripped blade center y from the front cast-top edge
-- all four foot centers
-- foot-pad size and mount-hole diameter
-- lowest underside protrusion below the mount plane
-- front and rear rail projection at minimum, mid, and maximum rip
-- dust-port center location
-- rear hose sweep at height and bevel extremes
-- actual miter-slot width and depth
-
-If any of those values are still blank in [measurements.csv](/Users/christopherhandel/Documents/GitHub/Table Saw/data/measurements.csv), the precision-cut gate remains closed.
+If any required survey value is still blank in [measurements.csv](/Users/christopherhandel/Documents/GitHub/Table Saw/data/measurements.csv), the precision-cut gate remains closed.
 
 ## Step 1: Plinth
 
@@ -57,6 +46,7 @@ If any of those values are still blank in [measurements.csv](/Users/christopherh
 - Build the saw chassis as an open-frame module, not as a full cabinet.
 - Keep the lower front and lower rear stretchers low enough that the dust hose and blade-tilt motion are not trapped.
 - Install the saw ledgers at a nominal `22.625 in` mount-plane height from the floor.
+- Build the cradle per [saw-cradle.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/saw-cradle.md).
 - Leave the final saw crossrails loose until the real saw is physically test-fit.
 
 ## Step 4: Right Service Module
@@ -64,7 +54,7 @@ If any of those values are still blank in [measurements.csv](/Users/christopherh
 - Build the right module around the router zone above and the Hercules plus Low-Pro dust package below.
 - The internal partition is notched. No full-height divider may intrude into the front or rear rail lanes.
 - Keep the front-right face accessible for the manifold, aux shutoff, and flex-hose exit.
-- Build the Hercules support as a front pull-out tray.
+- Build the Hercules support as currently modeled and treat it as concept-only until the later right-bay package work proves it.
 - Cut the right-side router access hatch now, but leave final latch hardware until the router is test-fit.
 
 ## Step 5: Join The Modules
@@ -79,8 +69,8 @@ If any of those values are still blank in [measurements.csv](/Users/christopherh
 
 Do not laminate a single `90 x 48` slab. The fixed top is two-piece per layer:
 
-- rear main panel: `90 x 31.75 in`
-- right-front infill: `30.25 x 16.25 in`
+- rear main panel: rough concept region `90 x 31.75 in`
+- right-front infill: rough concept region `30.25 x 16.25 in`
 
 ### Dry-Fit First
 
@@ -95,6 +85,7 @@ Do not laminate a single `90 x 48` slab. The fixed top is two-piece per layer:
 This is the second hard gate.
 
 - Set the saw on the cradle with the fixed top pieces still unmachined.
+- Tune the cradle per [saw-cradle.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/saw-cradle.md).
 - Raise and lower the mount points until the saw top is exactly flush or a few thousandths below the surrounding fixed top.
 - Confirm the stripped-saw blade y datum against the provisional layout.
 - Confirm the actual opening size and the actual rail sweep.
@@ -102,13 +93,19 @@ This is the second hard gate.
 
 If the real saw geometry disagrees with the concept layout, update [layout.json](/Users/christopherhandel/Documents/GitHub/Table Saw/data/layout.json) and [measurements.csv](/Users/christopherhandel/Documents/GitHub/Table Saw/data/measurements.csv) before machining anything.
 
-## Step 8: Build And Register The Front Wing
+## Step 8: Build And Prove The Front Wing
 
 - Laminate the wing to `1.5 in` thickness with plywood on both faces.
 - Hinge the wing to the front edge of the left and center modules only.
-- Install two locking folding legs.
-- Install the two tapered alignment pins and matching receivers.
-- Set the leg glides or final trim only after the hinge line and registration hardware are fixed.
+- Install the bench-mounted registration and support hardware described in [wing-mechanism.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/wing-mechanism.md):
+  - tapered alignment pins and bushings
+  - seam stop screws
+  - over-center draw latches
+  - two locking side support brackets
+  - one center load-sharing foot
+- Set the seam stop screws first.
+- Use the draw latches only after the pins are engaged.
+- Adjust the center foot only after the wing already lands flush from the bench-defined hardware.
 - Prove that the wing comes up flush and repeatable before any track routing.
 
 ## Step 9: Machine The Fixed Top And Wing
@@ -119,11 +116,12 @@ Machine only after Steps 0, 7, and 8 are complete.
 
 1. Saw opening perimeter
 2. Router lift recess and cut-through
-3. Assembly T-track dados in the far-left field
-4. Miter-track recesses in the rear support and then the registered front wing
-5. Underside reliefs for the right-side rail keep-clear lanes
+3. Miter-track recesses in the rear support and then the proven front wing
+4. Underside reliefs for the right-side rail keep-clear lanes
 
 Machine the lift-plate recess from the MDF face, then cut through both layers.
+
+Do not machine wing slot extensions unless the wing has passed its full proof procedure.
 
 ## Step 10: Router Module
 
@@ -139,7 +137,7 @@ Install dust and power after the fixed top, saw, wing, and router geometry are p
 
 - Set the cyclone bucket at the front of the dust bay.
 - Install the Oneida Low-Pro lid and verify the short separator-to-extractor hose path.
-- Set the Hercules behind it on the pull-out tray.
+- Set the Hercules in the rear position.
 - Mount the manifold in the front-right service zone.
 - Run the shortest possible hose paths.
 - Plumb in this order: manifold to Low-Pro inlet, Low-Pro outlet to Hercules vacuum port.
