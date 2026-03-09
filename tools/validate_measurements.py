@@ -67,6 +67,19 @@ REQUIRED_IDS = {
     "lift_plate_length",
 }
 
+RETIRED_IDS = {
+    "front_left_foot_center_x",
+    "front_left_foot_center_y",
+    "front_right_foot_center_x",
+    "front_right_foot_center_y",
+    "rear_left_foot_center_x",
+    "rear_left_foot_center_y",
+    "rear_right_foot_center_x",
+    "rear_right_foot_center_y",
+    "rail_front_projection_mid",
+    "rail_rear_projection_mid",
+}
+
 PRECISION_GATED_IDS = {
     "stripped_blade_center_y",
     "rail_front_projection_min",
@@ -152,6 +165,13 @@ def main() -> int:
     if missing:
         errors.append(f"missing required measurement ids: {', '.join(missing)}")
 
+    retired = sorted(RETIRED_IDS & rows.keys())
+    if retired:
+        errors.append(
+            "retired measurement ids should not appear in the contract: "
+            + ", ".join(retired)
+        )
+
     for row in raw_rows:
         row_id = row["id"]
         source = row["source"]
@@ -210,7 +230,7 @@ def main() -> int:
 
         if rows["assumed_blade_center_y"]["source"] == "provisional_field_fit":
             notes.append(
-                "assumed_blade_center_y is still provisional; front-wing depth and rear-support depth remain concept geometry only"
+                "assumed_blade_center_y is still provisional; front-to-back bench saw placement remains concept geometry only"
             )
 
         unresolved = unresolved_precision_ids(rows)

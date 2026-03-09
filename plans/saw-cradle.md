@@ -10,6 +10,7 @@ The cradle sets the stripped saw flush to the surrounding top and keeps that set
 - a full plywood mounting deck carries the stripped saw inside that zone
 - `2x4` support members under the deck carry four `3/8-16` jack screws for fine flush tuning
 - the deck is drilled only after the saw is physically set flush in the bench
+- exact mount-hole coordinates are transferred from the real saw and are not precomputed in the measurement contract
 
 ## Hardware Package
 
@@ -29,6 +30,11 @@ The cradle sets the stripped saw flush to the surrounding top and keeps that set
 8. Recheck flushness.
 9. Tighten the jack-screw jam nuts.
 10. Drill and install final saw-mount hardware only after the setting is proven.
+
+## Field Notes
+
+- One observed front mounting-hole `x` position was about `8 1/8 in` from the left cast-top edge.
+- Treat that as a human reference only. It is not a validated contract datum and must not replace direct transfer from the actual saw on the deck.
 
 ## Acceptance Tolerance
 

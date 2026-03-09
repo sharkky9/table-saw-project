@@ -42,6 +42,7 @@ The wing fails if any seam point sits high or if any slot transition catches.
 
 - Cradle must include fixed ledgers an adjustable mounting deck and four jack screws.
 - Saw top flushness must land in the same `0.000 to -0.005 in` window.
+- Exact saw mount-hole coordinates are intentionally not part of the pre-layout contract.
 - Final mount drilling is blocked until the stripped-saw survey is complete and the saw is physically fit on the deck.
 
 ## Router Checks
@@ -84,10 +85,11 @@ The wing fails if any seam point sits high or if any slot transition catches.
 
 ## No-Top-Machining Gate
 
-Do not cut the final top opening miter-track recesses underside rail reliefs or final saw mounting-deck holes until all of the following are true:
+Do not cut the final top opening underside rail reliefs or final saw mounting-deck holes until all of the following are true:
 
 - `stripped_blade_center_y` is measured on the bare saw
 - front and rear rail projection are measured at the real minimum and maximum settings
+- exact foot-center coordinates are not required because final mount-hole transfer happens from the real saw on the deck
 - dust-port center is measured
 - dust hose sweep is measured at height and bevel extremes
 - actual or owner-accepted saw miter-slot width and depth are recorded

@@ -32,7 +32,7 @@ Read these first:
 
 - Print [stripped-saw-survey.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/stripped-saw-survey.md).
 - Record every required measurement in [data/measurements.csv](/Users/christopherhandel/Documents/GitHub/Table Saw/data/measurements.csv).
-- Do not continue to top machining until the precision-gate commands pass.
+- Do not continue to top machining or final saw-deck drilling until the precision-gate commands pass.
 
 Hold point:
 
@@ -173,13 +173,14 @@ Hold point:
 1. Set the saw on `CM-06`.
 2. Tune the cradle until the cast top is flush or slightly low.
 3. Mark the real opening local reliefs and dust-port routing from the actual saw.
-4. Drill the final mounting-deck bolt pattern only after the flush setting is proven.
+4. Transfer the final mounting-deck bolt pattern from the real saw only after the flush setting is proven.
+5. Do not pre-layout foot-center coordinates; drill from the actual saw on the deck.
 
 Hold point:
 
 - [ ] saw top never proud
 - [ ] real opening marked from the actual saw
-- [ ] mounting deck ready for final drilling
+- [ ] mounting deck ready for final drilling from the actual saw
 
 ## 9. Wing Mechanism
 
