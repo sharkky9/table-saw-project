@@ -1,21 +1,21 @@
 # Stripped-Saw Survey
 
-Use this sheet after removing the `SKIL SPT99-11` from its rolling stand and before machining the final top opening wing slots or mounting deck.
+Use this sheet after removing the `SKIL SPT99-11` from its rolling stand and before machining the final top opening or drilling the final mounting deck.
 
 ## Purpose
 
-This survey closes the precision-cut gate. The core front-to-back datum is now known, but this checklist still protects the final opening, slot-routing, and mounting-deck drilling steps from guesswork.
+This survey closes the precision-cut gate. The core front-to-back datum is now known, but this checklist still protects the final opening, rail-clearance, and mounting-deck drilling steps from guesswork.
 
 This survey directly unlocks:
 
 - final saw opening size and local reliefs
 - final mounting-deck drilling
-- final miter-track routing
 - final saw dust-branch routing
+- final under-top rail keep-clear geometry
 
 ## Hard Stop
 
-Do not machine the top do not route the wing slots and do not drill the final mounting deck until every required survey row is real in [data/measurements.csv](/Users/christopherhandel/Documents/GitHub/Table Saw/data/measurements.csv).
+Do not machine the top or drill the final mounting deck until every required survey row is real in [data/measurements.csv](/Users/christopherhandel/Documents/GitHub/Table Saw/data/measurements.csv).
 
 ## Tools
 
@@ -216,9 +216,9 @@ Write the measured values here first then transfer them into [data/measurements.
 
 | ID | Value | Units | Blocks |
 | --- | --- | --- | --- |
-| `stripped_blade_center_y` | ______ | in | top machining and slot routing |
-| `miter_slot_width` | ______ | in | miter-track fit reference |
-| `miter_slot_depth` | ______ | in | miter-track fit reference |
+| `stripped_blade_center_y` | ______ | in | top machining and saw-fit reference |
+| `miter_slot_width` | ______ | in | saw-reference fit |
+| `miter_slot_depth` | ______ | in | saw-reference fit |
 | `foot_pad_width_x` | ______ | in | deck support reference |
 | `foot_pad_depth_y` | ______ | in | deck support reference |
 | `lowest_underside_protrusion_below_mount_plane` | ______ | in | local saw-well relief only if needed |
@@ -243,4 +243,4 @@ Write the measured values here first then transfer them into [data/measurements.
 - [ ] Survey photos saved somewhere you can reference later
 - [ ] `python3 tools/validate_measurements.py --require-precision-ready data/measurements.csv` passes
 - [ ] `python3 tools/validate_layout.py --require-precision-ready data/layout.json data/measurements.csv` passes
-- [ ] Only after that: machine the top opening miter-slot extensions and mounting deck
+- [ ] Only after that: machine the top opening and drill the final mounting deck
