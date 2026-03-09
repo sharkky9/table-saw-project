@@ -9,9 +9,16 @@ Read these first:
 - [tool-list.md](./tool-list.md)
 - [joint-strategy.md](./joint-strategy.md)
 - [panel-label-map.md](./panel-label-map.md)
+- [top-build.md](./top-build.md)
 - [top-machining-sequence.md](./top-machining-sequence.md)
 - [miter-station.md](./miter-station.md)
 - [flip-top-mechanism.md](./flip-top-mechanism.md)
+
+Default fastening rules:
+
+- carcass structure is glue plus screws unless a step says the part remains removable
+- removable panels hatches and service faces are screw-only and never glued
+- use the pilot-hole and clearance-hole rules in [joint-strategy.md](./joint-strategy.md)
 
 ## Build Sequence
 
@@ -53,14 +60,15 @@ Parts:
 
 Steps:
 
-1. Build the `84 x 39 in` plinth rectangle from `PL-01` and `PL-02`.
-2. Install `PL-03` crossmembers evenly.
+1. Build the `84 x 39 in` plinth rectangle from `PL-01` and `PL-02` with glue plus `FAST-02`.
+2. Install `PL-03` crossmembers evenly with glue plus `FAST-02`.
 3. Install `PL-04` caster reinforcement blocks at the selected caster locations.
 4. Install the selected leveling casters.
 
 Hold point:
 
 - [ ] plinth diagonals match
+- [ ] plinth top edges lie in the same plane before modules are set on it
 - [ ] plinth rolls and settles cleanly
 
 ## 3. Left Module
@@ -72,14 +80,13 @@ Parts:
 
 Steps:
 
-1. Build the carcass from `LM-01`, `LM-02`, `LM-03`, and `LM-04`.
-2. Place the partition so the clear openings are:
-   - `7.5 in` vertical cubby
-   - `18 in` drawer bay
-3. Install `LM-05` only after the box is square.
-4. Install `LM-06` shelves.
-5. Build three drawer boxes from `DR-*`.
-6. Do not final-fit `LM-07`, `LM-08`, or `LM-09` until the cabinet is real and the reveal can be checked.
+1. Build the carcass from `LM-01`, `LM-02`, `LM-03`, and `LM-04` with glue plus cabinet screws or Confirmat-style screws per [joint-strategy.md](./joint-strategy.md).
+2. Cut a `7.5 in` spacer block from scrap and use it to place the partition instead of re-measuring the cubby opening repeatedly.
+3. Confirm the remaining drawer-bay opening lands at the target `18 in` clear width before fastening the partition permanently.
+4. Install `LM-05` only after the box is square. Keep the back screw-only until squareness is confirmed.
+5. Install `LM-06` shelves.
+6. Build three drawer boxes from `DR-*`.
+7. Do not final-fit `LM-07`, `LM-08`, or `LM-09` until the cabinet is real and the reveal can be checked.
 
 Hold point:
 
@@ -94,7 +101,7 @@ Parts:
 
 Steps:
 
-1. Build the open frame from `CM-01`, `CM-02`, and `CM-03`.
+1. Build the open frame from `CM-01`, `CM-02`, and `CM-03` with glue plus cabinet screws or Confirmat-style screws.
 2. Install `CM-04` ledgers at the nominal mount-plane height.
 3. Install `CM-05` as the deck supports and jack-screw carriers.
 4. Fit `CM-06` only as a rough mounting deck until the real saw is flush-fit.
@@ -115,17 +122,18 @@ Parts:
 
 Steps:
 
-1. Build the module shell from `RM-01`, `RM-03`, and `RM-04`.
+1. Build the module shell from `RM-01`, `RM-03`, and `RM-04` with glue plus cabinet screws or Confirmat-style screws.
 2. Mark `RM-02` notch origins from the layout contract:
    - front notch `9.5 in` from the front edge and `0 in` from the top
    - rear notch `30 in` from the front edge and `0 in` from the top
-3. Cut the `8 x 8 in` notches in `RM-02` only after that layout is transferred cleanly.
-4. Install `RM-02` so the notched upper field protects the rail keep-clear lanes.
-5. Install `RM-05` only after service cutouts are marked.
-6. Install `RM-09` cleats before fitting removable front panels.
-7. Fit `RM-07` router hatch.
-8. Leave `RM-08` and `RM-10` as fully mockup-gated parts until the right-bay package is proven.
-9. Fit `RM-06` as a plain removable service face only after the `RM-10` disconnect strategy is proven in mockup.
+3. Make one scrap story stick or notch template for those notch origins before cutting `RM-02`.
+4. Cut the `8 x 8 in` notches in `RM-02` only after that layout is transferred cleanly.
+5. Install `RM-02` so the notched upper field protects the rail keep-clear lanes.
+6. Install `RM-05` only after service cutouts are marked. Keep it screw-only until the shell is confirmed square.
+7. Install `RM-09` cleats before fitting removable front panels.
+8. Fit `RM-07` router hatch.
+9. Leave `RM-08` and `RM-10` as fully mockup-gated parts until the right-bay package is proven.
+10. Fit `RM-06` as a plain removable service face only after the `RM-10` disconnect strategy is proven in mockup.
 
 Hold point:
 
@@ -136,12 +144,14 @@ Hold point:
 
 1. Set all three modules on the plinth.
 2. Clamp top edges flush.
-3. Join modules with washer-head screws through doubled walls.
-4. Recheck overall carcass size.
+3. Drill clearance holes in the driving wall and slightly elongate them vertically before installing the module-joining screws.
+4. Join modules with `FAST-03` washer-head screws through doubled walls only after the top edges are aligned.
+5. Recheck overall carcass size.
 
 Hold point:
 
 - [ ] top edges flush across all modules
+- [ ] all three module top edges land within `1/32 in` of each other at the front and rear before final tightening
 - [ ] carcass square after joining
 
 ## 7. Fixed-Top Blanks And Blocking
@@ -161,15 +171,18 @@ Parts:
 
 Steps:
 
-1. Cut the three fixed-top substrate blanks and three skin blanks to their locked sizes.
+1. Cut the three fixed-top substrate blanks and three wear-skin blanks to their locked sizes.
 2. Cut the router ledgers, seam cleats, stiffeners, and overlay backing pads to size.
 3. Label every blank immediately.
-4. Keep the front/rear top seam at the intentional `y = 15 in` split so the saw-opening front shoulder lives fully in the rear panel.
-5. Do not machine the saw opening, miter-station opening, router recess, or underside rail reliefs yet.
+4. Check every blank for bow or twist before glue-up. Reject or flatten anything that will fight the lamination.
+5. Build the laminated top panels per [top-build.md](./top-build.md).
+6. Keep the front/rear top seam at the intentional `y = 15 in` split so the saw-opening front shoulder lives fully in the rear panel.
+7. Do not machine the saw opening, miter-station opening, router recess, or underside rail reliefs yet.
 
 Hold point:
 
 - [ ] fixed-top blanks are labeled and reserved for field-fit machining later
+- [ ] laminated top panels cure flat before any precision opening work starts
 
 ## 8. Stripped-Saw Survey Plus Saw Fit And Cradle
 

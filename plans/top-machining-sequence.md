@@ -18,13 +18,20 @@ Cutting the top blanks to size is allowed before this gate. This gate only contr
 - chamfer or easing bit for opening-edge treatment
 - drill bits for pivot hardware, latch blocks, and stop blocks after the tray fit is proven
 
+## Method Notes
+
+- rough-cut large through-openings slightly inside the line first, then clean to the final line with a template or guided router pass
+- do not try to freehand the final saw opening in the laminated top
+- keep the finished wear-skin faces taped or padded anywhere clamps or templates might scuff them
+- use a full-size guide-capable router for the lift recess and any template-driven cleanup in the `1-1/2 in` top
+
 ## Sequence
 
 1. Mark the final saw opening from the actual saw fit on the mounting deck and surrounding top.
 2. Confirm the front/rear panel seam is still held ahead of the opening at the intentional `y = 15 in` split.
-3. Cut the saw opening first.
-4. Cut the router lift recess from the top face.
-5. Cut the router through-opening.
+3. Rough-cut the saw opening slightly inside the marked line, then flush-trim or pattern-route it to the final field-fit line.
+4. Cut the router lift recess from the top face with a template or guided straightedge method.
+5. Cut the router through-opening after the recess is proven.
 6. Machine the miter-station opening edges and cover panel only after the tray dry fit proves the real opening clearances.
 7. Drill the pivot-axis hardware, latch-block, and stop-block pilot holes only after the real tray fit is proven.
 8. If top-surface T-track will be used beside the miter station for stop blocks, mark and route it from the installed deployed fence line after the station is tuned; do not route that line from nominal CAD coordinates.

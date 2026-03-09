@@ -17,6 +17,14 @@ The flip-top mechanism lets the miter station switch between a flush work surfac
 - `FAST-14`: hard-stop screws with jam nuts
 - `FAST-26`: shim pack or spacer pucks under the real saw feet
 
+## Hardware Baseline
+
+- pivot axis: nominal `3/8 in`
+- pivot hardware: shoulder-bolt or precision-shaft style set sized so the tray rotates on metal hardware and bushing surfaces rather than on bare wood
+- bushings: `3/8 in` ID flanged bushings or compact bearings that match the chosen pivot
+- latches: adjustable over-center draw latches with enough range to tune flushness instead of forcing it with screw location alone
+- hard stops: `1/4-20` stop screws plus jam nuts so the deployed datum can be fine-tuned without remaking `FT-03`
+
 ## Datum Logic
 
 - the pivot is for motion only
@@ -52,3 +60,9 @@ The mechanism fails if:
 - the saw needs latch force instead of hard stops and shims to land flush
 - latch force is required to hold the deployed position
 - the tray or saw intrudes into the table-saw rail keep-clear lanes or the right-side service zone
+
+## Shop Notes
+
+- use a drill guide or drill press for the pivot holes if possible; the side plates need coaxial holes
+- predrill latch-block and stop-block screws before driving into plywood
+- dry-fit the mechanism before finish touches the contact surfaces

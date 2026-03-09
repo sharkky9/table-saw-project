@@ -1,7 +1,7 @@
 item_id,assembly,description,qty,unit,notes
 FAST-01,all_cabinets,Confirmat or cabinet screws,75,ea,Use for carcass if you prefer them over pocket screws
 FAST-02,plinth,3 in structural screws,48,ea,Plinth perimeter and internal blocking
-FAST-03,module_joining,1-1/4 in washer-head screws,60,ea,Join modules to one another and to stretchers
+FAST-03,module_joining,1-1/4 in washer-head screws,60,ea,Join modules to one another and to stretchers through clearance holes in the driving wall
 FAST-04,miter_station,No. 8 x 3/4 pan-head screws,48,ea,Flip-top hardware stop-track and support-face installation
 FAST-05,drawer_bank,No. 6 x 1/2 slide screws,36,ea,Drawer slide installation
 FAST-06,router_module,Flat-head machine screws,8,ea,Match JessEm lift plate pattern
@@ -9,10 +9,10 @@ FAST-07,saw_mount,Hex bolts washers and lock nuts,1,set,Field-drill the mounting
 FAST-08,overlay_anchors,1/4-20 threaded inserts,4,ea,Install only where the backing pads land under the fixed top
 FAST-09,overlay_anchors,1/4-20 star knobs,4,ea,Future assembly overlay hold-downs
 FAST-10,power_service,Cable clamps and strain reliefs,8,ea,Manage cords and hose drops
-FAST-11,miter_station,Steel pivot rod or shoulder-bolt set,1,set,Primary flip-top pivot hardware
-FAST-12,miter_station,Flanged bushings or compact bearings,2,ea,Match FAST-11 pivot hardware
-FAST-13,miter_station,Over-center latches,2,ea,Pull the stowed miter-station cover flush
-FAST-14,miter_station,Hard-stop screws with jam nuts,2,ea,Set the deployed tray position repeatably
+FAST-11,miter_station,3/8 in shoulder-bolt or precision-shaft pivot set,1,set,Primary flip-top pivot hardware with a nominal 3/8 in pivot axis and enough shoulder length to carry FT-01 plus bushing stack without binding
+FAST-12,miter_station,3/8 in ID flanged bushings or compact bearings,2,ea,Match FAST-11 pivot hardware and keep the FT-01 pivot holes repeatable instead of running wood-on-steel
+FAST-13,miter_station,Adjustable over-center latches,2,ea,Pull the stowed miter-station cover flush with roughly 50 to 100 lb pull range and slotted mounting holes
+FAST-14,miter_station,1/4-20 hard-stop screws with jam nuts,2,ea,Set the deployed tray position repeatably without relying on latch slop
 FAST-15,miter_station,Support-face track fasteners,1,set,Install stop track on the left and right support fences
 FAST-16,miter_station,Latch-block and stop-block screws,1,set,Mount FT-02 and FT-03 parts after dry fit
 FAST-26,miter_station,Shim pack or spacer pucks,1,set,Tune the real saw table height relative to the tray before drilling the final tray bolt pattern
