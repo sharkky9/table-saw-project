@@ -19,7 +19,7 @@
 - Official left rip capacity: `16-1/2 in`
 - Official tool weight: `52.9 lb`
 - User-supplied geometry is more useful than the marketing page for table integration, so the structured layout uses the user's measurements as the primary geometry source
-- The manual and product materials are still not enough to freeze the stripped-saw mount or the true front-to-back blade datum, so the package now treats those as hard survey gates instead of pretending they are settled
+- The manual and product materials are still not enough to freeze the stripped-saw mount or the true front-to-back blade datum, so the package treats those as hard survey gates instead of pretending they are settled
 
 ### Rockler 2-1/2 in Manifold
 
@@ -32,7 +32,8 @@
 - Official envelope: `23.5 in L x 18.25 in W x 27.4-37.5 in H`
 - Official amperage: `11.5A motor, 15A max with tool`
 - The Harbor Freight manual shows the vacuum port on the front body, which means the package is limited more by plan-view depth and service access than by a tall top hose stack
-- With the handle collapsed and the machine mounted on a front pull-out tray, the Hercules is now the selected internal extractor for this package
+- The current package commits to Hercules as the internal extractor target, but the right-bay service geometry is still mockup-gated
+- Sequential bucket-first, extractor-second removal is accepted by the owner and does not need to be treated as a design failure
 
 ### Oneida Dust Deputy Low-Pro
 
@@ -47,7 +48,7 @@
 - Official plate size: `9-1/4 in x 11-3/4 in x 3/8 in`
 - Official compatibility includes Bosch `1617/1618`, DeWalt `610/616/618`, and Porter Cable `690/890` class motors for the `02310` model
 - The package now locks the stage-1 router stack to `JessEm Rout-R-Lift II 02310` plus `Bosch 1617EVS`
-- The JessEm manual also drives the need for real plate-support ledgers, leveling hardware, and service access instead of only encoding the plate opening
+- The JessEm manual drives the need for real plate-support ledgers, leveling hardware, and service access instead of only encoding the plate opening
 
 ## Material Strategy
 
@@ -71,28 +72,37 @@
 
 ## Assembly-Mode Recommendation
 
-Permanent T-track is useful only when it stays out of the main stock-travel zones. The recommended compromise is:
+Permanent stage-1 T-track is not worth the conflict risk in the precision top. The current recommendation is:
 
-- two fixed tracks in the far-left top field
-- one removable assembly overlay for more elaborate clamping and later `20 mm` hole experiments
+- no fixed T-track in the permanent top on day one
+- one removable assembly overlay for clamping and later `20 mm` hole experiments
 
-This gives real clamping capability without filling the outfeed surface with dust-catching grooves.
+This keeps the permanent top cleaner and pushes clamping complexity into a replaceable accessory instead of the saw-support surface.
 
 ## Confidence Boundaries
 
-The package is now explicit about which values are concept geometry and which are procurement- or machining-grade measurements:
+The package is explicit about which values are concept geometry and which are procurement- or machining-grade measurements:
 
 - `official`: manufacturer-published facts, useful for envelopes and electrical planning
 - `user_measured`: user-supplied geometry that can drive the concept layout
 - `derived`: dimensions created from the accepted bench concept
 - `provisional_field_fit`: values that must not green-light top machining or saw-cradle drilling until the stripped-saw survey is complete
 
+Concept validation today means internal consistency, not shop readiness.
+
 ## Dust-System Decision
 
-The current package now intentionally commits to:
+The current package intentionally commits to:
 
-- `Hercules HE028` inside the right bay on a front pull-out tray
+- `Hercules HE028` inside the right bay
 - `Oneida Dust Deputy Low-Pro` on a 5 gallon bucket at the front of the same bay
 - `Rockler Dust Right 2-1/2 in` manifold on the front-right service face
 
-That combination is more credible than the earlier “generic compact extractor class” because the Hercules front vacuum port and the Low-Pro separator both fit the current bay logic without pretending there is a large rear service void.
+That combination is credible enough to keep designing around, but it is still not considered proven until the actual machine, bucket, fittings, and service opening are checked as a mockup.
+
+## Explicit Non-Blockers
+
+These concerns are intentionally not being allowed to balloon the scope:
+
+- generalized “garage humidity means the whole top must be re-architected” arguments
+- objections to sequential bucket-first, extractor-second service order when the sequence itself is still straightforward

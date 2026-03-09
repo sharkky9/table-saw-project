@@ -1,10 +1,19 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "units": "in",
   "coordinate_system": {
     "origin": "front-left corner of finished bench footprint",
     "x_axis": "left to right along the 90 in wall",
     "y_axis": "front/infeed to rear/outfeed across the 48 in depth"
+  },
+  "status": {
+    "package_state": "concept_valid_only",
+    "shop_ready": false,
+    "hard_gates": [
+      "stripped_saw_survey",
+      "right_bay_mockup",
+      "precision_wing_detail_package"
+    ]
   },
   "bench": {
     "overall": {
@@ -20,6 +29,7 @@
         "front": 3.0,
         "rear": 3.0
       },
+      "geometry_status": "Survey-driven top and wing final dimensions remain rough-only until the stripped-saw gate opens.",
       "fixed_regions": [
         {
           "name": "rear_main",
@@ -88,7 +98,7 @@
           "length": 30.5,
           "depth": 42.0,
           "height": 31.0,
-          "notes": "Open frame for saw cradle, dust elbow movement, and wrench access"
+          "notes": "Open frame for saw cradle dust elbow movement and wrench access"
         },
         {
           "name": "right_service",
@@ -97,7 +107,7 @@
           "length": 28.75,
           "depth": 42.0,
           "height": 31.0,
-          "notes": "Router above, Hercules plus Low-Pro dust package below, no full-height divider may intrude into the rail keep-clear lanes"
+          "notes": "Router above and Hercules plus Low-Pro concept package below. No full-height divider may intrude into the rail keep-clear lanes."
         }
       ]
     }
@@ -122,16 +132,27 @@
       "y": 15.0,
       "length": 47.0,
       "depth": 24.625,
-      "notes": "Bounding box only. Real moving hardware must be surveyed at minimum, mid, and maximum rip before top machining."
+      "notes": "Bounding box only. Real moving hardware must be surveyed at minimum mid and maximum rip before top machining."
     },
     "mount_plane_height": 22.625,
     "opening": {
-      "x": 22.875,
-      "y": 16.125,
-      "length": 27.8125,
-      "depth": 22.375,
-      "gap": 0.125,
-      "notes": "Final opening is field-fit only after stripped-saw survey confirms foot pattern, blade y datum, and underside protrusions."
+      "x": 22.96875,
+      "y": 16.21875,
+      "length": 27.625,
+      "depth": 22.1875,
+      "target_gap_general": 0.03125,
+      "max_local_relief_gap": 0.0625,
+      "relief_zones": [
+        {
+          "name": "underside-protrusion relief only",
+          "notes": "Use only where real saw underside interference requires it and never at the main stock-support edges."
+        },
+        {
+          "name": "mount-access relief only",
+          "notes": "Local relief is allowed only where it helps wrench or fastener access after real saw fit-up."
+        }
+      ],
+      "notes": "Final opening is field-fit only after stripped-saw survey confirms foot pattern blade y datum and underside protrusions."
     },
     "stripped_saw_survey_required": [
       "stripped_blade_center_y",
@@ -166,7 +187,7 @@
         "length": 18.0,
         "depth": 6.5,
         "min_clearance_below": 2.25,
-        "notes": "No divider, wiring chase, or hose bracket may intrude into this lane above the plinth."
+        "notes": "No divider wiring chase or hose bracket may intrude into this lane above the plinth."
       },
       {
         "name": "rear_right_rail_lane",
@@ -175,7 +196,7 @@
         "length": 18.0,
         "depth": 7.0,
         "min_clearance_below": 2.25,
-        "notes": "No divider, wiring chase, or hose bracket may intrude into this lane above the plinth."
+        "notes": "No divider wiring chase or hose bracket may intrude into this lane above the plinth."
       }
     ],
     "miter_slots": [
@@ -236,16 +257,17 @@
       "3/4 plywood skin"
     ],
     "deployed": true,
+    "precision_status": "not yet engineered for repeatable slot alignment",
     "support": {
-      "type": "piano hinge plus folding legs plus tapered registration pins",
+      "type": "motion and registration concept only",
       "leg_count": 2,
       "hinge_length": 72.0,
       "alignment": {
         "pin_count": 2,
         "receiver_type": "steel or bronze bushings",
-        "notes": "Do not machine slot extensions until the registration hardware is installed and repeatable."
+        "notes": "Do not machine slot extensions until the full wing registration package exists and is proven repeatable."
       },
-      "leg_adjustment": "Locking brackets plus adjustable feet or overlength trim-to-fit legs"
+      "notes": "Current package preserves the need for bench-defined registration but does not yet claim a finished precision mechanism."
     }
   },
   "router_module": {
@@ -277,10 +299,21 @@
       "width": 12.0,
       "height": 10.0,
       "bottom_from_floor": 15.0,
-      "notes": "Provides reach to the router collet, lift hardware, and cabinet dust branch without removing the dust package."
+      "notes": "Provides reach to the router collet lift hardware and cabinet dust branch."
     }
   },
   "dust_collection": {
+    "mockup_gate": {
+      "required": true,
+      "status": "open",
+      "notes": "The internal Hercules plus Low-Pro package is still concept-only until real machine and fitting mockup confirms serviceability."
+    },
+    "service_sequence": [
+      "remove front service face",
+      "remove Low-Pro bucket package",
+      "disconnect short hose if needed",
+      "remove or slide extractor"
+    ],
     "dust_bay": {
       "x": 67.25,
       "y": 3.75,
@@ -296,7 +329,9 @@
           "depth": 12.375,
           "height": 18.5,
           "clearance_above": 2.0,
-          "mount": "fixed bucket pad"
+          "base_type": "fixed bucket pad",
+          "service_mode": "remove_first",
+          "deck_or_tray_elevation": 0.75
         },
         {
           "name": "hercules_extractor_rear",
@@ -306,7 +341,9 @@
           "depth": 23.5,
           "height": 27.4,
           "clearance_above": 1.0,
-          "mount": "front pull-out tray"
+          "base_type": "mockup-gated internal support",
+          "service_mode": "remove_after_bucket",
+          "deck_or_tray_elevation": 0.75
         }
       ],
       "service_requirements": {
@@ -314,7 +351,7 @@
         "package_gap_min": 1.0,
         "vertical_clearance_min": 1.0
       },
-      "notes": "This bay is intentionally modeled around the Hercules HE028 on a front pull-out tray plus a Oneida Dust Deputy Low-Pro on a 5 gallon bucket. Service access is from the front, not from a large static rear void."
+      "notes": "This bay intentionally models an internal Hercules plus Low-Pro package with front service. It is still a packaging concept until real mockup confirms the service path."
     },
     "manifold": {
       "mount_face": "front-right service face",
@@ -324,7 +361,7 @@
         "router",
         "flex_hose"
       ],
-      "plumbing_sequence": "tools to manifold, manifold to Low-Pro inlet, Low-Pro outlet to Hercules vacuum port"
+      "plumbing_sequence": "tools to manifold manifold to Low-Pro inlet Low-Pro outlet to Hercules vacuum port"
     },
     "saw_branch": {
       "service_zone": "open well below saw",
@@ -350,7 +387,7 @@
     "aux_circuit": {
       "type": "side inlet to internal strip",
       "loads": [
-        "compact_extractor",
+        "hercules_extractor",
         "task_light",
         "chargers"
       ]
@@ -366,22 +403,11 @@
     ]
   },
   "assembly_mode": {
-    "fixed_t_tracks": [
-      {
-        "center_x": 8.0,
-        "y_start": 6.0,
-        "y_end": 42.0
-      },
-      {
-        "center_x": 20.0,
-        "y_start": 6.0,
-        "y_end": 42.0
-      }
-    ],
-    "future_overlay": {
+    "fixed_t_tracks": [],
+    "overlay": {
       "size": {
         "length": 60.0,
-        "depth": 36.0,
+        "depth": 31.5,
         "thickness": 0.75
       },
       "registration": {
@@ -397,21 +423,59 @@
         {
           "name": "rear_left",
           "x": 6.0,
-          "y": 40.0
+          "y": 42.0
         },
         {
-          "name": "front_right",
-          "x": 54.0,
+          "name": "front_inner",
+          "x": 18.0,
           "y": 20.0
         },
         {
-          "name": "rear_right",
-          "x": 54.0,
-          "y": 40.0
+          "name": "rear_inner",
+          "x": 18.0,
+          "y": 42.0
         }
       ],
       "underside_stiffener": {
-        "length": 30.0,
+        "length": 36.0,
+        "depth": 1.5,
+        "location": "Runs under the overlay where it spans the saw opening."
+      }
+    },
+    "future_overlay": {
+      "size": {
+        "length": 60.0,
+        "depth": 31.5,
+        "thickness": 0.75
+      },
+      "registration": {
+        "left_edge": true,
+        "rear_edge": true
+      },
+      "anchors": [
+        {
+          "name": "front_left",
+          "x": 6.0,
+          "y": 20.0
+        },
+        {
+          "name": "rear_left",
+          "x": 6.0,
+          "y": 42.0
+        },
+        {
+          "name": "front_inner",
+          "x": 18.0,
+          "y": 20.0
+        },
+        {
+          "name": "rear_inner",
+          "x": 18.0,
+          "y": 42.0
+        }
+      ],
+      "underside_stiffener": {
+        "length": 36.0,
         "depth": 1.5,
         "location": "Runs under the overlay where it spans the saw opening."
       }

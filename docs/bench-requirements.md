@@ -1,5 +1,9 @@
 # Bench Requirements
 
+## Status
+
+This package is concept-valid, not shop-ready. The stripped-saw survey, precision-wing detail, and right-bay packaging mockup are still hard gates.
+
 ## Mission
 
 Build a garage bench that does five jobs without becoming a gimmick:
@@ -38,24 +42,25 @@ The bench is deliberately not a transformer with giant permanent leaves. The fix
 ### Permanent Top
 
 - L-shaped fixed top made from:
-  - rear main panel: `90 x 31.75 in`
-  - right-front infill: `30.25 x 16.25 in`
+  - rear main panel: concept region `90 x 31.75 in`
+  - right-front infill: concept region `30.25 x 16.25 in`
 - `3/4 in` plywood substrate plus `3/4 in` MDF precision skin on the fixed top regions
 - Blade lowered below the surface when the bench is used for assembly or track-saw support
 - Router lift plate flush with the surrounding top
 - Front-left infeed area is a separate fold-down wing, not part of the fixed top
+- Survey-driven top dimensions are rough-only until the stripped-saw gate is open
 
 ### Rail-Clearance Strategy
 
 The Skilsaw rack-and-pinion rails must be allowed to extend to full width. The bench therefore keeps a pair of underside keep-clear lanes in the right-side support field instead of treating the whole right side as ordinary cabinet construction. The top surface remains continuous, but blocking, dividers, and hardware under those lanes must stay out of the rail-travel path.
 
-### Dog Holes
+### Dog Holes And Clamping
 
 Day one does **not** drill the permanent top into an MFT-style surface. Instead:
 
 - keep the fixed top clean and durable
-- add fixed T-track only in low-conflict zones
-- plan a removable `60 x 36 x 3/4 in` assembly overlay that can later receive `20 mm` holes if it proves useful
+- keep stage-1 permanent clamp hardware out of the precision top
+- plan a removable `60 x 31.5 x 3/4 in` assembly overlay that can later receive T-track or `20 mm` holes if it proves useful
 
 ## Saw Integration
 
@@ -63,6 +68,9 @@ Day one does **not** drill the permanent top into an MFT-style surface. Instead:
 - Finished bench top must end flush to the saw tabletop, never above it.
 - Final saw mounting plane is `22.625 in` from the floor, based on the user's measured `13.375 in` saw-body height and a `36 in` finished working height.
 - The saw opening and mount must be field-fit from the real saw body before the final top is machined.
+- Opening target is now:
+  - `1/32 in` general support gap
+  - `1/16 in` maximum local relief only where real field-fit interference requires it outside the stock-support path
 
 ## Crosscut Support
 
@@ -70,16 +78,16 @@ Day one does **not** drill the permanent top into an MFT-style surface. Instead:
 
 - Long left-side field supports the Vevor miter gauge and long fence
 - Rear support surface continues behind the saw
-- Both miter-slot centerlines continue through the rear support
+- Both miter-slot centerlines are intended to continue through the rear support
 
 ### Deployable Support
 
 - A fold-down front infeed wing spans the left and center modules
 - Nominal depth: `16.25 in`
 - Nominal width: `59.75 in`
-- Both miter-slot centerlines continue through this wing
-- Wing uses a `72 in` piano hinge, two locking leg supports, and two tapered alignment pins with receivers
-- Wing skin is plywood, not MDF, so the exposed edge is less fragile in a garage environment
+- Both miter-slot centerlines are intended to continue through this wing
+- Precision slot continuity is a design goal, not a proven stage-1 claim yet
+- The current package only preserves the geometry and registration requirement; the repeatable precision mechanism is not considered engineered until the dedicated wing package is complete
 
 ### Performance Target
 
@@ -113,7 +121,8 @@ The bench must preserve useful support to the right of the blade through the ful
   - router
   - flex hose for mobile tools
 - Keep an open well under the saw to preserve blade-height, bevel, and hose movement.
-- The Hercules lives on a front-access pull-out tray so the design depends on front serviceability rather than a large static rear void.
+- The dust package is still mockup-gated. Current geometry is a packaging concept, not a proof.
+- Sequential bucket-first, extractor-second service is acceptable if the package remains affordable, removable, and honest in the docs.
 
 ## Power Access
 
@@ -131,25 +140,25 @@ Storage is subordinate to saw, dust, and service access. The planned storage mix
 - left drawer bank for router bits, layout tools, and small accessories
 - narrow vertical bay for fences, sleds, and jigs
 - front-right service face for power switching, manifold access, and hose exits
-- dust bay below the router zone with a front bucket zone and rear extractor tray
+- dust bay below the router zone with a front bucket zone and rear extractor zone
 
 ## Assembly-Table Functionality
 
-The correct approach is hybrid, not “cover the whole bench in slots.”
+The correct approach is overlay-first, not “cover the whole bench in slots.”
 
-### Fixed Assembly Features
+### Stage-1 Permanent Surface
 
-- Two permanent flush T-tracks in the far-left top field
-- Tracks run front-to-back and stay entirely left of the saw-top opening
-- Tracks are intended for low-profile clamp heads, stops, and temporary fixtures
+- No fixed T-track in the permanent top on day one
+- Keep the permanent top smooth for stock support, outfeed, and sheet handling
 
 ### Overlay Strategy
 
-- Add a removable `60 x 36 x 3/4 in` assembly overlay after the core bench proves itself
-- Overlay stores vertically when not in use
-- Overlay can start with two more T-tracks and later be perforated with `20 mm` holes if desired
+- Add a removable `60 x 31.5 x 3/4 in` assembly overlay after the core bench proves itself
+- Overlay registers to the left and rear edges and stays entirely within the rear main panel
+- Overlay stores separately when not in use
+- Overlay can start with T-tracks and later be perforated with `20 mm` holes if desired
 - Overlay needs an underside stiffener where it spans the saw opening
-- This keeps the permanent saw/outfeed surface smooth and easy to clean
+- Overlay anchors must stay left of the saw opening and outside the rail keep-clear lanes
 
 ## Finish Expectations
 
@@ -159,6 +168,11 @@ The correct approach is hybrid, not “cover the whole bench in slots.”
 - MDF fully sealed before topcoat
 - Hidden structural areas cleaned up enough to avoid snagging, but not over-finished
 
+## Explicit Owner-Accepted Assumptions
+
+- The package does not need a balanced-top redesign just because the bench lives in a garage.
+- Sequential bucket/extractor service is acceptable and does not, by itself, justify re-architecting the right bay.
+
 ## Field-Verification Items
 
 These measurements are still mandatory before cutting the final precision top:
@@ -167,5 +181,5 @@ These measurements are still mandatory before cutting the final precision top:
 - actual saw mounting points, foot spacing, and underside protrusions
 - exact front and rear rail underside sweep at minimum, mid, and maximum rip
 - exact dust-elbow hose envelope at blade-height and bevel extremes
-- final Hercules tray hardware and hose-cuff envelope
+- final Hercules package geometry at the service opening
 - final Low-Pro bucket and latch clearance with the chosen 5 gallon bucket

@@ -1,5 +1,9 @@
 # Validation Plan
 
+## Status
+
+Passing concept validation means the package is internally coherent. It does **not** mean the bench is ready for precision cuts or procurement of every hardware item.
+
 ## Geometry Checks
 
 - Bench top overall size must match `90 x 48 x 36 in`.
@@ -7,14 +11,14 @@
 - Saw top must finish flush or slightly below the fixed top.
 - Rail keep-clear lanes must stay unobstructed under the right-side field.
 - The fixed top must remain L-shaped. The front-wing zone cannot also be claimed by a fixed `90 x 48` slab.
+- The saw opening target must reflect a tight support gap, not a broad perimeter moat.
 
 ## Crosscut Checks
 
-- Left miter-slot centerline must remain continuous through wing, saw, and rear support.
-- Right miter-slot centerline must remain continuous through wing, saw, and rear support.
-- Vevor miter gauge must slide across each transition without catching.
-- The wing must stay flat enough to support at least `24 in` deep crosscuts.
-- The wing registration pins must repeat slot alignment after multiple deploy/stow cycles.
+- Left miter-slot centerline geometry must remain continuous through wing, saw, and rear support.
+- Right miter-slot centerline geometry must remain continuous through wing, saw, and rear support.
+- Do not treat the current front-wing mechanism as precision-proven yet.
+- Do not machine slot extensions in the wing until the dedicated wing-registration package is complete and tested.
 
 ## Router Checks
 
@@ -27,9 +31,9 @@
 
 - Saw hose must clear blade-height travel.
 - Saw hose must clear bevel travel.
-- Hercules extractor must be removable from the right bay through the front tray path without removing the bench top.
-- Cyclone bucket must be emptyable without unbuilding the manifold.
-- Actual package gap, rear buffer, and vertical clearance must be computed from the layout, not merely declared in prose.
+- Cyclone bucket must be removable without unbuilding the bench.
+- Hercules extractor must be removable after the bucket is removed.
+- The internal Hercules + Low-Pro package is still mockup-gated; bounding-box fit alone is not enough.
 
 ## Power Checks
 
@@ -40,9 +44,10 @@
 
 ## Assembly-Mode Checks
 
-- Fixed T-tracks must stay entirely left of the saw-top opening.
-- Clamp heads in the fixed tracks must not foul the miter-gauge fence during left-side support work.
+- The permanent top must remain free of fixed stage-1 T-track.
 - Future overlay anchors must land in structure, not just MDF skin.
+- Future overlay must stay entirely in the rear fixed panel and outside the front-wing zone.
+- Future overlay anchors must stay outside the saw opening and outside the rail keep-clear lanes.
 - The future overlay needs an underside stiffener where it spans the saw opening.
 
 ## Finish Checks
@@ -68,13 +73,26 @@ Passing concept validation does not override this gate.
 
 Use [stripped-saw-survey.md](/Users/christopherhandel/Documents/GitHub/Table Saw/plans/stripped-saw-survey.md) to collect the required measurements before rerunning the precision validators.
 
+## Right-Bay Mockup Gate
+
+Do not call the right-side dust package “proven” until the actual Hercules, Low-Pro, bucket, and hose cuffs are checked in a physical mockup.
+
+Minimum mockup outcomes:
+
+- bucket fits the front zone with latch clearance
+- extractor fits the rear zone with hand access at the front service opening
+- the documented service sequence works:
+  - remove service face
+  - remove bucket
+  - disconnect short hose if needed
+  - remove or slide extractor
+
 ## Procurement Gates
 
 ### Must resolve before buying hardware
 
 - exact miter-slot width and depth before buying extension track
-- verify the actual Hercules tray hardware and front opening clear the real machine
-- verify the assembled Low-Pro bucket footprint and latch clearance with the chosen bucket
+- actual right-bay mockup before claiming the Hercules package is proven
 - exact wing registration hardware before drilling the wing and carcass faces
 
 ### Probably okay to defer
