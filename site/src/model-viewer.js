@@ -540,6 +540,7 @@ class BenchModelViewer {
       this.controls.update();
     }
 
+    this.renderStepLens();
     this.refreshPresetButtons();
     this.applyState();
   }
@@ -686,7 +687,6 @@ class BenchModelViewer {
   updateStep(stepViewer) {
     this.stepViewer = stepViewer || {};
     this.state.highlightAssemblies = [...(this.stepViewer.highlight_assemblies || [])];
-    this.renderStepLens();
     this.applyPreset(this.stepViewer.preset || "assembled");
   }
 
