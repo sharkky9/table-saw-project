@@ -4,7 +4,7 @@ import { marked } from "marked";
 
 const app = document.querySelector("#app");
 const STORAGE_KEY = "fixed-top-bench-atlas-progress-v1";
-const VIEW_MODES = new Set(["atlas", "shop"]);
+const VIEW_MODES = new Set(["build", "atlas", "library"]);
 let viewerModulePromise = null;
 
 const state = {
@@ -17,7 +17,7 @@ const state = {
   resourceCategory: "all",
   viewer: null,
   progress: null,
-  viewMode: "atlas",
+  viewMode: "build",
   shareStatus: "",
   shareStatusTimer: null,
   viewerLoadToken: 0,
@@ -236,7 +236,7 @@ function stepGates(step) {
 }
 
 function sanitizeViewMode(mode) {
-  return VIEW_MODES.has(mode) ? mode : "atlas";
+  return VIEW_MODES.has(mode) ? mode : "build";
 }
 
 function applyLocationState() {
@@ -363,8 +363,8 @@ function printCurrentPacket() {
     });
   };
 
-  if (state.viewMode !== "shop") {
-    state.viewMode = "shop";
+  if (state.viewMode !== "build") {
+    state.viewMode = "build";
     renderApp();
     runPrint();
     return;
@@ -372,25 +372,33 @@ function printCurrentPacket() {
   runPrint();
 }
 
+function stepStatus(entry) {
+  if (stepDone(entry.id)) {
+    return { label: "Done", className: "is-done" };
+  }
+  if (entry.gate_ids.length || entry.gate_summary.some((gate) => gate.gate !== "cut_now")) {
+    return { label: "Watch gates", className: "is-gated" };
+  }
+  return { label: "Ready", className: "is-ready" };
+}
+
 function renderModeControls(step, previousId, nextId, completedSteps) {
   const fullscreenLabel = document.fullscreenElement ? "Exit fullscreen" : "Fullscreen";
   return `
-    <div class="workflow-actions">
-      <div class="builder-console__nav">
+    <div class="app-header__actions">
+      <div class="app-header__action-row">
         <button class="nav-chip" data-jump-step="${previousId || ""}" ${previousId ? "" : "disabled"}>Previous</button>
         <button class="nav-chip" data-jump-step="${nextId || ""}" ${nextId ? "" : "disabled"}>Next</button>
         <button class="nav-chip ${stepDone(step.id) ? "is-active" : ""}" data-toggle-step-done="${step.id}">
           ${stepDone(step.id) ? "Marked done" : "Mark step done"}
         </button>
       </div>
-      <div class="workflow-actions__mode">
-        <button class="nav-chip ${state.viewMode === "atlas" ? "is-active" : ""}" data-set-mode="atlas">Atlas view</button>
-        <button class="nav-chip ${state.viewMode === "shop" ? "is-active" : ""}" data-set-mode="shop">Shop floor</button>
+      <div class="app-header__action-row">
         <button class="nav-chip" data-print-packet>Print packet</button>
         <button class="nav-chip" data-copy-link>${state.shareStatus || "Copy link"}</button>
         <button class="nav-chip" data-toggle-fullscreen>${fullscreenLabel}</button>
       </div>
-      <div class="workflow-actions__stats">
+      <div class="app-header__metrics">
         <span class="chip">${completedSteps}/${state.data.steps.length} steps complete</span>
         <span class="chip">${checkedActionsCount(step)}/${step.actions.length} actions checked</span>
         <span class="chip">${checkedHoldCount(step)}/${step.hold_points.length} hold points checked</span>
@@ -453,12 +461,12 @@ function renderReferenceBoard(step, media, compact = false) {
   return `
     <aside class="reference-board ${compact ? "reference-board--compact" : ""}">
       <div class="reference-board__header">
-        <p class="eyebrow">Reference Plates</p>
+        <p class="eyebrow">Reference Plate</p>
         <h3>${media ? media.title : "No reference image linked"}</h3>
         <p class="reference-board__summary">
           ${
             media
-              ? "Keep a 2D drawing or render visible while orbiting the live 3D atlas."
+              ? "Use this alongside the live stage state. Treat it as an orientation plate, not a direct machining template."
               : "This step currently relies on the live model and linked source files more than on a dedicated drawing."
           }
         </p>
@@ -491,7 +499,7 @@ function renderReferenceBoard(step, media, compact = false) {
 
 function renderGateCards(stepGateCards) {
   if (!stepGateCards.length) {
-    return `<div class="empty-state">This stage has no additional gate board linked beyond the general packet.</div>`;
+    return `<div class="empty-state empty-state--compact">This stage has no additional gate board linked beyond the general packet.</div>`;
   }
   return stepGateCards
     .map(
@@ -517,11 +525,11 @@ function renderResourceStack(stepResourceCards) {
       ${stepResourceCards
         .map(
           (linked) => `
-            <button class="resource-card resource-card--packet" data-open-resource-atlas="${linked.id}">
+            <button class="resource-card resource-card--packet" data-open-resource-library="${linked.id}">
               <span class="resource-meta">${categoryLabel(linked.category)} · ${linked.extension}</span>
               <strong>${linked.title}</strong>
               <small>${linked.summary || linked.path}</small>
-              <span class="resource-card__hint">Open in atlas drawer</span>
+              <span class="resource-card__hint">Open in library</span>
             </button>
           `,
         )
@@ -530,15 +538,40 @@ function renderResourceStack(stepResourceCards) {
   `;
 }
 
-function renderStepStrip(step) {
+function renderStageStrip(step) {
   return `
-    <div class="shop-floor-step-strip" data-print-hide="true">
+    <div class="stage-strip" data-print-hide="true">
       ${state.data.steps
+        .map((entry) => {
+          const status = stepStatus(entry);
+          return `
+            <button class="stage-pill ${entry.id === step.id ? "is-active" : ""} ${status.className}" data-step-id="${entry.id}">
+              <span class="stage-pill__index">${String(entry.number).padStart(2, "0")}</span>
+              <span class="stage-pill__copy">
+                <strong>${entry.title}</strong>
+                <small>${entry.actions.length} actions · ${entry.part_cards.length} parts</small>
+              </span>
+              <span class="stage-pill__status">${status.label}</span>
+            </button>
+          `;
+        })
+        .join("")}
+    </div>
+  `;
+}
+
+function renderWorkspaceTabs() {
+  return `
+    <div class="workspace-tabs" data-print-hide="true">
+      ${[
+        ["build", "Build"],
+        ["atlas", "Atlas"],
+        ["library", "Library"],
+      ]
         .map(
-          (entry) => `
-            <button class="step-pill ${entry.id === step.id ? "is-active" : ""} ${stepDone(entry.id) ? "is-complete" : ""}" data-step-id="${entry.id}">
-              <span>${String(entry.number).padStart(2, "0")}</span>
-              <strong>${entry.title}</strong>
+          ([mode, label]) => `
+            <button class="workspace-tab ${state.viewMode === mode ? "is-active" : ""}" data-set-mode="${mode}">
+              ${label}
             </button>
           `,
         )
@@ -559,95 +592,147 @@ function renderViewerLoading(step) {
   `;
 }
 
-function renderAtlasLayout({ step, previousId, nextId, resource, media, stepResourceCards, stepGateCards, completedSteps }) {
-  const filtered = filteredResources();
+function renderHeader(step, previousId, nextId, completedSteps) {
   return `
-    <div class="shell shell--atlas">
-      <aside class="rail">
-        <div class="brand-card panel">
+    <header class="app-header panel">
+      <div class="app-header__row">
+        <div class="app-header__lead">
           <p class="eyebrow">Digital Build Manual</p>
-          <h1>Fixed-Top Bench Atlas</h1>
-          <p class="summary">
-            ${state.data.dashboard.subheadline}
+          <h1>${step.number}. ${step.title}</h1>
+          <p class="app-header__summary">${step.summary}</p>
+        </div>
+        ${renderModeControls(step, previousId, nextId, completedSteps)}
+      </div>
+      <div class="app-header__row app-header__row--secondary">
+        ${renderWorkspaceTabs()}
+        <div class="app-header__status">
+          <span class="chip chip--strong">${step.focus}</span>
+          ${step.gate_summary
+            .map((gate) => `<span class="chip ${gate.gate === "cut_now" ? "" : "chip--warn"}">${gate.count} ${gate.gate_label}</span>`)
+            .join("")}
+        </div>
+      </div>
+      ${renderStageStrip(step)}
+    </header>
+  `;
+}
+
+function renderBuildLayout({ step, media, stepResourceCards, stepGateCards }) {
+  const hasBlockedParts = step.gate_summary.some((gate) => gate.gate !== "cut_now");
+  return `
+    <section class="workspace workspace--build">
+      <div class="build-layout">
+        <article class="panel build-primary">
+          <div class="panel-title-row">
+            <div>
+              <p class="eyebrow">What To Do Next</p>
+              <h2>Build Packet</h2>
+            </div>
+            <button class="nav-chip" data-set-mode="atlas">Open atlas</button>
+          </div>
+          <p class="build-primary__focus">${step.focus}</p>
+          ${renderTaskRows(step, "action")}
+        </article>
+
+        <article class="panel build-hold ${hasBlockedParts ? "build-hold--warn" : ""}">
+          <div class="panel-title-row">
+            <div>
+              <p class="eyebrow">What Is Blocked</p>
+              <h2>Hold Points</h2>
+            </div>
+            <span class="panel-kicker">${step.hold_points.length} checks</span>
+          </div>
+          <p class="build-hold__summary">
+            ${hasBlockedParts ? "This step still has gated parts or proof items. Resolve the hold points before cutting or fastening the blocked work." : "Use these checks to avoid locking bad geometry into the bench."}
           </p>
-          <div class="stat-grid">
-            ${state.data.dashboard.stats
-              .map(
-                (stat) => `
-                  <article class="stat-card">
-                    <strong>${stat.value}</strong>
-                    <span>${stat.label}</span>
-                  </article>
-                `,
-              )
-              .join("")}
+          ${renderTaskRows(step, "hold")}
+          <div class="build-hold__gates">
+            ${renderGateCards(stepGateCards)}
           </div>
-        </div>
+        </article>
 
-        <div class="panel">
+        <article class="panel build-spotlight">
           <div class="panel-title-row">
-            <h2>Build Stages</h2>
-            <span class="panel-kicker">${state.data.steps.length} stages</span>
+            <div>
+              <p class="eyebrow">Reference Plate</p>
+              <h2>Step Snapshot</h2>
+            </div>
+            <button class="nav-chip" data-set-mode="library">Open library</button>
           </div>
-          <div class="step-list">
-            ${state.data.steps
-              .map(
-                (entry) => `
-                  <button class="step-card ${entry.id === step.id ? "is-active" : ""} ${stepDone(entry.id) ? "is-complete" : ""}" data-step-id="${entry.id}">
-                    <span class="step-index">${String(entry.number).padStart(2, "0")}</span>
-                    <span class="step-copy">
-                      <strong>${entry.title}</strong>
-                      <small>${entry.summary}</small>
-                    </span>
-                    <span class="step-status">${stepDone(entry.id) ? "Done" : "Open"}</span>
-                  </button>
-                `,
-              )
-              .join("")}
-          </div>
-        </div>
+          ${renderReferenceBoard(step, media, true)}
+        </article>
 
-        <div class="panel">
+        <article class="panel build-parts">
           <div class="panel-title-row">
-            <h2>Project Snapshot</h2>
-            <span class="panel-kicker">live contract</span>
+            <div>
+              <p class="eyebrow">What Is In Play</p>
+              <h2>Parts</h2>
+            </div>
+            <span class="panel-kicker">${step.part_cards.length} tracked</span>
           </div>
-          <ul class="snapshot-list">
-            ${state.data.dashboard.project_snapshot.map((line) => `<li>${line}</li>`).join("")}
-          </ul>
-          <div class="data-card-grid">
-            ${state.data.dashboard.data_cards
-              .map(
-                (card) => `
-                  <article class="mini-stat">
-                    <span>${card.label}</span>
-                    <strong>${card.value}</strong>
-                  </article>
-                `,
-              )
-              .join("")}
-          </div>
-        </div>
-      </aside>
+          ${renderPartCards(step, "part-card-grid--dense")}
+        </article>
 
-      <main class="main">
-        <section class="workflow-toolbar panel">
-          <div>
-            <p class="eyebrow">Live Workflow</p>
-            <h2>${step.number}. ${step.title}</h2>
-            <p class="workflow-toolbar__summary">
-              Switch between the full atlas and the simplified shop-floor packet without losing the current step, notes, or checklist state.
-            </p>
+        <article class="panel build-resources">
+          <div class="panel-title-row">
+            <div>
+              <p class="eyebrow">What To Read</p>
+              <h2>Step Files</h2>
+            </div>
+            <span class="panel-kicker">${stepResourceCards.length} files</span>
           </div>
-          ${renderModeControls(step, previousId, nextId, completedSteps)}
-        </section>
+          ${renderResourceStack(stepResourceCards)}
+        </article>
 
-        <section class="hero panel">
-          <div class="hero-copy">
-            <p class="eyebrow">Current Stage</p>
-            <h2>${step.number}. ${step.title}</h2>
-            <p class="hero-summary">${step.summary}</p>
-            <p class="hero-focus">${step.focus}</p>
+        <article class="panel build-notes">
+          <div class="panel-title-row">
+            <div>
+              <p class="eyebrow">What You Learned</p>
+              <h2>Shop Notes</h2>
+            </div>
+            <span class="panel-kicker">saved locally</span>
+          </div>
+          <label class="notes-field">
+            <span>Record fit-up notes, substitutions, spacer logic, or reminders for later steps.</span>
+            <textarea data-step-notes rows="10" placeholder="Example: use a spacer block for LM-02 before driving screws...">${escapeHtml(
+              state.progress.notes[step.id] || "",
+            )}</textarea>
+          </label>
+        </article>
+      </div>
+    </section>
+  `;
+}
+
+function renderAtlasLayout({ step, media, stepResourceCards, stepGateCards }) {
+  return `
+    <section class="workspace workspace--atlas">
+      <div class="atlas-layout">
+        <article class="panel atlas-main">
+          <div class="panel-title-row">
+            <div>
+              <p class="eyebrow">Atlas Workspace</p>
+              <h2>3D Bench View</h2>
+            </div>
+            <button class="nav-chip" data-set-mode="build">Back to build</button>
+          </div>
+          <p class="atlas-main__summary">${step.focus}</p>
+          <div class="atlas-main__mount" id="modelViewerMount"></div>
+        </article>
+
+        <aside class="atlas-support">
+          <article class="panel atlas-support__callouts">
+            <div class="panel-title-row">
+              <div>
+                <p class="eyebrow">Watch For</p>
+                <h2>Step Callouts</h2>
+              </div>
+              <button class="nav-chip" data-set-mode="library">Open docs</button>
+            </div>
+            <ul class="checkpoint-list">
+              ${step.warnings.map((warning) => `<li>${warning}</li>`).join("")}
+              ${step.viewer.callouts.map((callout) => `<li>${callout}</li>`).join("")}
+            </ul>
             <div class="chip-row">
               ${step.gate_summary
                 .map(
@@ -655,120 +740,59 @@ function renderAtlasLayout({ step, previousId, nextId, resource, media, stepReso
                 )
                 .join("")}
             </div>
-          </div>
-          <div class="hero-notes">
-            <p class="eyebrow">Warnings</p>
-            <ul>
-              ${step.warnings.map((warning) => `<li>${warning}</li>`).join("")}
-            </ul>
-          </div>
-        </section>
+          </article>
 
-        <section class="builder-console panel">
-          <div class="builder-console__header">
-            <div>
-              <p class="eyebrow">Story Mode</p>
-              <h2>Builder Console</h2>
-              <p class="builder-console__summary">
-                Track actions, hold points, and step notes locally in this browser while you work through the packet.
-              </p>
-            </div>
-          </div>
-          <div class="builder-console__grid">
-            <article class="console-card">
-              <div class="panel-title-row">
-                <h3>Action Checklist</h3>
-                <span class="panel-kicker">${step.actions.length} actions</span>
-              </div>
-              ${renderTaskRows(step, "action")}
-            </article>
+          <article class="panel atlas-support__reference">
+            ${renderReferenceBoard(step, media, true)}
+          </article>
 
-            <article class="console-card">
-              <div class="panel-title-row">
-                <h3>Hold Points</h3>
-                <span class="panel-kicker">verify before moving on</span>
-              </div>
-              ${renderTaskRows(step, "hold")}
-            </article>
-
-            <article class="console-card console-card--parts">
-              <div class="panel-title-row">
-                <h3>Parts In Play</h3>
-                <span class="panel-kicker">${step.part_cards.length} tracked parts</span>
-              </div>
-              ${renderPartCards(step)}
-            </article>
-
-            <article class="console-card">
-              <div class="panel-title-row">
-                <h3>Shop Notes</h3>
-                <span class="panel-kicker">saved locally</span>
-              </div>
-              <label class="notes-field">
-                <span>Record fit-up notes, material substitutions, or reminders for this step.</span>
-                <textarea data-step-notes rows="8" placeholder="Example: dry-fit RM-10 with mockup before drilling any panel hardware...">${escapeHtml(
-                  state.progress.notes[step.id] || "",
-                )}</textarea>
-              </label>
-            </article>
-          </div>
-        </section>
-
-        <section class="media-stage panel">
-          <div class="panel-title-row">
-            <h2>Atlas Stage</h2>
-            <span class="panel-kicker">${step.viewer.preset.replaceAll("_", " ")}</span>
-          </div>
-          <div class="media-stage__layout">
-            <div class="media-stage__atlas" id="modelViewerMount"></div>
-            ${renderReferenceBoard(step, media)}
-          </div>
-          <div class="notes-row">
-            ${state.data.notes.map((note) => `<p>${note}</p>`).join("")}
-          </div>
-        </section>
-
-        <section class="support-grid">
-          <article class="panel">
+          <article class="panel atlas-support__resources">
             <div class="panel-title-row">
-              <h2>Linked Resources</h2>
+              <h2>Step Files</h2>
               <span class="panel-kicker">${stepResourceCards.length} files</span>
             </div>
-            <div class="resource-card-grid">
-              ${stepResourceCards
-                .map(
-                  (linked) => `
-                    <button class="resource-card ${linked.id === resource.id ? "is-active" : ""}" data-resource-id="${linked.id}">
-                      <span class="resource-meta">${categoryLabel(linked.category)} · ${linked.extension}</span>
-                      <strong>${linked.title}</strong>
-                      <small>${linked.summary || linked.path}</small>
-                    </button>
-                  `,
-                )
-                .join("")}
-            </div>
+            ${renderResourceStack(stepResourceCards)}
           </article>
 
-          <article class="panel">
-            <div class="panel-title-row">
-              <h2>Gate Board</h2>
-              <span class="panel-kicker">${stepGateCards.length || 0} relevant gates</span>
-            </div>
-            ${renderGateCards(stepGateCards)}
-          </article>
-        </section>
-      </main>
+          ${
+            stepGateCards.length
+              ? `
+                <article class="panel atlas-support__gates">
+                  <div class="panel-title-row">
+                    <h2>Gate Board</h2>
+                    <span class="panel-kicker">${stepGateCards.length} active gates</span>
+                  </div>
+                  ${renderGateCards(stepGateCards)}
+                </article>
+              `
+              : ""
+          }
+        </aside>
+      </div>
+    </section>
+  `;
+}
 
-      <aside class="inspector">
-        <div class="panel inspector-search">
+function renderLibraryLayout({ step, resource }) {
+  const filtered = filteredResources();
+  const stepResourceCards = stepResources(step);
+  return `
+    <section class="workspace workspace--library">
+      <div class="library-layout">
+        <aside class="panel library-sidebar">
           <div class="panel-title-row">
-            <h2>Resource Drawer</h2>
+            <div>
+              <p class="eyebrow">Resource Library</p>
+              <h2>Project Files</h2>
+            </div>
             <span class="panel-kicker">${filtered.length} shown</span>
           </div>
+
           <label class="search-field">
             <span>Search files</span>
             <input type="search" value="${escapeHtml(state.resourceQuery)}" placeholder="assembly, dust, drawing..." />
           </label>
+
           <div class="filter-row">
             ${["all", "plans", "drawings", "renders", "docs", "models", "data"]
               .map(
@@ -780,10 +804,16 @@ function renderAtlasLayout({ step, previousId, nextId, resource, media, stepReso
               )
               .join("")}
           </div>
-        </div>
 
-        <div class="panel resource-list-panel">
-          <div class="resource-list">
+          <div class="library-pins">
+            <div class="panel-title-row">
+              <h3>Current Step Files</h3>
+              <button class="nav-chip" data-set-mode="build">Back to build</button>
+            </div>
+            ${renderResourceStack(stepResourceCards)}
+          </div>
+
+          <div class="resource-list library-resource-list">
             ${filtered
               .map(
                 (item) => `
@@ -796,130 +826,20 @@ function renderAtlasLayout({ step, previousId, nextId, resource, media, stepReso
               )
               .join("")}
           </div>
-        </div>
+        </aside>
 
-        <div class="panel resource-viewer">
+        <article class="panel library-reader">
           <div class="panel-title-row">
-            <h2>${resource.title}</h2>
+            <div>
+              <p class="eyebrow">Reader</p>
+              <h2>${resource.title}</h2>
+            </div>
             <span class="panel-kicker">${resource.path}</span>
           </div>
           ${renderResourceBody(resource)}
-        </div>
-      </aside>
-    </div>
-  `;
-}
-
-function renderShopFloorLayout({ step, previousId, nextId, media, stepResourceCards, stepGateCards, completedSteps }) {
-  return `
-    <div class="shop-floor-shell">
-      <header class="shop-floor-bar panel">
-        <div class="shop-floor-bar__top">
-          <div class="shop-floor-bar__copy">
-            <p class="eyebrow">Shop Floor Packet</p>
-            <h1>${step.number}. ${step.title}</h1>
-            <p class="shop-floor-bar__summary">${step.summary}</p>
-            <p class="shop-floor-bar__focus">${step.focus}</p>
-          </div>
-          ${renderModeControls(step, previousId, nextId, completedSteps)}
-        </div>
-        <div class="chip-row">
-          ${step.gate_summary
-            .map(
-              (gate) => `<span class="chip ${gate.gate === "cut_now" ? "" : "chip--warn"}">${gate.count} ${gate.gate_label}</span>`,
-            )
-            .join("")}
-        </div>
-        ${renderStepStrip(step)}
-      </header>
-
-      <main class="shop-floor-main">
-        <section class="shop-floor-stage panel">
-          <div class="shop-floor-stage__copy">
-            <div class="panel-title-row">
-              <h2>Step Brief</h2>
-              <span class="panel-kicker">print-safe packet</span>
-            </div>
-            <div class="shop-floor-brief">
-              <article class="shop-floor-callout">
-                <p class="eyebrow">Warnings</p>
-                <ul class="checkpoint-list">
-                  ${step.warnings.map((warning) => `<li>${warning}</li>`).join("")}
-                </ul>
-              </article>
-              <article class="shop-floor-callout">
-                <p class="eyebrow">What to prove</p>
-                <ul class="checkpoint-list">
-                  ${step.viewer.callouts.map((callout) => `<li>${callout}</li>`).join("")}
-                </ul>
-              </article>
-            </div>
-            <div class="shop-floor-gates">
-              <div class="panel-title-row">
-                <h3>Gate Board</h3>
-                <span class="panel-kicker">${stepGateCards.length || 0} active gates</span>
-              </div>
-              ${renderGateCards(stepGateCards)}
-            </div>
-          </div>
-
-          <div class="shop-floor-stage__viewer">
-            <div class="shop-floor-stage__atlas" id="modelViewerMount"></div>
-            ${renderReferenceBoard(step, media, true)}
-          </div>
-        </section>
-
-        <section class="shop-floor-grid">
-          <article class="console-card console-card--shop">
-            <div class="panel-title-row">
-              <h3>Action Checklist</h3>
-              <span class="panel-kicker">${step.actions.length} actions</span>
-            </div>
-            ${renderTaskRows(step, "action")}
-          </article>
-
-          <article class="console-card console-card--shop">
-            <div class="panel-title-row">
-              <h3>Hold Points</h3>
-              <span class="panel-kicker">verify before moving on</span>
-            </div>
-            ${renderTaskRows(step, "hold")}
-          </article>
-
-          <article class="console-card console-card--shop console-card--shop-wide">
-            <div class="panel-title-row">
-              <h3>Parts In Play</h3>
-              <span class="panel-kicker">${step.part_cards.length} tracked parts</span>
-            </div>
-            ${renderPartCards(step, "part-card-grid--dense")}
-          </article>
-
-          <article class="console-card console-card--shop">
-            <div class="panel-title-row">
-              <h3>Reference Stack</h3>
-              <span class="panel-kicker">${stepResourceCards.length} files</span>
-            </div>
-            <p class="shop-mode-hint" data-print-hide="true">
-              Tap any card to jump back into atlas mode with that file open in the drawer.
-            </p>
-            ${renderResourceStack(stepResourceCards)}
-          </article>
-
-          <article class="console-card console-card--shop">
-            <div class="panel-title-row">
-              <h3>Shop Notes</h3>
-              <span class="panel-kicker">saved locally</span>
-            </div>
-            <label class="notes-field">
-              <span>Keep setup reminders and fit-up notes attached to this step packet.</span>
-              <textarea data-step-notes rows="10" placeholder="Example: use a spacer block for LM-02 before driving screws...">${escapeHtml(
-                state.progress.notes[step.id] || "",
-              )}</textarea>
-            </label>
-          </article>
-        </section>
-      </main>
-    </div>
+        </article>
+      </div>
+    </section>
   `;
 }
 
@@ -936,13 +856,27 @@ function renderApp() {
   const stepGateCards = stepGates(step);
   const completedSteps = state.data.steps.filter((entry) => stepDone(entry.id)).length;
 
-  app.innerHTML =
-    state.viewMode === "shop"
-      ? renderShopFloorLayout({ step, previousId, nextId, media, stepResourceCards, stepGateCards, completedSteps })
-      : renderAtlasLayout({ step, previousId, nextId, resource, media, stepResourceCards, stepGateCards, completedSteps });
+  const workspace =
+    state.viewMode === "build"
+      ? renderBuildLayout({ step, media, stepResourceCards, stepGateCards })
+      : state.viewMode === "atlas"
+        ? renderAtlasLayout({ step, media, stepResourceCards, stepGateCards })
+        : renderLibraryLayout({ step, resource });
+
+  app.innerHTML = `
+    <div class="app-shell">
+      ${renderHeader(step, previousId, nextId, completedSteps)}
+      ${workspace}
+    </div>
+  `;
 
   bindEvents();
-  mountModelViewer(step);
+  if (state.viewMode === "atlas") {
+    mountModelViewer(step);
+  } else if (state.viewer) {
+    state.viewer.destroy();
+    state.viewer = null;
+  }
 }
 
 function bindEvents() {
@@ -990,10 +924,10 @@ function bindEvents() {
     });
   });
 
-  app.querySelectorAll("[data-open-resource-atlas]").forEach((button) => {
+  app.querySelectorAll("[data-open-resource-library]").forEach((button) => {
     button.addEventListener("click", () => {
-      state.currentResourceId = button.dataset.openResourceAtlas;
-      state.viewMode = "atlas";
+      state.currentResourceId = button.dataset.openResourceLibrary;
+      state.viewMode = "library";
       renderApp();
     });
   });
