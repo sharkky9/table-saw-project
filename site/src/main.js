@@ -5,6 +5,7 @@ import { createModelViewer } from "./model-viewer.js";
 
 const app = document.querySelector("#app");
 const STORAGE_KEY = "fixed-top-bench-atlas-progress-v1";
+const VIEW_MODES = new Set(["atlas", "shop"]);
 
 const state = {
   data: null,
@@ -16,6 +17,9 @@ const state = {
   resourceCategory: "all",
   viewer: null,
   progress: null,
+  viewMode: "atlas",
+  shareStatus: "",
+  shareStatusTimer: null,
 };
 
 function categoryLabel(category) {
@@ -31,7 +35,7 @@ function categoryLabel(category) {
 }
 
 function escapeHtml(value) {
-  return value
+  return String(value)
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;");
@@ -45,9 +49,13 @@ function currentResource() {
   return state.data.resources.find((resource) => resource.id === state.currentResourceId) || state.data.resources[0];
 }
 
-function currentMedia() {
-  const step = currentStep();
+function currentMediaIdForStep(step = currentStep()) {
   return step.media.find((mediaId) => mediaId === state.currentMediaId) || step.media[0] || null;
+}
+
+function currentMedia(step = currentStep()) {
+  const mediaId = currentMediaIdForStep(step);
+  return mediaId ? mediaById(mediaId) : null;
 }
 
 function stepIndexById(stepId) {
@@ -138,12 +146,7 @@ function filteredResources() {
     if (!query) {
       return true;
     }
-    const haystack = [
-      resource.title,
-      resource.path,
-      resource.summary || "",
-      resource.category,
-    ]
+    const haystack = [resource.title, resource.path, resource.summary || "", resource.category]
       .join(" ")
       .toLowerCase();
     return haystack.includes(query);
@@ -180,7 +183,7 @@ function renderCsv(resource) {
               .map(
                 (row) => `
                   <tr>${columns.map((column) => `<td>${escapeHtml(String(row[column] ?? ""))}</td>`).join("")}</tr>
-                `
+                `,
               )
               .join("")}
           </tbody>
@@ -223,39 +226,320 @@ function renderResourceBody(resource) {
   return `<div class="empty-state">No renderer for this resource type.</div>`;
 }
 
+function stepResources(step) {
+  return step.resources.map(resourceById).filter(Boolean);
+}
+
+function stepGates(step) {
+  return step.gate_ids.map(gateById).filter(Boolean);
+}
+
+function sanitizeViewMode(mode) {
+  return VIEW_MODES.has(mode) ? mode : "atlas";
+}
+
+function applyLocationState() {
+  const params = new URLSearchParams(window.location.search);
+  const stepId = params.get("step");
+  const mediaId = params.get("media");
+  const resourceId = params.get("resource");
+  const viewMode = params.get("mode");
+
+  if (stepId && state.data.steps.some((step) => step.id === stepId)) {
+    state.currentStepId = stepId;
+  }
+  if (mediaId) {
+    state.currentMediaId = mediaId;
+  }
+  if (resourceId && state.data.resources.some((resource) => resource.id === resourceId)) {
+    state.currentResourceId = resourceId;
+  }
+  if (viewMode) {
+    state.viewMode = sanitizeViewMode(viewMode);
+  }
+}
+
+function syncLocationState() {
+  const url = new URL(window.location.href);
+  url.searchParams.set("step", state.currentStepId);
+  url.searchParams.set("mode", state.viewMode);
+  if (state.currentMediaId) {
+    url.searchParams.set("media", state.currentMediaId);
+  } else {
+    url.searchParams.delete("media");
+  }
+  if (state.currentResourceId) {
+    url.searchParams.set("resource", state.currentResourceId);
+  } else {
+    url.searchParams.delete("resource");
+  }
+  const next = `${url.pathname}?${url.searchParams.toString()}`;
+  window.history.replaceState({}, "", next);
+}
+
 function ensureSelections() {
   if (!state.progress) {
     state.progress = loadProgress();
   }
-  if (!state.currentStepId) {
+  if (!state.currentStepId || !state.data.steps.some((step) => step.id === state.currentStepId)) {
     state.currentStepId = state.data.landing_step;
   }
+  state.viewMode = sanitizeViewMode(state.viewMode);
+
   const step = currentStep();
   if (!state.currentMediaId || !step.media.includes(state.currentMediaId)) {
     state.currentMediaId = step.media[0] || null;
   }
-  if (!state.currentResourceId) {
-    state.currentResourceId = state.data.landing_resource;
+  if (!state.currentResourceId || !state.data.resources.some((resource) => resource.id === state.currentResourceId)) {
+    state.currentResourceId = step.resources[0] || state.data.landing_resource;
   }
 }
 
-function renderApp() {
-  ensureSelections();
-  const step = currentStep();
-  const previousId = previousStepId();
-  const nextId = nextStepId();
-  const resource = currentResource();
-  const mediaId = currentMedia();
-  const filtered = filteredResources();
-  const media = mediaId ? mediaById(mediaId) : null;
-  const stepResourceCards = step.resources.map(resourceById).filter(Boolean);
-  const stepGates = step.gate_ids.map(gateById).filter(Boolean);
-  const completedSteps = state.data.steps.filter((entry) => stepDone(entry.id)).length;
-  const actionCount = checkedActionsCount(step);
-  const holdCount = checkedHoldCount(step);
+function setShareStatus(message) {
+  state.shareStatus = message;
+  if (state.shareStatusTimer) {
+    window.clearTimeout(state.shareStatusTimer);
+  }
+  state.shareStatusTimer = window.setTimeout(() => {
+    state.shareStatus = "";
+    renderApp();
+  }, 2200);
+}
 
-  app.innerHTML = `
-    <div class="shell">
+function setCurrentStep(stepId) {
+  if (!stepId || !state.data.steps.some((step) => step.id === stepId)) {
+    return;
+  }
+  state.currentStepId = stepId;
+  const step = currentStep();
+  state.currentMediaId = step.media[0] || null;
+  state.currentResourceId = step.resources[0] || state.currentResourceId;
+  renderApp();
+}
+
+function setViewMode(viewMode) {
+  state.viewMode = sanitizeViewMode(viewMode);
+  renderApp();
+}
+
+async function copyCurrentLink() {
+  const href = window.location.href;
+  try {
+    await navigator.clipboard.writeText(href);
+    setShareStatus("Link copied");
+    renderApp();
+  } catch {
+    window.prompt("Copy this link", href);
+  }
+}
+
+async function toggleFullscreen() {
+  try {
+    if (document.fullscreenElement) {
+      await document.exitFullscreen();
+    } else {
+      await document.documentElement.requestFullscreen();
+    }
+  } catch {
+    setShareStatus("Fullscreen unavailable");
+  }
+}
+
+function printCurrentPacket() {
+  const runPrint = () => {
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => window.print());
+    });
+  };
+
+  if (state.viewMode !== "shop") {
+    state.viewMode = "shop";
+    renderApp();
+    runPrint();
+    return;
+  }
+  runPrint();
+}
+
+function renderModeControls(step, previousId, nextId, completedSteps) {
+  const fullscreenLabel = document.fullscreenElement ? "Exit fullscreen" : "Fullscreen";
+  return `
+    <div class="workflow-actions">
+      <div class="builder-console__nav">
+        <button class="nav-chip" data-jump-step="${previousId || ""}" ${previousId ? "" : "disabled"}>Previous</button>
+        <button class="nav-chip" data-jump-step="${nextId || ""}" ${nextId ? "" : "disabled"}>Next</button>
+        <button class="nav-chip ${stepDone(step.id) ? "is-active" : ""}" data-toggle-step-done="${step.id}">
+          ${stepDone(step.id) ? "Marked done" : "Mark step done"}
+        </button>
+      </div>
+      <div class="workflow-actions__mode">
+        <button class="nav-chip ${state.viewMode === "atlas" ? "is-active" : ""}" data-set-mode="atlas">Atlas view</button>
+        <button class="nav-chip ${state.viewMode === "shop" ? "is-active" : ""}" data-set-mode="shop">Shop floor</button>
+        <button class="nav-chip" data-print-packet>Print packet</button>
+        <button class="nav-chip" data-copy-link>${state.shareStatus || "Copy link"}</button>
+        <button class="nav-chip" data-toggle-fullscreen>${fullscreenLabel}</button>
+      </div>
+      <div class="workflow-actions__stats">
+        <span class="chip">${completedSteps}/${state.data.steps.length} steps complete</span>
+        <span class="chip">${checkedActionsCount(step)}/${step.actions.length} actions checked</span>
+        <span class="chip">${checkedHoldCount(step)}/${step.hold_points.length} hold points checked</span>
+        <span class="chip">${step.part_cards.length} parts in play</span>
+      </div>
+    </div>
+  `;
+}
+
+function renderTaskRows(step, type) {
+  const entries = type === "hold" ? step.hold_points : step.actions;
+  const checked = type === "hold" ? holdChecked : actionChecked;
+  const attribute = type === "hold" ? "data-hold-check" : "data-action-check";
+  const title = type === "hold" ? "No hold points captured for this step." : "No action checklist items were parsed for this step.";
+  if (!entries.length) {
+    return `<div class="empty-state empty-state--compact">${title}</div>`;
+  }
+  return `
+    <div class="task-list">
+      ${entries
+        .map(
+          (entry, index) => `
+            <label class="task-row ${checked(step.id, index) ? "is-checked" : ""}">
+              <input type="checkbox" ${attribute}="${index}" ${checked(step.id, index) ? "checked" : ""} />
+              <span>${type === "hold" ? escapeHtml(entry) : renderInlineMarkdown(entry)}</span>
+            </label>
+          `,
+        )
+        .join("")}
+    </div>
+  `;
+}
+
+function renderPartCards(step, extraClass = "") {
+  if (!step.part_cards.length) {
+    return `<div class="empty-state empty-state--compact">No cut-list parts were linked to this step.</div>`;
+  }
+  return `
+    <div class="part-card-grid ${extraClass}">
+      ${step.part_cards
+        .map(
+          (card) => `
+            <article class="part-card">
+              <div class="part-card__head">
+                <strong>${card.part_id}</strong>
+                <span class="chip ${card.gate === "cut_now" ? "" : "chip--warn"}">${card.gate_label}</span>
+              </div>
+              <p>${card.material} · qty ${card.qty}</p>
+              <p>${card.final_l} × ${card.final_w} × ${card.thickness}</p>
+              <small>${escapeHtml(card.notes || "No extra notes attached to this part.")}</small>
+            </article>
+          `,
+        )
+        .join("")}
+    </div>
+  `;
+}
+
+function renderReferenceBoard(step, media, compact = false) {
+  return `
+    <aside class="reference-board ${compact ? "reference-board--compact" : ""}">
+      <div class="reference-board__header">
+        <p class="eyebrow">Reference Plates</p>
+        <h3>${media ? media.title : "No reference image linked"}</h3>
+        <p class="reference-board__summary">
+          ${
+            media
+              ? "Keep a 2D drawing or render visible while orbiting the live 3D atlas."
+              : "This step currently relies on the live model and linked source files more than on a dedicated drawing."
+          }
+        </p>
+      </div>
+      <div class="reference-board__frame">
+        ${
+          media
+            ? `<img class="reference-board__image" src="${media.path}" alt="${media.title}" />`
+            : `<div class="empty-stage">No media plate linked to this stage.</div>`
+        }
+      </div>
+      <div class="media-strip" data-print-hide="true">
+        ${step.media
+          .map((stepMediaId) => {
+            const asset = mediaById(stepMediaId);
+            if (!asset) {
+              return "";
+            }
+            return `
+              <button class="media-chip ${stepMediaId === currentMediaIdForStep(step) ? "is-active" : ""}" data-media-id="${stepMediaId}">
+                ${asset.title}
+              </button>
+            `;
+          })
+          .join("")}
+      </div>
+    </aside>
+  `;
+}
+
+function renderGateCards(stepGateCards) {
+  if (!stepGateCards.length) {
+    return `<div class="empty-state">This stage has no additional gate board linked beyond the general packet.</div>`;
+  }
+  return stepGateCards
+    .map(
+      (gate) => `
+        <div class="gate-card">
+          <strong>${gate.title}</strong>
+          <p>${gate.body}</p>
+          <div class="chip-row">
+            ${gate.parts.map((part) => `<span class="chip chip--warn">${part}</span>`).join("")}
+          </div>
+        </div>
+      `,
+    )
+    .join("");
+}
+
+function renderResourceStack(stepResourceCards) {
+  if (!stepResourceCards.length) {
+    return `<div class="empty-state empty-state--compact">No step-specific references linked here yet.</div>`;
+  }
+  return `
+    <div class="packet-resource-list">
+      ${stepResourceCards
+        .map(
+          (linked) => `
+            <button class="resource-card resource-card--packet" data-open-resource-atlas="${linked.id}">
+              <span class="resource-meta">${categoryLabel(linked.category)} · ${linked.extension}</span>
+              <strong>${linked.title}</strong>
+              <small>${linked.summary || linked.path}</small>
+              <span class="resource-card__hint">Open in atlas drawer</span>
+            </button>
+          `,
+        )
+        .join("")}
+    </div>
+  `;
+}
+
+function renderStepStrip(step) {
+  return `
+    <div class="shop-floor-step-strip" data-print-hide="true">
+      ${state.data.steps
+        .map(
+          (entry) => `
+            <button class="step-pill ${entry.id === step.id ? "is-active" : ""} ${stepDone(entry.id) ? "is-complete" : ""}" data-step-id="${entry.id}">
+              <span>${String(entry.number).padStart(2, "0")}</span>
+              <strong>${entry.title}</strong>
+            </button>
+          `,
+        )
+        .join("")}
+    </div>
+  `;
+}
+
+function renderAtlasLayout({ step, previousId, nextId, resource, media, stepResourceCards, stepGateCards, completedSteps }) {
+  const filtered = filteredResources();
+  return `
+    <div class="shell shell--atlas">
       <aside class="rail">
         <div class="brand-card panel">
           <p class="eyebrow">Digital Build Manual</p>
@@ -271,7 +555,7 @@ function renderApp() {
                     <strong>${stat.value}</strong>
                     <span>${stat.label}</span>
                   </article>
-                `
+                `,
               )
               .join("")}
           </div>
@@ -294,7 +578,7 @@ function renderApp() {
                     </span>
                     <span class="step-status">${stepDone(entry.id) ? "Done" : "Open"}</span>
                   </button>
-                `
+                `,
               )
               .join("")}
           </div>
@@ -316,7 +600,7 @@ function renderApp() {
                     <span>${card.label}</span>
                     <strong>${card.value}</strong>
                   </article>
-                `
+                `,
               )
               .join("")}
           </div>
@@ -324,6 +608,17 @@ function renderApp() {
       </aside>
 
       <main class="main">
+        <section class="workflow-toolbar panel">
+          <div>
+            <p class="eyebrow">Live Workflow</p>
+            <h2>${step.number}. ${step.title}</h2>
+            <p class="workflow-toolbar__summary">
+              Switch between the full atlas and the simplified shop-floor packet without losing the current step, notes, or checklist state.
+            </p>
+          </div>
+          ${renderModeControls(step, previousId, nextId, completedSteps)}
+        </section>
+
         <section class="hero panel">
           <div class="hero-copy">
             <p class="eyebrow">Current Stage</p>
@@ -331,7 +626,11 @@ function renderApp() {
             <p class="hero-summary">${step.summary}</p>
             <p class="hero-focus">${step.focus}</p>
             <div class="chip-row">
-              ${step.gate_summary.map((gate) => `<span class="chip ${gate.gate === "cut_now" ? "" : "chip--warn"}">${gate.count} ${gate.gate_label}</span>`).join("")}
+              ${step.gate_summary
+                .map(
+                  (gate) => `<span class="chip ${gate.gate === "cut_now" ? "" : "chip--warn"}">${gate.count} ${gate.gate_label}</span>`,
+                )
+                .join("")}
             </div>
           </div>
           <div class="hero-notes">
@@ -351,19 +650,6 @@ function renderApp() {
                 Track actions, hold points, and step notes locally in this browser while you work through the packet.
               </p>
             </div>
-            <div class="builder-console__nav">
-              <button class="nav-chip" data-jump-step="${previousId || ""}" ${previousId ? "" : "disabled"}>Previous</button>
-              <button class="nav-chip" data-jump-step="${nextId || ""}" ${nextId ? "" : "disabled"}>Next</button>
-              <button class="nav-chip ${stepDone(step.id) ? "is-active" : ""}" data-toggle-step-done="${step.id}">
-                ${stepDone(step.id) ? "Marked done" : "Mark step done"}
-              </button>
-            </div>
-          </div>
-          <div class="builder-console__stats">
-            <span class="chip">${completedSteps}/${state.data.steps.length} steps complete</span>
-            <span class="chip">${actionCount}/${step.actions.length} actions checked</span>
-            <span class="chip">${holdCount}/${step.hold_points.length} hold points checked</span>
-            <span class="chip">${step.part_cards.length} parts in play</span>
           </div>
           <div class="builder-console__grid">
             <article class="console-card">
@@ -371,18 +657,7 @@ function renderApp() {
                 <h3>Action Checklist</h3>
                 <span class="panel-kicker">${step.actions.length} actions</span>
               </div>
-              <div class="task-list">
-                ${step.actions
-                  .map(
-                    (action, index) => `
-                      <label class="task-row ${actionChecked(step.id, index) ? "is-checked" : ""}">
-                        <input type="checkbox" data-action-check="${index}" ${actionChecked(step.id, index) ? "checked" : ""} />
-                        <span>${renderInlineMarkdown(action)}</span>
-                      </label>
-                    `
-                  )
-                  .join("")}
-              </div>
+              ${renderTaskRows(step, "action")}
             </article>
 
             <article class="console-card">
@@ -390,18 +665,7 @@ function renderApp() {
                 <h3>Hold Points</h3>
                 <span class="panel-kicker">verify before moving on</span>
               </div>
-              <div class="task-list">
-                ${step.hold_points
-                  .map(
-                    (item, index) => `
-                      <label class="task-row ${holdChecked(step.id, index) ? "is-checked" : ""}">
-                        <input type="checkbox" data-hold-check="${index}" ${holdChecked(step.id, index) ? "checked" : ""} />
-                        <span>${item}</span>
-                      </label>
-                    `
-                  )
-                  .join("")}
-              </div>
+              ${renderTaskRows(step, "hold")}
             </article>
 
             <article class="console-card console-card--parts">
@@ -409,23 +673,7 @@ function renderApp() {
                 <h3>Parts In Play</h3>
                 <span class="panel-kicker">${step.part_cards.length} tracked parts</span>
               </div>
-              <div class="part-card-grid">
-                ${step.part_cards
-                  .map(
-                    (card) => `
-                      <article class="part-card">
-                        <div class="part-card__head">
-                          <strong>${card.part_id}</strong>
-                          <span class="chip ${card.gate === "cut_now" ? "" : "chip--warn"}">${card.gate_label}</span>
-                        </div>
-                        <p>${card.material} · qty ${card.qty}</p>
-                        <p>${card.final_l} × ${card.final_w} × ${card.thickness}</p>
-                        <small>${card.notes}</small>
-                      </article>
-                    `
-                  )
-                  .join("")}
-              </div>
+              ${renderPartCards(step)}
             </article>
 
             <article class="console-card">
@@ -435,7 +683,9 @@ function renderApp() {
               </div>
               <label class="notes-field">
                 <span>Record fit-up notes, material substitutions, or reminders for this step.</span>
-                <textarea data-step-notes rows="8" placeholder="Example: dry-fit RM-10 with mockup before drilling any panel hardware...">${escapeHtml(state.progress.notes[step.id] || "")}</textarea>
+                <textarea data-step-notes rows="8" placeholder="Example: dry-fit RM-10 with mockup before drilling any panel hardware...">${escapeHtml(
+                  state.progress.notes[step.id] || "",
+                )}</textarea>
               </label>
             </article>
           </div>
@@ -448,37 +698,7 @@ function renderApp() {
           </div>
           <div class="media-stage__layout">
             <div class="media-stage__atlas" id="modelViewerMount"></div>
-            <aside class="reference-board">
-              <div class="reference-board__header">
-                <p class="eyebrow">Reference Plates</p>
-                <h3>${media ? media.title : "No reference image linked"}</h3>
-                <p class="reference-board__summary">
-                  ${media ? "Keep a 2D drawing or render visible while orbiting the live 3D atlas." : "This step currently relies on the live model and linked source files more than on a dedicated drawing."}
-                </p>
-              </div>
-              <div class="reference-board__frame">
-                ${
-                  media
-                    ? `<img class="reference-board__image" src="${media.path}" alt="${media.title}" />`
-                    : `<div class="empty-stage">No media plate linked to this stage.</div>`
-                }
-              </div>
-              <div class="media-strip">
-                ${step.media
-                  .map((stepMediaId) => {
-                    const asset = mediaById(stepMediaId);
-                    if (!asset) {
-                      return "";
-                    }
-                    return `
-                      <button class="media-chip ${stepMediaId === mediaId ? "is-active" : ""}" data-media-id="${stepMediaId}">
-                        ${asset.title}
-                      </button>
-                    `;
-                  })
-                  .join("")}
-              </div>
-            </aside>
+            ${renderReferenceBoard(step, media)}
           </div>
           <div class="notes-row">
             ${state.data.notes.map((note) => `<p>${note}</p>`).join("")}
@@ -500,7 +720,7 @@ function renderApp() {
                       <strong>${linked.title}</strong>
                       <small>${linked.summary || linked.path}</small>
                     </button>
-                  `
+                  `,
                 )
                 .join("")}
             </div>
@@ -509,25 +729,9 @@ function renderApp() {
           <article class="panel">
             <div class="panel-title-row">
               <h2>Gate Board</h2>
-              <span class="panel-kicker">${stepGates.length || 0} relevant gates</span>
+              <span class="panel-kicker">${stepGateCards.length || 0} relevant gates</span>
             </div>
-            ${
-              stepGates.length
-                ? stepGates
-                    .map(
-                      (gate) => `
-                        <div class="gate-card">
-                          <strong>${gate.title}</strong>
-                          <p>${gate.body}</p>
-                          <div class="chip-row">
-                            ${gate.parts.map((part) => `<span class="chip chip--warn">${part}</span>`).join("")}
-                          </div>
-                        </div>
-                      `
-                    )
-                    .join("")
-                : `<div class="empty-state">This stage has no additional gate board linked beyond the general packet.</div>`
-            }
+            ${renderGateCards(stepGateCards)}
           </article>
         </section>
       </main>
@@ -549,7 +753,7 @@ function renderApp() {
                   <button class="filter-chip ${state.resourceCategory === category ? "is-active" : ""}" data-filter="${category}">
                     ${category === "all" ? "All" : categoryLabel(category)}
                   </button>
-                `
+                `,
               )
               .join("")}
           </div>
@@ -565,7 +769,7 @@ function renderApp() {
                     <strong>${item.title}</strong>
                     <small>${item.summary || item.path}</small>
                   </button>
-                `
+                `,
               )
               .join("")}
           </div>
@@ -581,6 +785,138 @@ function renderApp() {
       </aside>
     </div>
   `;
+}
+
+function renderShopFloorLayout({ step, previousId, nextId, media, stepResourceCards, stepGateCards, completedSteps }) {
+  return `
+    <div class="shop-floor-shell">
+      <header class="shop-floor-bar panel">
+        <div class="shop-floor-bar__top">
+          <div class="shop-floor-bar__copy">
+            <p class="eyebrow">Shop Floor Packet</p>
+            <h1>${step.number}. ${step.title}</h1>
+            <p class="shop-floor-bar__summary">${step.summary}</p>
+            <p class="shop-floor-bar__focus">${step.focus}</p>
+          </div>
+          ${renderModeControls(step, previousId, nextId, completedSteps)}
+        </div>
+        <div class="chip-row">
+          ${step.gate_summary
+            .map(
+              (gate) => `<span class="chip ${gate.gate === "cut_now" ? "" : "chip--warn"}">${gate.count} ${gate.gate_label}</span>`,
+            )
+            .join("")}
+        </div>
+        ${renderStepStrip(step)}
+      </header>
+
+      <main class="shop-floor-main">
+        <section class="shop-floor-stage panel">
+          <div class="shop-floor-stage__copy">
+            <div class="panel-title-row">
+              <h2>Step Brief</h2>
+              <span class="panel-kicker">print-safe packet</span>
+            </div>
+            <div class="shop-floor-brief">
+              <article class="shop-floor-callout">
+                <p class="eyebrow">Warnings</p>
+                <ul class="checkpoint-list">
+                  ${step.warnings.map((warning) => `<li>${warning}</li>`).join("")}
+                </ul>
+              </article>
+              <article class="shop-floor-callout">
+                <p class="eyebrow">What to prove</p>
+                <ul class="checkpoint-list">
+                  ${step.viewer.callouts.map((callout) => `<li>${callout}</li>`).join("")}
+                </ul>
+              </article>
+            </div>
+            <div class="shop-floor-gates">
+              <div class="panel-title-row">
+                <h3>Gate Board</h3>
+                <span class="panel-kicker">${stepGateCards.length || 0} active gates</span>
+              </div>
+              ${renderGateCards(stepGateCards)}
+            </div>
+          </div>
+
+          <div class="shop-floor-stage__viewer">
+            <div class="shop-floor-stage__atlas" id="modelViewerMount"></div>
+            ${renderReferenceBoard(step, media, true)}
+          </div>
+        </section>
+
+        <section class="shop-floor-grid">
+          <article class="console-card console-card--shop">
+            <div class="panel-title-row">
+              <h3>Action Checklist</h3>
+              <span class="panel-kicker">${step.actions.length} actions</span>
+            </div>
+            ${renderTaskRows(step, "action")}
+          </article>
+
+          <article class="console-card console-card--shop">
+            <div class="panel-title-row">
+              <h3>Hold Points</h3>
+              <span class="panel-kicker">verify before moving on</span>
+            </div>
+            ${renderTaskRows(step, "hold")}
+          </article>
+
+          <article class="console-card console-card--shop console-card--shop-wide">
+            <div class="panel-title-row">
+              <h3>Parts In Play</h3>
+              <span class="panel-kicker">${step.part_cards.length} tracked parts</span>
+            </div>
+            ${renderPartCards(step, "part-card-grid--dense")}
+          </article>
+
+          <article class="console-card console-card--shop">
+            <div class="panel-title-row">
+              <h3>Reference Stack</h3>
+              <span class="panel-kicker">${stepResourceCards.length} files</span>
+            </div>
+            <p class="shop-mode-hint" data-print-hide="true">
+              Tap any card to jump back into atlas mode with that file open in the drawer.
+            </p>
+            ${renderResourceStack(stepResourceCards)}
+          </article>
+
+          <article class="console-card console-card--shop">
+            <div class="panel-title-row">
+              <h3>Shop Notes</h3>
+              <span class="panel-kicker">saved locally</span>
+            </div>
+            <label class="notes-field">
+              <span>Keep setup reminders and fit-up notes attached to this step packet.</span>
+              <textarea data-step-notes rows="10" placeholder="Example: use a spacer block for LM-02 before driving screws...">${escapeHtml(
+                state.progress.notes[step.id] || "",
+              )}</textarea>
+            </label>
+          </article>
+        </section>
+      </main>
+    </div>
+  `;
+}
+
+function renderApp() {
+  ensureSelections();
+  syncLocationState();
+
+  const step = currentStep();
+  const previousId = previousStepId();
+  const nextId = nextStepId();
+  const resource = currentResource();
+  const media = currentMedia(step);
+  const stepResourceCards = stepResources(step);
+  const stepGateCards = stepGates(step);
+  const completedSteps = state.data.steps.filter((entry) => stepDone(entry.id)).length;
+
+  app.innerHTML =
+    state.viewMode === "shop"
+      ? renderShopFloorLayout({ step, previousId, nextId, media, stepResourceCards, stepGateCards, completedSteps })
+      : renderAtlasLayout({ step, previousId, nextId, resource, media, stepResourceCards, stepGateCards, completedSteps });
 
   bindEvents();
   mountModelViewer(step);
@@ -589,9 +925,7 @@ function renderApp() {
 function bindEvents() {
   app.querySelectorAll("[data-step-id]").forEach((button) => {
     button.addEventListener("click", () => {
-      state.currentStepId = button.dataset.stepId;
-      state.currentMediaId = null;
-      renderApp();
+      setCurrentStep(button.dataset.stepId);
     });
   });
 
@@ -600,9 +934,7 @@ function bindEvents() {
       return;
     }
     button.addEventListener("click", () => {
-      state.currentStepId = button.dataset.jumpStep;
-      state.currentMediaId = null;
-      renderApp();
+      setCurrentStep(button.dataset.jumpStep);
     });
   });
 
@@ -612,6 +944,12 @@ function bindEvents() {
       state.progress.completedSteps[stepId] = !state.progress.completedSteps[stepId];
       saveProgress();
       renderApp();
+    });
+  });
+
+  app.querySelectorAll("[data-set-mode]").forEach((button) => {
+    button.addEventListener("click", () => {
+      setViewMode(button.dataset.setMode);
     });
   });
 
@@ -625,6 +963,14 @@ function bindEvents() {
   app.querySelectorAll("[data-resource-id]").forEach((button) => {
     button.addEventListener("click", () => {
       state.currentResourceId = button.dataset.resourceId;
+      renderApp();
+    });
+  });
+
+  app.querySelectorAll("[data-open-resource-atlas]").forEach((button) => {
+    button.addEventListener("click", () => {
+      state.currentResourceId = button.dataset.openResourceAtlas;
+      state.viewMode = "atlas";
       renderApp();
     });
   });
@@ -665,6 +1011,27 @@ function bindEvents() {
     notesField.addEventListener("input", (event) => {
       state.progress.notes[state.currentStepId] = event.currentTarget.value;
       saveProgress();
+    });
+  }
+
+  const copyLinkButton = app.querySelector("[data-copy-link]");
+  if (copyLinkButton) {
+    copyLinkButton.addEventListener("click", () => {
+      copyCurrentLink();
+    });
+  }
+
+  const printButton = app.querySelector("[data-print-packet]");
+  if (printButton) {
+    printButton.addEventListener("click", () => {
+      printCurrentPacket();
+    });
+  }
+
+  const fullscreenButton = app.querySelector("[data-toggle-fullscreen]");
+  if (fullscreenButton) {
+    fullscreenButton.addEventListener("click", () => {
+      toggleFullscreen();
     });
   }
 }
@@ -712,21 +1079,30 @@ async function bootstrap() {
   state.data = await dataResponse.json();
   state.model = await modelResponse.json();
   state.progress = loadProgress();
+  applyLocationState();
+
   window.addEventListener("keydown", (event) => {
     if (event.target && ["INPUT", "TEXTAREA"].includes(event.target.tagName)) {
       return;
     }
     if (event.key === "ArrowRight" && nextStepId()) {
-      state.currentStepId = nextStepId();
-      state.currentMediaId = null;
-      renderApp();
+      setCurrentStep(nextStepId());
     }
     if (event.key === "ArrowLeft" && previousStepId()) {
-      state.currentStepId = previousStepId();
-      state.currentMediaId = null;
-      renderApp();
+      setCurrentStep(previousStepId());
+    }
+    if (event.key.toLowerCase() === "p" && (event.metaKey || event.ctrlKey)) {
+      event.preventDefault();
+      printCurrentPacket();
     }
   });
+
+  window.addEventListener("fullscreenchange", () => renderApp());
+  window.addEventListener("popstate", () => {
+    applyLocationState();
+    renderApp();
+  });
+
   renderApp();
 }
 
