@@ -4,6 +4,7 @@ import { marked } from "marked";
 import { createModelViewer } from "./model-viewer.js";
 
 const app = document.querySelector("#app");
+const STORAGE_KEY = "fixed-top-bench-atlas-progress-v1";
 
 const state = {
   data: null,
@@ -14,6 +15,7 @@ const state = {
   resourceQuery: "",
   resourceCategory: "all",
   viewer: null,
+  progress: null,
 };
 
 function categoryLabel(category) {
@@ -46,6 +48,73 @@ function currentResource() {
 function currentMedia() {
   const step = currentStep();
   return step.media.find((mediaId) => mediaId === state.currentMediaId) || step.media[0] || null;
+}
+
+function stepIndexById(stepId) {
+  return state.data.steps.findIndex((step) => step.id === stepId);
+}
+
+function previousStepId() {
+  const index = stepIndexById(state.currentStepId);
+  return index > 0 ? state.data.steps[index - 1].id : null;
+}
+
+function nextStepId() {
+  const index = stepIndexById(state.currentStepId);
+  return index >= 0 && index < state.data.steps.length - 1 ? state.data.steps[index + 1].id : null;
+}
+
+function createEmptyProgress() {
+  return {
+    completedSteps: {},
+    actions: {},
+    holdPoints: {},
+    notes: {},
+  };
+}
+
+function loadProgress() {
+  try {
+    const raw = window.localStorage.getItem(STORAGE_KEY);
+    if (!raw) {
+      return createEmptyProgress();
+    }
+    return { ...createEmptyProgress(), ...JSON.parse(raw) };
+  } catch {
+    return createEmptyProgress();
+  }
+}
+
+function saveProgress() {
+  window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state.progress));
+}
+
+function actionKey(stepId, index) {
+  return `${stepId}:action:${index}`;
+}
+
+function holdKey(stepId, index) {
+  return `${stepId}:hold:${index}`;
+}
+
+function actionChecked(stepId, index) {
+  return Boolean(state.progress.actions[actionKey(stepId, index)]);
+}
+
+function holdChecked(stepId, index) {
+  return Boolean(state.progress.holdPoints[holdKey(stepId, index)]);
+}
+
+function checkedActionsCount(step) {
+  return step.actions.filter((_, index) => actionChecked(step.id, index)).length;
+}
+
+function checkedHoldCount(step) {
+  return step.hold_points.filter((_, index) => holdChecked(step.id, index)).length;
+}
+
+function stepDone(stepId) {
+  return Boolean(state.progress.completedSteps[stepId]);
 }
 
 function resourceById(id) {
@@ -83,6 +152,13 @@ function filteredResources() {
 
 function renderMarkdown(text) {
   return marked.parse(text, {
+    mangle: false,
+    headerIds: false,
+  });
+}
+
+function renderInlineMarkdown(text) {
+  return marked.parseInline(text, {
     mangle: false,
     headerIds: false,
   });
@@ -148,6 +224,9 @@ function renderResourceBody(resource) {
 }
 
 function ensureSelections() {
+  if (!state.progress) {
+    state.progress = loadProgress();
+  }
   if (!state.currentStepId) {
     state.currentStepId = state.data.landing_step;
   }
@@ -163,12 +242,17 @@ function ensureSelections() {
 function renderApp() {
   ensureSelections();
   const step = currentStep();
+  const previousId = previousStepId();
+  const nextId = nextStepId();
   const resource = currentResource();
   const mediaId = currentMedia();
   const filtered = filteredResources();
   const media = mediaId ? mediaById(mediaId) : null;
   const stepResourceCards = step.resources.map(resourceById).filter(Boolean);
   const stepGates = step.gate_ids.map(gateById).filter(Boolean);
+  const completedSteps = state.data.steps.filter((entry) => stepDone(entry.id)).length;
+  const actionCount = checkedActionsCount(step);
+  const holdCount = checkedHoldCount(step);
 
   app.innerHTML = `
     <div class="shell">
@@ -202,12 +286,13 @@ function renderApp() {
             ${state.data.steps
               .map(
                 (entry) => `
-                  <button class="step-card ${entry.id === step.id ? "is-active" : ""}" data-step-id="${entry.id}">
+                  <button class="step-card ${entry.id === step.id ? "is-active" : ""} ${stepDone(entry.id) ? "is-complete" : ""}" data-step-id="${entry.id}">
                     <span class="step-index">${String(entry.number).padStart(2, "0")}</span>
                     <span class="step-copy">
                       <strong>${entry.title}</strong>
                       <small>${entry.summary}</small>
                     </span>
+                    <span class="step-status">${stepDone(entry.id) ? "Done" : "Open"}</span>
                   </button>
                 `
               )
@@ -246,7 +331,7 @@ function renderApp() {
             <p class="hero-summary">${step.summary}</p>
             <p class="hero-focus">${step.focus}</p>
             <div class="chip-row">
-              ${step.parts.map((part) => `<span class="chip">${part}</span>`).join("")}
+              ${step.gate_summary.map((gate) => `<span class="chip ${gate.gate === "cut_now" ? "" : "chip--warn"}">${gate.count} ${gate.gate_label}</span>`).join("")}
             </div>
           </div>
           <div class="hero-notes">
@@ -254,6 +339,105 @@ function renderApp() {
             <ul>
               ${step.warnings.map((warning) => `<li>${warning}</li>`).join("")}
             </ul>
+          </div>
+        </section>
+
+        <section class="builder-console panel">
+          <div class="builder-console__header">
+            <div>
+              <p class="eyebrow">Story Mode</p>
+              <h2>Builder Console</h2>
+              <p class="builder-console__summary">
+                Track actions, hold points, and step notes locally in this browser while you work through the packet.
+              </p>
+            </div>
+            <div class="builder-console__nav">
+              <button class="nav-chip" data-jump-step="${previousId || ""}" ${previousId ? "" : "disabled"}>Previous</button>
+              <button class="nav-chip" data-jump-step="${nextId || ""}" ${nextId ? "" : "disabled"}>Next</button>
+              <button class="nav-chip ${stepDone(step.id) ? "is-active" : ""}" data-toggle-step-done="${step.id}">
+                ${stepDone(step.id) ? "Marked done" : "Mark step done"}
+              </button>
+            </div>
+          </div>
+          <div class="builder-console__stats">
+            <span class="chip">${completedSteps}/${state.data.steps.length} steps complete</span>
+            <span class="chip">${actionCount}/${step.actions.length} actions checked</span>
+            <span class="chip">${holdCount}/${step.hold_points.length} hold points checked</span>
+            <span class="chip">${step.part_cards.length} parts in play</span>
+          </div>
+          <div class="builder-console__grid">
+            <article class="console-card">
+              <div class="panel-title-row">
+                <h3>Action Checklist</h3>
+                <span class="panel-kicker">${step.actions.length} actions</span>
+              </div>
+              <div class="task-list">
+                ${step.actions
+                  .map(
+                    (action, index) => `
+                      <label class="task-row ${actionChecked(step.id, index) ? "is-checked" : ""}">
+                        <input type="checkbox" data-action-check="${index}" ${actionChecked(step.id, index) ? "checked" : ""} />
+                        <span>${renderInlineMarkdown(action)}</span>
+                      </label>
+                    `
+                  )
+                  .join("")}
+              </div>
+            </article>
+
+            <article class="console-card">
+              <div class="panel-title-row">
+                <h3>Hold Points</h3>
+                <span class="panel-kicker">verify before moving on</span>
+              </div>
+              <div class="task-list">
+                ${step.hold_points
+                  .map(
+                    (item, index) => `
+                      <label class="task-row ${holdChecked(step.id, index) ? "is-checked" : ""}">
+                        <input type="checkbox" data-hold-check="${index}" ${holdChecked(step.id, index) ? "checked" : ""} />
+                        <span>${item}</span>
+                      </label>
+                    `
+                  )
+                  .join("")}
+              </div>
+            </article>
+
+            <article class="console-card console-card--parts">
+              <div class="panel-title-row">
+                <h3>Parts In Play</h3>
+                <span class="panel-kicker">${step.part_cards.length} tracked parts</span>
+              </div>
+              <div class="part-card-grid">
+                ${step.part_cards
+                  .map(
+                    (card) => `
+                      <article class="part-card">
+                        <div class="part-card__head">
+                          <strong>${card.part_id}</strong>
+                          <span class="chip ${card.gate === "cut_now" ? "" : "chip--warn"}">${card.gate_label}</span>
+                        </div>
+                        <p>${card.material} · qty ${card.qty}</p>
+                        <p>${card.final_l} × ${card.final_w} × ${card.thickness}</p>
+                        <small>${card.notes}</small>
+                      </article>
+                    `
+                  )
+                  .join("")}
+              </div>
+            </article>
+
+            <article class="console-card">
+              <div class="panel-title-row">
+                <h3>Shop Notes</h3>
+                <span class="panel-kicker">saved locally</span>
+              </div>
+              <label class="notes-field">
+                <span>Record fit-up notes, material substitutions, or reminders for this step.</span>
+                <textarea data-step-notes rows="8" placeholder="Example: dry-fit RM-10 with mockup before drilling any panel hardware...">${escapeHtml(state.progress.notes[step.id] || "")}</textarea>
+              </label>
+            </article>
           </div>
         </section>
 
@@ -299,28 +483,6 @@ function renderApp() {
           <div class="notes-row">
             ${state.data.notes.map((note) => `<p>${note}</p>`).join("")}
           </div>
-        </section>
-
-        <section class="story-grid">
-          <article class="panel story-panel">
-            <div class="panel-title-row">
-              <h2>Step Storyboard</h2>
-              <span class="panel-kicker">${step.actions.length} actions</span>
-            </div>
-            <ol class="action-list">
-              ${step.actions.map((action) => `<li>${action}</li>`).join("")}
-            </ol>
-          </article>
-
-          <article class="panel story-panel">
-            <div class="panel-title-row">
-              <h2>Hold Points</h2>
-              <span class="panel-kicker">check before moving on</span>
-            </div>
-            <ul class="checkpoint-list">
-              ${step.hold_points.map((item) => `<li>${item}</li>`).join("")}
-            </ul>
-          </article>
         </section>
 
         <section class="support-grid">
@@ -433,6 +595,26 @@ function bindEvents() {
     });
   });
 
+  app.querySelectorAll("[data-jump-step]").forEach((button) => {
+    if (button.disabled) {
+      return;
+    }
+    button.addEventListener("click", () => {
+      state.currentStepId = button.dataset.jumpStep;
+      state.currentMediaId = null;
+      renderApp();
+    });
+  });
+
+  app.querySelectorAll("[data-toggle-step-done]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const stepId = button.dataset.toggleStepDone;
+      state.progress.completedSteps[stepId] = !state.progress.completedSteps[stepId];
+      saveProgress();
+      renderApp();
+    });
+  });
+
   app.querySelectorAll("[data-media-id]").forEach((button) => {
     button.addEventListener("click", () => {
       state.currentMediaId = button.dataset.mediaId;
@@ -459,6 +641,30 @@ function bindEvents() {
     searchInput.addEventListener("input", (event) => {
       state.resourceQuery = event.currentTarget.value;
       renderApp();
+    });
+  }
+
+  app.querySelectorAll("[data-action-check]").forEach((input) => {
+    input.addEventListener("change", () => {
+      state.progress.actions[actionKey(state.currentStepId, Number(input.dataset.actionCheck))] = input.checked;
+      saveProgress();
+      renderApp();
+    });
+  });
+
+  app.querySelectorAll("[data-hold-check]").forEach((input) => {
+    input.addEventListener("change", () => {
+      state.progress.holdPoints[holdKey(state.currentStepId, Number(input.dataset.holdCheck))] = input.checked;
+      saveProgress();
+      renderApp();
+    });
+  });
+
+  const notesField = app.querySelector("[data-step-notes]");
+  if (notesField) {
+    notesField.addEventListener("input", (event) => {
+      state.progress.notes[state.currentStepId] = event.currentTarget.value;
+      saveProgress();
     });
   }
 }
@@ -505,6 +711,22 @@ async function bootstrap() {
   }
   state.data = await dataResponse.json();
   state.model = await modelResponse.json();
+  state.progress = loadProgress();
+  window.addEventListener("keydown", (event) => {
+    if (event.target && ["INPUT", "TEXTAREA"].includes(event.target.tagName)) {
+      return;
+    }
+    if (event.key === "ArrowRight" && nextStepId()) {
+      state.currentStepId = nextStepId();
+      state.currentMediaId = null;
+      renderApp();
+    }
+    if (event.key === "ArrowLeft" && previousStepId()) {
+      state.currentStepId = previousStepId();
+      state.currentMediaId = null;
+      renderApp();
+    }
+  });
   renderApp();
 }
 
