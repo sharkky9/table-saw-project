@@ -8,6 +8,8 @@ import re
 import shutil
 from pathlib import Path
 
+from build_bench_model import generate_bench_model
+
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SITE_ROOT = REPO_ROOT / "site"
@@ -21,6 +23,7 @@ RESOURCE_PATHS = [
     "docs/research.md",
     "data/layout.json",
     "data/measurements.csv",
+    "models/README.md",
     "plans/prebuild-checklist.md",
     "plans/no-cut-yet-checklist.md",
     "plans/assembly.md",
@@ -48,6 +51,8 @@ RESOURCE_PATHS = [
     "drawings/front-elevation.svg",
     "drawings/left-module-elevation.svg",
     "drawings/right-module-elevation.svg",
+    "drawings/right-elevation.svg",
+    "drawings/hose-routing.svg",
     "drawings/saw-cradle-detail.svg",
     "drawings/miter-station-elevation.svg",
     "drawings/flip-top-detail.svg",
@@ -305,6 +310,123 @@ STEP_METADATA = {
     },
 }
 
+STEP_VIEWER = {
+    1: {
+        "preset": "assembled",
+        "highlight_assemblies": ["top", "miter_station", "saw", "router", "dust"],
+        "callouts": [
+            "Use the full bench view to orient the fixed-top package before cutting anything.",
+            "The site model shows where the field-fit zones live without pretending they are already proven.",
+            "Right-bay crowding and the centered miter station are visible immediately in this overview lens.",
+        ],
+    },
+    2: {
+        "preset": "plinth",
+        "highlight_assemblies": ["plinth"],
+        "callouts": [
+            "This lens isolates the mobile foundation so twist and caster placement are easy to inspect.",
+            "Treat the plinth as the first datum, not just a rolling base.",
+        ],
+    },
+    3: {
+        "preset": "left_module",
+        "highlight_assemblies": ["left_module"],
+        "callouts": [
+            "The cubby partition is driven by the clear opening, not by a one-off raw dimension.",
+            "Drawer envelopes are shown for fit and access, even though the model does not decompose every drawer part.",
+        ],
+    },
+    4: {
+        "preset": "saw_chassis",
+        "highlight_assemblies": ["center_module", "saw"],
+        "callouts": [
+            "The chassis stays open because the saw fit, dust elbow, and wrench access are all still live constraints.",
+            "The deck is modeled as adjustable, matching the actual cradle strategy in the packet.",
+        ],
+    },
+    5: {
+        "preset": "right_service",
+        "highlight_assemblies": ["right_module", "dust", "router"],
+        "callouts": [
+            "The shell is buildable now, but the service package is still mockup-gated.",
+            "Use the guide lens to see how the rail keep-clear lanes cut through the same territory as the right-bay service story.",
+        ],
+    },
+    6: {
+        "preset": "carcass_alignment",
+        "highlight_assemblies": ["left_module", "center_module", "right_module"],
+        "callouts": [
+            "This view is about aligning the three modules before the top removes your adjustment freedom.",
+            "Explode the carcass slightly to inspect seams and joining surfaces before fastening.",
+        ],
+    },
+    7: {
+        "preset": "top_panels",
+        "highlight_assemblies": ["top", "guides"],
+        "callouts": [
+            "The top is its own subassembly now. The 3D atlas makes the split seam and opening relationships obvious.",
+            "Guide geometry shows why the seam was moved forward of the saw-opening shoulder.",
+        ],
+    },
+    8: {
+        "preset": "table_saw_fit",
+        "highlight_assemblies": ["center_module", "saw", "top"],
+        "callouts": [
+            "This is the field-fit bridge between concept geometry and real machining.",
+            "The viewer deliberately shows the saw as an envelope and the opening as a target, not as a permission slip to machine from nominal coordinates.",
+        ],
+    },
+    9: {
+        "preset": "miter_station",
+        "highlight_assemblies": ["miter_station", "top", "guides"],
+        "callouts": [
+            "Deploy the station in the viewer to understand how the tray, cover, and support spans relate.",
+            "The DCS781 envelope comes from accepted public dimensions. Real tray fit and shimming still happen later from the real tool.",
+            "Any stop-track near the fence line remains a field-fit operation after installation.",
+        ],
+    },
+    10: {
+        "preset": "top_machining",
+        "highlight_assemblies": ["top", "saw", "router", "guides"],
+        "callouts": [
+            "This lens is about machining order and protected areas, not about using the 3D numbers as a direct cut template.",
+            "Turn guides on to inspect keep-clear lanes, miter support spans, and the router recess footprint together.",
+        ],
+    },
+    11: {
+        "preset": "router_zone",
+        "highlight_assemblies": ["router", "top", "right_module"],
+        "callouts": [
+            "The router package is compact, so access and fence-removal assumptions matter.",
+            "Use this lens to verify that the router zone stays compatible with the right miter support span.",
+        ],
+    },
+    12: {
+        "preset": "dust_service",
+        "highlight_assemblies": ["dust", "right_module", "guides"],
+        "callouts": [
+            "This is intentionally a service and mockup view, not a frozen production layout.",
+            "The guide envelope and exploded packages make the 0.35 in headroom risk much easier to understand than text alone.",
+        ],
+    },
+    13: {
+        "preset": "right_service",
+        "highlight_assemblies": ["right_module", "dust"],
+        "callouts": [
+            "Final-fit the removable faces only after the right-bay service sequence is proven in the real world.",
+            "The subpanel and service face stay separate in the viewer because they stay separate in the build packet.",
+        ],
+    },
+    14: {
+        "preset": "final_walkthrough",
+        "highlight_assemblies": ["top", "miter_station", "saw", "router", "dust"],
+        "callouts": [
+            "Finish is deliberately lightweight, and the viewer reflects that by keeping the working faces and service logic central.",
+            "This final lens is a walkthrough, not a demand for cosmetic perfection.",
+        ],
+    },
+}
+
 
 def slugify(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
@@ -516,6 +638,7 @@ def parse_assembly_steps(path: Path) -> list[dict[str, object]]:
                 "resources": meta["resources"],
                 "media": meta["media"],
                 "gate_ids": meta.get("gate_ids", []),
+                "viewer": STEP_VIEWER[step_number],
             }
         )
     return steps
@@ -578,6 +701,7 @@ def build_data() -> dict[str, object]:
         "resources": resources,
         "resource_index": {
             "docs": [resource["id"] for resource in resources if resource["category"] == "docs"],
+            "models": [resource["id"] for resource in resources if resource["category"] == "models"],
             "plans": [resource["id"] for resource in resources if resource["category"] == "plans"],
             "drawings": [resource["id"] for resource in resources if resource["category"] == "drawings"],
             "renders": [resource["id"] for resource in resources if resource["category"] == "renders"],
@@ -587,8 +711,8 @@ def build_data() -> dict[str, object]:
         "landing_resource": "plans/assembly.md",
         "landing_step": "step-1",
         "notes": [
-            "The 3D viewer shell lands in this foundation PR, with the live fixed-top model planned in the follow-up stacked PR.",
-            "All step content is sourced from the current build-package branch, not from the obsolete sliding-carriage prototype.",
+            "The live 3D atlas is generated from the current fixed-top data and cut-list contract, not from the obsolete sliding-carriage prototype.",
+            "Field-fit and mockup-gated steps stay labeled as such in the site instead of being flattened into fake certainty.",
         ],
     }
 
@@ -596,6 +720,7 @@ def build_data() -> dict[str, object]:
 def main() -> int:
     SITE_ROOT.mkdir(exist_ok=True)
     data = build_data()
+    generate_bench_model()
     DATA_PATH.write_text(json.dumps(data, indent=2))
     print(f"built instructions site data at {DATA_PATH.relative_to(REPO_ROOT)}")
     return 0

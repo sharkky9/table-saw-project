@@ -1,21 +1,25 @@
 import "./style.css";
 
 import { marked } from "marked";
+import { createModelViewer } from "./model-viewer.js";
 
 const app = document.querySelector("#app");
 
 const state = {
   data: null,
+  model: null,
   currentStepId: null,
   currentMediaId: null,
   currentResourceId: null,
   resourceQuery: "",
   resourceCategory: "all",
+  viewer: null,
 };
 
 function categoryLabel(category) {
   const labels = {
     docs: "Docs",
+    models: "Model",
     plans: "Plans",
     drawings: "Drawings",
     renders: "Renders",
@@ -255,30 +259,42 @@ function renderApp() {
 
         <section class="media-stage panel">
           <div class="panel-title-row">
-            <h2>Visual Stage</h2>
-            <span class="panel-kicker">${media ? media.title : "No media linked"}</span>
+            <h2>Atlas Stage</h2>
+            <span class="panel-kicker">${step.viewer.preset.replaceAll("_", " ")}</span>
           </div>
-          <div class="media-stage__frame">
-            ${
-              media
-                ? `<img class="media-stage__image" src="${media.path}" alt="${media.title}" />`
-                : `<div class="empty-stage">PR14 will slot the live 3D model into this same stage.</div>`
-            }
-          </div>
-          <div class="media-strip">
-            ${step.media
-              .map((stepMediaId) => {
-                const asset = mediaById(stepMediaId);
-                if (!asset) {
-                  return "";
+          <div class="media-stage__layout">
+            <div class="media-stage__atlas" id="modelViewerMount"></div>
+            <aside class="reference-board">
+              <div class="reference-board__header">
+                <p class="eyebrow">Reference Plates</p>
+                <h3>${media ? media.title : "No reference image linked"}</h3>
+                <p class="reference-board__summary">
+                  ${media ? "Keep a 2D drawing or render visible while orbiting the live 3D atlas." : "This step currently relies on the live model and linked source files more than on a dedicated drawing."}
+                </p>
+              </div>
+              <div class="reference-board__frame">
+                ${
+                  media
+                    ? `<img class="reference-board__image" src="${media.path}" alt="${media.title}" />`
+                    : `<div class="empty-stage">No media plate linked to this stage.</div>`
                 }
-                return `
-                  <button class="media-chip ${stepMediaId === mediaId ? "is-active" : ""}" data-media-id="${stepMediaId}">
-                    ${asset.title}
-                  </button>
-                `;
-              })
-              .join("")}
+              </div>
+              <div class="media-strip">
+                ${step.media
+                  .map((stepMediaId) => {
+                    const asset = mediaById(stepMediaId);
+                    if (!asset) {
+                      return "";
+                    }
+                    return `
+                      <button class="media-chip ${stepMediaId === mediaId ? "is-active" : ""}" data-media-id="${stepMediaId}">
+                        ${asset.title}
+                      </button>
+                    `;
+                  })
+                  .join("")}
+              </div>
+            </aside>
           </div>
           <div class="notes-row">
             ${state.data.notes.map((note) => `<p>${note}</p>`).join("")}
@@ -365,7 +381,7 @@ function renderApp() {
             <input type="search" value="${escapeHtml(state.resourceQuery)}" placeholder="assembly, dust, drawing..." />
           </label>
           <div class="filter-row">
-            ${["all", "plans", "drawings", "renders", "docs", "data"]
+            ${["all", "plans", "drawings", "renders", "docs", "models", "data"]
               .map(
                 (category) => `
                   <button class="filter-chip ${state.resourceCategory === category ? "is-active" : ""}" data-filter="${category}">
@@ -405,6 +421,7 @@ function renderApp() {
   `;
 
   bindEvents();
+  mountModelViewer(step);
 }
 
 function bindEvents() {
@@ -446,12 +463,48 @@ function bindEvents() {
   }
 }
 
-async function bootstrap() {
-  const response = await fetch("/generated/instructions-data.json");
-  if (!response.ok) {
-    throw new Error(`Failed to load generated site data: ${response.status}`);
+function mountModelViewer(step) {
+  const mount = app.querySelector("#modelViewerMount");
+  if (!mount || !state.model) {
+    return;
   }
-  state.data = await response.json();
+  if (state.viewer) {
+    state.viewer.destroy();
+  }
+  try {
+    state.viewer = createModelViewer(mount, state.model, {
+      ...step.viewer,
+      summary: step.focus,
+    });
+  } catch (error) {
+    state.viewer = null;
+    mount.innerHTML = `
+      <div class="atlas-fallback">
+        <p class="eyebrow">3D atlas unavailable</p>
+        <h3>WebGL is not available in this browser context.</h3>
+        <p>${step.focus}</p>
+        <ul>
+          ${step.viewer.callouts.map((callout) => `<li>${callout}</li>`).join("")}
+        </ul>
+      </div>
+    `;
+    console.error(error);
+  }
+}
+
+async function bootstrap() {
+  const [dataResponse, modelResponse] = await Promise.all([
+    fetch("/generated/instructions-data.json"),
+    fetch("/generated/bench-model.json"),
+  ]);
+  if (!dataResponse.ok) {
+    throw new Error(`Failed to load generated site data: ${dataResponse.status}`);
+  }
+  if (!modelResponse.ok) {
+    throw new Error(`Failed to load generated 3D model: ${modelResponse.status}`);
+  }
+  state.data = await dataResponse.json();
+  state.model = await modelResponse.json();
   renderApp();
 }
 
