@@ -40,6 +40,31 @@ function escapeHtml(value) {
     .replaceAll(">", "&gt;");
 }
 
+function clamp01(value) {
+  return Math.min(1, Math.max(0, value));
+}
+
+function hashString(value) {
+  let hash = 0;
+  for (let index = 0; index < value.length; index += 1) {
+    hash = (hash * 31 + value.charCodeAt(index)) >>> 0;
+  }
+  return hash;
+}
+
+function offsetColor(colorValue, { lightness = 0, saturation = 0 } = {}) {
+  const color = new Color(colorValue);
+  const hsl = { h: 0, s: 0, l: 0 };
+  color.getHSL(hsl);
+  color.setHSL(hsl.h, clamp01(hsl.s + saturation), clamp01(hsl.l + lightness));
+  return color;
+}
+
+function cssColor(colorValue, alpha = 1) {
+  const color = typeof colorValue === "string" ? new Color(colorValue) : colorValue;
+  return `rgba(${Math.round(color.r * 255)}, ${Math.round(color.g * 255)}, ${Math.round(color.b * 255)}, ${alpha})`;
+}
+
 function clipRangeForAxis(spec, axis) {
   const max = spec.metadata.overall_bounds.max;
   if (axis === "x") {
@@ -53,6 +78,102 @@ function clipRangeForAxis(spec, axis) {
   }
   return { min: 0, max: 90, value: 24 };
 }
+
+const INLINE_VIEWER_STYLES = `
+  .atlas-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .atlas-compass {
+    position: absolute;
+    left: 14px;
+    top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    max-width: min(480px, calc(100% - 28px));
+    z-index: 3;
+  }
+
+  .atlas-compass-chip,
+  .atlas-marker {
+    border-radius: 999px;
+    border: 1px solid rgba(18, 31, 45, 0.12);
+    background: rgba(248, 244, 236, 0.9);
+    box-shadow: 0 10px 30px rgba(20, 30, 40, 0.14);
+    color: #11202e;
+    backdrop-filter: blur(10px);
+  }
+
+  .atlas-compass-chip {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.42rem;
+    padding: 0.45rem 0.7rem;
+    font-size: 0.76rem;
+    line-height: 1.1;
+  }
+
+  .atlas-compass-chip strong {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .atlas-compass-chip span {
+    color: #506275;
+  }
+
+  .atlas-marker-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+  }
+
+  .atlas-marker {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.38rem 0.7rem;
+    font-size: 0.78rem;
+    line-height: 1;
+    white-space: nowrap;
+    transition: opacity 120ms ease, transform 120ms ease;
+  }
+
+  .atlas-marker::before {
+    content: "";
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 999px;
+    background: var(--marker-color, #32465a);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.82);
+  }
+
+  .atlas-marker[data-kind="selected"] {
+    background: rgba(255, 243, 227, 0.96);
+    border-color: rgba(186, 109, 48, 0.22);
+    font-weight: 700;
+  }
+
+  .atlas-marker[data-kind="selected"]::before {
+    background: #d46c2f;
+  }
+
+  .atlas-marker[data-kind="zone"] {
+    background: rgba(247, 240, 229, 0.94);
+  }
+
+  .atlas-marker.is-hidden {
+    opacity: 0;
+    transform: translate(-50%, -54%);
+  }
+`;
 
 class BenchModelViewer {
   constructor(container, spec, stepViewer) {
@@ -77,9 +198,11 @@ class BenchModelViewer {
       deployed: false,
       selectedId: null,
       presetId: "",
+      ghostAssemblies: [],
       highlightAssemblies: [],
     };
 
+    this.ensureInlineStyles();
     this.renderFrame();
     this.setupThree();
     this.buildScene();
@@ -87,6 +210,16 @@ class BenchModelViewer {
     this.updateStep(stepViewer);
     this.handleResize();
     this.animate();
+  }
+
+  ensureInlineStyles() {
+    if (document.getElementById("bench-model-viewer-inline-styles")) {
+      return;
+    }
+    const style = document.createElement("style");
+    style.id = "bench-model-viewer-inline-styles";
+    style.textContent = INLINE_VIEWER_STYLES;
+    document.head.append(style);
   }
 
   renderFrame() {
@@ -132,6 +265,10 @@ class BenchModelViewer {
           </div>
           <div class="atlas-canvas-shell">
             <canvas class="atlas-canvas"></canvas>
+            <div class="atlas-overlay" aria-hidden="true">
+              <div class="atlas-compass" data-compass></div>
+              <div class="atlas-marker-layer" data-marker-layer></div>
+            </div>
             <div class="atlas-status">
               <span class="atlas-status__label">Miter gate</span>
               <strong>Public sanity only</strong>
@@ -179,6 +316,8 @@ class BenchModelViewer {
     this.lensSummary = this.container.querySelector("[data-lens-summary]");
     this.selectionKicker = this.container.querySelector("[data-selection-kicker]");
     this.selectionBody = this.container.querySelector("[data-selection-body]");
+    this.compassRoot = this.container.querySelector("[data-compass]");
+    this.markerLayer = this.container.querySelector("[data-marker-layer]");
     this.explodeInput = this.container.querySelector("[data-control='explode']");
     this.sectionAxisInput = this.container.querySelector("[data-control='section-axis']");
     this.sectionOffsetInput = this.container.querySelector("[data-control='section-offset']");
@@ -200,7 +339,7 @@ class BenchModelViewer {
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
 
     this.scene = new Scene();
-    this.scene.fog = new FogExp2(0xefe8dc, 0.011);
+    this.scene.fog = new FogExp2(0xefe8dc, 0.0075);
 
     this.camera = new PerspectiveCamera(42, 1, 0.1, 400);
     this.camera.position.set(119, -32, 76);
@@ -234,7 +373,7 @@ class BenchModelViewer {
 
     this.grid = new GridHelper(140, 28, 0x50647a, 0x7b8a99);
     this.grid.position.set(45, 24, 0);
-    this.grid.material.opacity = 0.18;
+    this.grid.material.opacity = 0.13;
     this.grid.material.transparent = true;
     this.scene.add(this.grid);
 
@@ -246,6 +385,37 @@ class BenchModelViewer {
     this.floor.position.set(45, 24, 0);
     this.floor.receiveShadow = true;
     this.scene.add(this.floor);
+
+    const footprintGeometry = new BoxGeometry(90, 48, 0.12);
+    const footprintEdges = new LineSegments(
+      new EdgesGeometry(footprintGeometry, 30),
+      new LineBasicMaterial({
+        color: 0x213548,
+        transparent: true,
+        opacity: 0.28,
+        clippingPlanes: [],
+      })
+    );
+    footprintEdges.position.set(45, 24, 0.06);
+    this.geometries.push(footprintGeometry, footprintEdges.geometry);
+    this.materials.push(footprintEdges.material);
+    this.scene.add(footprintEdges);
+
+    const frontDatum = new Mesh(
+      new BoxGeometry(90, 0.3, 0.08),
+      new MeshStandardMaterial({
+        color: 0xd46c2f,
+        roughness: 0.8,
+        metalness: 0.02,
+        transparent: true,
+        opacity: 0.6,
+        clippingPlanes: [],
+      })
+    );
+    frontDatum.position.set(45, -0.35, 0.04);
+    this.geometries.push(frontDatum.geometry);
+    this.materials.push(frontDatum.material);
+    this.scene.add(frontDatum);
 
     this.resizeObserver = new ResizeObserver(() => this.handleResize());
     this.resizeObserver.observe(this.canvas.parentElement);
@@ -296,17 +466,84 @@ class BenchModelViewer {
     return geometry;
   }
 
+  deriveDisplayColor(part) {
+    const materialType = String(part.material || "").toLowerCase();
+    const label = String(part.label || "").toLowerCase();
+    const color = new Color(part.color);
+    const hsl = { h: 0, s: 0, l: 0 };
+    color.getHSL(hsl);
+
+    let saturationDelta = 0;
+    let lightnessDelta = 0;
+
+    if (part.render_style === "guide") {
+      saturationDelta += 0.08;
+      lightnessDelta += 0.12;
+    } else if (part.render_style === "context") {
+      saturationDelta -= 0.18;
+      lightnessDelta += 0.08;
+    }
+
+    if (part.part_type === "horizontal_panel") {
+      lightnessDelta += 0.05;
+    }
+
+    if (part.part_id.startsWith("TOP-01") || label.includes("substrate")) {
+      saturationDelta -= 0.08;
+      lightnessDelta -= 0.02;
+    }
+
+    if (part.part_id.startsWith("TOP-02") || label.includes("wear skin") || materialType.includes("prefinished")) {
+      saturationDelta -= 0.12;
+      lightnessDelta += 0.12;
+    }
+
+    if (label.includes("side") || label.includes("partition") || label.includes("back panel")) {
+      lightnessDelta -= 0.08;
+    }
+
+    if (
+      label.includes("stretcher") ||
+      label.includes("rail") ||
+      label.includes("cleat") ||
+      label.includes("block") ||
+      label.includes("hard stop")
+    ) {
+      lightnessDelta -= 0.12;
+    }
+
+    if (label.includes("deck") || label.includes("panel") || label.includes("shelf")) {
+      lightnessDelta += 0.04;
+    }
+
+    if (materialType.includes("envelope")) {
+      saturationDelta -= 0.24;
+      lightnessDelta += 0.14;
+    }
+
+    if (materialType.includes("aluminum") || materialType.includes("plate")) {
+      saturationDelta -= 0.16;
+      lightnessDelta += 0.06;
+    }
+
+    const jitter = ((hashString(part.instance_id) % 7) - 3) * 0.012;
+    return offsetColor(color, {
+      saturation: saturationDelta,
+      lightness: lightnessDelta + jitter,
+    });
+  }
+
   createMaterial(part) {
     const materialType = String(part.material || "").toLowerCase();
     const guide = part.render_style === "guide";
     const context = part.render_style === "context";
     const metallic = materialType.includes("aluminum") || materialType.includes("plate");
     const material = new MeshStandardMaterial({
-      color: new Color(part.color),
+      color: this.deriveDisplayColor(part),
       roughness: metallic ? 0.42 : guide ? 0.85 : 0.74,
       metalness: metallic ? 0.42 : 0.08,
       transparent: true,
-      opacity: guide ? 0.18 : context ? 0.5 : part.confidence === "medium" ? 0.9 : 1,
+      opacity: guide ? 0.22 : context ? 0.56 : part.confidence === "medium" ? 0.94 : 1,
       depthWrite: !guide,
       clippingPlanes: [],
     });
@@ -345,15 +582,20 @@ class BenchModelViewer {
   createPartObject(part) {
     const geometry = part.part_type === "horizontal_panel" ? this.createHorizontalPanelGeometry(part) : this.createBoxGeometry(part);
     const material = this.createMaterial(part);
+    const displayColor = material.color.clone();
     const mesh = new Mesh(geometry, material);
     mesh.castShadow = part.render_style !== "guide";
     mesh.receiveShadow = true;
     mesh.userData.instanceId = part.instance_id;
 
+    const edgeColor = offsetColor(displayColor, {
+      lightness: part.render_style === "guide" ? -0.2 : -0.28,
+      saturation: part.render_style === "guide" ? 0.02 : -0.04,
+    });
     const edgeMaterial = new LineBasicMaterial({
-      color: part.render_style === "guide" ? 0x456482 : 0x14202c,
+      color: edgeColor,
       transparent: true,
-      opacity: part.render_style === "guide" ? 0.22 : 0.3,
+      opacity: part.render_style === "guide" ? 0.34 : 0.48,
       clippingPlanes: [],
     });
     const edgeGeometry = new EdgesGeometry(geometry, 40);
@@ -371,6 +613,9 @@ class BenchModelViewer {
       part,
       mesh,
       edges,
+      baseColor: displayColor,
+      edgeColor,
+      baseOpacity: part.render_style === "guide" ? 0.22 : part.render_style === "context" ? 0.56 : part.confidence === "medium" ? 0.94 : 1,
       explodedOffset: new Vector3(...(part.exploded_offset || [0, 0, 0])),
       center: new Vector3(...part.center),
       motion: part.motion || null,
@@ -402,6 +647,9 @@ class BenchModelViewer {
       this.createPartObject(part);
     }
 
+    this.renderCompass();
+    this.buildMarkers();
+
     this.presetsRoot.innerHTML = Object.entries(this.spec.metadata.presets)
       .map(
         ([id, preset]) => `
@@ -427,6 +675,47 @@ class BenchModelViewer {
       .join("");
   }
 
+  renderCompass() {
+    const entries = this.spec.metadata.orientation_legend || [];
+    this.compassRoot.innerHTML = entries
+      .map(
+        (entry) => `
+          <div class="atlas-compass-chip">
+            <strong>${escapeHtml(entry.label)}</strong>
+            <span>${escapeHtml(entry.detail)}</span>
+          </div>
+        `
+      )
+      .join("");
+  }
+
+  buildMarkers() {
+    this.markerLayer.innerHTML = "";
+    this.markerNodes = new Map();
+
+    for (const marker of this.spec.metadata.scene_markers || []) {
+      const node = document.createElement("div");
+      node.className = "atlas-marker is-hidden";
+      node.dataset.markerId = marker.id;
+      node.dataset.kind = marker.id.includes("opening") || marker.id.includes("bay") || marker.id.includes("zone") || marker.id.includes("span") ? "zone" : "assembly";
+      node.textContent = marker.label;
+      node.style.setProperty("--marker-color", cssColor(this.markerColor(marker)));
+      this.markerLayer.append(node);
+      this.markerNodes.set(marker.id, node);
+    }
+
+    this.selectionMarker = document.createElement("div");
+    this.selectionMarker.className = "atlas-marker is-hidden";
+    this.selectionMarker.dataset.kind = "selected";
+    this.markerLayer.append(this.selectionMarker);
+  }
+
+  markerColor(marker) {
+    const assemblyId = marker.assemblies?.find((id) => this.spec.assemblies.some((entry) => entry.id === id));
+    const assembly = assemblyId ? this.spec.assemblies.find((entry) => entry.id === assemblyId) : null;
+    return assembly?.color || "#32465a";
+  }
+
   attachUiEvents() {
     this.container.querySelectorAll("[data-preset]").forEach((button) => {
       button.addEventListener("click", () => {
@@ -437,6 +726,7 @@ class BenchModelViewer {
     this.assembliesRoot.querySelectorAll("[data-assembly]").forEach((input) => {
       input.addEventListener("change", () => {
         this.state.presetId = "";
+        this.state.ghostAssemblies = [];
         this.assemblyVisibility.set(input.dataset.assembly, input.checked);
         this.refreshPresetButtons();
         this.applyState();
@@ -446,6 +736,7 @@ class BenchModelViewer {
     this.explodeInput.addEventListener("input", () => {
       this.state.exploded = Number(this.explodeInput.value);
       this.state.presetId = "";
+      this.state.ghostAssemblies = [];
       this.refreshPresetButtons();
       this.applyState();
     });
@@ -468,6 +759,7 @@ class BenchModelViewer {
     this.deployInput.addEventListener("change", () => {
       this.state.deployed = this.deployInput.checked;
       this.state.presetId = "";
+      this.state.ghostAssemblies = [];
       this.refreshPresetButtons();
       this.applyState();
     });
@@ -475,6 +767,7 @@ class BenchModelViewer {
     this.guidesInput.addEventListener("change", () => {
       this.state.showGuides = this.guidesInput.checked;
       this.state.presetId = "";
+      this.state.ghostAssemblies = [];
       this.refreshPresetButtons();
       this.applyState();
     });
@@ -482,6 +775,7 @@ class BenchModelViewer {
     this.xrayInput.addEventListener("change", () => {
       this.state.xray = this.xrayInput.checked;
       this.state.presetId = "";
+      this.state.ghostAssemblies = [];
       this.refreshPresetButtons();
       this.applyState();
     });
@@ -518,6 +812,8 @@ class BenchModelViewer {
     const range = clipRangeForAxis(this.spec, this.state.sectionAxis);
     this.state.sectionOffset = preset.section_offset ?? range.value;
     this.state.xray = Boolean(preset.xray);
+    this.state.ghostAssemblies = [...(preset.ghost_assemblies || [])];
+    this.state.selectedId = null;
 
     this.explodeInput.value = String(this.state.exploded);
     this.deployInput.checked = this.state.deployed;
@@ -540,13 +836,14 @@ class BenchModelViewer {
       this.controls.update();
     }
 
+    this.renderSelection();
     this.renderStepLens();
     this.refreshPresetButtons();
     this.applyState();
   }
 
   partVisible(part) {
-    if (!this.assemblyVisibility.get(part.assembly)) {
+    if (!this.assemblyVisibility.get(part.assembly) && !this.state.ghostAssemblies.includes(part.assembly)) {
       return false;
     }
     const visibility = part.visibility || {};
@@ -563,6 +860,10 @@ class BenchModelViewer {
       return false;
     }
     return true;
+  }
+
+  partGhosted(part) {
+    return !this.assemblyVisibility.get(part.assembly) && this.state.ghostAssemblies.includes(part.assembly);
   }
 
   applyClipping() {
@@ -599,18 +900,31 @@ class BenchModelViewer {
 
       object.visible = this.partVisible(part);
       const isSelected = this.state.selectedId === part.instance_id;
+      const ghosted = this.partGhosted(part);
       const isDimmed = dimOthers && !highlighted.has(part.assembly);
-      const context = part.render_style === "context";
-      const guide = part.render_style === "guide";
-      const baseOpacity = guide ? 0.18 : context ? 0.5 : part.confidence === "medium" ? 0.9 : 1;
-      const opacity = isSelected ? 1 : this.state.xray ? 0.25 : isDimmed ? baseOpacity * 0.22 : baseOpacity;
+      const baseOpacity = object.userData.baseOpacity;
+      let opacity = baseOpacity;
+
+      if (ghosted) {
+        opacity = part.render_style === "guide" ? 0.05 : part.render_style === "context" ? 0.08 : 0.1;
+      } else if (this.state.xray) {
+        opacity = 0.2;
+      } else if (isDimmed) {
+        opacity = baseOpacity * 0.18;
+      }
+
+      if (isSelected) {
+        opacity = 1;
+      }
 
       const mesh = object.userData.mesh;
+      mesh.material.color.copy(object.userData.baseColor);
       mesh.material.opacity = opacity;
-      mesh.material.emissive = new Color(isSelected ? "#e3b27e" : "#000000");
-      mesh.material.emissiveIntensity = isSelected ? 0.42 : 0;
+      mesh.material.emissive = new Color(isSelected ? "#d46c2f" : highlighted.has(part.assembly) && !ghosted ? "#f3d3a4" : "#000000");
+      mesh.material.emissiveIntensity = isSelected ? 0.55 : highlighted.has(part.assembly) && !ghosted ? 0.08 : 0;
 
-      object.userData.edges.material.opacity = isSelected ? 0.8 : guide ? 0.22 : isDimmed ? 0.08 : 0.3;
+      object.userData.edges.material.color.copy(object.userData.edgeColor);
+      object.userData.edges.material.opacity = isSelected ? 0.95 : ghosted ? 0.1 : part.render_style === "guide" ? 0.3 : isDimmed ? 0.1 : highlighted.has(part.assembly) ? 0.66 : 0.48;
 
       const offset = object.userData.explodedOffset.clone().multiplyScalar(this.state.exploded);
       if (object.userData.motion) {
@@ -626,6 +940,7 @@ class BenchModelViewer {
     }
 
     this.applyClipping();
+    this.updateOverlay();
   }
 
   onPointerDown(event) {
@@ -638,6 +953,86 @@ class BenchModelViewer {
     this.state.selectedId = hit?.object.userData.instanceId || null;
     this.renderSelection();
     this.applyState();
+  }
+
+  markerVisible(marker) {
+    if (marker.guides_only && !this.state.showGuides) {
+      return false;
+    }
+    if (marker.deployed_only && !this.state.deployed) {
+      return false;
+    }
+    if (marker.visible_in_presets?.length && this.state.presetId && !marker.visible_in_presets.includes(this.state.presetId)) {
+      return false;
+    }
+    if (!marker.assemblies?.length) {
+      return true;
+    }
+    return marker.assemblies.some(
+      (assemblyId) => this.assemblyVisibility.get(assemblyId) || this.state.ghostAssemblies.includes(assemblyId)
+    );
+  }
+
+  projectWorldPoint(point) {
+    const width = this.canvas.parentElement.clientWidth;
+    const height = this.canvas.parentElement.clientHeight;
+    const vector = new Vector3(...point).project(this.camera);
+    const inFront = vector.z > -1 && vector.z < 1;
+    const x = (vector.x * 0.5 + 0.5) * width;
+    const y = (-vector.y * 0.5 + 0.5) * height;
+    const onScreen = x >= -80 && x <= width + 80 && y >= -40 && y <= height + 40;
+    return { x, y, inFront, onScreen };
+  }
+
+  updateOverlay() {
+    if (!this.markerNodes) {
+      return;
+    }
+
+    for (const marker of this.spec.metadata.scene_markers || []) {
+      const node = this.markerNodes.get(marker.id);
+      if (!node) {
+        continue;
+      }
+      if (!this.markerVisible(marker)) {
+        node.classList.add("is-hidden");
+        continue;
+      }
+      const projected = this.projectWorldPoint(marker.position);
+      if (!projected.inFront || !projected.onScreen) {
+        node.classList.add("is-hidden");
+        continue;
+      }
+      node.classList.remove("is-hidden");
+      node.style.left = `${projected.x}px`;
+      node.style.top = `${projected.y}px`;
+    }
+
+    if (!this.selectionMarker) {
+      return;
+    }
+
+    if (!this.state.selectedId) {
+      this.selectionMarker.classList.add("is-hidden");
+      return;
+    }
+
+    const part = this.partsById.get(this.state.selectedId);
+    const projected = this.projectWorldPoint([
+      part.center[0],
+      part.center[1],
+      part.center[2] + Math.max(part.size[2] * 0.75, 2.5),
+    ]);
+
+    if (!projected.inFront || !projected.onScreen) {
+      this.selectionMarker.classList.add("is-hidden");
+      return;
+    }
+
+    this.selectionMarker.textContent = `${part.part_id} · ${part.label}`;
+    this.selectionMarker.classList.remove("is-hidden");
+    this.selectionMarker.style.left = `${projected.x}px`;
+    this.selectionMarker.style.top = `${projected.y}px`;
   }
 
   renderSelection() {
@@ -696,11 +1091,13 @@ class BenchModelViewer {
     this.renderer.setSize(width, height, false);
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
+    this.updateOverlay();
   }
 
   animate() {
     this.animationFrame = window.requestAnimationFrame(() => this.animate());
     this.controls.update();
+    this.updateOverlay();
     this.renderer.render(this.scene, this.camera);
   }
 

@@ -81,6 +81,25 @@ def center_from_position(position: list[float], size: list[float]) -> list[float
     return [position[index] + size[index] / 2.0 for index in range(3)]
 
 
+def bounds_from_parts(parts: list[dict[str, Any]], predicate: Any) -> dict[str, list[float]]:
+    filtered = [part for part in parts if predicate(part)]
+    if not filtered:
+        raise ValueError("cannot compute bounds for an empty part selection")
+
+    mins = [min(part["position"][index] for part in filtered) for index in range(3)]
+    maxs = [
+        max(part["position"][index] + part["size"][index] for part in filtered)
+        for index in range(3)
+    ]
+    center = [(mins[index] + maxs[index]) / 2.0 for index in range(3)]
+    size = [maxs[index] - mins[index] for index in range(3)]
+    return {"min": mins, "max": maxs, "center": center, "size": size}
+
+
+def anchor_from_bounds(bounds: dict[str, list[float]], *, lift: float = 3.5) -> list[float]:
+    return [bounds["center"][0], bounds["center"][1], bounds["max"][2] + lift]
+
+
 def horizontal_panel(x: float, y: float, z: float, length: float, depth: float, thickness: float) -> dict[str, list[float]]:
     return {"position": [x, y, z], "size": [length, depth, thickness]}
 
@@ -405,6 +424,103 @@ def build_model_spec() -> dict[str, Any]:
     add_virtual_part(parts, part_id="left-support-surface", assembly="guides", label="Left miter support span", geometry=solid_box(miter_station["support_surfaces"]["left"]["x"], 0.0, bench_height + 0.02, miter_station["support_surfaces"]["left"]["length"], 12.0, 0.18), material="support surface", color="#dba96b", confidence="medium", notes="Available support surface when the station is deployed.", visibility={"default": False, "guides": True}, render_style="guide")
     add_virtual_part(parts, part_id="right-support-surface", assembly="guides", label="Right miter support span", geometry=solid_box(miter_station["support_surfaces"]["right"]["x"], 0.0, bench_height + 0.02, miter_station["support_surfaces"]["right"]["length"], 12.0, 0.18), material="support surface", color="#dba96b", confidence="medium", notes="Support span is counted with the router fence removed.", visibility={"default": False, "guides": True}, render_style="guide")
 
+    assembly_bounds = {
+        assembly_id: bounds_from_parts(
+            parts,
+            lambda part, assembly_id=assembly_id: part["assembly"] == assembly_id and part["render_style"] != "guide",
+        )
+        for assembly_id in ASSEMBLY_ORDER
+        if any(part["assembly"] == assembly_id and part["render_style"] != "guide" for part in parts)
+    }
+
+    scene_markers = [
+        {
+            "id": "plinth-footprint",
+            "label": "Plinth footprint",
+            "position": anchor_from_bounds(assembly_bounds["plinth"], lift=2.5),
+            "assemblies": ["plinth"],
+            "visible_in_presets": ["assembled", "plinth", "carcass_alignment", "final_walkthrough"],
+        },
+        {
+            "id": "left-storage",
+            "label": "Left storage",
+            "position": anchor_from_bounds(assembly_bounds["left_module"]),
+            "assemblies": ["left_module"],
+            "visible_in_presets": ["assembled", "left_module", "carcass_alignment", "final_walkthrough"],
+        },
+        {
+            "id": "saw-chassis",
+            "label": "Saw chassis",
+            "position": anchor_from_bounds(assembly_bounds["center_module"]),
+            "assemblies": ["center_module"],
+            "visible_in_presets": ["assembled", "saw_chassis", "carcass_alignment", "table_saw_fit", "final_walkthrough"],
+        },
+        {
+            "id": "right-service",
+            "label": "Right service bay",
+            "position": anchor_from_bounds(assembly_bounds["right_module"]),
+            "assemblies": ["right_module"],
+            "visible_in_presets": ["assembled", "right_service", "router_zone", "dust_service", "final_walkthrough"],
+        },
+        {
+            "id": "fixed-top",
+            "label": "Fixed top",
+            "position": anchor_from_bounds(assembly_bounds["top"], lift=4.5),
+            "assemblies": ["top"],
+            "visible_in_presets": ["assembled", "top_panels", "top_machining", "final_walkthrough"],
+        },
+        {
+            "id": "saw-opening",
+            "label": "Field-fit saw opening",
+            "position": [cast_top["x"] + cast_top["length"] / 2.0, cast_top["y"] + cast_top["depth"] / 2.0, bench_height + 4.0],
+            "assemblies": ["top", "saw"],
+            "visible_in_presets": ["assembled", "table_saw_fit", "top_machining", "final_walkthrough"],
+        },
+        {
+            "id": "miter-bay",
+            "label": "Flip-top miter bay",
+            "position": [miter_station["center_x"], miter_station["opening"]["depth"] / 2.0, bench_height + 5.0],
+            "assemblies": ["top", "miter_station"],
+            "visible_in_presets": ["assembled", "miter_station", "top_panels", "top_machining", "final_walkthrough"],
+        },
+        {
+            "id": "router-zone",
+            "label": "Router zone",
+            "position": [plate["center_x"], plate["center_y"], bench_height + 4.5],
+            "assemblies": ["top", "router", "right_module"],
+            "visible_in_presets": ["assembled", "router_zone", "top_machining", "right_service", "final_walkthrough"],
+        },
+        {
+            "id": "dust-bay",
+            "label": "Dust bay",
+            "position": [dust["dust_bay"]["x"] + dust["dust_bay"]["length"] / 2.0, dust["dust_bay"]["y"] + dust["dust_bay"]["depth"] / 2.0, carcass_bottom_z + dust["dust_bay"]["height"] + 4.0],
+            "assemblies": ["dust", "right_module"],
+            "visible_in_presets": ["assembled", "right_service", "dust_service", "final_walkthrough"],
+        },
+        {
+            "id": "left-support-span",
+            "label": "Left support span",
+            "position": [miter_station["support_surfaces"]["left"]["x"] + miter_station["support_surfaces"]["left"]["length"] / 2.0, 6.0, bench_height + 2.5],
+            "assemblies": ["guides", "miter_station", "top"],
+            "guides_only": True,
+            "visible_in_presets": ["miter_station"],
+        },
+        {
+            "id": "right-support-span",
+            "label": "Right support span",
+            "position": [miter_station["support_surfaces"]["right"]["x"] + miter_station["support_surfaces"]["right"]["length"] / 2.0, 6.0, bench_height + 2.5],
+            "assemblies": ["guides", "miter_station", "top"],
+            "guides_only": True,
+            "visible_in_presets": ["miter_station"],
+        },
+    ]
+
+    orientation_legend = [
+        {"id": "front", "label": "Front", "detail": "operator side"},
+        {"id": "left", "label": "Left", "detail": "storage"},
+        {"id": "right", "label": "Right", "detail": "router + dust"},
+    ]
+
     assumptions = [
         "The viewer is generated from the current fixed-top build package and is intended to explain assembly and fit sequencing, not replace field-fit steps.",
         "The table-saw cast top and lower body are simplified envelopes. Final opening reliefs, bolt holes, and underside conflicts still come from the actual saw during fit-up.",
@@ -417,7 +533,8 @@ def build_model_spec() -> dict[str, Any]:
         "assembled": {
             "label": "Whole bench",
             "visible_assemblies": ["plinth", "left_module", "center_module", "right_module", "top", "miter_station", "saw", "router", "dust"],
-            "camera_position": [119.0, -32.0, 76.0],
+            "ghost_assemblies": ["guides"],
+            "camera_position": [132.0, -46.0, 84.0],
             "target": [45.0, 22.0, 18.0],
             "exploded": 0.0,
             "deployed": False,
@@ -426,6 +543,7 @@ def build_model_spec() -> dict[str, Any]:
         "plinth": {
             "label": "Plinth build",
             "visible_assemblies": ["plinth"],
+            "ghost_assemblies": ["left_module", "center_module", "right_module"],
             "camera_position": [81.0, -26.0, 33.0],
             "target": [45.0, 24.0, 2.0],
             "exploded": 0.2,
@@ -435,7 +553,8 @@ def build_model_spec() -> dict[str, Any]:
         "left_module": {
             "label": "Left module",
             "visible_assemblies": ["plinth", "left_module"],
-            "camera_position": [37.0, -28.0, 53.0],
+            "ghost_assemblies": ["center_module", "right_module", "top"],
+            "camera_position": [40.0, -40.0, 58.0],
             "target": [15.0, 23.0, 18.0],
             "exploded": 0.22,
             "deployed": False,
@@ -444,7 +563,8 @@ def build_model_spec() -> dict[str, Any]:
         "saw_chassis": {
             "label": "Saw chassis",
             "visible_assemblies": ["plinth", "center_module", "saw"],
-            "camera_position": [60.0, -22.0, 58.0],
+            "ghost_assemblies": ["left_module", "right_module", "top"],
+            "camera_position": [78.0, -38.0, 64.0],
             "target": [44.0, 24.0, 18.0],
             "exploded": 0.28,
             "deployed": False,
@@ -453,7 +573,8 @@ def build_model_spec() -> dict[str, Any]:
         "right_service": {
             "label": "Right service bay",
             "visible_assemblies": ["plinth", "right_module", "dust", "router"],
-            "camera_position": [104.0, -16.0, 57.0],
+            "ghost_assemblies": ["center_module", "top"],
+            "camera_position": [122.0, -28.0, 62.0],
             "target": [74.0, 25.0, 18.0],
             "exploded": 0.24,
             "deployed": False,
@@ -462,7 +583,8 @@ def build_model_spec() -> dict[str, Any]:
         "carcass_alignment": {
             "label": "Joined carcass",
             "visible_assemblies": ["plinth", "left_module", "center_module", "right_module"],
-            "camera_position": [121.0, -26.0, 66.0],
+            "ghost_assemblies": ["top"],
+            "camera_position": [126.0, -36.0, 70.0],
             "target": [45.0, 24.0, 16.0],
             "exploded": 0.1,
             "deployed": False,
@@ -471,7 +593,8 @@ def build_model_spec() -> dict[str, Any]:
         "top_panels": {
             "label": "Top subassembly",
             "visible_assemblies": ["top", "guides"],
-            "camera_position": [118.0, 12.0, 95.0],
+            "ghost_assemblies": ["left_module", "center_module", "right_module"],
+            "camera_position": [106.0, -8.0, 102.0],
             "target": [45.0, 24.0, 34.5],
             "exploded": 0.35,
             "deployed": False,
@@ -480,7 +603,8 @@ def build_model_spec() -> dict[str, Any]:
         "table_saw_fit": {
             "label": "Table saw fit",
             "visible_assemblies": ["top", "center_module", "saw", "guides"],
-            "camera_position": [84.0, -18.0, 67.0],
+            "ghost_assemblies": ["left_module", "right_module"],
+            "camera_position": [90.0, -32.0, 71.0],
             "target": [38.0, 28.0, 26.0],
             "exploded": 0.14,
             "deployed": False,
@@ -489,7 +613,8 @@ def build_model_spec() -> dict[str, Any]:
         "miter_station": {
             "label": "Miter station",
             "visible_assemblies": ["top", "miter_station", "guides"],
-            "camera_position": [44.0, -36.0, 58.0],
+            "ghost_assemblies": ["left_module", "center_module", "right_module"],
+            "camera_position": [45.0, -50.0, 64.0],
             "target": [45.0, 8.0, 31.0],
             "exploded": 0.22,
             "deployed": True,
@@ -498,7 +623,8 @@ def build_model_spec() -> dict[str, Any]:
         "top_machining": {
             "label": "Top machining",
             "visible_assemblies": ["top", "saw", "router", "guides"],
-            "camera_position": [106.0, 6.0, 92.0],
+            "ghost_assemblies": ["center_module", "right_module"],
+            "camera_position": [112.0, -10.0, 96.0],
             "target": [47.0, 23.0, 34.0],
             "exploded": 0.18,
             "deployed": False,
@@ -507,7 +633,8 @@ def build_model_spec() -> dict[str, Any]:
         "router_zone": {
             "label": "Router zone",
             "visible_assemblies": ["top", "right_module", "router", "guides"],
-            "camera_position": [111.0, -4.0, 62.0],
+            "ghost_assemblies": ["center_module"],
+            "camera_position": [118.0, -18.0, 67.0],
             "target": [79.0, 24.0, 29.0],
             "exploded": 0.16,
             "deployed": False,
@@ -516,7 +643,8 @@ def build_model_spec() -> dict[str, Any]:
         "dust_service": {
             "label": "Dust service",
             "visible_assemblies": ["right_module", "dust", "guides"],
-            "camera_position": [111.0, -14.0, 55.0],
+            "ghost_assemblies": ["top"],
+            "camera_position": [118.0, -26.0, 60.0],
             "target": [75.0, 25.0, 14.0],
             "exploded": 0.42,
             "deployed": False,
@@ -525,7 +653,8 @@ def build_model_spec() -> dict[str, Any]:
         "final_walkthrough": {
             "label": "Final walkthrough",
             "visible_assemblies": ["plinth", "left_module", "center_module", "right_module", "top", "miter_station", "saw", "router", "dust"],
-            "camera_position": [124.0, -28.0, 78.0],
+            "ghost_assemblies": ["guides"],
+            "camera_position": [132.0, -44.0, 86.0],
             "target": [45.0, 24.0, 20.0],
             "exploded": 0.0,
             "deployed": False,
@@ -537,7 +666,7 @@ def build_model_spec() -> dict[str, Any]:
         "metadata": {
             "name": "Fixed-Top Bench Atlas Model",
             "units": "in",
-            "source_branch": "codex/instructions-site-3d-model",
+            "source_branch": "codex/model-viewer-usability",
             "generated_from": [
                 "data/layout.json",
                 "data/measurements.csv",
@@ -552,6 +681,9 @@ def build_model_spec() -> dict[str, Any]:
                 "min": [0.0, 0.0, 0.0],
                 "max": [90.0, 48.0, 56.0],
             },
+            "assembly_bounds": assembly_bounds,
+            "scene_markers": scene_markers,
+            "orientation_legend": orientation_legend,
             "assumptions": assumptions,
             "presets": presets,
             "precision_ready_policy": miter_station["public_fit_validation"]["precision_ready_policy"],
