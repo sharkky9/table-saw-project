@@ -293,6 +293,32 @@ h2 {
   color: rgba(245, 237, 225, 0.86);
 }
 
+.workflow-toolbar {
+  display: grid;
+  gap: 18px;
+  background:
+    linear-gradient(150deg, rgba(251, 247, 240, 0.97), rgba(241, 232, 217, 0.96)),
+    radial-gradient(circle at top right, rgba(195, 99, 52, 0.1), transparent 30%);
+}
+
+.workflow-toolbar__summary {
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.workflow-actions {
+  display: grid;
+  gap: 12px;
+}
+
+.workflow-actions__mode,
+.workflow-actions__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 .builder-console {
   display: grid;
   gap: 16px;
@@ -460,6 +486,14 @@ h2 {
   color: #834224;
 }
 
+.empty-state--compact {
+  min-height: auto;
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px dashed rgba(19, 34, 49, 0.12);
+  background: rgba(255, 255, 255, 0.58);
+}
+
 .media-stage__layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 320px;
@@ -511,6 +545,10 @@ h2 {
   height: 100%;
   object-fit: contain;
   padding: 12px;
+}
+
+.reference-board--compact {
+  min-height: 100%;
 }
 
 .media-stage__frame {
@@ -830,6 +868,12 @@ h2 {
   border-radius: 18px;
 }
 
+.resource-card__hint {
+  color: var(--signal);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
 .resource-meta {
   color: var(--muted);
   font-size: 0.8rem;
@@ -941,6 +985,171 @@ h2 {
   color: var(--muted);
 }
 
+.shop-floor-shell {
+  min-height: 100vh;
+  padding: 18px;
+  display: grid;
+  gap: 18px;
+}
+
+.shop-floor-bar {
+  position: sticky;
+  top: 18px;
+  z-index: 5;
+  display: grid;
+  gap: 16px;
+  background:
+    linear-gradient(140deg, rgba(251, 247, 240, 0.98), rgba(239, 230, 213, 0.98)),
+    radial-gradient(circle at top right, rgba(23, 50, 74, 0.08), transparent 26%);
+}
+
+.shop-floor-bar__top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 520px);
+  gap: 18px;
+  align-items: start;
+}
+
+.shop-floor-bar__summary,
+.shop-floor-bar__focus {
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.shop-floor-bar__focus {
+  color: var(--navy-soft);
+}
+
+.shop-floor-main {
+  display: grid;
+  gap: 18px;
+}
+
+.shop-floor-stage {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.9fr) minmax(0, 1.4fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.shop-floor-stage__copy,
+.shop-floor-stage__viewer {
+  min-width: 0;
+}
+
+.shop-floor-stage__copy {
+  display: grid;
+  gap: 16px;
+}
+
+.shop-floor-stage__viewer {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(260px, 340px);
+  gap: 16px;
+}
+
+.shop-floor-stage__atlas {
+  min-width: 0;
+}
+
+.shop-floor-brief {
+  display: grid;
+  gap: 12px;
+}
+
+.shop-floor-callout {
+  padding: 16px;
+  border-radius: 22px;
+  border: 1px solid rgba(19, 34, 49, 0.08);
+  background: rgba(255, 252, 247, 0.84);
+}
+
+.shop-floor-gates {
+  display: grid;
+  gap: 12px;
+}
+
+.shop-floor-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.console-card--shop {
+  background: rgba(255, 252, 247, 0.9);
+}
+
+.console-card--shop-wide {
+  grid-column: 1 / -1;
+}
+
+.packet-resource-list {
+  display: grid;
+  gap: 10px;
+}
+
+.resource-card--packet {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.shop-mode-hint {
+  margin: -2px 0 12px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.shop-floor-step-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.step-pill {
+  display: grid;
+  gap: 4px;
+  text-align: left;
+  padding: 12px 14px;
+  border-radius: 18px;
+  border: 1px solid rgba(19, 34, 49, 0.1);
+  background: rgba(255, 255, 255, 0.84);
+  cursor: pointer;
+  transition:
+    transform 140ms ease,
+    border-color 140ms ease,
+    background 140ms ease,
+    box-shadow 140ms ease;
+}
+
+.step-pill span {
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.step-pill:hover,
+.step-pill:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(195, 99, 52, 0.44);
+  background: rgba(255, 247, 239, 0.95);
+  outline: none;
+}
+
+.step-pill.is-active {
+  border-color: rgba(195, 99, 52, 0.5);
+  background: linear-gradient(135deg, rgba(243, 228, 205, 0.95), rgba(255, 250, 244, 0.95));
+  box-shadow: 0 12px 30px rgba(195, 99, 52, 0.13);
+}
+
+.step-pill.is-complete {
+  border-color: rgba(53, 132, 94, 0.26);
+}
+
+.part-card-grid--dense {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
 @media (max-width: 1320px) {
   .shell {
     grid-template-columns: 260px minmax(0, 1fr);
@@ -951,7 +1160,13 @@ h2 {
   }
 
   .media-stage__layout,
-  .atlas-shell {
+  .atlas-shell,
+  .shop-floor-stage,
+  .shop-floor-stage__viewer {
+    grid-template-columns: 1fr;
+  }
+
+  .shop-floor-bar__top {
     grid-template-columns: 1fr;
   }
 }
@@ -977,7 +1192,81 @@ h2 {
     grid-template-columns: 1fr;
   }
 
+  .shop-floor-grid,
+  .shop-floor-step-strip {
+    grid-template-columns: 1fr;
+  }
+
   .atlas-canvas-shell {
     min-height: 420px;
+  }
+}
+
+@media print {
+  @page {
+    margin: 0.45in;
+  }
+
+  body {
+    background: #ffffff;
+    color: #111111;
+  }
+
+  .shop-floor-shell {
+    padding: 0;
+    gap: 12px;
+  }
+
+  .panel,
+  .console-card,
+  .reference-board,
+  .shop-floor-callout,
+  .gate-card,
+  .part-card,
+  .task-row,
+  .resource-card {
+    box-shadow: none;
+    backdrop-filter: none;
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.18);
+  }
+
+  [data-print-hide="true"],
+  .workflow-actions,
+  .media-strip,
+  .atlas-toolbar,
+  .atlas-status,
+  .shop-floor-step-strip,
+  .shop-mode-hint,
+  .notes-row {
+    display: none !important;
+  }
+
+  .shop-floor-bar {
+    position: static;
+  }
+
+  .shop-floor-stage {
+    grid-template-columns: 1fr;
+  }
+
+  .shop-floor-stage__viewer {
+    grid-template-columns: 1fr;
+  }
+
+  .shop-floor-stage__atlas,
+  .atlas-shell,
+  .atlas-fallback,
+  .atlas-canvas-shell {
+    display: none !important;
+  }
+
+  .shop-floor-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .notes-field textarea {
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    min-height: 120px;
   }
 }
