@@ -300,6 +300,59 @@ h2 {
   color: #834224;
 }
 
+.media-stage__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 16px;
+}
+
+.media-stage__atlas {
+  min-width: 0;
+}
+
+.reference-board {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 24px;
+  border: 1px solid rgba(19, 34, 49, 0.08);
+  background:
+    linear-gradient(180deg, rgba(255, 252, 247, 0.95), rgba(239, 231, 219, 0.94)),
+    radial-gradient(circle at top right, rgba(255, 220, 184, 0.35), transparent 34%);
+}
+
+.reference-board__header h3 {
+  margin: 0 0 8px;
+  font-size: 1.18rem;
+}
+
+.reference-board__summary {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.reference-board__frame {
+  position: relative;
+  min-height: 300px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid rgba(19, 34, 49, 0.08);
+  background:
+    radial-gradient(circle at top left, rgba(255, 228, 188, 0.44), transparent 32%),
+    linear-gradient(160deg, rgba(243, 240, 234, 0.95), rgba(221, 227, 234, 0.95));
+}
+
+.reference-board__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 12px;
+}
+
 .media-stage__frame {
   position: relative;
   min-height: 360px;
@@ -343,6 +396,244 @@ h2 {
 .filter-chip {
   border-radius: 999px;
   padding: 9px 12px;
+}
+
+.atlas-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) 300px;
+  gap: 16px;
+}
+
+.atlas-viewport,
+.atlas-inspector {
+  min-width: 0;
+}
+
+.atlas-viewport {
+  display: grid;
+  gap: 12px;
+}
+
+.atlas-toolbar {
+  display: grid;
+  gap: 12px;
+}
+
+.atlas-toolbar-block {
+  padding: 14px;
+  border-radius: 22px;
+  border: 1px solid rgba(19, 34, 49, 0.08);
+  background: rgba(255, 252, 247, 0.88);
+}
+
+.atlas-toolbar-block--controls {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px 12px;
+}
+
+.atlas-presets,
+.atlas-selection-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.atlas-preset {
+  border: 1px solid rgba(19, 34, 49, 0.12);
+  border-radius: 999px;
+  padding: 9px 12px;
+  background: rgba(255, 255, 255, 0.84);
+  cursor: pointer;
+  transition:
+    transform 140ms ease,
+    border-color 140ms ease,
+    background 140ms ease;
+}
+
+.atlas-preset:hover,
+.atlas-preset:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(195, 99, 52, 0.44);
+  background: rgba(255, 247, 238, 0.94);
+  outline: none;
+}
+
+.atlas-preset.is-active {
+  color: #fff8f2;
+  border-color: rgba(195, 99, 52, 0.72);
+  background: linear-gradient(135deg, #c36334, #d98754);
+}
+
+.atlas-control {
+  display: grid;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.atlas-control input,
+.atlas-control select {
+  width: 100%;
+}
+
+.atlas-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.atlas-canvas-shell {
+  position: relative;
+  min-height: 520px;
+  border-radius: 26px;
+  overflow: hidden;
+  border: 1px solid rgba(19, 34, 49, 0.08);
+  background:
+    radial-gradient(circle at top left, rgba(255, 225, 181, 0.4), transparent 30%),
+    radial-gradient(circle at top right, rgba(90, 129, 171, 0.22), transparent 28%),
+    linear-gradient(180deg, rgba(248, 244, 236, 0.96), rgba(224, 228, 234, 0.94));
+}
+
+.atlas-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.atlas-status {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  display: grid;
+  gap: 3px;
+  max-width: 270px;
+  padding: 12px 14px;
+  border-radius: 18px;
+  background: rgba(23, 50, 74, 0.9);
+  color: #f4ede0;
+  box-shadow: 0 10px 28px rgba(14, 27, 40, 0.25);
+}
+
+.atlas-status__label {
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgba(244, 237, 224, 0.76);
+}
+
+.atlas-status small {
+  color: rgba(244, 237, 224, 0.78);
+  line-height: 1.35;
+}
+
+.atlas-inspector {
+  display: grid;
+  gap: 12px;
+}
+
+.atlas-card {
+  padding: 14px;
+  border-radius: 22px;
+  border: 1px solid rgba(19, 34, 49, 0.08);
+  background: rgba(255, 252, 247, 0.9);
+}
+
+.atlas-card h3 {
+  margin: 0 0 8px;
+  font-size: 1.12rem;
+}
+
+.atlas-card__summary {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.atlas-fallback {
+  min-height: 520px;
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  padding: 18px;
+  border-radius: 26px;
+  border: 1px solid rgba(19, 34, 49, 0.08);
+  background:
+    radial-gradient(circle at top left, rgba(255, 223, 179, 0.34), transparent 28%),
+    linear-gradient(160deg, rgba(248, 244, 236, 0.96), rgba(224, 228, 234, 0.94));
+}
+
+.atlas-fallback h3,
+.atlas-fallback p {
+  margin: 0;
+}
+
+.atlas-fallback ul {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 8px;
+  color: var(--muted);
+}
+
+.atlas-callout-list {
+  margin: 12px 0 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 8px;
+}
+
+.atlas-assemblies {
+  display: grid;
+  gap: 8px;
+}
+
+.atlas-assembly-row {
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: rgba(248, 242, 232, 0.86);
+  border: 1px solid rgba(19, 34, 49, 0.08);
+}
+
+.atlas-assembly-row input {
+  margin: 0;
+}
+
+.atlas-assembly-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1px rgba(19, 34, 49, 0.18);
+}
+
+.atlas-assembly-label,
+.atlas-assembly-count {
+  font-size: 0.9rem;
+}
+
+.atlas-assembly-count {
+  color: var(--muted);
+}
+
+.atlas-selection-grid {
+  margin: 12px 0 0;
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  gap: 6px 10px;
+}
+
+.atlas-selection-grid dt {
+  color: var(--muted);
+}
+
+.atlas-selection-grid dd {
+  margin: 0;
 }
 
 .notes-row {
@@ -498,6 +789,11 @@ h2 {
   .inspector {
     grid-column: 1 / -1;
   }
+
+  .media-stage__layout,
+  .atlas-shell {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 980px) {
@@ -509,5 +805,13 @@ h2 {
   .story-grid,
   .support-grid {
     grid-template-columns: 1fr;
+  }
+
+  .atlas-toolbar-block--controls {
+    grid-template-columns: 1fr;
+  }
+
+  .atlas-canvas-shell {
+    min-height: 420px;
   }
 }

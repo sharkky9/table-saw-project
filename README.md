@@ -9,7 +9,8 @@ This workspace contains a build package for an integrated garage bench built aro
 - `docs/` design intent, research notes, and product strategy
 - `data/` authoritative measurements and machine-readable layout data
 - `plans/` BOM, rough and final cut lists, hardware, build sequence, dust/power, finish, assembly-mode, and validation guides
-- `site/` interactive instructions website built from the current plans, drawings, and data
+- `models/` generated 3D model contract and notes for the instructions site atlas
+- `site/` interactive instructions website and live 3D atlas built from the current plans, drawings, and data
 - `plans/stripped-saw-survey.md` printable survey checklist for the bare saw before precision cuts
 - `plans/miter-saw-survey.md` public-spec sheet plus fit-only notes for the DeWalt miter saw and flip-top tuning
 - `drawings/` builder-facing SVG drawings keyed to parts and subassemblies
@@ -36,6 +37,7 @@ python3 tools/validate_measurements.py data/measurements.csv
 python3 tools/validate_layout.py data/layout.json data/measurements.csv
 python3 tools/validate_cutlist.py plans/cut-list-final.csv plans/bom.csv
 python3 tools/render_layout.py data/layout.json renders
+python3 tools/build_bench_model.py
 npm --prefix site run build
 ```
 
