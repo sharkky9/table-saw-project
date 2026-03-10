@@ -1,0 +1,18 @@
+{
+  "name": "fixed-top-bench-instructions",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build:content": "python3 ../tools/build_instructions_site.py",
+    "dev": "npm run build:content && vite",
+    "build": "npm run build:content && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "marked": "^16.4.0"
+  },
+  "devDependencies": {
+    "vite": "^7.1.12"
+  }
+}
