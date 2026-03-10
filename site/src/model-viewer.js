@@ -1,4 +1,32 @@
-import * as THREE from "three";
+import {
+  BoxGeometry,
+  Color,
+  DirectionalLight,
+  EdgesGeometry,
+  ExtrudeGeometry,
+  FogExp2,
+  GridHelper,
+  Group,
+  HemisphereLight,
+  LineBasicMaterial,
+  LineSegments,
+  MathUtils,
+  Mesh,
+  MeshStandardMaterial,
+  Path,
+  PCFSoftShadowMap,
+  PerspectiveCamera,
+  Plane,
+  PlaneGeometry,
+  Raycaster,
+  Scene,
+  ShadowMaterial,
+  Shape,
+  SRGBColorSpace,
+  Vector2,
+  Vector3,
+  WebGLRenderer,
+} from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 function formatInches(value) {
@@ -35,11 +63,11 @@ class BenchModelViewer {
     this.materials = [];
     this.geometries = [];
     this.assemblyVisibility = new Map(spec.assemblies.map((assembly) => [assembly.id, true]));
-    this.raycaster = new THREE.Raycaster();
-    this.pointer = new THREE.Vector2();
+    this.raycaster = new Raycaster();
+    this.pointer = new Vector2();
     this.animationFrame = null;
     this.resizeObserver = null;
-    this.clippingPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), -24);
+    this.clippingPlane = new Plane(new Vector3(0, 0, 1), -24);
     this.state = {
       exploded: 0,
       sectionAxis: "none",
@@ -160,21 +188,21 @@ class BenchModelViewer {
   }
 
   setupThree() {
-    this.renderer = new THREE.WebGLRenderer({
+    this.renderer = new WebGLRenderer({
       canvas: this.canvas,
       antialias: true,
       alpha: true,
     });
-    this.renderer.outputColorSpace = THREE.SRGBColorSpace;
+    this.renderer.outputColorSpace = SRGBColorSpace;
     this.renderer.shadowMap.enabled = true;
-    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    this.renderer.shadowMap.type = PCFSoftShadowMap;
     this.renderer.localClippingEnabled = true;
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
 
-    this.scene = new THREE.Scene();
-    this.scene.fog = new THREE.FogExp2(0xefe8dc, 0.011);
+    this.scene = new Scene();
+    this.scene.fog = new FogExp2(0xefe8dc, 0.011);
 
-    this.camera = new THREE.PerspectiveCamera(42, 1, 0.1, 400);
+    this.camera = new PerspectiveCamera(42, 1, 0.1, 400);
     this.camera.position.set(119, -32, 76);
 
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
@@ -184,13 +212,13 @@ class BenchModelViewer {
     this.controls.minDistance = 18;
     this.controls.maxDistance = 260;
 
-    this.rootGroup = new THREE.Group();
+    this.rootGroup = new Group();
     this.scene.add(this.rootGroup);
 
-    const hemi = new THREE.HemisphereLight(0xf2f0eb, 0x31465f, 1.2);
+    const hemi = new HemisphereLight(0xf2f0eb, 0x31465f, 1.2);
     this.scene.add(hemi);
 
-    const key = new THREE.DirectionalLight(0xfff1d7, 1.5);
+    const key = new DirectionalLight(0xfff1d7, 1.5);
     key.position.set(60, -40, 90);
     key.castShadow = true;
     key.shadow.mapSize.set(2048, 2048);
@@ -200,19 +228,19 @@ class BenchModelViewer {
     key.shadow.camera.bottom = -90;
     this.scene.add(key);
 
-    const rim = new THREE.DirectionalLight(0x83a6cf, 0.65);
+    const rim = new DirectionalLight(0x83a6cf, 0.65);
     rim.position.set(-70, 70, 55);
     this.scene.add(rim);
 
-    this.grid = new THREE.GridHelper(140, 28, 0x50647a, 0x7b8a99);
+    this.grid = new GridHelper(140, 28, 0x50647a, 0x7b8a99);
     this.grid.position.set(45, 24, 0);
     this.grid.material.opacity = 0.18;
     this.grid.material.transparent = true;
     this.scene.add(this.grid);
 
-    this.floor = new THREE.Mesh(
-      new THREE.PlaneGeometry(160, 100),
-      new THREE.ShadowMaterial({ color: 0x000000, opacity: 0.15 })
+    this.floor = new Mesh(
+      new PlaneGeometry(160, 100),
+      new ShadowMaterial({ color: 0x000000, opacity: 0.15 })
     );
     this.floor.rotation.x = -Math.PI / 2;
     this.floor.position.set(45, 24, 0);
@@ -224,7 +252,7 @@ class BenchModelViewer {
   }
 
   createBoxGeometry(part) {
-    const geometry = new THREE.BoxGeometry(part.size[0], part.size[1], part.size[2]);
+    const geometry = new BoxGeometry(part.size[0], part.size[1], part.size[2]);
     this.geometries.push(geometry);
     return geometry;
   }
@@ -239,7 +267,7 @@ class BenchModelViewer {
       return this.createBoxGeometry(part);
     }
 
-    const shape = new THREE.Shape();
+    const shape = new Shape();
     shape.moveTo(0, 0);
     shape.lineTo(width, 0);
     shape.lineTo(width, depth);
@@ -248,7 +276,7 @@ class BenchModelViewer {
 
     for (const cutout of cutouts) {
       const [x, y] = cutout.local_position;
-      const hole = new THREE.Path();
+      const hole = new Path();
       hole.moveTo(x, y);
       hole.lineTo(x + cutout.size[0], y);
       hole.lineTo(x + cutout.size[0], y + cutout.size[1]);
@@ -257,7 +285,7 @@ class BenchModelViewer {
       shape.holes.push(hole);
     }
 
-    const geometry = new THREE.ExtrudeGeometry(shape, {
+    const geometry = new ExtrudeGeometry(shape, {
       depth: height,
       bevelEnabled: false,
       steps: 1,
@@ -273,8 +301,8 @@ class BenchModelViewer {
     const guide = part.render_style === "guide";
     const context = part.render_style === "context";
     const metallic = materialType.includes("aluminum") || materialType.includes("plate");
-    const material = new THREE.MeshStandardMaterial({
-      color: new THREE.Color(part.color),
+    const material = new MeshStandardMaterial({
+      color: new Color(part.color),
       roughness: metallic ? 0.42 : guide ? 0.85 : 0.74,
       metalness: metallic ? 0.42 : 0.08,
       transparent: true,
@@ -293,18 +321,18 @@ class BenchModelViewer {
     }
 
     for (const pocket of pockets) {
-      const markerMaterial = new THREE.MeshStandardMaterial({
-        color: new THREE.Color(pocket.color || "#33506d"),
+      const markerMaterial = new MeshStandardMaterial({
+        color: new Color(pocket.color || "#33506d"),
         roughness: 0.6,
         metalness: 0.04,
         transparent: true,
         opacity: 0.92,
         clippingPlanes: [],
       });
-      const markerGeometry = new THREE.BoxGeometry(pocket.size[0], pocket.size[1], pocket.depth || 0.06);
+      const markerGeometry = new BoxGeometry(pocket.size[0], pocket.size[1], pocket.depth || 0.06);
       this.materials.push(markerMaterial);
       this.geometries.push(markerGeometry);
-      const marker = new THREE.Mesh(markerGeometry, markerMaterial);
+      const marker = new Mesh(markerGeometry, markerMaterial);
       marker.position.set(
         pocket.local_position[0] + pocket.size[0] / 2 - part.size[0] / 2,
         pocket.local_position[1] + pocket.size[1] / 2 - part.size[1] / 2,
@@ -317,39 +345,39 @@ class BenchModelViewer {
   createPartObject(part) {
     const geometry = part.part_type === "horizontal_panel" ? this.createHorizontalPanelGeometry(part) : this.createBoxGeometry(part);
     const material = this.createMaterial(part);
-    const mesh = new THREE.Mesh(geometry, material);
+    const mesh = new Mesh(geometry, material);
     mesh.castShadow = part.render_style !== "guide";
     mesh.receiveShadow = true;
     mesh.userData.instanceId = part.instance_id;
 
-    const edgeMaterial = new THREE.LineBasicMaterial({
+    const edgeMaterial = new LineBasicMaterial({
       color: part.render_style === "guide" ? 0x456482 : 0x14202c,
       transparent: true,
       opacity: part.render_style === "guide" ? 0.22 : 0.3,
       clippingPlanes: [],
     });
-    const edgeGeometry = new THREE.EdgesGeometry(geometry, 40);
+    const edgeGeometry = new EdgesGeometry(geometry, 40);
     this.materials.push(edgeMaterial);
     this.geometries.push(edgeGeometry);
-    const edges = new THREE.LineSegments(edgeGeometry, edgeMaterial);
+    const edges = new LineSegments(edgeGeometry, edgeMaterial);
 
-    const innerGroup = new THREE.Group();
+    const innerGroup = new Group();
     innerGroup.add(mesh);
     innerGroup.add(edges);
     this.createPocketMarkers(part, innerGroup);
 
-    const container = new THREE.Group();
+    const container = new Group();
     container.userData = {
       part,
       mesh,
       edges,
-      explodedOffset: new THREE.Vector3(...(part.exploded_offset || [0, 0, 0])),
-      center: new THREE.Vector3(...part.center),
+      explodedOffset: new Vector3(...(part.exploded_offset || [0, 0, 0])),
+      center: new Vector3(...part.center),
       motion: part.motion || null,
     };
 
     if (part.motion) {
-      const pivot = new THREE.Group();
+      const pivot = new Group();
       pivot.position.set(...part.motion.origin);
       innerGroup.position.set(
         part.center[0] - part.motion.origin[0],
@@ -359,7 +387,7 @@ class BenchModelViewer {
       pivot.add(innerGroup);
       container.add(pivot);
       container.userData.pivot = pivot;
-      container.userData.axis = new THREE.Vector3(...part.motion.axis).normalize();
+      container.userData.axis = new Vector3(...part.motion.axis).normalize();
     } else {
       innerGroup.position.set(...part.center);
       container.add(innerGroup);
@@ -547,10 +575,10 @@ class BenchModelViewer {
 
     const axis =
       this.state.sectionAxis === "x"
-        ? new THREE.Vector3(1, 0, 0)
+        ? new Vector3(1, 0, 0)
         : this.state.sectionAxis === "y"
-          ? new THREE.Vector3(0, 1, 0)
-          : new THREE.Vector3(0, 0, 1);
+          ? new Vector3(0, 1, 0)
+          : new Vector3(0, 0, 1);
     this.clippingPlane.set(axis, -this.state.sectionOffset);
     for (const material of this.materials) {
       material.clippingPlanes = [this.clippingPlane];
@@ -578,7 +606,7 @@ class BenchModelViewer {
 
       const mesh = object.userData.mesh;
       mesh.material.opacity = opacity;
-      mesh.material.emissive = new THREE.Color(isSelected ? "#e3b27e" : "#000000");
+      mesh.material.emissive = new Color(isSelected ? "#e3b27e" : "#000000");
       mesh.material.emissiveIntensity = isSelected ? 0.42 : 0;
 
       object.userData.edges.material.opacity = isSelected ? 0.8 : guide ? 0.22 : isDimmed ? 0.08 : 0.3;
@@ -586,7 +614,7 @@ class BenchModelViewer {
       const offset = object.userData.explodedOffset.clone().multiplyScalar(this.state.exploded);
       if (object.userData.motion) {
         object.position.copy(offset);
-        const angle = THREE.MathUtils.degToRad(
+        const angle = MathUtils.degToRad(
           this.state.deployed ? object.userData.motion.deployed_angle_deg : object.userData.motion.stowed_angle_deg
         );
         object.userData.pivot.setRotationFromAxisAngle(object.userData.axis, angle);

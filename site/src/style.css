@@ -776,6 +776,48 @@ h2 {
   color: var(--muted);
 }
 
+.atlas-loading {
+  min-height: 520px;
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  padding: 18px;
+  border-radius: 26px;
+  border: 1px solid rgba(19, 34, 49, 0.08);
+  background:
+    radial-gradient(circle at top left, rgba(255, 223, 179, 0.34), transparent 28%),
+    linear-gradient(160deg, rgba(248, 244, 236, 0.96), rgba(224, 228, 234, 0.94));
+}
+
+.atlas-loading h3,
+.atlas-loading p,
+.atlas-loading small {
+  margin: 0;
+}
+
+.atlas-loading small {
+  color: var(--muted);
+}
+
+.atlas-loading__pulse {
+  height: 14px;
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, rgba(195, 99, 52, 0.14), rgba(23, 50, 74, 0.2), rgba(195, 99, 52, 0.14));
+  background-size: 180% 100%;
+  animation: atlasPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes atlasPulse {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
 .atlas-callout-list {
   margin: 12px 0 0;
   padding-left: 18px;

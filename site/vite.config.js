@@ -6,12 +6,6 @@ export default defineConfig({
     port: 4173,
   },
   build: {
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          three: ["three", "three/examples/jsm/controls/OrbitControls.js"],
-        },
-      },
-    },
+    chunkSizeWarningLimit: 650,
   },
 });
