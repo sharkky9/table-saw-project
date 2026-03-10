@@ -619,6 +619,10 @@ def parse_assembly_steps(path: Path) -> list[dict[str, object]]:
                 parts.append(stripped[2:].strip("`"))
             elif current == "steps" and re.match(r"^\d+\.", stripped):
                 actions.append(re.sub(r"^\d+\.\s*", "", stripped))
+            elif current == "steps" and stripped.startswith("- "):
+                actions.append(stripped[2:])
+            elif current is None and stripped.startswith("- "):
+                actions.append(stripped[2:])
             elif current == "hold" and stripped.startswith("- [ ] "):
                 hold_points.append(stripped[6:])
 
@@ -647,6 +651,43 @@ def parse_assembly_steps(path: Path) -> list[dict[str, object]]:
 def load_csv_rows(relative_path: str) -> list[dict[str, str]]:
     with (REPO_ROOT / relative_path).open(newline="") as handle:
         return list(csv.DictReader(handle))
+
+
+def part_sort_key(part_id: str) -> tuple[str, int, str]:
+    prefix, suffix = part_id.split("-", 1)
+    match = re.match(r"(\d+)([A-Z]*)$", suffix)
+    if not match:
+        return prefix, 0, suffix
+    return prefix, int(match.group(1)), match.group(2)
+
+
+def expand_part_lines(lines: list[str], cutlist_rows: list[dict[str, str]]) -> list[str]:
+    available = {row["part_id"] for row in cutlist_rows}
+    expanded: list[str] = []
+    for line in lines:
+        ids = re.findall(r"[A-Z]+-\d+[A-Z]*", line)
+        if "through" in line and len(ids) >= 2:
+            start_prefix, start_number, _ = part_sort_key(ids[0])
+            end_prefix, end_number, _ = part_sort_key(ids[1])
+            if start_prefix == end_prefix:
+                for part_id in sorted(available, key=part_sort_key):
+                    prefix, number, _ = part_sort_key(part_id)
+                    if prefix == start_prefix and start_number <= number <= end_number:
+                        expanded.append(part_id)
+                continue
+        expanded.extend(part_id for part_id in ids if part_id in available)
+    deduped: list[str] = []
+    seen = set()
+    for part_id in expanded:
+        if part_id in seen:
+            continue
+        deduped.append(part_id)
+        seen.add(part_id)
+    return deduped
+
+
+def gate_label(gate: str) -> str:
+    return gate.replace("_", " ")
 
 
 def build_dashboard(resources: list[dict[str, object]], steps: list[dict[str, object]], gates: list[dict[str, object]]) -> dict[str, object]:
@@ -693,6 +734,34 @@ def build_data() -> dict[str, object]:
     steps = parse_assembly_steps(REPO_ROOT / "plans/assembly.md")
     gates = parse_checklist_sections(REPO_ROOT / "plans/no-cut-yet-checklist.md")
     dashboard = build_dashboard(resources, steps, gates)
+    cutlist_rows = load_csv_rows("plans/cut-list-final.csv")
+    cutlist_by_id = {row["part_id"]: row for row in cutlist_rows}
+
+    for step in steps:
+        expanded_ids = expand_part_lines(step["parts"], cutlist_rows)
+        step["part_ids"] = expanded_ids
+        step["part_cards"] = [
+            {
+                "part_id": part_id,
+                "assembly": cutlist_by_id[part_id]["assembly"],
+                "material": cutlist_by_id[part_id]["material"],
+                "qty": cutlist_by_id[part_id]["qty"],
+                "gate": cutlist_by_id[part_id]["gate"],
+                "gate_label": gate_label(cutlist_by_id[part_id]["gate"]),
+                "thickness": cutlist_by_id[part_id]["thickness"],
+                "final_l": cutlist_by_id[part_id]["final_l"],
+                "final_w": cutlist_by_id[part_id]["final_w"],
+                "notes": cutlist_by_id[part_id]["notes"],
+            }
+            for part_id in expanded_ids
+        ]
+        gate_counts: dict[str, int] = {}
+        for card in step["part_cards"]:
+            gate_counts[card["gate"]] = gate_counts.get(card["gate"], 0) + 1
+        step["gate_summary"] = [
+            {"gate": gate, "gate_label": gate_label(gate), "count": count}
+            for gate, count in sorted(gate_counts.items())
+        ]
 
     return {
         "dashboard": dashboard,
