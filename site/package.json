@@ -7,13 +7,16 @@
     "build:content": "python3 ../tools/build_instructions_site.py",
     "dev": "npm run build:content && vite",
     "build": "npm run build:content && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "qa:webgl:live": "node ./scripts/webgl-smoke.mjs live",
+    "qa:webgl:fallback": "node ./scripts/webgl-smoke.mjs fallback"
   },
   "dependencies": {
     "marked": "^16.4.0",
     "three": "^0.180.0"
   },
   "devDependencies": {
+    "playwright": "^1.56.1",
     "vite": "^7.1.12"
   }
 }
