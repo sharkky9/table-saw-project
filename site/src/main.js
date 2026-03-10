@@ -1,11 +1,11 @@
 import "./style.css";
 
 import { marked } from "marked";
-import { createModelViewer } from "./model-viewer.js";
 
 const app = document.querySelector("#app");
 const STORAGE_KEY = "fixed-top-bench-atlas-progress-v1";
 const VIEW_MODES = new Set(["atlas", "shop"]);
+let viewerModulePromise = null;
 
 const state = {
   data: null,
@@ -20,6 +20,7 @@ const state = {
   viewMode: "atlas",
   shareStatus: "",
   shareStatusTimer: null,
+  viewerLoadToken: 0,
 };
 
 function categoryLabel(category) {
@@ -306,6 +307,16 @@ function setShareStatus(message) {
   }, 2200);
 }
 
+function loadViewerModule() {
+  if (!viewerModulePromise) {
+    viewerModulePromise = import("./model-viewer.js").catch((error) => {
+      viewerModulePromise = null;
+      throw error;
+    });
+  }
+  return viewerModulePromise;
+}
+
 function setCurrentStep(stepId) {
   if (!stepId || !state.data.steps.some((step) => step.id === stepId)) {
     return;
@@ -532,6 +543,18 @@ function renderStepStrip(step) {
           `,
         )
         .join("")}
+    </div>
+  `;
+}
+
+function renderViewerLoading(step) {
+  return `
+    <div class="atlas-loading">
+      <p class="eyebrow">3D atlas loading</p>
+      <h3>${step.number}. ${step.title}</h3>
+      <p>${step.focus}</p>
+      <div class="atlas-loading__pulse" aria-hidden="true"></div>
+      <small>The interactive model loads separately so the packet UI stays responsive.</small>
     </div>
   `;
 }
@@ -1036,20 +1059,30 @@ function bindEvents() {
   }
 }
 
-function mountModelViewer(step) {
+async function mountModelViewer(step) {
   const mount = app.querySelector("#modelViewerMount");
   if (!mount || !state.model) {
     return;
   }
   if (state.viewer) {
     state.viewer.destroy();
+    state.viewer = null;
   }
+  const loadToken = ++state.viewerLoadToken;
+  mount.innerHTML = renderViewerLoading(step);
   try {
+    const { createModelViewer } = await loadViewerModule();
+    if (loadToken !== state.viewerLoadToken || !mount.isConnected) {
+      return;
+    }
     state.viewer = createModelViewer(mount, state.model, {
       ...step.viewer,
       summary: step.focus,
     });
   } catch (error) {
+    if (loadToken !== state.viewerLoadToken || !mount.isConnected) {
+      return;
+    }
     state.viewer = null;
     mount.innerHTML = `
       <div class="atlas-fallback">
