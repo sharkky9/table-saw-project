@@ -5,6 +5,7 @@ import { marked } from "marked";
 const app = document.querySelector("#app");
 const STORAGE_KEY = "fixed-top-bench-atlas-progress-v1";
 const VIEW_MODES = new Set(["build", "atlas", "library"]);
+const BASE_URL = import.meta.env.BASE_URL || "/";
 let viewerModulePromise = null;
 
 const state = {
@@ -40,6 +41,18 @@ function escapeHtml(value) {
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;");
+}
+
+function siteUrl(path) {
+  if (!path) {
+    return path;
+  }
+  if (/^(?:[a-z]+:)?\/\//i.test(path) || path.startsWith("data:")) {
+    return path;
+  }
+  const normalizedBase = BASE_URL.endsWith("/") ? BASE_URL : `${BASE_URL}/`;
+  const normalizedPath = path.startsWith("/") ? path.slice(1) : path;
+  return `${normalizedBase}${normalizedPath}`;
 }
 
 function currentStep() {
@@ -202,7 +215,7 @@ function renderJson(resource) {
 function renderImage(resource) {
   return `
     <figure class="image-viewer">
-      <img src="${resource.media_path}" alt="${resource.title}" />
+      <img src="${siteUrl(resource.media_path)}" alt="${resource.title}" />
       <figcaption>${resource.title}</figcaption>
     </figure>
   `;
@@ -551,7 +564,7 @@ function renderReferenceBoard(step, media, compact = false) {
       <div class="reference-board__frame">
         ${
           media
-            ? `<img class="reference-board__image" src="${media.path}" alt="${media.title}" />`
+            ? `<img class="reference-board__image" src="${siteUrl(media.path)}" alt="${media.title}" />`
             : `<div class="empty-stage">No media plate linked to this stage.</div>`
         }
       </div>
@@ -1204,8 +1217,8 @@ async function mountModelViewer(step) {
 
 async function bootstrap() {
   const [dataResponse, modelResponse] = await Promise.all([
-    fetch("/generated/instructions-data.json"),
-    fetch("/generated/bench-model.json"),
+    fetch(siteUrl("generated/instructions-data.json")),
+    fetch(siteUrl("generated/bench-model.json")),
   ]);
   if (!dataResponse.ok) {
     throw new Error(`Failed to load generated site data: ${dataResponse.status}`);
