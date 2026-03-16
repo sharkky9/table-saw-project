@@ -382,27 +382,101 @@ function stepStatus(entry) {
   return { label: "Ready", className: "is-ready" };
 }
 
+function humanizeToken(value) {
+  return String(value || "")
+    .replaceAll("_", " ")
+    .replace(/\b\w/g, (character) => character.toUpperCase());
+}
+
+function completionPercent(completedSteps) {
+  if (!state.data.steps.length) {
+    return 0;
+  }
+  return Math.round((completedSteps / state.data.steps.length) * 100);
+}
+
+function benchFootprint() {
+  const snapshot = state.data?.dashboard?.project_snapshot?.[0];
+  if (snapshot) {
+    return snapshot.replace(/\s+fixed-top bench$/i, "");
+  }
+  const bounds = state.model?.metadata?.overall_bounds?.max;
+  const units = state.model?.metadata?.units || "in";
+  if (!bounds || bounds.length < 3) {
+    return "";
+  }
+  return `${bounds[0]} × ${bounds[1]} × ${bounds[2]} ${units}`;
+}
+
+function trackedPartCount() {
+  const ids = new Set();
+  state.data.steps.forEach((step) => {
+    step.part_cards.forEach((card) => ids.add(card.part_id));
+  });
+  return ids.size;
+}
+
+function dashboardCards() {
+  const dashboard = state.data.dashboard || {};
+  return [...(dashboard.stats || []), ...(dashboard.data_cards || [])];
+}
+
+function renderMetricCards(cards, extraClass = "") {
+  return `
+    <div class="metric-grid ${extraClass}">
+      ${cards
+        .map(
+          (card) => `
+            <article class="metric-card">
+              <strong>${escapeHtml(card.value)}</strong>
+              <span>${escapeHtml(card.label)}</span>
+            </article>
+          `,
+        )
+        .join("")}
+    </div>
+  `;
+}
+
 function renderModeControls(step, previousId, nextId, completedSteps) {
   const fullscreenLabel = document.fullscreenElement ? "Exit fullscreen" : "Fullscreen";
+  const progress = completionPercent(completedSteps);
   return `
-    <div class="app-header__actions">
-      <div class="app-header__action-row">
+    <div class="command-deck">
+      <div class="command-deck__actions">
         <button class="nav-chip" data-jump-step="${previousId || ""}" ${previousId ? "" : "disabled"}>Previous</button>
-        <button class="nav-chip" data-jump-step="${nextId || ""}" ${nextId ? "" : "disabled"}>Next</button>
+        <button class="nav-chip nav-chip--primary" data-jump-step="${nextId || ""}" ${nextId ? "" : "disabled"}>Next</button>
         <button class="nav-chip ${stepDone(step.id) ? "is-active" : ""}" data-toggle-step-done="${step.id}">
           ${stepDone(step.id) ? "Marked done" : "Mark step done"}
         </button>
       </div>
-      <div class="app-header__action-row">
+      <div class="command-deck__actions command-deck__actions--utility">
         <button class="nav-chip" data-print-packet>Print packet</button>
         <button class="nav-chip" data-copy-link>${state.shareStatus || "Copy link"}</button>
         <button class="nav-chip" data-toggle-fullscreen>${fullscreenLabel}</button>
       </div>
-      <div class="app-header__metrics">
-        <span class="chip">${completedSteps}/${state.data.steps.length} steps complete</span>
-        <span class="chip">${checkedActionsCount(step)}/${step.actions.length} actions checked</span>
-        <span class="chip">${checkedHoldCount(step)}/${step.hold_points.length} hold points checked</span>
-        <span class="chip">${step.part_cards.length} parts in play</span>
+      <div class="command-deck__progress">
+        <div class="progress-track" aria-hidden="true">
+          <span style="width:${progress}%"></span>
+        </div>
+        <div class="command-deck__metrics">
+          <div class="metric-pill">
+            <strong>${progress}%</strong>
+            <span>complete</span>
+          </div>
+          <div class="metric-pill">
+            <strong>${checkedActionsCount(step)}/${step.actions.length}</strong>
+            <span>actions</span>
+          </div>
+          <div class="metric-pill">
+            <strong>${checkedHoldCount(step)}/${step.hold_points.length}</strong>
+            <span>holds cleared</span>
+          </div>
+          <div class="metric-pill">
+            <strong>${step.part_cards.length}</strong>
+            <span>parts in play</span>
+          </div>
+        </div>
       </div>
     </div>
   `;
@@ -422,8 +496,11 @@ function renderTaskRows(step, type) {
         .map(
           (entry, index) => `
             <label class="task-row ${checked(step.id, index) ? "is-checked" : ""}">
-              <input type="checkbox" ${attribute}="${index}" ${checked(step.id, index) ? "checked" : ""} />
-              <span>${type === "hold" ? escapeHtml(entry) : renderInlineMarkdown(entry)}</span>
+              <span class="task-row__toggle">
+                <input type="checkbox" ${attribute}="${index}" ${checked(step.id, index) ? "checked" : ""} />
+              </span>
+              <span class="task-row__index">${String(index + 1).padStart(2, "0")}</span>
+              <span class="task-row__body">${type === "hold" ? escapeHtml(entry) : renderInlineMarkdown(entry)}</span>
             </label>
           `,
         )
@@ -447,7 +524,7 @@ function renderPartCards(step, extraClass = "") {
                 <span class="chip ${card.gate === "cut_now" ? "" : "chip--warn"}">${card.gate_label}</span>
               </div>
               <p>${card.material} · qty ${card.qty}</p>
-              <p>${card.final_l} × ${card.final_w} × ${card.thickness}</p>
+              <p class="part-card__dims">${card.final_l} × ${card.final_w} × ${card.thickness}</p>
               <small>${escapeHtml(card.notes || "No extra notes attached to this part.")}</small>
             </article>
           `,
@@ -506,7 +583,7 @@ function renderGateCards(stepGateCards) {
       (gate) => `
         <div class="gate-card">
           <strong>${gate.title}</strong>
-          <p>${gate.body}</p>
+          <div class="markdown-body gate-card__body">${renderMarkdown(gate.body)}</div>
           <div class="chip-row">
             ${gate.parts.map((part) => `<span class="chip chip--warn">${part}</span>`).join("")}
           </div>
@@ -540,18 +617,18 @@ function renderResourceStack(stepResourceCards) {
 
 function renderStageStrip(step) {
   return `
-    <div class="stage-strip" data-print-hide="true">
+    <div class="stage-rail" data-print-hide="true">
       ${state.data.steps
         .map((entry) => {
           const status = stepStatus(entry);
           return `
-            <button class="stage-pill ${entry.id === step.id ? "is-active" : ""} ${status.className}" data-step-id="${entry.id}">
-              <span class="stage-pill__index">${String(entry.number).padStart(2, "0")}</span>
-              <span class="stage-pill__copy">
+            <button class="stage-card ${entry.id === step.id ? "is-active" : ""} ${status.className}" data-step-id="${entry.id}">
+              <span class="stage-card__index">${String(entry.number).padStart(2, "0")}</span>
+              <span class="stage-card__copy">
                 <strong>${entry.title}</strong>
                 <small>${entry.actions.length} actions · ${entry.part_cards.length} parts</small>
               </span>
-              <span class="stage-pill__status">${status.label}</span>
+              <span class="stage-card__status">${status.label}</span>
             </button>
           `;
         })
@@ -564,19 +641,36 @@ function renderWorkspaceTabs() {
   return `
     <div class="workspace-tabs" data-print-hide="true">
       ${[
-        ["build", "Build"],
-        ["atlas", "Atlas"],
-        ["library", "Library"],
+        ["build", "Build", "Checklist"],
+        ["atlas", "Atlas", "3D model"],
+        ["library", "Library", "Source files"],
       ]
         .map(
-          ([mode, label]) => `
+          ([mode, label, detail]) => `
             <button class="workspace-tab ${state.viewMode === mode ? "is-active" : ""}" data-set-mode="${mode}">
-              ${label}
+              <strong>${label}</strong>
+              <small>${detail}</small>
             </button>
           `,
         )
         .join("")}
     </div>
+  `;
+}
+
+function renderNavigator(step) {
+  return `
+    <section class="navigator panel">
+      <div class="navigator__top">
+        <div>
+          <p class="eyebrow">Build Flow</p>
+          <h2>Stages And Workspaces</h2>
+          <p class="navigator__summary">Move through the build order, jump into the 3D atlas, or browse the source library.</p>
+        </div>
+        ${renderWorkspaceTabs()}
+      </div>
+      ${renderStageStrip(step)}
+    </section>
   `;
 }
 
@@ -593,26 +687,79 @@ function renderViewerLoading(step) {
 }
 
 function renderHeader(step, previousId, nextId, completedSteps) {
+  const dashboard = state.data.dashboard || {};
+  const footprint = benchFootprint();
   return `
-    <header class="app-header panel">
-      <div class="app-header__row">
-        <div class="app-header__lead">
-          <p class="eyebrow">Digital Build Manual</p>
-          <h1>${step.number}. ${step.title}</h1>
-          <p class="app-header__summary">${step.summary}</p>
+    <header class="masthead panel">
+      <div class="masthead__grid">
+        <div class="masthead__copy">
+          <p class="eyebrow">Table Saw Project Atlas</p>
+          <h1>${dashboard.headline || "A digital build manual for the fixed-top bench"}</h1>
+          <p class="masthead__summary">${dashboard.subheadline || step.summary}</p>
+          <div class="chip-row chip-row--hero">
+            ${footprint ? `<span class="chip chip--strong">${footprint}</span>` : ""}
+            <span class="chip">${trackedPartCount()} tracked parts</span>
+            <span class="chip">${state.data.resources.length} live resources</span>
+          </div>
+
+          <div class="masthead__current">
+            <p class="eyebrow">Current Stage</p>
+            <h2>${step.number}. ${step.title}</h2>
+            <p class="masthead__focus">${step.focus}</p>
+            <p class="masthead__detail">${step.summary}</p>
+            ${
+              step.warnings.length
+                ? `
+                  <ul class="snapshot-list snapshot-list--compact">
+                    ${step.warnings.map((warning) => `<li>${warning}</li>`).join("")}
+                  </ul>
+                `
+                : ""
+            }
+          </div>
         </div>
-        ${renderModeControls(step, previousId, nextId, completedSteps)}
-      </div>
-      <div class="app-header__row app-header__row--secondary">
-        ${renderWorkspaceTabs()}
-        <div class="app-header__status">
-          <span class="chip chip--strong">${step.focus}</span>
-          ${step.gate_summary
-            .map((gate) => `<span class="chip ${gate.gate === "cut_now" ? "" : "chip--warn"}">${gate.count} ${gate.gate_label}</span>`)
-            .join("")}
+
+        <div class="masthead__side">
+          <article class="info-card info-card--dark">
+            <p class="eyebrow">Bench Snapshot</p>
+            <h3>What this project is</h3>
+            <ul class="snapshot-list">
+              ${(dashboard.project_snapshot || []).map((item) => `<li>${item}</li>`).join("")}
+            </ul>
+            ${
+              (state.data.notes || []).length
+                ? `
+                  <div class="masthead__notes">
+                    ${(state.data.notes || []).map((note) => `<p>${note}</p>`).join("")}
+                  </div>
+                `
+                : ""
+            }
+          </article>
+
+          <article class="info-card">
+            <div class="panel-title-row">
+              <div>
+                <p class="eyebrow">Live Package</p>
+                <h3>Project signals</h3>
+              </div>
+              <span class="panel-kicker">${completionPercent(completedSteps)}% complete</span>
+            </div>
+            ${renderMetricCards(dashboardCards())}
+          </article>
+
+          <article class="info-card">
+            <div class="panel-title-row">
+              <div>
+                <p class="eyebrow">Control Deck</p>
+                <h3>Share and navigate</h3>
+              </div>
+              <span class="panel-kicker">${completedSteps}/${state.data.steps.length} done</span>
+            </div>
+            ${renderModeControls(step, previousId, nextId, completedSteps)}
+          </article>
         </div>
       </div>
-      ${renderStageStrip(step)}
     </header>
   `;
 }
@@ -622,73 +769,74 @@ function renderBuildLayout({ step, media, stepResourceCards, stepGateCards }) {
   return `
     <section class="workspace workspace--build">
       <div class="build-layout">
-        <article class="panel build-primary">
+        <article class="panel build-brief">
           <div class="panel-title-row">
             <div>
-              <p class="eyebrow">What To Do Next</p>
-              <h2>Build Packet</h2>
+              <p class="eyebrow">Guided Build</p>
+              <h2>Make this stage tangible</h2>
             </div>
-            <button class="nav-chip" data-set-mode="atlas">Open atlas</button>
+            <button class="nav-chip nav-chip--primary" data-set-mode="atlas">Open 3D atlas</button>
           </div>
-          <p class="build-primary__focus">${step.focus}</p>
+          <p class="build-brief__focus">${step.focus}</p>
+          <p class="build-brief__summary">${step.summary}</p>
           ${renderTaskRows(step, "action")}
         </article>
 
-        <article class="panel build-hold ${hasBlockedParts ? "build-hold--warn" : ""}">
+        <article class="panel build-risk ${hasBlockedParts ? "build-risk--warn" : ""}">
           <div class="panel-title-row">
             <div>
-              <p class="eyebrow">What Is Blocked</p>
-              <h2>Hold Points</h2>
+              <p class="eyebrow">Risk Board</p>
+              <h2>Hold points and gates</h2>
             </div>
             <span class="panel-kicker">${step.hold_points.length} checks</span>
           </div>
-          <p class="build-hold__summary">
+          <p class="build-risk__summary">
             ${hasBlockedParts ? "This step still has gated parts or proof items. Resolve the hold points before cutting or fastening the blocked work." : "Use these checks to avoid locking bad geometry into the bench."}
           </p>
           ${renderTaskRows(step, "hold")}
-          <div class="build-hold__gates">
+          <div class="build-risk__gates">
             ${renderGateCards(stepGateCards)}
           </div>
         </article>
 
-        <article class="panel build-spotlight">
+        <article class="panel build-reference">
           <div class="panel-title-row">
             <div>
-              <p class="eyebrow">Reference Plate</p>
-              <h2>Step Snapshot</h2>
+              <p class="eyebrow">Visual anchor</p>
+              <h2>Step snapshot</h2>
             </div>
             <button class="nav-chip" data-set-mode="library">Open library</button>
           </div>
           ${renderReferenceBoard(step, media, true)}
         </article>
 
-        <article class="panel build-parts">
+        <article class="panel build-files">
           <div class="panel-title-row">
             <div>
-              <p class="eyebrow">What Is In Play</p>
-              <h2>Parts</h2>
-            </div>
-            <span class="panel-kicker">${step.part_cards.length} tracked</span>
-          </div>
-          ${renderPartCards(step, "part-card-grid--dense")}
-        </article>
-
-        <article class="panel build-resources">
-          <div class="panel-title-row">
-            <div>
-              <p class="eyebrow">What To Read</p>
-              <h2>Step Files</h2>
+              <p class="eyebrow">Source pack</p>
+              <h2>Step files</h2>
             </div>
             <span class="panel-kicker">${stepResourceCards.length} files</span>
           </div>
           ${renderResourceStack(stepResourceCards)}
         </article>
 
+        <article class="panel build-parts">
+          <div class="panel-title-row">
+            <div>
+              <p class="eyebrow">Fabrication map</p>
+              <h2>Parts in play</h2>
+            </div>
+            <span class="panel-kicker">${step.part_cards.length} tracked</span>
+          </div>
+          ${renderPartCards(step, "part-card-grid--dense")}
+        </article>
+
         <article class="panel build-notes">
           <div class="panel-title-row">
             <div>
-              <p class="eyebrow">What You Learned</p>
-              <h2>Shop Notes</h2>
+              <p class="eyebrow">Field notes</p>
+              <h2>What you learned</h2>
             </div>
             <span class="panel-kicker">saved locally</span>
           </div>
@@ -705,27 +853,28 @@ function renderBuildLayout({ step, media, stepResourceCards, stepGateCards }) {
 }
 
 function renderAtlasLayout({ step, media, stepResourceCards, stepGateCards }) {
+  const modelMeta = state.model?.metadata || {};
   return `
     <section class="workspace workspace--atlas">
       <div class="atlas-layout">
-        <article class="panel atlas-main">
+        <article class="panel atlas-stage">
           <div class="panel-title-row">
             <div>
-              <p class="eyebrow">Atlas Workspace</p>
-              <h2>3D Bench View</h2>
+              <p class="eyebrow">3D Atlas</p>
+              <h2>Explore the bench in context</h2>
             </div>
             <button class="nav-chip" data-set-mode="build">Back to build</button>
           </div>
-          <p class="atlas-main__summary">${step.focus}</p>
-          <div class="atlas-main__mount" id="modelViewerMount"></div>
+          <p class="atlas-stage__summary">${step.focus}</p>
+          <div id="modelViewerMount"></div>
         </article>
 
         <aside class="atlas-support">
           <article class="panel atlas-support__callouts">
             <div class="panel-title-row">
               <div>
-                <p class="eyebrow">Watch For</p>
-                <h2>Step Callouts</h2>
+                <p class="eyebrow">Step lens</p>
+                <h2>What to watch</h2>
               </div>
               <button class="nav-chip" data-set-mode="library">Open docs</button>
             </div>
@@ -739,6 +888,20 @@ function renderAtlasLayout({ step, media, stepResourceCards, stepGateCards }) {
                   (gate) => `<span class="chip ${gate.gate === "cut_now" ? "" : "chip--warn"}">${gate.count} ${gate.gate_label}</span>`,
                 )
                 .join("")}
+            </div>
+            <div class="atlas-meta-grid">
+              <article class="atlas-note">
+                <span>Precision policy</span>
+                <strong>${humanizeToken(modelMeta.precision_ready_policy || "manual fit")}</strong>
+              </article>
+              <article class="atlas-note">
+                <span>Dust status</span>
+                <strong>${humanizeToken(modelMeta.dust_mockup_status || "pending")}</strong>
+              </article>
+              <article class="atlas-note">
+                <span>Manual fit items</span>
+                <strong>${(modelMeta.manual_fit_required || []).length}</strong>
+              </article>
             </div>
           </article>
 
@@ -782,10 +945,16 @@ function renderLibraryLayout({ step, resource }) {
         <aside class="panel library-sidebar">
           <div class="panel-title-row">
             <div>
-              <p class="eyebrow">Resource Library</p>
-              <h2>Project Files</h2>
+              <p class="eyebrow">Project library</p>
+              <h2>Source files and notes</h2>
             </div>
             <span class="panel-kicker">${filtered.length} shown</span>
+          </div>
+
+          <div class="library-current">
+            <p class="eyebrow">Current step</p>
+            <h3>${step.number}. ${step.title}</h3>
+            <p>${step.focus}</p>
           </div>
 
           <label class="search-field">
@@ -807,7 +976,7 @@ function renderLibraryLayout({ step, resource }) {
 
           <div class="library-pins">
             <div class="panel-title-row">
-              <h3>Current Step Files</h3>
+              <h3>Current step files</h3>
               <button class="nav-chip" data-set-mode="build">Back to build</button>
             </div>
             ${renderResourceStack(stepResourceCards)}
@@ -866,6 +1035,7 @@ function renderApp() {
   app.innerHTML = `
     <div class="app-shell">
       ${renderHeader(step, previousId, nextId, completedSteps)}
+      ${renderNavigator(step)}
       ${workspace}
     </div>
   `;
