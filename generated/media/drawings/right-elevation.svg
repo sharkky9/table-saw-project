@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="700" viewBox="0 0 900 700">
+  <rect width="900" height="700" fill="#ffffff"/>
+  <text x="40" y="40" font-family="Helvetica, Arial, sans-serif" font-size="24">Right Elevation</text>
+  <rect x="120" y="110" width="420" height="18" fill="#dad0be" stroke="#111" stroke-width="2"/>
+  <rect x="135" y="128" width="390" height="310" fill="#d9d9d9" stroke="#555" stroke-width="2" fill-opacity="0.75"/>
+  <rect x="370" y="178" width="120" height="100" fill="#d4dcff" stroke="#3047aa" stroke-width="2" fill-opacity="0.6"/>
+  <rect x="155" y="220" width="200" height="180" fill="#efe3ff" stroke="#6f4ea5" stroke-width="2" fill-opacity="0.55"/>
+  <rect x="495" y="240" width="60" height="80" fill="none" stroke="#444" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="390" y="235" font-family="Helvetica, Arial, sans-serif" font-size="18">Router hatch</text>
+  <text x="180" y="260" font-family="Helvetica, Arial, sans-serif" font-size="16">Dust bay</text>
+  <text x="385" y="230" font-family="Helvetica, Arial, sans-serif" font-size="16">Router zone</text>
+  <text x="560" y="285" font-family="Helvetica, Arial, sans-serif" font-size="16">12 x 10 hatch</text>
+  <line x1="580" y1="110" x2="580" y2="438" stroke="#111" stroke-width="1.5"/>
+  <line x1="572" y1="110" x2="588" y2="110" stroke="#111" stroke-width="1.5"/>
+  <line x1="572" y1="438" x2="588" y2="438" stroke="#111" stroke-width="1.5"/>
+  <text x="620" y="280" font-family="Helvetica, Arial, sans-serif" font-size="18" transform="rotate(90 620 280)">31 in carcass height</text>
+  <line x1="120" y1="500" x2="540" y2="500" stroke="#111" stroke-width="1.5"/>
+  <line x1="120" y1="492" x2="120" y2="508" stroke="#111" stroke-width="1.5"/>
+  <line x1="540" y1="492" x2="540" y2="508" stroke="#111" stroke-width="1.5"/>
+  <text x="330" y="530" font-family="Helvetica, Arial, sans-serif" font-size="18" text-anchor="middle">42 in carcass depth</text>
+</svg>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="700" viewBox="0 0 1000 700">
+  <rect width="1000" height="700" fill="#ffffff"/>
+  <text x="40" y="40" font-family="Helvetica, Arial, sans-serif" font-size="24">Right-Bay Packaging</text>
+  <rect x="40" y="60" width="920" height="56" fill="#fff4cc" stroke="#aa5500" stroke-width="2"/>
+  <text x="56" y="84" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#7a4d00">Concept only until physical mockup</text>
+  <text x="56" y="106" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#7a4d00">Modeled extractor headroom is 0.35 in. RM-10 cutout geometry stays provisional until mockup proves disconnect path and hose dock behavior.</text>
+  <rect x="140" y="120" width="410" height="380" fill="none" stroke="#111" stroke-width="2"/>
+  <rect x="220" y="150" width="150" height="150" fill="#f6f0ff" stroke="#6f4ea5" stroke-width="2"/>
+  <rect x="180" y="335" width="260" height="140" fill="#efe3ff" stroke="#6f4ea5" stroke-width="2" fill-opacity="0.6"/>
+  <rect x="120" y="170" width="20" height="280" fill="#dddddd" stroke="#555" stroke-width="2"/>
+  <rect x="80" y="195" width="120" height="180" fill="none" stroke="#aa5500" stroke-width="2" stroke-dasharray="6 6"/>
+  <text x="232" y="225" font-family="Helvetica, Arial, sans-serif" font-size="16">Low-Pro bucket</text>
+  <text x="220" y="410" font-family="Helvetica, Arial, sans-serif" font-size="16">Hercules on low deck</text>
+  <text x="220" y="436" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#7a4d00">Model keeps only 0.35 in headroom</text>
+  <text x="84" y="188" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#aa5500">RM-10 removable control cassette</text>
+  <text x="590" y="170" font-family="Helvetica, Arial, sans-serif" font-size="18">Service sequence</text>
+  <text x="590" y="210" font-family="Helvetica, Arial, sans-serif" font-size="16">1. Remove RM-10 or disconnect tethered services</text>
+  <text x="590" y="240" font-family="Helvetica, Arial, sans-serif" font-size="16">2. Remove RM-06 service face</text>
+  <text x="590" y="270" font-family="Helvetica, Arial, sans-serif" font-size="16">3. Remove bucket</text>
+  <text x="590" y="300" font-family="Helvetica, Arial, sans-serif" font-size="16">4. Disconnect short hose if needed</text>
+  <text x="590" y="330" font-family="Helvetica, Arial, sans-serif" font-size="16">5. Slide or lift extractor forward</text>
+</svg>

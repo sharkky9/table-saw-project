@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620">
+  <rect width="1000" height="620" fill="#ffffff"/>
+  <text x="40" y="40" font-family="Helvetica, Arial, sans-serif" font-size="24">Plinth Framing</text>
+  <rect x="120" y="120" width="720" height="330" fill="none" stroke="#111" stroke-width="3"/>
+  <rect x="120" y="120" width="720" height="35" fill="#c7b48c"/>
+  <rect x="120" y="415" width="720" height="35" fill="#c7b48c"/>
+  <rect x="120" y="120" width="35" height="330" fill="#c7b48c"/>
+  <rect x="805" y="120" width="35" height="330" fill="#c7b48c"/>
+  <rect x="240" y="120" width="35" height="330" fill="#d2c09b"/>
+  <rect x="420" y="120" width="35" height="330" fill="#d2c09b"/>
+  <rect x="600" y="120" width="35" height="330" fill="#d2c09b"/>
+  <rect x="780" y="120" width="35" height="330" fill="#d2c09b"/>
+  <rect x="120" y="120" width="70" height="55" fill="#a97c50" fill-opacity="0.55"/>
+  <rect x="770" y="120" width="70" height="55" fill="#a97c50" fill-opacity="0.55"/>
+  <rect x="120" y="395" width="70" height="55" fill="#a97c50" fill-opacity="0.55"/>
+  <rect x="770" y="395" width="70" height="55" fill="#a97c50" fill-opacity="0.55"/>
+  <text x="120" y="500" font-family="Helvetica, Arial, sans-serif" font-size="16">2x4 on edge frame. 2x6 blocks only at caster hardpoints.</text>
+</svg>

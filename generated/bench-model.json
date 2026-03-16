@@ -1,0 +1,5642 @@
+{
+  "metadata": {
+    "name": "Fixed-Top Bench Atlas Model",
+    "units": "in",
+    "source_branch": "codex/model-viewer-usability",
+    "generated_from": [
+      "data/layout.json",
+      "data/measurements.csv",
+      "plans/cut-list-final.csv",
+      "plans/assembly.md",
+      "plans/miter-station.md",
+      "plans/right-bay-mockup.md",
+      "plans/saw-cradle.md",
+      "plans/top-build.md"
+    ],
+    "overall_bounds": {
+      "min": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "max": [
+        90.0,
+        48.0,
+        56.0
+      ]
+    },
+    "assembly_bounds": {
+      "plinth": {
+        "min": [
+          3.0,
+          4.5,
+          0.0
+        ],
+        "max": [
+          112.5,
+          43.5,
+          3.5
+        ],
+        "center": [
+          57.75,
+          24.0,
+          1.75
+        ],
+        "size": [
+          109.5,
+          39.0,
+          3.5
+        ]
+      },
+      "left_module": {
+        "min": [
+          1.5,
+          3.0,
+          3.5
+        ],
+        "max": [
+          29.25,
+          45.0,
+          34.5
+        ],
+        "center": [
+          15.375,
+          24.0,
+          19.0
+        ],
+        "size": [
+          27.75,
+          42.0,
+          31.0
+        ]
+      },
+      "center_module": {
+        "min": [
+          29.25,
+          3.0,
+          3.5
+        ],
+        "max": [
+          59.75,
+          45.0,
+          34.5
+        ],
+        "center": [
+          44.5,
+          24.0,
+          19.0
+        ],
+        "size": [
+          30.5,
+          42.0,
+          31.0
+        ]
+      },
+      "right_module": {
+        "min": [
+          59.75,
+          2.25,
+          3.5
+        ],
+        "max": [
+          92.25,
+          45.0,
+          34.5
+        ],
+        "center": [
+          76.0,
+          23.625,
+          19.0
+        ],
+        "size": [
+          32.5,
+          42.75,
+          31.0
+        ]
+      },
+      "top": {
+        "min": [
+          0.0,
+          0.0,
+          33.75
+        ],
+        "max": [
+          90.0,
+          48.0,
+          36.0
+        ],
+        "center": [
+          45.0,
+          24.0,
+          34.875
+        ],
+        "size": [
+          90.0,
+          48.0,
+          2.25
+        ]
+      },
+      "miter_station": {
+        "min": [
+          0.0,
+          -10.18,
+          14.32
+        ],
+        "max": [
+          90.0,
+          22.18,
+          39.25
+        ],
+        "center": [
+          45.0,
+          6.0,
+          26.785
+        ],
+        "size": [
+          90.0,
+          32.36,
+          24.93
+        ]
+      },
+      "saw": {
+        "min": [
+          16.0,
+          13.75,
+          22.625
+        ],
+        "max": [
+          69.1875,
+          40.0,
+          36.0
+        ],
+        "center": [
+          42.59375,
+          26.875,
+          29.3125
+        ],
+        "size": [
+          53.1875,
+          26.25,
+          13.375
+        ]
+      },
+      "router": {
+        "min": [
+          73.625,
+          19.375,
+          26.0
+        ],
+        "max": [
+          85.375,
+          28.625,
+          36.0
+        ],
+        "center": [
+          79.5,
+          24.0,
+          31.0
+        ],
+        "size": [
+          11.75,
+          9.25,
+          10.0
+        ]
+      },
+      "dust": {
+        "min": [
+          68.375,
+          5.0,
+          4.25
+        ],
+        "max": [
+          86.625,
+          43.0,
+          31.65
+        ],
+        "center": [
+          77.5,
+          24.0,
+          17.95
+        ],
+        "size": [
+          18.25,
+          38.0,
+          27.4
+        ]
+      }
+    },
+    "scene_markers": [
+      {
+        "id": "plinth-footprint",
+        "label": "Plinth footprint",
+        "position": [
+          57.75,
+          24.0,
+          6.0
+        ],
+        "assemblies": [
+          "plinth"
+        ],
+        "visible_in_presets": [
+          "assembled",
+          "plinth",
+          "carcass_alignment",
+          "final_walkthrough"
+        ]
+      },
+      {
+        "id": "left-storage",
+        "label": "Left storage",
+        "position": [
+          15.375,
+          24.0,
+          38.0
+        ],
+        "assemblies": [
+          "left_module"
+        ],
+        "visible_in_presets": [
+          "assembled",
+          "left_module",
+          "carcass_alignment",
+          "final_walkthrough"
+        ]
+      },
+      {
+        "id": "saw-chassis",
+        "label": "Saw chassis",
+        "position": [
+          44.5,
+          24.0,
+          38.0
+        ],
+        "assemblies": [
+          "center_module"
+        ],
+        "visible_in_presets": [
+          "assembled",
+          "saw_chassis",
+          "carcass_alignment",
+          "table_saw_fit",
+          "final_walkthrough"
+        ]
+      },
+      {
+        "id": "right-service",
+        "label": "Right service bay",
+        "position": [
+          76.0,
+          23.625,
+          38.0
+        ],
+        "assemblies": [
+          "right_module"
+        ],
+        "visible_in_presets": [
+          "assembled",
+          "right_service",
+          "router_zone",
+          "dust_service",
+          "final_walkthrough"
+        ]
+      },
+      {
+        "id": "fixed-top",
+        "label": "Fixed top",
+        "position": [
+          45.0,
+          24.0,
+          40.5
+        ],
+        "assemblies": [
+          "top"
+        ],
+        "visible_in_presets": [
+          "assembled",
+          "top_panels",
+          "top_machining",
+          "final_walkthrough"
+        ]
+      },
+      {
+        "id": "saw-opening",
+        "label": "Field-fit saw opening",
+        "position": [
+          36.78125,
+          27.3125,
+          40.0
+        ],
+        "assemblies": [
+          "top",
+          "saw"
+        ],
+        "visible_in_presets": [
+          "assembled",
+          "table_saw_fit",
+          "top_machining",
+          "final_walkthrough"
+        ]
+      },
+      {
+        "id": "miter-bay",
+        "label": "Flip-top miter bay",
+        "position": [
+          45.0,
+          6.0,
+          41.0
+        ],
+        "assemblies": [
+          "top",
+          "miter_station"
+        ],
+        "visible_in_presets": [
+          "assembled",
+          "miter_station",
+          "top_panels",
+          "top_machining",
+          "final_walkthrough"
+        ]
+      },
+      {
+        "id": "router-zone",
+        "label": "Router zone",
+        "position": [
+          79.5,
+          24.0,
+          40.5
+        ],
+        "assemblies": [
+          "top",
+          "router",
+          "right_module"
+        ],
+        "visible_in_presets": [
+          "assembled",
+          "router_zone",
+          "top_machining",
+          "right_service",
+          "final_walkthrough"
+        ]
+      },
+      {
+        "id": "dust-bay",
+        "label": "Dust bay",
+        "position": [
+          77.5,
+          24.0,
+          37.0
+        ],
+        "assemblies": [
+          "dust",
+          "right_module"
+        ],
+        "visible_in_presets": [
+          "assembled",
+          "right_service",
+          "dust_service",
+          "final_walkthrough"
+        ]
+      },
+      {
+        "id": "left-support-span",
+        "label": "Left support span",
+        "position": [
+          17.0,
+          6.0,
+          38.5
+        ],
+        "assemblies": [
+          "guides",
+          "miter_station",
+          "top"
+        ],
+        "guides_only": true,
+        "visible_in_presets": [
+          "miter_station"
+        ]
+      },
+      {
+        "id": "right-support-span",
+        "label": "Right support span",
+        "position": [
+          73.0,
+          6.0,
+          38.5
+        ],
+        "assemblies": [
+          "guides",
+          "miter_station",
+          "top"
+        ],
+        "guides_only": true,
+        "visible_in_presets": [
+          "miter_station"
+        ]
+      }
+    ],
+    "orientation_legend": [
+      {
+        "id": "front",
+        "label": "Front",
+        "detail": "operator side"
+      },
+      {
+        "id": "left",
+        "label": "Left",
+        "detail": "storage"
+      },
+      {
+        "id": "right",
+        "label": "Right",
+        "detail": "router + dust"
+      }
+    ],
+    "assumptions": [
+      "The viewer is generated from the current fixed-top build package and is intended to explain assembly and fit sequencing, not replace field-fit steps.",
+      "The table-saw cast top and lower body are simplified envelopes. Final opening reliefs, bolt holes, and underside conflicts still come from the actual saw during fit-up.",
+      "The miter-station flip-top uses the accepted public DCS781 envelope. The automated site model does not claim that real tray fit, shimming, or bolt transfer are already complete.",
+      "The right-bay dust package remains mockup-gated. The envelopes are there to show service order and crowding, not to imply that the package is already shop-proven.",
+      "Small hardware, drawer joinery, and every fastener are intentionally abstracted. The site focuses on the build sequence, access, and spatial logic first."
+    ],
+    "presets": {
+      "assembled": {
+        "label": "Whole bench",
+        "visible_assemblies": [
+          "plinth",
+          "left_module",
+          "center_module",
+          "right_module",
+          "top",
+          "miter_station",
+          "saw",
+          "router",
+          "dust"
+        ],
+        "ghost_assemblies": [
+          "guides"
+        ],
+        "camera_position": [
+          132.0,
+          -46.0,
+          84.0
+        ],
+        "target": [
+          45.0,
+          22.0,
+          18.0
+        ],
+        "exploded": 0.0,
+        "deployed": false,
+        "show_guides": false
+      },
+      "plinth": {
+        "label": "Plinth build",
+        "visible_assemblies": [
+          "plinth"
+        ],
+        "ghost_assemblies": [
+          "left_module",
+          "center_module",
+          "right_module"
+        ],
+        "camera_position": [
+          81.0,
+          -26.0,
+          33.0
+        ],
+        "target": [
+          45.0,
+          24.0,
+          2.0
+        ],
+        "exploded": 0.2,
+        "deployed": false,
+        "show_guides": false
+      },
+      "left_module": {
+        "label": "Left module",
+        "visible_assemblies": [
+          "plinth",
+          "left_module"
+        ],
+        "ghost_assemblies": [
+          "center_module",
+          "right_module",
+          "top"
+        ],
+        "camera_position": [
+          40.0,
+          -40.0,
+          58.0
+        ],
+        "target": [
+          15.0,
+          23.0,
+          18.0
+        ],
+        "exploded": 0.22,
+        "deployed": false,
+        "show_guides": false
+      },
+      "saw_chassis": {
+        "label": "Saw chassis",
+        "visible_assemblies": [
+          "plinth",
+          "center_module",
+          "saw"
+        ],
+        "ghost_assemblies": [
+          "left_module",
+          "right_module",
+          "top"
+        ],
+        "camera_position": [
+          78.0,
+          -38.0,
+          64.0
+        ],
+        "target": [
+          44.0,
+          24.0,
+          18.0
+        ],
+        "exploded": 0.28,
+        "deployed": false,
+        "show_guides": true
+      },
+      "right_service": {
+        "label": "Right service bay",
+        "visible_assemblies": [
+          "plinth",
+          "right_module",
+          "dust",
+          "router"
+        ],
+        "ghost_assemblies": [
+          "center_module",
+          "top"
+        ],
+        "camera_position": [
+          122.0,
+          -28.0,
+          62.0
+        ],
+        "target": [
+          74.0,
+          25.0,
+          18.0
+        ],
+        "exploded": 0.24,
+        "deployed": false,
+        "show_guides": true
+      },
+      "carcass_alignment": {
+        "label": "Joined carcass",
+        "visible_assemblies": [
+          "plinth",
+          "left_module",
+          "center_module",
+          "right_module"
+        ],
+        "ghost_assemblies": [
+          "top"
+        ],
+        "camera_position": [
+          126.0,
+          -36.0,
+          70.0
+        ],
+        "target": [
+          45.0,
+          24.0,
+          16.0
+        ],
+        "exploded": 0.1,
+        "deployed": false,
+        "show_guides": false
+      },
+      "top_panels": {
+        "label": "Top subassembly",
+        "visible_assemblies": [
+          "top",
+          "guides"
+        ],
+        "ghost_assemblies": [
+          "left_module",
+          "center_module",
+          "right_module"
+        ],
+        "camera_position": [
+          106.0,
+          -8.0,
+          102.0
+        ],
+        "target": [
+          45.0,
+          24.0,
+          34.5
+        ],
+        "exploded": 0.35,
+        "deployed": false,
+        "show_guides": true
+      },
+      "table_saw_fit": {
+        "label": "Table saw fit",
+        "visible_assemblies": [
+          "top",
+          "center_module",
+          "saw",
+          "guides"
+        ],
+        "ghost_assemblies": [
+          "left_module",
+          "right_module"
+        ],
+        "camera_position": [
+          90.0,
+          -32.0,
+          71.0
+        ],
+        "target": [
+          38.0,
+          28.0,
+          26.0
+        ],
+        "exploded": 0.14,
+        "deployed": false,
+        "show_guides": true
+      },
+      "miter_station": {
+        "label": "Miter station",
+        "visible_assemblies": [
+          "top",
+          "miter_station",
+          "guides"
+        ],
+        "ghost_assemblies": [
+          "left_module",
+          "center_module",
+          "right_module"
+        ],
+        "camera_position": [
+          45.0,
+          -50.0,
+          64.0
+        ],
+        "target": [
+          45.0,
+          8.0,
+          31.0
+        ],
+        "exploded": 0.22,
+        "deployed": true,
+        "show_guides": true
+      },
+      "top_machining": {
+        "label": "Top machining",
+        "visible_assemblies": [
+          "top",
+          "saw",
+          "router",
+          "guides"
+        ],
+        "ghost_assemblies": [
+          "center_module",
+          "right_module"
+        ],
+        "camera_position": [
+          112.0,
+          -10.0,
+          96.0
+        ],
+        "target": [
+          47.0,
+          23.0,
+          34.0
+        ],
+        "exploded": 0.18,
+        "deployed": false,
+        "show_guides": true
+      },
+      "router_zone": {
+        "label": "Router zone",
+        "visible_assemblies": [
+          "top",
+          "right_module",
+          "router",
+          "guides"
+        ],
+        "ghost_assemblies": [
+          "center_module"
+        ],
+        "camera_position": [
+          118.0,
+          -18.0,
+          67.0
+        ],
+        "target": [
+          79.0,
+          24.0,
+          29.0
+        ],
+        "exploded": 0.16,
+        "deployed": false,
+        "show_guides": true
+      },
+      "dust_service": {
+        "label": "Dust service",
+        "visible_assemblies": [
+          "right_module",
+          "dust",
+          "guides"
+        ],
+        "ghost_assemblies": [
+          "top"
+        ],
+        "camera_position": [
+          118.0,
+          -26.0,
+          60.0
+        ],
+        "target": [
+          75.0,
+          25.0,
+          14.0
+        ],
+        "exploded": 0.42,
+        "deployed": false,
+        "show_guides": true
+      },
+      "final_walkthrough": {
+        "label": "Final walkthrough",
+        "visible_assemblies": [
+          "plinth",
+          "left_module",
+          "center_module",
+          "right_module",
+          "top",
+          "miter_station",
+          "saw",
+          "router",
+          "dust"
+        ],
+        "ghost_assemblies": [
+          "guides"
+        ],
+        "camera_position": [
+          132.0,
+          -44.0,
+          86.0
+        ],
+        "target": [
+          45.0,
+          24.0,
+          20.0
+        ],
+        "exploded": 0.0,
+        "deployed": false,
+        "show_guides": false
+      }
+    },
+    "precision_ready_policy": "public_sanity_only",
+    "manual_fit_required": [
+      "final tray bolt transfer from the real saw",
+      "FT-03 hard-stop tuning",
+      "shim or spacer tuning under the saw feet",
+      "fence-line and stop-track tuning",
+      "deployed flex-hose proof to the top-exit port"
+    ],
+    "dust_mockup_status": "pending"
+  },
+  "assemblies": [
+    {
+      "id": "plinth",
+      "label": "Plinth",
+      "color": "#7c5537"
+    },
+    {
+      "id": "left_module",
+      "label": "Left Storage Module",
+      "color": "#c98f63"
+    },
+    {
+      "id": "center_module",
+      "label": "Center Saw Chassis",
+      "color": "#b38a69"
+    },
+    {
+      "id": "right_module",
+      "label": "Right Service Module",
+      "color": "#b2724c"
+    },
+    {
+      "id": "top",
+      "label": "Fixed Top",
+      "color": "#ead9b7"
+    },
+    {
+      "id": "miter_station",
+      "label": "Flip-Top Miter Station",
+      "color": "#d55f42"
+    },
+    {
+      "id": "saw",
+      "label": "Table Saw Package",
+      "color": "#5a7289"
+    },
+    {
+      "id": "router",
+      "label": "Router Package",
+      "color": "#3e6c57"
+    },
+    {
+      "id": "dust",
+      "label": "Dust Package",
+      "color": "#7f6489"
+    },
+    {
+      "id": "guides",
+      "label": "Guide Geometry",
+      "color": "#3b4f68"
+    }
+  ],
+  "parts": [
+    {
+      "instance_id": "PL-01-front",
+      "part_id": "PL-01",
+      "label": "Front plinth rail",
+      "assembly": "plinth",
+      "assembly_label": "Plinth",
+      "material": "2x4 lumber",
+      "color": "#7c5537",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Front and rear plinth rails",
+      "tags": [],
+      "position": [
+        3.0,
+        4.5,
+        0.0
+      ],
+      "size": [
+        84.0,
+        1.5,
+        3.5
+      ],
+      "center": [
+        45.0,
+        5.25,
+        1.75
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        -1.2,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 1.5,
+        "rough_l": 84.5,
+        "rough_w": 3.5,
+        "final_l": 84.0,
+        "final_w": 3.5
+      }
+    },
+    {
+      "instance_id": "PL-01-rear",
+      "part_id": "PL-01",
+      "label": "Rear plinth rail",
+      "assembly": "plinth",
+      "assembly_label": "Plinth",
+      "material": "2x4 lumber",
+      "color": "#7c5537",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Front and rear plinth rails",
+      "tags": [],
+      "position": [
+        3.0,
+        42.0,
+        0.0
+      ],
+      "size": [
+        84.0,
+        1.5,
+        3.5
+      ],
+      "center": [
+        45.0,
+        42.75,
+        1.75
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        1.2,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 1.5,
+        "rough_l": 84.5,
+        "rough_w": 3.5,
+        "final_l": 84.0,
+        "final_w": 3.5
+      }
+    },
+    {
+      "instance_id": "PL-02-left",
+      "part_id": "PL-02",
+      "label": "Left plinth rail",
+      "assembly": "plinth",
+      "assembly_label": "Plinth",
+      "material": "2x4 lumber",
+      "color": "#7c5537",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Side plinth rails",
+      "tags": [],
+      "position": [
+        3.0,
+        6.0,
+        0.0
+      ],
+      "size": [
+        1.5,
+        36.0,
+        3.5
+      ],
+      "center": [
+        3.75,
+        24.0,
+        1.75
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        -1.2,
+        0.0,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 1.5,
+        "rough_l": 39.5,
+        "rough_w": 3.5,
+        "final_l": 36.0,
+        "final_w": 3.5
+      }
+    },
+    {
+      "instance_id": "PL-02-right",
+      "part_id": "PL-02",
+      "label": "Right plinth rail",
+      "assembly": "plinth",
+      "assembly_label": "Plinth",
+      "material": "2x4 lumber",
+      "color": "#7c5537",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Side plinth rails",
+      "tags": [],
+      "position": [
+        85.5,
+        6.0,
+        0.0
+      ],
+      "size": [
+        1.5,
+        36.0,
+        3.5
+      ],
+      "center": [
+        86.25,
+        24.0,
+        1.75
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        1.2,
+        0.0,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 1.5,
+        "rough_l": 39.5,
+        "rough_w": 3.5,
+        "final_l": 36.0,
+        "final_w": 3.5
+      }
+    },
+    {
+      "instance_id": "PL-03-1",
+      "part_id": "PL-03",
+      "label": "Plinth crossmember 1",
+      "assembly": "plinth",
+      "assembly_label": "Plinth",
+      "material": "2x4 lumber",
+      "color": "#7c5537",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Internal plinth crossmembers",
+      "tags": [],
+      "position": [
+        19.5,
+        6.0,
+        0.0
+      ],
+      "size": [
+        36.0,
+        1.5,
+        3.5
+      ],
+      "center": [
+        37.5,
+        6.75,
+        1.75
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        0.8
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 4,
+        "thickness": 1.5,
+        "rough_l": 39.5,
+        "rough_w": 3.5,
+        "final_l": 36.0,
+        "final_w": 3.5
+      }
+    },
+    {
+      "instance_id": "PL-03-2",
+      "part_id": "PL-03",
+      "label": "Plinth crossmember 2",
+      "assembly": "plinth",
+      "assembly_label": "Plinth",
+      "material": "2x4 lumber",
+      "color": "#7c5537",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Internal plinth crossmembers",
+      "tags": [],
+      "position": [
+        38.5,
+        6.0,
+        0.0
+      ],
+      "size": [
+        36.0,
+        1.5,
+        3.5
+      ],
+      "center": [
+        56.5,
+        6.75,
+        1.75
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        0.8
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 4,
+        "thickness": 1.5,
+        "rough_l": 39.5,
+        "rough_w": 3.5,
+        "final_l": 36.0,
+        "final_w": 3.5
+      }
+    },
+    {
+      "instance_id": "PL-03-3",
+      "part_id": "PL-03",
+      "label": "Plinth crossmember 3",
+      "assembly": "plinth",
+      "assembly_label": "Plinth",
+      "material": "2x4 lumber",
+      "color": "#7c5537",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Internal plinth crossmembers",
+      "tags": [],
+      "position": [
+        57.5,
+        6.0,
+        0.0
+      ],
+      "size": [
+        36.0,
+        1.5,
+        3.5
+      ],
+      "center": [
+        75.5,
+        6.75,
+        1.75
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        0.8
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 4,
+        "thickness": 1.5,
+        "rough_l": 39.5,
+        "rough_w": 3.5,
+        "final_l": 36.0,
+        "final_w": 3.5
+      }
+    },
+    {
+      "instance_id": "PL-03-4",
+      "part_id": "PL-03",
+      "label": "Plinth crossmember 4",
+      "assembly": "plinth",
+      "assembly_label": "Plinth",
+      "material": "2x4 lumber",
+      "color": "#7c5537",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Internal plinth crossmembers",
+      "tags": [],
+      "position": [
+        76.5,
+        6.0,
+        0.0
+      ],
+      "size": [
+        36.0,
+        1.5,
+        3.5
+      ],
+      "center": [
+        94.5,
+        6.75,
+        1.75
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        0.8
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 4,
+        "thickness": 1.5,
+        "rough_l": 39.5,
+        "rough_w": 3.5,
+        "final_l": 36.0,
+        "final_w": 3.5
+      }
+    },
+    {
+      "instance_id": "PL-04-front-left",
+      "part_id": "PL-04",
+      "label": "Caster block front-left",
+      "assembly": "plinth",
+      "assembly_label": "Plinth",
+      "material": "2x6 lumber",
+      "color": "#7c5537",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Caster reinforcement blocks",
+      "tags": [],
+      "position": [
+        3.0,
+        4.5,
+        0.0
+      ],
+      "size": [
+        7.0,
+        5.5,
+        1.5
+      ],
+      "center": [
+        6.5,
+        7.25,
+        0.75
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        -0.4
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 4,
+        "thickness": 1.5,
+        "rough_l": 8.0,
+        "rough_w": 5.5,
+        "final_l": 7.0,
+        "final_w": 5.5
+      }
+    },
+    {
+      "instance_id": "PL-04-front-right",
+      "part_id": "PL-04",
+      "label": "Caster block front-right",
+      "assembly": "plinth",
+      "assembly_label": "Plinth",
+      "material": "2x6 lumber",
+      "color": "#7c5537",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Caster reinforcement blocks",
+      "tags": [],
+      "position": [
+        80.0,
+        4.5,
+        0.0
+      ],
+      "size": [
+        7.0,
+        5.5,
+        1.5
+      ],
+      "center": [
+        83.5,
+        7.25,
+        0.75
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        -0.4
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 4,
+        "thickness": 1.5,
+        "rough_l": 8.0,
+        "rough_w": 5.5,
+        "final_l": 7.0,
+        "final_w": 5.5
+      }
+    },
+    {
+      "instance_id": "PL-04-rear-left",
+      "part_id": "PL-04",
+      "label": "Caster block rear-left",
+      "assembly": "plinth",
+      "assembly_label": "Plinth",
+      "material": "2x6 lumber",
+      "color": "#7c5537",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Caster reinforcement blocks",
+      "tags": [],
+      "position": [
+        3.0,
+        38.0,
+        0.0
+      ],
+      "size": [
+        7.0,
+        5.5,
+        1.5
+      ],
+      "center": [
+        6.5,
+        40.75,
+        0.75
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        -0.4
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 4,
+        "thickness": 1.5,
+        "rough_l": 8.0,
+        "rough_w": 5.5,
+        "final_l": 7.0,
+        "final_w": 5.5
+      }
+    },
+    {
+      "instance_id": "PL-04-rear-right",
+      "part_id": "PL-04",
+      "label": "Caster block rear-right",
+      "assembly": "plinth",
+      "assembly_label": "Plinth",
+      "material": "2x6 lumber",
+      "color": "#7c5537",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Caster reinforcement blocks",
+      "tags": [],
+      "position": [
+        80.0,
+        38.0,
+        0.0
+      ],
+      "size": [
+        7.0,
+        5.5,
+        1.5
+      ],
+      "center": [
+        83.5,
+        40.75,
+        0.75
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        -0.4
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 4,
+        "thickness": 1.5,
+        "rough_l": 8.0,
+        "rough_w": 5.5,
+        "final_l": 7.0,
+        "final_w": 5.5
+      }
+    },
+    {
+      "instance_id": "LM-01-left",
+      "part_id": "LM-01",
+      "label": "Left module outer side",
+      "assembly": "left_module",
+      "assembly_label": "Left Storage Module",
+      "material": "plywood",
+      "color": "#c98f63",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Left module sides",
+      "tags": [],
+      "position": [
+        1.5,
+        3.0,
+        3.5
+      ],
+      "size": [
+        0.75,
+        42.0,
+        31.0
+      ],
+      "center": [
+        1.875,
+        24.0,
+        19.0
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 0.75,
+        "rough_l": 31.5,
+        "rough_w": 42.5,
+        "final_l": 31.0,
+        "final_w": 42.0
+      }
+    },
+    {
+      "instance_id": "LM-01-right",
+      "part_id": "LM-01",
+      "label": "Left module seam side",
+      "assembly": "left_module",
+      "assembly_label": "Left Storage Module",
+      "material": "plywood",
+      "color": "#c98f63",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Left module sides",
+      "tags": [],
+      "position": [
+        28.5,
+        3.0,
+        3.5
+      ],
+      "size": [
+        0.75,
+        42.0,
+        31.0
+      ],
+      "center": [
+        28.875,
+        24.0,
+        19.0
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 0.75,
+        "rough_l": 31.5,
+        "rough_w": 42.5,
+        "final_l": 31.0,
+        "final_w": 42.0
+      }
+    },
+    {
+      "instance_id": "LM-02",
+      "part_id": "LM-02",
+      "label": "Left cubby partition",
+      "assembly": "left_module",
+      "assembly_label": "Left Storage Module",
+      "material": "plywood",
+      "color": "#c98f63",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Left module partition located to leave 7.5 in clear cubby and 18 in clear drawer bay Placed from the documented 7.5 in clear cubby width.",
+      "tags": [],
+      "position": [
+        9.75,
+        3.0,
+        3.5
+      ],
+      "size": [
+        0.75,
+        42.0,
+        31.0
+      ],
+      "center": [
+        10.125,
+        24.0,
+        19.0
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        1.2
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 1,
+        "thickness": 0.75,
+        "rough_l": 31.5,
+        "rough_w": 42.5,
+        "final_l": 31.0,
+        "final_w": 42.0
+      }
+    },
+    {
+      "instance_id": "LM-03",
+      "part_id": "LM-03",
+      "label": "Left module bottom deck",
+      "assembly": "left_module",
+      "assembly_label": "Left Storage Module",
+      "material": "plywood",
+      "color": "#c98f63",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Left module bottom deck",
+      "tags": [],
+      "position": [
+        2.25,
+        3.0,
+        3.5
+      ],
+      "size": [
+        26.25,
+        42.0,
+        0.75
+      ],
+      "center": [
+        15.375,
+        24.0,
+        3.875
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 1,
+        "thickness": 0.75,
+        "rough_l": 26.75,
+        "rough_w": 42.5,
+        "final_l": 26.25,
+        "final_w": 42.0
+      }
+    },
+    {
+      "instance_id": "LM-04-front",
+      "part_id": "LM-04",
+      "label": "Left top front stretcher",
+      "assembly": "left_module",
+      "assembly_label": "Left Storage Module",
+      "material": "plywood",
+      "color": "#c98f63",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Left module top front and rear stretchers; do not batch-crosscut with RM-04 because the final lengths differ",
+      "tags": [],
+      "position": [
+        2.25,
+        3.0,
+        30.5
+      ],
+      "size": [
+        26.25,
+        0.75,
+        4.0
+      ],
+      "center": [
+        15.375,
+        3.375,
+        32.5
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        -0.8,
+        0.8
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 0.75,
+        "rough_l": 26.75,
+        "rough_w": 4.5,
+        "final_l": 26.25,
+        "final_w": 4.0
+      }
+    },
+    {
+      "instance_id": "LM-04-rear",
+      "part_id": "LM-04",
+      "label": "Left top rear stretcher",
+      "assembly": "left_module",
+      "assembly_label": "Left Storage Module",
+      "material": "plywood",
+      "color": "#c98f63",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Left module top front and rear stretchers; do not batch-crosscut with RM-04 because the final lengths differ",
+      "tags": [],
+      "position": [
+        2.25,
+        44.25,
+        30.5
+      ],
+      "size": [
+        26.25,
+        0.75,
+        4.0
+      ],
+      "center": [
+        15.375,
+        44.625,
+        32.5
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.8,
+        0.8
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 0.75,
+        "rough_l": 26.75,
+        "rough_w": 4.5,
+        "final_l": 26.25,
+        "final_w": 4.0
+      }
+    },
+    {
+      "instance_id": "LM-05",
+      "part_id": "LM-05",
+      "label": "Left module back panel",
+      "assembly": "left_module",
+      "assembly_label": "Left Storage Module",
+      "material": "plywood",
+      "color": "#c98f63",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Left module back panel Shown as a screw-on squaring panel.",
+      "tags": [],
+      "position": [
+        1.5,
+        44.5,
+        3.5
+      ],
+      "size": [
+        27.75,
+        0.5,
+        31.0
+      ],
+      "center": [
+        15.375,
+        44.75,
+        19.0
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 1,
+        "thickness": 0.5,
+        "rough_l": 28.25,
+        "rough_w": 31.5,
+        "final_l": 27.75,
+        "final_w": 31.0
+      }
+    },
+    {
+      "instance_id": "LM-06-1",
+      "part_id": "LM-06",
+      "label": "Vertical cubby shelf 1",
+      "assembly": "left_module",
+      "assembly_label": "Left Storage Module",
+      "material": "plywood",
+      "color": "#c98f63",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Vertical-cubby shelves",
+      "tags": [],
+      "position": [
+        2.25,
+        3.75,
+        13.25
+      ],
+      "size": [
+        8.0,
+        40.5,
+        0.75
+      ],
+      "center": [
+        6.25,
+        24.0,
+        13.625
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        0.9
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 0.75,
+        "rough_l": 8.5,
+        "rough_w": 41.0,
+        "final_l": 8.0,
+        "final_w": 40.5
+      }
+    },
+    {
+      "instance_id": "LM-06-2",
+      "part_id": "LM-06",
+      "label": "Vertical cubby shelf 2",
+      "assembly": "left_module",
+      "assembly_label": "Left Storage Module",
+      "material": "plywood",
+      "color": "#c98f63",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Vertical-cubby shelves",
+      "tags": [],
+      "position": [
+        2.25,
+        3.75,
+        21.5
+      ],
+      "size": [
+        8.0,
+        40.5,
+        0.75
+      ],
+      "center": [
+        6.25,
+        24.0,
+        21.875
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        0.9
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 0.75,
+        "rough_l": 8.5,
+        "rough_w": 41.0,
+        "final_l": 8.0,
+        "final_w": 40.5
+      }
+    },
+    {
+      "instance_id": "drawer-envelope-top",
+      "part_id": "drawer-envelope-top",
+      "label": "Top drawer envelope",
+      "assembly": "left_module",
+      "assembly_label": "Left Storage Module",
+      "material": "drawer envelope",
+      "color": "#d1a17d",
+      "confidence": "medium",
+      "gate": "derived",
+      "notes": "Drawer envelope only. The viewer does not decompose every drawer side and bottom part.",
+      "tags": [],
+      "position": [
+        10.5,
+        5.0,
+        7.0
+      ],
+      "size": [
+        18.0,
+        19.5,
+        4.0
+      ],
+      "center": [
+        19.5,
+        14.75,
+        9.0
+      ],
+      "part_type": "box",
+      "render_style": "context",
+      "exploded_offset": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null
+    },
+    {
+      "instance_id": "drawer-envelope-mid",
+      "part_id": "drawer-envelope-mid",
+      "label": "Mid drawer envelope",
+      "assembly": "left_module",
+      "assembly_label": "Left Storage Module",
+      "material": "drawer envelope",
+      "color": "#d1a17d",
+      "confidence": "medium",
+      "gate": "derived",
+      "notes": "Drawer envelope only. The viewer does not decompose every drawer side and bottom part.",
+      "tags": [],
+      "position": [
+        10.5,
+        5.0,
+        14.5
+      ],
+      "size": [
+        18.0,
+        19.5,
+        6.0
+      ],
+      "center": [
+        19.5,
+        14.75,
+        17.5
+      ],
+      "part_type": "box",
+      "render_style": "context",
+      "exploded_offset": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null
+    },
+    {
+      "instance_id": "drawer-envelope-bottom",
+      "part_id": "drawer-envelope-bottom",
+      "label": "Bottom drawer envelope",
+      "assembly": "left_module",
+      "assembly_label": "Left Storage Module",
+      "material": "drawer envelope",
+      "color": "#d1a17d",
+      "confidence": "medium",
+      "gate": "derived",
+      "notes": "Drawer envelope only. The viewer does not decompose every drawer side and bottom part.",
+      "tags": [],
+      "position": [
+        10.5,
+        5.0,
+        23.0
+      ],
+      "size": [
+        18.0,
+        19.5,
+        8.0
+      ],
+      "center": [
+        19.5,
+        14.75,
+        27.0
+      ],
+      "part_type": "box",
+      "render_style": "context",
+      "exploded_offset": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null
+    },
+    {
+      "instance_id": "CM-01-left",
+      "part_id": "CM-01",
+      "label": "Center module left side",
+      "assembly": "center_module",
+      "assembly_label": "Center Saw Chassis",
+      "material": "plywood",
+      "color": "#b38a69",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Center module sides",
+      "tags": [],
+      "position": [
+        29.25,
+        3.0,
+        3.5
+      ],
+      "size": [
+        0.75,
+        42.0,
+        31.0
+      ],
+      "center": [
+        29.625,
+        24.0,
+        19.0
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 0.75,
+        "rough_l": 31.5,
+        "rough_w": 42.5,
+        "final_l": 31.0,
+        "final_w": 42.0
+      }
+    },
+    {
+      "instance_id": "CM-01-right",
+      "part_id": "CM-01",
+      "label": "Center module right side",
+      "assembly": "center_module",
+      "assembly_label": "Center Saw Chassis",
+      "material": "plywood",
+      "color": "#b38a69",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Center module sides",
+      "tags": [],
+      "position": [
+        59.0,
+        3.0,
+        3.5
+      ],
+      "size": [
+        0.75,
+        42.0,
+        31.0
+      ],
+      "center": [
+        59.375,
+        24.0,
+        19.0
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 0.75,
+        "rough_l": 31.5,
+        "rough_w": 42.5,
+        "final_l": 31.0,
+        "final_w": 42.0
+      }
+    },
+    {
+      "instance_id": "CM-02-front",
+      "part_id": "CM-02",
+      "label": "Center upper front stretcher",
+      "assembly": "center_module",
+      "assembly_label": "Center Saw Chassis",
+      "material": "plywood",
+      "color": "#b38a69",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Center module top front and rear stretchers",
+      "tags": [],
+      "position": [
+        30.0,
+        3.0,
+        30.5
+      ],
+      "size": [
+        29.0,
+        0.75,
+        4.0
+      ],
+      "center": [
+        44.5,
+        3.375,
+        32.5
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        -0.8,
+        0.9
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 0.75,
+        "rough_l": 29.5,
+        "rough_w": 4.5,
+        "final_l": 29.0,
+        "final_w": 4.0
+      }
+    },
+    {
+      "instance_id": "CM-02-rear",
+      "part_id": "CM-02",
+      "label": "Center upper rear stretcher",
+      "assembly": "center_module",
+      "assembly_label": "Center Saw Chassis",
+      "material": "plywood",
+      "color": "#b38a69",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Center module top front and rear stretchers",
+      "tags": [],
+      "position": [
+        30.0,
+        44.25,
+        30.5
+      ],
+      "size": [
+        29.0,
+        0.75,
+        4.0
+      ],
+      "center": [
+        44.5,
+        44.625,
+        32.5
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.8,
+        0.9
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 0.75,
+        "rough_l": 29.5,
+        "rough_w": 4.5,
+        "final_l": 29.0,
+        "final_w": 4.0
+      }
+    },
+    {
+      "instance_id": "CM-03-front",
+      "part_id": "CM-03",
+      "label": "Center lower front stretcher",
+      "assembly": "center_module",
+      "assembly_label": "Center Saw Chassis",
+      "material": "plywood",
+      "color": "#b38a69",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Center module lower front and rear stretchers",
+      "tags": [],
+      "position": [
+        30.0,
+        3.0,
+        9.5
+      ],
+      "size": [
+        29.0,
+        0.75,
+        6.0
+      ],
+      "center": [
+        44.5,
+        3.375,
+        12.5
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        -0.8,
+        -0.8
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 0.75,
+        "rough_l": 29.5,
+        "rough_w": 6.5,
+        "final_l": 29.0,
+        "final_w": 6.0
+      }
+    },
+    {
+      "instance_id": "CM-03-rear",
+      "part_id": "CM-03",
+      "label": "Center lower rear stretcher",
+      "assembly": "center_module",
+      "assembly_label": "Center Saw Chassis",
+      "material": "plywood",
+      "color": "#b38a69",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Center module lower front and rear stretchers",
+      "tags": [],
+      "position": [
+        30.0,
+        44.25,
+        9.5
+      ],
+      "size": [
+        29.0,
+        0.75,
+        6.0
+      ],
+      "center": [
+        44.5,
+        44.625,
+        12.5
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.8,
+        -0.8
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 0.75,
+        "rough_l": 29.5,
+        "rough_w": 6.5,
+        "final_l": 29.0,
+        "final_w": 6.0
+      }
+    },
+    {
+      "instance_id": "CM-04-left",
+      "part_id": "CM-04",
+      "label": "Left saw ledger",
+      "assembly": "center_module",
+      "assembly_label": "Center Saw Chassis",
+      "material": "2x4 lumber",
+      "color": "#b38a69",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Saw-mount ledgers Nominal ledger height only. Final saw flushness is still jack-screw tuned.",
+      "tags": [],
+      "position": [
+        30.0,
+        9.5,
+        20.875
+      ],
+      "size": [
+        1.5,
+        29.0,
+        3.5
+      ],
+      "center": [
+        30.75,
+        24.0,
+        22.625
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        -0.8,
+        0.0,
+        0.5
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 1.5,
+        "rough_l": 29.5,
+        "rough_w": 3.5,
+        "final_l": 29.0,
+        "final_w": 3.5
+      }
+    },
+    {
+      "instance_id": "CM-04-right",
+      "part_id": "CM-04",
+      "label": "Right saw ledger",
+      "assembly": "center_module",
+      "assembly_label": "Center Saw Chassis",
+      "material": "2x4 lumber",
+      "color": "#b38a69",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Saw-mount ledgers Nominal ledger height only. Final saw flushness is still jack-screw tuned.",
+      "tags": [],
+      "position": [
+        57.5,
+        9.5,
+        20.875
+      ],
+      "size": [
+        1.5,
+        29.0,
+        3.5
+      ],
+      "center": [
+        58.25,
+        24.0,
+        22.625
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.8,
+        0.0,
+        0.5
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 1.5,
+        "rough_l": 29.5,
+        "rough_w": 3.5,
+        "final_l": 29.0,
+        "final_w": 3.5
+      }
+    },
+    {
+      "instance_id": "CM-05-front",
+      "part_id": "CM-05",
+      "label": "Front deck support",
+      "assembly": "center_module",
+      "assembly_label": "Center Saw Chassis",
+      "material": "2x4 lumber",
+      "color": "#b38a69",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Mounting-deck supports and jack-screw carriers",
+      "tags": [],
+      "position": [
+        32.5,
+        13.0,
+        20.875
+      ],
+      "size": [
+        24.0,
+        1.5,
+        3.5
+      ],
+      "center": [
+        44.5,
+        13.75,
+        22.625
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        -0.8,
+        0.3
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 1.5,
+        "rough_l": 25.0,
+        "rough_w": 3.5,
+        "final_l": 24.0,
+        "final_w": 3.5
+      }
+    },
+    {
+      "instance_id": "CM-05-rear",
+      "part_id": "CM-05",
+      "label": "Rear deck support",
+      "assembly": "center_module",
+      "assembly_label": "Center Saw Chassis",
+      "material": "2x4 lumber",
+      "color": "#b38a69",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Mounting-deck supports and jack-screw carriers",
+      "tags": [],
+      "position": [
+        32.5,
+        31.5,
+        20.875
+      ],
+      "size": [
+        24.0,
+        1.5,
+        3.5
+      ],
+      "center": [
+        44.5,
+        32.25,
+        22.625
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.8,
+        0.3
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 1.5,
+        "rough_l": 25.0,
+        "rough_w": 3.5,
+        "final_l": 24.0,
+        "final_w": 3.5
+      }
+    },
+    {
+      "instance_id": "CM-06",
+      "part_id": "CM-06",
+      "label": "Adjustable saw mounting deck",
+      "assembly": "center_module",
+      "assembly_label": "Center Saw Chassis",
+      "material": "plywood",
+      "color": "#b38a69",
+      "confidence": "medium",
+      "gate": "after_survey",
+      "notes": "Adjustable saw mounting deck; drill final bolt pattern only after flush fit Final bolt pattern is transfer-fit from the real saw only after flush tuning.",
+      "tags": [],
+      "position": [
+        30.5,
+        12.0,
+        22.625
+      ],
+      "size": [
+        28.0,
+        24.0,
+        0.75
+      ],
+      "center": [
+        44.5,
+        24.0,
+        23.0
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        1.5
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 1,
+        "thickness": 0.75,
+        "rough_l": 28.5,
+        "rough_w": 24.5,
+        "final_l": 28.0,
+        "final_w": 24.0
+      }
+    },
+    {
+      "instance_id": "RM-01-left",
+      "part_id": "RM-01",
+      "label": "Right module seam side",
+      "assembly": "right_module",
+      "assembly_label": "Right Service Module",
+      "material": "plywood",
+      "color": "#b2724c",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Right module sides",
+      "tags": [],
+      "position": [
+        59.75,
+        3.0,
+        3.5
+      ],
+      "size": [
+        0.75,
+        42.0,
+        31.0
+      ],
+      "center": [
+        60.125,
+        24.0,
+        19.0
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 0.75,
+        "rough_l": 31.5,
+        "rough_w": 42.5,
+        "final_l": 31.0,
+        "final_w": 42.0
+      }
+    },
+    {
+      "instance_id": "RM-01-right",
+      "part_id": "RM-01",
+      "label": "Right module outer side",
+      "assembly": "right_module",
+      "assembly_label": "Right Service Module",
+      "material": "plywood",
+      "color": "#b2724c",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Right module sides",
+      "tags": [],
+      "position": [
+        87.75,
+        3.0,
+        3.5
+      ],
+      "size": [
+        0.75,
+        42.0,
+        31.0
+      ],
+      "center": [
+        88.125,
+        24.0,
+        19.0
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 0.75,
+        "rough_l": 31.5,
+        "rough_w": 42.5,
+        "final_l": 31.0,
+        "final_w": 42.0
+      }
+    },
+    {
+      "instance_id": "RM-02",
+      "part_id": "RM-02",
+      "label": "Dust partition",
+      "assembly": "right_module",
+      "assembly_label": "Right Service Module",
+      "material": "plywood",
+      "color": "#b2724c",
+      "confidence": "high",
+      "gate": "after_service_layout",
+      "notes": "Right module partition with upper notches transferred from the layout contract Upper notches are modeled from the current layout contract and remain service-layout dependent.",
+      "tags": [],
+      "position": [
+        67.25,
+        3.0,
+        3.5
+      ],
+      "size": [
+        0.75,
+        42.0,
+        31.0
+      ],
+      "center": [
+        67.625,
+        24.0,
+        19.0
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        1.2
+      ],
+      "features": [
+        {
+          "type": "pocket",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "size": [
+            0.75,
+            8.0
+          ],
+          "depth": 8.0,
+          "color": "#6d93af"
+        },
+        {
+          "type": "pocket",
+          "local_position": [
+            0.0,
+            30.0,
+            0.0
+          ],
+          "size": [
+            0.75,
+            8.0
+          ],
+          "depth": 8.0,
+          "color": "#6d93af"
+        }
+      ],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 1,
+        "thickness": 0.75,
+        "rough_l": 31.5,
+        "rough_w": 42.5,
+        "final_l": 31.0,
+        "final_w": 42.0
+      }
+    },
+    {
+      "instance_id": "RM-03",
+      "part_id": "RM-03",
+      "label": "Dust-bay floor",
+      "assembly": "right_module",
+      "assembly_label": "Right Service Module",
+      "material": "plywood",
+      "color": "#b2724c",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Dust-bay floor",
+      "tags": [],
+      "position": [
+        67.25,
+        3.75,
+        3.5
+      ],
+      "size": [
+        20.5,
+        40.5,
+        0.75
+      ],
+      "center": [
+        77.5,
+        24.0,
+        3.875
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 1,
+        "thickness": 0.75,
+        "rough_l": 21.0,
+        "rough_w": 41.0,
+        "final_l": 20.5,
+        "final_w": 40.5
+      }
+    },
+    {
+      "instance_id": "RM-04-front",
+      "part_id": "RM-04",
+      "label": "Right upper front stretcher",
+      "assembly": "right_module",
+      "assembly_label": "Right Service Module",
+      "material": "plywood",
+      "color": "#b2724c",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Right module top front and rear stretchers; do not batch-crosscut with LM-04 because the final lengths differ",
+      "tags": [],
+      "position": [
+        60.5,
+        3.0,
+        30.5
+      ],
+      "size": [
+        26.5,
+        0.75,
+        4.0
+      ],
+      "center": [
+        73.75,
+        3.375,
+        32.5
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        -0.8,
+        0.9
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 0.75,
+        "rough_l": 27.0,
+        "rough_w": 4.5,
+        "final_l": 26.5,
+        "final_w": 4.0
+      }
+    },
+    {
+      "instance_id": "RM-04-rear",
+      "part_id": "RM-04",
+      "label": "Right upper rear stretcher",
+      "assembly": "right_module",
+      "assembly_label": "Right Service Module",
+      "material": "plywood",
+      "color": "#b2724c",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Right module top front and rear stretchers; do not batch-crosscut with LM-04 because the final lengths differ",
+      "tags": [],
+      "position": [
+        60.5,
+        44.25,
+        30.5
+      ],
+      "size": [
+        26.5,
+        0.75,
+        4.0
+      ],
+      "center": [
+        73.75,
+        44.625,
+        32.5
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.8,
+        0.9
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 0.75,
+        "rough_l": 27.0,
+        "rough_w": 4.5,
+        "final_l": 26.5,
+        "final_w": 4.0
+      }
+    },
+    {
+      "instance_id": "RM-05",
+      "part_id": "RM-05",
+      "label": "Right module back panel",
+      "assembly": "right_module",
+      "assembly_label": "Right Service Module",
+      "material": "plywood",
+      "color": "#b2724c",
+      "confidence": "high",
+      "gate": "after_service_layout",
+      "notes": "Right module back panel with service cutouts Shown as a template-backed service panel. Final cutouts still follow the mockup.",
+      "tags": [],
+      "position": [
+        59.75,
+        44.5,
+        3.5
+      ],
+      "size": [
+        28.75,
+        0.5,
+        31.0
+      ],
+      "center": [
+        74.125,
+        44.75,
+        19.0
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 1,
+        "thickness": 0.5,
+        "rough_l": 29.25,
+        "rough_w": 31.5,
+        "final_l": 28.75,
+        "final_w": 31.0
+      }
+    },
+    {
+      "instance_id": "RM-06",
+      "part_id": "RM-06",
+      "label": "Dust-service face blank",
+      "assembly": "right_module",
+      "assembly_label": "Right Service Module",
+      "material": "plywood",
+      "color": "#b2724c",
+      "confidence": "medium",
+      "gate": "after_mockup",
+      "notes": "Plain removable dust-service face blank; transfer actual cutouts and reliefs only after mockup proves the service path Still a blank at this stage. Transfer real reliefs only after the right-bay mockup passes.",
+      "tags": [],
+      "position": [
+        67.25,
+        3.0,
+        5.5
+      ],
+      "size": [
+        20.0,
+        0.75,
+        28.0
+      ],
+      "center": [
+        77.25,
+        3.375,
+        19.5
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        -5.0,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 1,
+        "thickness": 0.75,
+        "rough_l": 20.5,
+        "rough_w": 28.5,
+        "final_l": 20.0,
+        "final_w": 28.0
+      }
+    },
+    {
+      "instance_id": "RM-07",
+      "part_id": "RM-07",
+      "label": "Router access hatch",
+      "assembly": "right_module",
+      "assembly_label": "Right Service Module",
+      "material": "plywood",
+      "color": "#b2724c",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Right-side router access hatch",
+      "tags": [],
+      "position": [
+        87.75,
+        18.0,
+        18.5
+      ],
+      "size": [
+        0.75,
+        12.0,
+        10.0
+      ],
+      "center": [
+        88.125,
+        24.0,
+        23.5
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        2.0,
+        0.0,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 1,
+        "thickness": 0.75,
+        "rough_l": 12.5,
+        "rough_w": 10.5,
+        "final_l": 12.0,
+        "final_w": 10.0
+      }
+    },
+    {
+      "instance_id": "RM-08",
+      "part_id": "RM-08",
+      "label": "Extractor low-deck blank",
+      "assembly": "right_module",
+      "assembly_label": "Right Service Module",
+      "material": "plywood",
+      "color": "#b2724c",
+      "confidence": "medium",
+      "gate": "after_mockup",
+      "notes": "Hercules fixed low deck or skid-base blank; trim and pad it only after the real mockup confirms height and stance Template-fit platform. Final pad stack and stance are mockup-driven.",
+      "tags": [],
+      "position": [
+        68.25,
+        19.5,
+        4.25
+      ],
+      "size": [
+        24.0,
+        19.0,
+        0.75
+      ],
+      "center": [
+        80.25,
+        29.0,
+        4.625
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        2.0,
+        0.8
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 1,
+        "thickness": 0.75,
+        "rough_l": 24.5,
+        "rough_w": 19.5,
+        "final_l": 24.0,
+        "final_w": 19.0
+      }
+    },
+    {
+      "instance_id": "RM-09-lower",
+      "part_id": "RM-09",
+      "label": "Lower service-face cleat",
+      "assembly": "right_module",
+      "assembly_label": "Right Service Module",
+      "material": "plywood",
+      "color": "#b2724c",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Front service-face cleats",
+      "tags": [],
+      "position": [
+        67.25,
+        3.75,
+        5.5
+      ],
+      "size": [
+        20.0,
+        0.75,
+        1.5
+      ],
+      "center": [
+        77.25,
+        4.125,
+        6.25
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        -4.0,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 0.75,
+        "rough_l": 20.5,
+        "rough_w": 1.75,
+        "final_l": 20.0,
+        "final_w": 1.5
+      }
+    },
+    {
+      "instance_id": "RM-09-upper",
+      "part_id": "RM-09",
+      "label": "Upper service-face cleat",
+      "assembly": "right_module",
+      "assembly_label": "Right Service Module",
+      "material": "plywood",
+      "color": "#b2724c",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Front service-face cleats",
+      "tags": [],
+      "position": [
+        67.25,
+        3.75,
+        32.0
+      ],
+      "size": [
+        20.0,
+        0.75,
+        1.5
+      ],
+      "center": [
+        77.25,
+        4.125,
+        32.75
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        -4.0,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 0.75,
+        "rough_l": 20.5,
+        "rough_w": 1.75,
+        "final_l": 20.0,
+        "final_w": 1.5
+      }
+    },
+    {
+      "instance_id": "RM-10",
+      "part_id": "RM-10",
+      "label": "Removable control subpanel blank",
+      "assembly": "right_module",
+      "assembly_label": "Right Service Module",
+      "material": "plywood",
+      "color": "#b2724c",
+      "confidence": "medium",
+      "gate": "after_mockup",
+      "notes": "Independent removable control-subpanel blank; transfer actual hole and dock layout from the mockup template instead of paper coordinates Hole pattern and hose dock remain mockup-transferred.",
+      "tags": [],
+      "position": [
+        66.75,
+        2.25,
+        9.5
+      ],
+      "size": [
+        12.0,
+        0.75,
+        18.0
+      ],
+      "center": [
+        72.75,
+        2.625,
+        18.5
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        -6.0,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 1,
+        "thickness": 0.75,
+        "rough_l": 12.5,
+        "rough_w": 18.5,
+        "final_l": 12.0,
+        "final_w": 18.0
+      }
+    },
+    {
+      "instance_id": "TOP-01A",
+      "part_id": "TOP-01A",
+      "label": "Rear top substrate",
+      "assembly": "top",
+      "assembly_label": "Fixed Top",
+      "material": "plywood",
+      "color": "#ead9b7",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Rear fixed-top substrate panel; intentionally carries the saw-opening front shoulder clear of the front-panel seam Carries the saw-opening front shoulder clear of the front-panel seam.",
+      "tags": [],
+      "position": [
+        0.0,
+        15.0,
+        34.5
+      ],
+      "size": [
+        90.0,
+        33.0,
+        0.75
+      ],
+      "center": [
+        45.0,
+        31.5,
+        34.875
+      ],
+      "part_type": "horizontal_panel",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        4.0
+      ],
+      "features": [
+        {
+          "type": "through_cutout",
+          "local_position": [
+            22.96875,
+            1.21875,
+            0.0
+          ],
+          "size": [
+            27.625,
+            22.1875
+          ]
+        },
+        {
+          "type": "through_cutout",
+          "local_position": [
+            73.625,
+            4.375,
+            0.0
+          ],
+          "size": [
+            11.75,
+            9.25
+          ]
+        }
+      ],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 1,
+        "thickness": 0.75,
+        "rough_l": 90.5,
+        "rough_w": 33.75,
+        "final_l": 90.0,
+        "final_w": 33.0
+      }
+    },
+    {
+      "instance_id": "TOP-02A",
+      "part_id": "TOP-02A",
+      "label": "Rear top wear skin",
+      "assembly": "top",
+      "assembly_label": "Fixed Top",
+      "material": "prefinished plywood",
+      "color": "#ead9b7",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Rear fixed-top wear skin with finished face up; do not machine openings yet Prefinished wear layer. Final openings still wait for field-led machining.",
+      "tags": [],
+      "position": [
+        0.0,
+        15.0,
+        35.25
+      ],
+      "size": [
+        90.0,
+        33.0,
+        0.75
+      ],
+      "center": [
+        45.0,
+        31.5,
+        35.625
+      ],
+      "part_type": "horizontal_panel",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        5.4
+      ],
+      "features": [
+        {
+          "type": "through_cutout",
+          "local_position": [
+            22.96875,
+            1.21875,
+            0.0
+          ],
+          "size": [
+            27.625,
+            22.1875
+          ]
+        },
+        {
+          "type": "through_cutout",
+          "local_position": [
+            73.625,
+            4.375,
+            0.0
+          ],
+          "size": [
+            11.75,
+            9.25
+          ]
+        },
+        {
+          "type": "pocket",
+          "local_position": [
+            73.625,
+            4.375,
+            0.0
+          ],
+          "size": [
+            11.75,
+            9.25
+          ],
+          "depth": 0.375,
+          "color": "#395f8a"
+        }
+      ],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 1,
+        "thickness": 0.75,
+        "rough_l": 90.5,
+        "rough_w": 33.75,
+        "final_l": 90.0,
+        "final_w": 33.0
+      }
+    },
+    {
+      "instance_id": "TOP-01B",
+      "part_id": "TOP-01B",
+      "label": "Front-left top substrate",
+      "assembly": "top",
+      "assembly_label": "Fixed Top",
+      "material": "plywood",
+      "color": "#ead9b7",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Front-left fixed-top substrate panel",
+      "tags": [],
+      "position": [
+        0.0,
+        0.0,
+        34.5
+      ],
+      "size": [
+        59.75,
+        15.0,
+        0.75
+      ],
+      "center": [
+        29.875,
+        7.5,
+        34.875
+      ],
+      "part_type": "horizontal_panel",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        4.0
+      ],
+      "features": [
+        {
+          "type": "through_cutout",
+          "local_position": [
+            34.0,
+            0.0,
+            0.0
+          ],
+          "size": [
+            22.0,
+            12.0
+          ]
+        }
+      ],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 1,
+        "thickness": 0.75,
+        "rough_l": 60.25,
+        "rough_w": 15.75,
+        "final_l": 59.75,
+        "final_w": 15.0
+      }
+    },
+    {
+      "instance_id": "TOP-02B",
+      "part_id": "TOP-02B",
+      "label": "Front-left top wear skin",
+      "assembly": "top",
+      "assembly_label": "Fixed Top",
+      "material": "prefinished plywood",
+      "color": "#ead9b7",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Front-left fixed-top wear skin with finished face up; do not machine openings yet",
+      "tags": [],
+      "position": [
+        0.0,
+        0.0,
+        35.25
+      ],
+      "size": [
+        59.75,
+        15.0,
+        0.75
+      ],
+      "center": [
+        29.875,
+        7.5,
+        35.625
+      ],
+      "part_type": "horizontal_panel",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        5.4
+      ],
+      "features": [
+        {
+          "type": "through_cutout",
+          "local_position": [
+            34.0,
+            0.0,
+            0.0
+          ],
+          "size": [
+            22.0,
+            12.0
+          ]
+        }
+      ],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 1,
+        "thickness": 0.75,
+        "rough_l": 60.25,
+        "rough_w": 15.75,
+        "final_l": 59.75,
+        "final_w": 15.0
+      }
+    },
+    {
+      "instance_id": "TOP-01C",
+      "part_id": "TOP-01C",
+      "label": "Front-right top substrate",
+      "assembly": "top",
+      "assembly_label": "Fixed Top",
+      "material": "plywood",
+      "color": "#ead9b7",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Front-right fixed-top substrate panel",
+      "tags": [],
+      "position": [
+        59.75,
+        0.0,
+        34.5
+      ],
+      "size": [
+        30.25,
+        15.0,
+        0.75
+      ],
+      "center": [
+        74.875,
+        7.5,
+        34.875
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        4.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 1,
+        "thickness": 0.75,
+        "rough_l": 31.0,
+        "rough_w": 15.75,
+        "final_l": 30.25,
+        "final_w": 15.0
+      }
+    },
+    {
+      "instance_id": "TOP-02C",
+      "part_id": "TOP-02C",
+      "label": "Front-right top wear skin",
+      "assembly": "top",
+      "assembly_label": "Fixed Top",
+      "material": "prefinished plywood",
+      "color": "#ead9b7",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Front-right fixed-top wear skin with finished face up; do not machine openings yet",
+      "tags": [],
+      "position": [
+        59.75,
+        0.0,
+        35.25
+      ],
+      "size": [
+        30.25,
+        15.0,
+        0.75
+      ],
+      "center": [
+        74.875,
+        7.5,
+        35.625
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        5.4
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 1,
+        "thickness": 0.75,
+        "rough_l": 31.0,
+        "rough_w": 15.75,
+        "final_l": 30.25,
+        "final_w": 15.0
+      }
+    },
+    {
+      "instance_id": "TOP-03-north",
+      "part_id": "TOP-03",
+      "label": "Router ledger north",
+      "assembly": "top",
+      "assembly_label": "Fixed Top",
+      "material": "plywood",
+      "color": "#ead9b7",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Router plate ledgers and local blocking",
+      "tags": [],
+      "position": [
+        72.5,
+        17.375,
+        33.75
+      ],
+      "size": [
+        14.0,
+        2.0,
+        0.75
+      ],
+      "center": [
+        79.5,
+        18.375,
+        34.125
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        1.8
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 4,
+        "thickness": 0.75,
+        "rough_l": 15.0,
+        "rough_w": 2.5,
+        "final_l": 14.0,
+        "final_w": 2.0
+      }
+    },
+    {
+      "instance_id": "TOP-03-south",
+      "part_id": "TOP-03",
+      "label": "Router ledger south",
+      "assembly": "top",
+      "assembly_label": "Fixed Top",
+      "material": "plywood",
+      "color": "#ead9b7",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Router plate ledgers and local blocking",
+      "tags": [],
+      "position": [
+        72.5,
+        28.625,
+        33.75
+      ],
+      "size": [
+        14.0,
+        2.0,
+        0.75
+      ],
+      "center": [
+        79.5,
+        29.625,
+        34.125
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        1.8
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 4,
+        "thickness": 0.75,
+        "rough_l": 15.0,
+        "rough_w": 2.5,
+        "final_l": 14.0,
+        "final_w": 2.0
+      }
+    },
+    {
+      "instance_id": "TOP-03-west",
+      "part_id": "TOP-03",
+      "label": "Router ledger west",
+      "assembly": "top",
+      "assembly_label": "Fixed Top",
+      "material": "plywood",
+      "color": "#ead9b7",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Router plate ledgers and local blocking",
+      "tags": [],
+      "position": [
+        71.625,
+        19.0,
+        33.75
+      ],
+      "size": [
+        2.0,
+        14.0,
+        0.75
+      ],
+      "center": [
+        72.625,
+        26.0,
+        34.125
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        1.8
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 4,
+        "thickness": 0.75,
+        "rough_l": 15.0,
+        "rough_w": 2.5,
+        "final_l": 14.0,
+        "final_w": 2.0
+      }
+    },
+    {
+      "instance_id": "TOP-03-east",
+      "part_id": "TOP-03",
+      "label": "Router ledger east",
+      "assembly": "top",
+      "assembly_label": "Fixed Top",
+      "material": "plywood",
+      "color": "#ead9b7",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Router plate ledgers and local blocking",
+      "tags": [],
+      "position": [
+        85.375,
+        19.0,
+        33.75
+      ],
+      "size": [
+        2.0,
+        14.0,
+        0.75
+      ],
+      "center": [
+        86.375,
+        26.0,
+        34.125
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        1.8
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 4,
+        "thickness": 0.75,
+        "rough_l": 15.0,
+        "rough_w": 2.5,
+        "final_l": 14.0,
+        "final_w": 2.0
+      }
+    },
+    {
+      "instance_id": "TOP-04-front-left-seam",
+      "part_id": "TOP-04",
+      "label": "Top seam or bay cleat front-left-seam",
+      "assembly": "top",
+      "assembly_label": "Fixed Top",
+      "material": "plywood",
+      "color": "#ead9b7",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Seam cleats under front-panel joints and miter-station bay edges",
+      "tags": [],
+      "position": [
+        18.0,
+        11.0,
+        33.75
+      ],
+      "size": [
+        20.0,
+        4.0,
+        0.75
+      ],
+      "center": [
+        28.0,
+        13.0,
+        34.125
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        1.3
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 4,
+        "thickness": 0.75,
+        "rough_l": 20.5,
+        "rough_w": 4.5,
+        "final_l": 20.0,
+        "final_w": 4.0
+      }
+    },
+    {
+      "instance_id": "TOP-04-front-right-seam",
+      "part_id": "TOP-04",
+      "label": "Top seam or bay cleat front-right-seam",
+      "assembly": "top",
+      "assembly_label": "Fixed Top",
+      "material": "plywood",
+      "color": "#ead9b7",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Seam cleats under front-panel joints and miter-station bay edges",
+      "tags": [],
+      "position": [
+        60.0,
+        11.0,
+        33.75
+      ],
+      "size": [
+        20.0,
+        4.0,
+        0.75
+      ],
+      "center": [
+        70.0,
+        13.0,
+        34.125
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        1.3
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 4,
+        "thickness": 0.75,
+        "rough_l": 20.5,
+        "rough_w": 4.5,
+        "final_l": 20.0,
+        "final_w": 4.0
+      }
+    },
+    {
+      "instance_id": "TOP-04-miter-left",
+      "part_id": "TOP-04",
+      "label": "Top seam or bay cleat miter-left",
+      "assembly": "top",
+      "assembly_label": "Fixed Top",
+      "material": "plywood",
+      "color": "#ead9b7",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Seam cleats under front-panel joints and miter-station bay edges",
+      "tags": [],
+      "position": [
+        30.0,
+        8.0,
+        33.75
+      ],
+      "size": [
+        4.0,
+        20.0,
+        0.75
+      ],
+      "center": [
+        32.0,
+        18.0,
+        34.125
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        1.3
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 4,
+        "thickness": 0.75,
+        "rough_l": 20.5,
+        "rough_w": 4.5,
+        "final_l": 20.0,
+        "final_w": 4.0
+      }
+    },
+    {
+      "instance_id": "TOP-04-miter-right",
+      "part_id": "TOP-04",
+      "label": "Top seam or bay cleat miter-right",
+      "assembly": "top",
+      "assembly_label": "Fixed Top",
+      "material": "plywood",
+      "color": "#ead9b7",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Seam cleats under front-panel joints and miter-station bay edges",
+      "tags": [],
+      "position": [
+        56.0,
+        8.0,
+        33.75
+      ],
+      "size": [
+        4.0,
+        20.0,
+        0.75
+      ],
+      "center": [
+        58.0,
+        18.0,
+        34.125
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        1.3
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 4,
+        "thickness": 0.75,
+        "rough_l": 20.5,
+        "rough_w": 4.5,
+        "final_l": 20.0,
+        "final_w": 4.0
+      }
+    },
+    {
+      "instance_id": "TOP-05-front",
+      "part_id": "TOP-05",
+      "label": "Under-top stiffener front",
+      "assembly": "top",
+      "assembly_label": "Fixed Top",
+      "material": "plywood",
+      "color": "#ead9b7",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Under-top stiffeners that stay outside the rail keep-clear lanes",
+      "tags": [],
+      "position": [
+        6.0,
+        6.5,
+        33.75
+      ],
+      "size": [
+        41.25,
+        3.0,
+        0.75
+      ],
+      "center": [
+        26.625,
+        8.0,
+        34.125
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        1.4
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 0.75,
+        "rough_l": 42.0,
+        "rough_w": 3.5,
+        "final_l": 41.25,
+        "final_w": 3.0
+      }
+    },
+    {
+      "instance_id": "TOP-05-rear",
+      "part_id": "TOP-05",
+      "label": "Under-top stiffener rear",
+      "assembly": "top",
+      "assembly_label": "Fixed Top",
+      "material": "plywood",
+      "color": "#ead9b7",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Under-top stiffeners that stay outside the rail keep-clear lanes",
+      "tags": [],
+      "position": [
+        6.0,
+        39.0,
+        33.75
+      ],
+      "size": [
+        41.25,
+        3.0,
+        0.75
+      ],
+      "center": [
+        26.625,
+        40.5,
+        34.125
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        1.4
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 0.75,
+        "rough_l": 42.0,
+        "rough_w": 3.5,
+        "final_l": 41.25,
+        "final_w": 3.0
+      }
+    },
+    {
+      "instance_id": "TOP-06-left-front",
+      "part_id": "TOP-06",
+      "label": "Overlay backing pad left-front",
+      "assembly": "top",
+      "assembly_label": "Fixed Top",
+      "material": "plywood",
+      "color": "#ead9b7",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Future overlay anchor backing pads at x=6 and x=54 anchor stations; batch-cut with FT-02 if scrap size allows",
+      "tags": [],
+      "position": [
+        4.0,
+        10.0,
+        33.75
+      ],
+      "size": [
+        4.0,
+        4.0,
+        0.75
+      ],
+      "center": [
+        6.0,
+        12.0,
+        34.125
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        1.2
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 4,
+        "thickness": 0.75,
+        "rough_l": 4.5,
+        "rough_w": 4.5,
+        "final_l": 4.0,
+        "final_w": 4.0
+      }
+    },
+    {
+      "instance_id": "TOP-06-left-rear",
+      "part_id": "TOP-06",
+      "label": "Overlay backing pad left-rear",
+      "assembly": "top",
+      "assembly_label": "Fixed Top",
+      "material": "plywood",
+      "color": "#ead9b7",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Future overlay anchor backing pads at x=6 and x=54 anchor stations; batch-cut with FT-02 if scrap size allows",
+      "tags": [],
+      "position": [
+        4.0,
+        38.0,
+        33.75
+      ],
+      "size": [
+        4.0,
+        4.0,
+        0.75
+      ],
+      "center": [
+        6.0,
+        40.0,
+        34.125
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        1.2
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 4,
+        "thickness": 0.75,
+        "rough_l": 4.5,
+        "rough_w": 4.5,
+        "final_l": 4.0,
+        "final_w": 4.0
+      }
+    },
+    {
+      "instance_id": "TOP-06-right-front",
+      "part_id": "TOP-06",
+      "label": "Overlay backing pad right-front",
+      "assembly": "top",
+      "assembly_label": "Fixed Top",
+      "material": "plywood",
+      "color": "#ead9b7",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Future overlay anchor backing pads at x=6 and x=54 anchor stations; batch-cut with FT-02 if scrap size allows",
+      "tags": [],
+      "position": [
+        52.0,
+        10.0,
+        33.75
+      ],
+      "size": [
+        4.0,
+        4.0,
+        0.75
+      ],
+      "center": [
+        54.0,
+        12.0,
+        34.125
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        1.2
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 4,
+        "thickness": 0.75,
+        "rough_l": 4.5,
+        "rough_w": 4.5,
+        "final_l": 4.0,
+        "final_w": 4.0
+      }
+    },
+    {
+      "instance_id": "TOP-06-right-rear",
+      "part_id": "TOP-06",
+      "label": "Overlay backing pad right-rear",
+      "assembly": "top",
+      "assembly_label": "Fixed Top",
+      "material": "plywood",
+      "color": "#ead9b7",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Future overlay anchor backing pads at x=6 and x=54 anchor stations; batch-cut with FT-02 if scrap size allows",
+      "tags": [],
+      "position": [
+        52.0,
+        38.0,
+        33.75
+      ],
+      "size": [
+        4.0,
+        4.0,
+        0.75
+      ],
+      "center": [
+        54.0,
+        40.0,
+        34.125
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        1.2
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 4,
+        "thickness": 0.75,
+        "rough_l": 4.5,
+        "rough_w": 4.5,
+        "final_l": 4.0,
+        "final_w": 4.0
+      }
+    },
+    {
+      "instance_id": "MS-01",
+      "part_id": "MS-01",
+      "label": "Flip-top tray deck",
+      "assembly": "miter_station",
+      "assembly_label": "Flip-Top Miter Station",
+      "material": "plywood",
+      "color": "#d55f42",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Flip-top tray deck sized from the public-envelope layout; same blank size as MS-04 if you want one setup",
+      "tags": [],
+      "position": [
+        34.0,
+        0.0,
+        34.5
+      ],
+      "size": [
+        22.0,
+        12.0,
+        0.75
+      ],
+      "center": [
+        45.0,
+        6.0,
+        34.875
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        1.5
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": {
+        "type": "hinge",
+        "axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "origin": [
+          45.0,
+          12.0,
+          35.625
+        ],
+        "stowed_angle_deg": 0.0,
+        "deployed_angle_deg": 180.0
+      },
+      "cutlist": {
+        "qty": 1,
+        "thickness": 0.75,
+        "rough_l": 22.5,
+        "rough_w": 12.5,
+        "final_l": 22.0,
+        "final_w": 12.0
+      }
+    },
+    {
+      "instance_id": "MS-04",
+      "part_id": "MS-04",
+      "label": "Stowed cover panel",
+      "assembly": "miter_station",
+      "assembly_label": "Flip-Top Miter Station",
+      "material": "prefinished plywood",
+      "color": "#d55f42",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Stowed cover and work-surface panel with finished face up; same blank size as MS-01 and flushness is tuned later with FT-02 and the latch set",
+      "tags": [],
+      "position": [
+        34.0,
+        0.0,
+        35.25
+      ],
+      "size": [
+        22.0,
+        12.0,
+        0.75
+      ],
+      "center": [
+        45.0,
+        6.0,
+        35.625
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        1.8
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": {
+        "type": "hinge",
+        "axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "origin": [
+          45.0,
+          12.0,
+          35.625
+        ],
+        "stowed_angle_deg": 0.0,
+        "deployed_angle_deg": 180.0
+      },
+      "cutlist": {
+        "qty": 1,
+        "thickness": 0.75,
+        "rough_l": 22.5,
+        "rough_w": 12.5,
+        "final_l": 22.0,
+        "final_w": 12.0
+      }
+    },
+    {
+      "instance_id": "MS-02-left",
+      "part_id": "MS-02",
+      "label": "Tray side wall left",
+      "assembly": "miter_station",
+      "assembly_label": "Flip-Top Miter Station",
+      "material": "plywood",
+      "color": "#d55f42",
+      "confidence": "high",
+      "gate": "after_miter_station_fit",
+      "notes": "Tray side walls trimmed after pivot hardware dry fit",
+      "tags": [],
+      "position": [
+        34.0,
+        0.0,
+        24.5
+      ],
+      "size": [
+        0.75,
+        12.0,
+        10.0
+      ],
+      "center": [
+        34.375,
+        6.0,
+        29.5
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": {
+        "type": "hinge",
+        "axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "origin": [
+          45.0,
+          12.0,
+          35.625
+        ],
+        "stowed_angle_deg": 0.0,
+        "deployed_angle_deg": 180.0
+      },
+      "cutlist": {
+        "qty": 2,
+        "thickness": 0.75,
+        "rough_l": 12.5,
+        "rough_w": 10.5,
+        "final_l": 12.0,
+        "final_w": 10.0
+      }
+    },
+    {
+      "instance_id": "MS-02-right",
+      "part_id": "MS-02",
+      "label": "Tray side wall right",
+      "assembly": "miter_station",
+      "assembly_label": "Flip-Top Miter Station",
+      "material": "plywood",
+      "color": "#d55f42",
+      "confidence": "high",
+      "gate": "after_miter_station_fit",
+      "notes": "Tray side walls trimmed after pivot hardware dry fit",
+      "tags": [],
+      "position": [
+        55.25,
+        0.0,
+        24.5
+      ],
+      "size": [
+        0.75,
+        12.0,
+        10.0
+      ],
+      "center": [
+        55.625,
+        6.0,
+        29.5
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": {
+        "type": "hinge",
+        "axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "origin": [
+          45.0,
+          12.0,
+          35.625
+        ],
+        "stowed_angle_deg": 0.0,
+        "deployed_angle_deg": 180.0
+      },
+      "cutlist": {
+        "qty": 2,
+        "thickness": 0.75,
+        "rough_l": 12.5,
+        "rough_w": 10.5,
+        "final_l": 12.0,
+        "final_w": 10.0
+      }
+    },
+    {
+      "instance_id": "MS-03-front",
+      "part_id": "MS-03",
+      "label": "Tray front rail",
+      "assembly": "miter_station",
+      "assembly_label": "Flip-Top Miter Station",
+      "material": "plywood",
+      "color": "#d55f42",
+      "confidence": "high",
+      "gate": "after_miter_station_fit",
+      "notes": "Front and rear tray rails",
+      "tags": [],
+      "position": [
+        34.5,
+        0.0,
+        31.5
+      ],
+      "size": [
+        21.0,
+        0.75,
+        3.0
+      ],
+      "center": [
+        45.0,
+        0.375,
+        33.0
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": {
+        "type": "hinge",
+        "axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "origin": [
+          45.0,
+          12.0,
+          35.625
+        ],
+        "stowed_angle_deg": 0.0,
+        "deployed_angle_deg": 180.0
+      },
+      "cutlist": {
+        "qty": 2,
+        "thickness": 0.75,
+        "rough_l": 21.5,
+        "rough_w": 3.5,
+        "final_l": 21.0,
+        "final_w": 3.0
+      }
+    },
+    {
+      "instance_id": "MS-03-rear",
+      "part_id": "MS-03",
+      "label": "Tray rear rail",
+      "assembly": "miter_station",
+      "assembly_label": "Flip-Top Miter Station",
+      "material": "plywood",
+      "color": "#d55f42",
+      "confidence": "high",
+      "gate": "after_miter_station_fit",
+      "notes": "Front and rear tray rails",
+      "tags": [],
+      "position": [
+        34.5,
+        11.25,
+        31.5
+      ],
+      "size": [
+        21.0,
+        0.75,
+        3.0
+      ],
+      "center": [
+        45.0,
+        11.625,
+        33.0
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": {
+        "type": "hinge",
+        "axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "origin": [
+          45.0,
+          12.0,
+          35.625
+        ],
+        "stowed_angle_deg": 0.0,
+        "deployed_angle_deg": 180.0
+      },
+      "cutlist": {
+        "qty": 2,
+        "thickness": 0.75,
+        "rough_l": 21.5,
+        "rough_w": 3.5,
+        "final_l": 21.0,
+        "final_w": 3.0
+      }
+    },
+    {
+      "instance_id": "MS-05",
+      "part_id": "MS-05",
+      "label": "Left support fence face",
+      "assembly": "miter_station",
+      "assembly_label": "Flip-Top Miter Station",
+      "material": "plywood",
+      "color": "#d55f42",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Left support fence face blank; final stop-track line still comes from the real saw during fit-up Final stop-track line is still field-fit from the real deployed saw.",
+      "tags": [],
+      "position": [
+        0.0,
+        6.0,
+        35.25
+      ],
+      "size": [
+        34.0,
+        0.75,
+        4.0
+      ],
+      "center": [
+        17.0,
+        6.375,
+        37.25
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        1.3
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 1,
+        "thickness": 0.75,
+        "rough_l": 34.5,
+        "rough_w": 4.5,
+        "final_l": 34.0,
+        "final_w": 4.0
+      }
+    },
+    {
+      "instance_id": "MS-06",
+      "part_id": "MS-06",
+      "label": "Right support fence face",
+      "assembly": "miter_station",
+      "assembly_label": "Flip-Top Miter Station",
+      "material": "plywood",
+      "color": "#d55f42",
+      "confidence": "high",
+      "gate": "cut_now",
+      "notes": "Right support fence face blank; final stop-track line still comes from the real saw during fit-up Final stop-track line is still field-fit from the real deployed saw.",
+      "tags": [],
+      "position": [
+        56.0,
+        6.0,
+        35.25
+      ],
+      "size": [
+        34.0,
+        0.75,
+        4.0
+      ],
+      "center": [
+        73.0,
+        6.375,
+        37.25
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        1.3
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 1,
+        "thickness": 0.75,
+        "rough_l": 34.5,
+        "rough_w": 4.5,
+        "final_l": 34.0,
+        "final_w": 4.0
+      }
+    },
+    {
+      "instance_id": "FT-01-left",
+      "part_id": "FT-01",
+      "label": "Left pivot side plate",
+      "assembly": "miter_station",
+      "assembly_label": "Flip-Top Miter Station",
+      "material": "plywood",
+      "color": "#d55f42",
+      "confidence": "high",
+      "gate": "after_miter_station_fit",
+      "notes": "Pivot side-plate blanks",
+      "tags": [],
+      "position": [
+        33.25,
+        0.0,
+        22.5
+      ],
+      "size": [
+        0.75,
+        12.0,
+        12.0
+      ],
+      "center": [
+        33.625,
+        6.0,
+        28.5
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        -1.2,
+        0.0,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 0.75,
+        "rough_l": 12.5,
+        "rough_w": 12.5,
+        "final_l": 12.0,
+        "final_w": 12.0
+      }
+    },
+    {
+      "instance_id": "FT-01-right",
+      "part_id": "FT-01",
+      "label": "Right pivot side plate",
+      "assembly": "miter_station",
+      "assembly_label": "Flip-Top Miter Station",
+      "material": "plywood",
+      "color": "#d55f42",
+      "confidence": "high",
+      "gate": "after_miter_station_fit",
+      "notes": "Pivot side-plate blanks",
+      "tags": [],
+      "position": [
+        56.0,
+        0.0,
+        22.5
+      ],
+      "size": [
+        0.75,
+        12.0,
+        12.0
+      ],
+      "center": [
+        56.375,
+        6.0,
+        28.5
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        1.2,
+        0.0,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 0.75,
+        "rough_l": 12.5,
+        "rough_w": 12.5,
+        "final_l": 12.0,
+        "final_w": 12.0
+      }
+    },
+    {
+      "instance_id": "FT-02-left",
+      "part_id": "FT-02",
+      "label": "Left latch block",
+      "assembly": "miter_station",
+      "assembly_label": "Flip-Top Miter Station",
+      "material": "plywood",
+      "color": "#d55f42",
+      "confidence": "high",
+      "gate": "after_miter_station_fit",
+      "notes": "Stowed latch blocks; batch-cut with TOP-06 if scrap size allows",
+      "tags": [],
+      "position": [
+        35.5,
+        9.0,
+        32.5
+      ],
+      "size": [
+        4.0,
+        4.0,
+        0.75
+      ],
+      "center": [
+        37.5,
+        11.0,
+        32.875
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        0.6
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 0.75,
+        "rough_l": 4.5,
+        "rough_w": 4.5,
+        "final_l": 4.0,
+        "final_w": 4.0
+      }
+    },
+    {
+      "instance_id": "FT-02-right",
+      "part_id": "FT-02",
+      "label": "Right latch block",
+      "assembly": "miter_station",
+      "assembly_label": "Flip-Top Miter Station",
+      "material": "plywood",
+      "color": "#d55f42",
+      "confidence": "high",
+      "gate": "after_miter_station_fit",
+      "notes": "Stowed latch blocks; batch-cut with TOP-06 if scrap size allows",
+      "tags": [],
+      "position": [
+        50.5,
+        9.0,
+        32.5
+      ],
+      "size": [
+        4.0,
+        4.0,
+        0.75
+      ],
+      "center": [
+        52.5,
+        11.0,
+        32.875
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        0.6
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 0.75,
+        "rough_l": 4.5,
+        "rough_w": 4.5,
+        "final_l": 4.0,
+        "final_w": 4.0
+      }
+    },
+    {
+      "instance_id": "FT-03-left",
+      "part_id": "FT-03",
+      "label": "Left deployed hard stop",
+      "assembly": "miter_station",
+      "assembly_label": "Flip-Top Miter Station",
+      "material": "plywood",
+      "color": "#d55f42",
+      "confidence": "high",
+      "gate": "after_miter_station_fit",
+      "notes": "Deployed hard-stop blocks",
+      "tags": [],
+      "position": [
+        36.0,
+        10.5,
+        28.5
+      ],
+      "size": [
+        6.0,
+        3.0,
+        0.75
+      ],
+      "center": [
+        39.0,
+        12.0,
+        28.875
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        0.6
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 0.75,
+        "rough_l": 6.5,
+        "rough_w": 3.5,
+        "final_l": 6.0,
+        "final_w": 3.0
+      }
+    },
+    {
+      "instance_id": "FT-03-right",
+      "part_id": "FT-03",
+      "label": "Right deployed hard stop",
+      "assembly": "miter_station",
+      "assembly_label": "Flip-Top Miter Station",
+      "material": "plywood",
+      "color": "#d55f42",
+      "confidence": "high",
+      "gate": "after_miter_station_fit",
+      "notes": "Deployed hard-stop blocks",
+      "tags": [],
+      "position": [
+        48.0,
+        10.5,
+        28.5
+      ],
+      "size": [
+        6.0,
+        3.0,
+        0.75
+      ],
+      "center": [
+        51.0,
+        12.0,
+        28.875
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        0.6
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null,
+      "cutlist": {
+        "qty": 2,
+        "thickness": 0.75,
+        "rough_l": 6.5,
+        "rough_w": 3.5,
+        "final_l": 6.0,
+        "final_w": 3.0
+      }
+    },
+    {
+      "instance_id": "miter-saw-envelope",
+      "part_id": "miter-saw-envelope",
+      "label": "DeWALT DCS781 public envelope",
+      "assembly": "miter_station",
+      "assembly_label": "Flip-Top Miter Station",
+      "material": "public envelope",
+      "color": "#d9a84e",
+      "confidence": "medium",
+      "gate": "derived",
+      "notes": "Public DCS781 sanity envelope only. Real tray fit, bolt transfer, and shimming still happen from the actual saw.",
+      "tags": [],
+      "position": [
+        32.99,
+        -10.18,
+        14.32
+      ],
+      "size": [
+        24.02,
+        32.36,
+        20.93
+      ],
+      "center": [
+        45.0,
+        6.0,
+        24.785
+      ],
+      "part_type": "box",
+      "render_style": "context",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        2.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true,
+        "deployed_only": true
+      },
+      "motion": {
+        "type": "hinge",
+        "axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "origin": [
+          45.0,
+          12.0,
+          35.625
+        ],
+        "stowed_angle_deg": 0.0,
+        "deployed_angle_deg": 180.0
+      }
+    },
+    {
+      "instance_id": "saw-cast-top",
+      "part_id": "saw-cast-top",
+      "label": "SKIL cast top",
+      "assembly": "saw",
+      "assembly_label": "Table Saw Package",
+      "material": "cast aluminum envelope",
+      "color": "#66788b",
+      "confidence": "medium",
+      "gate": "derived",
+      "notes": "Field-fit target for the real saw opening.",
+      "tags": [],
+      "position": [
+        23.0,
+        16.25,
+        34.5
+      ],
+      "size": [
+        27.5625,
+        22.125,
+        1.5
+      ],
+      "center": [
+        36.78125,
+        27.3125,
+        35.25
+      ],
+      "part_type": "box",
+      "render_style": "context",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null
+    },
+    {
+      "instance_id": "saw-body-envelope",
+      "part_id": "saw-body-envelope",
+      "label": "Saw body envelope",
+      "assembly": "saw",
+      "assembly_label": "Table Saw Package",
+      "material": "body envelope",
+      "color": "#516476",
+      "confidence": "medium",
+      "gate": "derived",
+      "notes": "Body depth is simplified for visualization. Final interference work still uses the real saw.",
+      "tags": [],
+      "position": [
+        24.0,
+        17.25,
+        22.625
+      ],
+      "size": [
+        25.5625,
+        20.125,
+        13.375
+      ],
+      "center": [
+        36.78125,
+        27.3125,
+        29.3125
+      ],
+      "part_type": "box",
+      "render_style": "context",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        1.4
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null
+    },
+    {
+      "instance_id": "front-rail",
+      "part_id": "front-rail",
+      "label": "Front rail envelope",
+      "assembly": "saw",
+      "assembly_label": "Table Saw Package",
+      "material": "rail envelope",
+      "color": "#7f92a6",
+      "confidence": "medium",
+      "gate": "derived",
+      "notes": "",
+      "tags": [],
+      "position": [
+        16.0,
+        13.75,
+        35.0
+      ],
+      "size": [
+        53.1875,
+        1.0,
+        1.0
+      ],
+      "center": [
+        42.59375,
+        14.25,
+        35.5
+      ],
+      "part_type": "box",
+      "render_style": "context",
+      "exploded_offset": [
+        0.0,
+        -0.6,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null
+    },
+    {
+      "instance_id": "rear-rail",
+      "part_id": "rear-rail",
+      "label": "Rear rail envelope",
+      "assembly": "saw",
+      "assembly_label": "Table Saw Package",
+      "material": "rail envelope",
+      "color": "#7f92a6",
+      "confidence": "medium",
+      "gate": "derived",
+      "notes": "",
+      "tags": [],
+      "position": [
+        16.0,
+        39.0,
+        35.0
+      ],
+      "size": [
+        53.1875,
+        1.0,
+        1.0
+      ],
+      "center": [
+        42.59375,
+        39.5,
+        35.5
+      ],
+      "part_type": "box",
+      "render_style": "context",
+      "exploded_offset": [
+        0.0,
+        0.6,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null
+    },
+    {
+      "instance_id": "router-plate",
+      "part_id": "router-plate",
+      "label": "JessEm router plate",
+      "assembly": "router",
+      "assembly_label": "Router Package",
+      "material": "lift plate",
+      "color": "#395f8a",
+      "confidence": "high",
+      "gate": "derived",
+      "notes": "Plate size from the current router contract.",
+      "tags": [],
+      "position": [
+        73.625,
+        19.375,
+        35.625
+      ],
+      "size": [
+        11.75,
+        9.25,
+        0.375
+      ],
+      "center": [
+        79.5,
+        24.0,
+        35.8125
+      ],
+      "part_type": "box",
+      "render_style": "solid",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null
+    },
+    {
+      "instance_id": "router-motor-envelope",
+      "part_id": "router-motor-envelope",
+      "label": "Router motor envelope",
+      "assembly": "router",
+      "assembly_label": "Router Package",
+      "material": "motor envelope",
+      "color": "#2f5b4b",
+      "confidence": "medium",
+      "gate": "derived",
+      "notes": "Simplified motor envelope below the lift plate.",
+      "tags": [],
+      "position": [
+        77.5,
+        22.0,
+        26.0
+      ],
+      "size": [
+        4.0,
+        4.0,
+        8.5
+      ],
+      "center": [
+        79.5,
+        24.0,
+        30.25
+      ],
+      "part_type": "box",
+      "render_style": "context",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        1.5
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null
+    },
+    {
+      "instance_id": "router-fence-zone",
+      "part_id": "router-fence-zone",
+      "label": "Router fence zone",
+      "assembly": "router",
+      "assembly_label": "Router Package",
+      "material": "guide zone",
+      "color": "#63a884",
+      "confidence": "medium",
+      "gate": "derived",
+      "notes": "Reserved zone for the removable router fence.",
+      "tags": [],
+      "position": [
+        71.0,
+        9.0,
+        36.05
+      ],
+      "size": [
+        16.5,
+        5.0,
+        0.2
+      ],
+      "center": [
+        79.25,
+        11.5,
+        36.15
+      ],
+      "part_type": "box",
+      "render_style": "guide",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        0.4
+      ],
+      "features": [],
+      "visibility": {
+        "default": false,
+        "guides": true
+      },
+      "motion": null
+    },
+    {
+      "instance_id": "oneida_low_pro_bucket_front",
+      "part_id": "oneida_low_pro_bucket_front",
+      "label": "Low-Pro bucket package",
+      "assembly": "dust",
+      "assembly_label": "Dust Package",
+      "material": "dust package envelope",
+      "color": "#ad86bf",
+      "confidence": "medium",
+      "gate": "derived",
+      "notes": "Front bucket package in the current service sequence.",
+      "tags": [],
+      "position": [
+        71.3125,
+        5.0,
+        4.25
+      ],
+      "size": [
+        12.375,
+        12.375,
+        18.5
+      ],
+      "center": [
+        77.5,
+        11.1875,
+        13.5
+      ],
+      "part_type": "box",
+      "render_style": "context",
+      "exploded_offset": [
+        0.0,
+        2.0,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null
+    },
+    {
+      "instance_id": "hercules_extractor_rear",
+      "part_id": "hercules_extractor_rear",
+      "label": "Hercules extractor envelope",
+      "assembly": "dust",
+      "assembly_label": "Dust Package",
+      "material": "dust package envelope",
+      "color": "#8668a0",
+      "confidence": "medium",
+      "gate": "derived",
+      "notes": "Mockup-gated service package.",
+      "tags": [],
+      "position": [
+        68.375,
+        19.5,
+        4.25
+      ],
+      "size": [
+        18.25,
+        23.5,
+        27.4
+      ],
+      "center": [
+        77.5,
+        31.25,
+        17.95
+      ],
+      "part_type": "box",
+      "render_style": "context",
+      "exploded_offset": [
+        0.0,
+        3.5,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": true
+      },
+      "motion": null
+    },
+    {
+      "instance_id": "dust-bay-envelope",
+      "part_id": "dust-bay-envelope",
+      "label": "Right-bay package envelope",
+      "assembly": "dust",
+      "assembly_label": "Dust Package",
+      "material": "bay envelope",
+      "color": "#6f5a7c",
+      "confidence": "medium",
+      "gate": "derived",
+      "notes": "Modeled extractor headroom is only 0.35 in above the current Hercules body. Keep this behind mockup proof.",
+      "tags": [],
+      "position": [
+        67.25,
+        3.75,
+        3.5
+      ],
+      "size": [
+        20.5,
+        40.5,
+        29.5
+      ],
+      "center": [
+        77.5,
+        24.0,
+        18.25
+      ],
+      "part_type": "box",
+      "render_style": "guide",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": false,
+        "guides": true
+      },
+      "motion": null
+    },
+    {
+      "instance_id": "front_rail_lane",
+      "part_id": "front_rail_lane",
+      "label": "Front Rail Lane",
+      "assembly": "guides",
+      "assembly_label": "Guide Geometry",
+      "material": "keep-clear lane",
+      "color": "#567292",
+      "confidence": "medium",
+      "gate": "derived",
+      "notes": "No divider, wiring chase, hose bracket, or subpanel cleat may intrude into this lane above the plinth.",
+      "tags": [],
+      "position": [
+        16.0,
+        13.75,
+        3.5
+      ],
+      "size": [
+        53.1875,
+        2.5,
+        29.0
+      ],
+      "center": [
+        42.59375,
+        15.0,
+        18.0
+      ],
+      "part_type": "box",
+      "render_style": "guide",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": false,
+        "guides": true
+      },
+      "motion": null
+    },
+    {
+      "instance_id": "rear_rail_lane",
+      "part_id": "rear_rail_lane",
+      "label": "Rear Rail Lane",
+      "assembly": "guides",
+      "assembly_label": "Guide Geometry",
+      "material": "keep-clear lane",
+      "color": "#567292",
+      "confidence": "medium",
+      "gate": "derived",
+      "notes": "No divider, wiring chase, hose bracket, or subpanel cleat may intrude into this lane above the plinth.",
+      "tags": [],
+      "position": [
+        16.0,
+        38.375,
+        3.5
+      ],
+      "size": [
+        53.1875,
+        1.625,
+        29.0
+      ],
+      "center": [
+        42.59375,
+        39.1875,
+        18.0
+      ],
+      "part_type": "box",
+      "render_style": "guide",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": false,
+        "guides": true
+      },
+      "motion": null
+    },
+    {
+      "instance_id": "miter-station-envelope",
+      "part_id": "miter-station-envelope",
+      "label": "Deployed miter-station envelope",
+      "assembly": "guides",
+      "assembly_label": "Guide Geometry",
+      "material": "guide envelope",
+      "color": "#d17c54",
+      "confidence": "medium",
+      "gate": "derived",
+      "notes": "Concept-only above-top envelope sized from the conservative public DeWalt listing and biased forward so the optional assembly overlay stays clear.",
+      "tags": [],
+      "position": [
+        31.0,
+        -21.0,
+        33.5
+      ],
+      "size": [
+        28.0,
+        33.0,
+        23.0
+      ],
+      "center": [
+        45.0,
+        -4.5,
+        45.0
+      ],
+      "part_type": "box",
+      "render_style": "guide",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": false,
+        "guides": true
+      },
+      "motion": null
+    },
+    {
+      "instance_id": "left-support-surface",
+      "part_id": "left-support-surface",
+      "label": "Left miter support span",
+      "assembly": "guides",
+      "assembly_label": "Guide Geometry",
+      "material": "support surface",
+      "color": "#dba96b",
+      "confidence": "medium",
+      "gate": "derived",
+      "notes": "Available support surface when the station is deployed.",
+      "tags": [],
+      "position": [
+        0.0,
+        0.0,
+        36.02
+      ],
+      "size": [
+        34.0,
+        12.0,
+        0.18
+      ],
+      "center": [
+        17.0,
+        6.0,
+        36.11000000000001
+      ],
+      "part_type": "box",
+      "render_style": "guide",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": false,
+        "guides": true
+      },
+      "motion": null
+    },
+    {
+      "instance_id": "right-support-surface",
+      "part_id": "right-support-surface",
+      "label": "Right miter support span",
+      "assembly": "guides",
+      "assembly_label": "Guide Geometry",
+      "material": "support surface",
+      "color": "#dba96b",
+      "confidence": "medium",
+      "gate": "derived",
+      "notes": "Support span is counted with the router fence removed.",
+      "tags": [],
+      "position": [
+        56.0,
+        0.0,
+        36.02
+      ],
+      "size": [
+        34.0,
+        12.0,
+        0.18
+      ],
+      "center": [
+        73.0,
+        6.0,
+        36.11000000000001
+      ],
+      "part_type": "box",
+      "render_style": "guide",
+      "exploded_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "features": [],
+      "visibility": {
+        "default": false,
+        "guides": true
+      },
+      "motion": null
+    }
+  ]
+}

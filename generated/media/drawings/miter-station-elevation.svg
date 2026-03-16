@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="720" viewBox="0 0 1120 720">
+  <rect width="1120" height="720" fill="#ffffff"/>
+  <text x="40" y="42" font-family="Helvetica, Arial, sans-serif" font-size="24">Miter-Station Elevation</text>
+  <rect x="40" y="60" width="1040" height="56" fill="#eef6ff" stroke="#2f6ea3" stroke-width="2"/>
+  <text x="56" y="84" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#1f4f78">Public DCS781 dimensions are accepted by default.</text>
+  <text x="56" y="106" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#1f4f78">Real tray fit, shim tuning, and final bolt transfer still remain manual before the station is actually build-ready.</text>
+
+  <rect x="80" y="120" width="900" height="18" fill="#dad0be" stroke="#111" stroke-width="2"/>
+  <rect x="80" y="138" width="340" height="250" fill="#d8f0d2" stroke="#4b7d3a" stroke-width="2" fill-opacity="0.7"/>
+  <rect x="420" y="138" width="220" height="42" fill="#fff4c8" stroke="#b48300" stroke-width="2"/>
+  <rect x="640" y="138" width="340" height="250" fill="#d7ecff" stroke="#2f6ea3" stroke-width="2" fill-opacity="0.7"/>
+  <line x1="80" y1="240" x2="980" y2="240" stroke="#7a4d00" stroke-width="2" stroke-dasharray="6 6"/>
+
+  <text x="150" y="205" font-family="Helvetica, Arial, sans-serif" font-size="18">MS-05 left support face</text>
+  <text x="700" y="205" font-family="Helvetica, Arial, sans-serif" font-size="18">MS-06 right support face</text>
+  <text x="444" y="165" font-family="Helvetica, Arial, sans-serif" font-size="16">MS-04 stowed cover</text>
+  <text x="455" y="195" font-family="Helvetica, Arial, sans-serif" font-size="16">22 in opening</text>
+  <text x="820" y="232" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#7a4d00">Fence line y=6 in</text>
+  <text x="150" y="268" font-family="Helvetica, Arial, sans-serif" font-size="15">Left support span: 34 in minimum</text>
+  <text x="700" y="268" font-family="Helvetica, Arial, sans-serif" font-size="15">Right support span: 34 in minimum</text>
+  <text x="410" y="420" font-family="Helvetica, Arial, sans-serif" font-size="16">Station centerline aligns to x=45 in and stays within 2 in of bench midpoint.</text>
+  <text x="410" y="448" font-family="Helvetica, Arial, sans-serif" font-size="16">The cover is a work surface first. Flush or slightly low is acceptable. Proud is not.</text>
+
+  <line x1="80" y1="520" x2="420" y2="520" stroke="#111" stroke-width="1.5"/>
+  <line x1="80" y1="512" x2="80" y2="528" stroke="#111" stroke-width="1.5"/>
+  <line x1="420" y1="512" x2="420" y2="528" stroke="#111" stroke-width="1.5"/>
+  <text x="250" y="548" font-family="Helvetica, Arial, sans-serif" font-size="18" text-anchor="middle">34 in left support</text>
+
+  <line x1="420" y1="520" x2="640" y2="520" stroke="#111" stroke-width="1.5"/>
+  <line x1="640" y1="512" x2="640" y2="528" stroke="#111" stroke-width="1.5"/>
+  <text x="530" y="548" font-family="Helvetica, Arial, sans-serif" font-size="18" text-anchor="middle">22 in station bay</text>
+
+  <line x1="640" y1="520" x2="980" y2="520" stroke="#111" stroke-width="1.5"/>
+  <line x1="980" y1="512" x2="980" y2="528" stroke="#111" stroke-width="1.5"/>
+  <text x="810" y="548" font-family="Helvetica, Arial, sans-serif" font-size="18" text-anchor="middle">34 in right support</text>
+</svg>
